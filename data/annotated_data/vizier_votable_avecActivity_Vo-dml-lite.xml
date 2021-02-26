@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+	<DESCRIPTION>
+		VizieR Astronomical Server vizier.u-strasbg.fr
+		Date:
+		2019-11-07T16:36:14 [V1.99+ (14-Oct-2013)]
+		Explanations and Statistics
+		of UCDs: See LINK below
+		In case of problem, please report to:
+		cds-question@unistra.fr
+		In this version, NULL integer columns are
+		written as an empty string
+		&lt;TD&gt;&lt;/TD&gt;, explicitely possible
+		from VOTable-1.3
+	</DESCRIPTION>
+	<!-- VOTable description at http://www.ivoa.net/Documents/latest/VOT.html -->
+	<INFO ID="VERSION" name="votable-version"
+		value="1.99+ (14-Oct-2013)" />
+	<INFO ID="Ref" name="-ref" value="VIZ5dc447c90a86" />
+	<INFO ID="MaxTuples" name="-out.max" value="50" />
+	<INFO name="queryParameters" value="28">
+-oc.form=dec
+-out.max=50
+-out.all=2
+-out.add=_r
+-out.add=_RAJ,_DEJ
+-sort=_r
+-order=I
+-out.src=B/xmm/xmmlog
+-nav=cat:II/340&amp;cat:II/356&amp;cat:IX/50&amp;cat:IX/54&amp;cat:IX/55&amp;cat:IX/56&amp;cat:B/xmm&amp;tab:{B/xmm/xmmlog}&amp;cat:IX/37&amp;cat:IX/39&amp;cat:IX/40&amp;cat:IX/41&amp;cat:IX/44&amp;cat:IX/46&amp;key:source=XMM&amp;HTTPPRM:&amp;&amp;-ref=VIZ5dc447c90a86&amp;-out.max=50&amp;-out.form=HTML Table&amp;-out.all=2&amp;-out.add=_r&amp;-out.add=_RAJ,_DEJ&amp;-sort=_r&amp;-oc.form=sexa&amp;-c.eq=J2000&amp;-c.r=  2&amp;-c.u=arcmin&amp;-c.geom=r&amp;-order=I&amp;-out=Obsno&amp;-out=PIname&amp;-out=PropDate&amp;-out=Object&amp;-out=RAJ2000&amp;-out=DEJ2000&amp;-out=Obs0&amp;-out=Obs1&amp;-out=ObsDur&amp;-out=SASVersion&amp;-out=Image&amp;-out=PPSp&amp;-out=FITS&amp;-ignore=FITS=*&amp;FITS=FITS&amp;-out=XSAlink&amp;-out.all=2&amp;-file=.&amp;-meta.ucd=2&amp;-meta=1&amp;-meta.foot=1&amp;-usenav=1&amp;-bmark=POST&amp;-out.src=B/xmm/xmmlog
+-c.eq=J2000
+-c.r=  2
+-c.u=arcmin
+-c.geom=r
+-source=B/xmm/xmmlog
+-out=Obsno
+-out=PIname
+-out=PropDate
+-out=Object
+-out=RAJ2000
+-out=DEJ2000
+-out=Obs0
+-out=Obs1
+-out=ObsDur
+-out=SASVersion
+-out=Image
+-out=PPSp
+-out=FITS
+-out=XSAlink
+</INFO>
+	<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot" >
+		<GLOBALS>
+		</GLOBALS>
+		<TABLE_MAPPING tableref="B_xmm_xmmlog">
+			<INSTANCE dmrole="root" dmtype="voprov:Entity">
+				<!-- VizieRcatalog entity with attributed agent and activity which generated 
+					it -->
+				<ATTRIBUTE dmrole="voprov:Entity.name"
+					dmtype="ivoa:string" ref="cn" />
+				<ATTRIBUTE dmrole="voprov:Entity.location"
+					dmtype="ivoa:string" ref="cl" />
+				<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+					<!-- Published VizieR catalog attributed to agent CDS -->
+					<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+						dmtype="voprov:Agent">
+						<ATTRIBUTE dmrole="voprov:WasAttributedTo.role"
+							dmtype="ivoa:string" ref="war" />
+						<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+							ref="pn" />
+						<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+							ref="pt" />
+					</INSTANCE>
+				</COLLECTION>
+				<COLLECTION size="-1" dmrole="voprov:WasGeneratedBy">
+					<!-- Catalog publication activity with used entities -->
+					<INSTANCE dmrole="voprov:WasGeneratedBy.Activity"
+						dmtype="voprov:Activity">
+						<ATTRIBUTE dmrole="voprov:Activity.name"
+							dmtype="ivoa:string" ref="an" />
+						<ATTRIBUTE dmrole="voprov:Activity.comment"
+							dmtype="ivoa:string" ref="ac" />
+						<COLLECTION size="-1" dmrole="voprov:WasAssociatedWith">
+							<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+								dmtype="voprov:Agent">
+								<ATTRIBUTE dmrole="voprov:WasAssociatedWith.role"
+									dmtype="ivoa:string" ref="war" />
+								<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+									ref="pn" />
+								<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+									ref="pt" />
+							</INSTANCE>
+						</COLLECTION>
+						<COLLECTION size="-1" dmrole="voprov:Used">
+							<INSTANCE dmrole="voprov:Used.Entity"
+								dmtype="voprov:Entity">
+								<!-- Article entity followed by attributed author and editor agents -->
+								<ATTRIBUTE dmrole="Entity.id" dmtype="ivoa:string"
+									ref="ab" />
+								<ATTRIBUTE dmrole="Entity.name" dmtype="ivoa:string"
+									ref="at" />
+								<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+									<!-- Agent PA Duc was attributed author role for paper and tables -->
+									<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+										dmtype="voprov:Agent">
+										<ATTRIBUTE dmrole="voprov:WasAttributedTo.role"
+											dmtype="ivoa:string" ref="ra" />
+										<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+											ref="an" />
+										<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+											ref="at" />
+									</INSTANCE>
+								</COLLECTION>
+								<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+									<!-- Agent A and A was attributed editor role for paper and tables -->
+									<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+										dmtype="voprov:Agent">
+										<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+											ref="en" />
+										<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+											ref="et" />
+									</INSTANCE>
+								</COLLECTION>
+							</INSTANCE>
+							<INSTANCE dmrole="voprov:Used.Entity"
+								dmtype="voprov:Entity">
+								<!-- Table entity with attributed author and editor agents -->
+								<ATTRIBUTE dmrole="Entity.id" dmtype="ivoa:string"
+									ref="ti" />
+								<ATTRIBUTE dmrole="Entity.location"
+									dmtype="ivoa:string" ref="tl" />
+								<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+									<!-- Agent PA Duc was attributed author role for paper and tables -->
+									<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+										dmtype="voprov:Agent">
+										<ATTRIBUTE dmrole="voprov:WasAttributedTo.role"
+											dmtype="ivoa:string" ref="ra" />
+										<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+											ref="an" />
+										<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+											ref="at" />
+									</INSTANCE>
+								</COLLECTION>
+								<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+									<!-- Agent A and A was attributed editor role for paper and tables -->
+									<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+										dmtype="voprov:Agent">
+										<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+											ref="en" />
+										<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+											ref="et" />
+									</INSTANCE>
+								</COLLECTION>
+							</INSTANCE>
+							<INSTANCE dmrole="voprov:Used.Entity"
+								dmtype="voprov:Entity">
+								<!-- Filter description entity with attributed creator agent -->
+								<ATTRIBUTE dmrole="Entity.id" dmtype="ivoa:string"
+									ref="af" />
+								<ATTRIBUTE dmrole="Entity.name" dmtype="ivoa:string"
+									ref="fi" />
+								<ATTRIBUTE dmrole="Entity.location"
+									dmtype="ivoa:string" ref="furl" />
+								<COLLECTION size="-1" dmrole="voprov:WasAttributedTo">
+									<INSTANCE dmrole="voprov:WasAttributedTo.Agent"
+										dmtype="voprov:Agent">
+										<!-- Agent SVO was attributed creator role for filter description -->
+										<ATTRIBUTE dmrole="voprov:WasAttributedTo.role"
+											dmtype="ivoa:string" ref="rc" />
+										<ATTRIBUTE dmrole="Agent.name" dmtype="ivoa:string"
+											ref="cn" />
+										<ATTRIBUTE dmrole="Agent.type" dmtype="ivoa:string"
+											ref="ct" />
+									</INSTANCE>
+								</COLLECTION>
+							</INSTANCE>
+						</COLLECTION>
+					</INSTANCE>
+				</COLLECTION>
+			</INSTANCE>
+		</TABLE_MAPPING>
+	</MODEL_INSTANCE>
+
+	<RESOURCE ID="yCat_102009" name="B/xmm">
+		<DESCRIPTION>XMM-Newton Observation Log (XMM-Newton Science Operation
+			Center, 2012)
+		</DESCRIPTION>
+
+
+		<COOSYS ID="J2000" system="eq_FK5" equinox="J2000" />
+		<TABLE ID="B_xmm_xmmlog" name="B/xmm/xmmlog">
+			<!-- VizieRcatalog entity with attributed agent and activity which generated 
+				it -->
+			<PARAM ID="cn" name="catalog name" datatype="char"
+				arraysize="*" value="XMM log" />
+			<PARAM ID="cl" name="catalog URL" datatype="char" arraysize="*"
+				value="https://vizier.u-strasbg.fr/viz-bin/VizieR-3?-source=B/xmm%26-out.max=50%26-out.form=HTML%20Table%26-out.add=_r%26-out.add=_RAJ,_DEJ%26-sort=_r%26-oc.form=sexa" />
+			<!-- Published VizieR catalog attributed to agent CDS with role publisher -->
+			<PARAM ID="war" name="role" datatype="char" arraysize="*"
+				value="publisher" />
+			<PARAM ID="pn" name="publisher name" datatype="char"
+				arraysize="*" value="CDS" />
+			<PARAM ID="pt" name="publisher type" datatype="char"
+				arraysize="*" value="organization" />
+			<!-- Catalog publication activity with used entities -->
+			<PARAM ID="an" name="activity name" datatype="char"
+				arraysize="*" value="XMM log catalog publication" />
+			<PARAM ID="ac" name="human description" datatype="char"
+				arraysize="*"
+				value="The XMM log catalog has been published by the VizieR team at CDS" />
+			<!-- Article entity followed by attributed author and editor agents -->
+			<PARAM ID="ab" name="article bibcode" datatype="char"
+				arraysize="*" value="D2018A+A....." />
+			<PARAM ID="at" name="article title" datatype="char"
+				arraysize="*" value="The title of the article" />
+			<!-- Table entity with attributed author and editor agents -->
+			<PARAM ID="ti" datatype="char" arraysize="*" name="tables id"
+				value="un doi pour les tables ?" />
+			<PARAM ID="tl" datatype="char" arraysize="*"
+				name="table location" value="http://......" />
+			<!-- Agent PA Duc was attributed author role for paper and tables -->
+			<PARAM ID="ra" name="PAD role" datatype="char" arraysize="*"
+				value="author" />
+			<PARAM ID="an" name="author name" datatype="char" arraysize="*"
+				value="Pierre-Alain Duc " />
+			<PARAM ID="at" name="author type" datatype="char" arraysize="*"
+				value="person" />
+			<!-- Agent A and A was attributed editor role for paper and tables -->
+			<PARAM ID="re" name="AetA role" datatype="char" arraysize="*"
+				value="editor" />
+			<PARAM ID="en" name="editor name" datatype="char" arraysize="*"
+				value="Astronomy and Astrophysics" />
+			<PARAM ID="et" name="editor type" datatype="char" arraysize="*"
+				value="organization" />
+			<!-- Filter description entity with attributed creator agent -->
+			<PARAM ID="af" name="Assigned Filter" datatype="char"
+				arraysize="*" value="ivo://" />
+			<PARAM ID="fi" name="Assigne Filter Identifier" datatype="char"
+				arraysize="*" value="B" />
+			<PARAM ID="furl" name="SVO Filter native description url"
+				datatype="char" arraysize="*" value="http://" />
+			<!-- Agent SVO was attributed creator role for filter description -->
+			<PARAM ID="rc" name="svo role" datatype="char" arraysize="*"
+				value="creator" />
+			<PARAM ID="cn" name="creator name" datatype="char"
+				arraysize="*" value="SVO" />
+			<PARAM ID="ct" name="creator type" datatype="char"
+				arraysize="*" value="organization" />
+			<DESCRIPTION>The XMM-Newton Observation log (2019-11-04)
+			</DESCRIPTION>
+			<!-- The XMM-Newton Observation log (2019-11-04)\vizContent{image/fits} -->
+			<!-- Definitions of GROUPs and FIELDs -->
+			<FIELD name="_RAJ2000" ucd="pos.eq.ra" ref="J2000"
+				datatype="double" width="11" precision="7" unit="deg">
+				<!-- ucd="POS_EQ_RA" -->
+				<DESCRIPTION>Right ascension (FK5, Equinox=J2000.0) (computed by
+					VizieR, not part of the original data. The format may include more
+					digits than the original data because of internal accuracy
+					requirements in VizieR and across other CDS services)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="_DEJ2000" ucd="pos.eq.dec" ref="J2000"
+				datatype="double" width="11" precision="7" unit="deg">
+				<!-- ucd="POS_EQ_DEC" -->
+				<DESCRIPTION>Declination (FK5, Equinox=J2000.0) (computed by VizieR,
+					not part of the original data. The format may include more digits
+					than the original data because of internal accuracy requirements in
+					VizieR and across other CDS services)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="recno" ucd="meta.record" datatype="int" width="8"
+				type="hidden">
+				<!-- ucd="RECORD" -->
+				<DESCRIPTION>Record number assigned by the VizieR team. Should Not
+					be used for identification.
+				</DESCRIPTION>
+				<LINK
+					href="http://vizier.u-strasbg.fr/viz-bin/VizieR-5?-info=XML&amp;-out.add=.&amp;-source=B/xmm/xmmlog&amp;recno=${recno}" />
+			</FIELD>
+			<FIELD name="Obsno" ucd="meta.id;obs" datatype="char"
+				arraysize="10">
+				<!-- ucd="OBS_ID" -->
+				<DESCRIPTION>Observation identifier (1)</DESCRIPTION>
+			</FIELD>
+			<FIELD name="PIname" ucd="meta.id;meta.main" datatype="char"
+				arraysize="38*">
+				<!-- ucd="ID_HUMAN" -->
+				<DESCRIPTION>PI name (family first)</DESCRIPTION>
+				<LINK
+					href="http://vizier.u-strasbg.fr/viz-bin/VizieR-5?-info=XML&amp;-out.add=.&amp;-source=B/xmm/xmmlog&amp;recno=${recno}" />
+			</FIELD>
+			<FIELD name="PropDate" ucd="meta.note" datatype="char"
+				arraysize="10" unit="s">
+				<!-- ucd="TIME_DATE" -->
+				<DESCRIPTION>Proprietary period expiry date</DESCRIPTION>
+				<ATTRIBUTES null=" " />
+			</FIELD>
+			<FIELD name="Object" ucd="meta.id" datatype="char"
+				arraysize="30*">
+				<!-- ucd="ID_IDENTIFIER" -->
+				<DESCRIPTION>Target as specified in proposal</DESCRIPTION>
+			</FIELD>
+			<FIELD name="RAJ2000" ucd="pos.eq.ra;meta.main" ref="J2000"
+				datatype="double" width="9" precision="5" unit="deg">
+				<!-- ucd="POS_EQ_RA_MAIN" -->
+				<DESCRIPTION>? Median pointing RA (J2000)</DESCRIPTION>
+				<ATTRIBUTES null="NaN" />
+			</FIELD>
+			<FIELD name="DEJ2000" ucd="pos.eq.dec;meta.main" ref="J2000"
+				datatype="double" width="9" precision="5" unit="deg">
+				<!-- ucd="POS_EQ_DEC_MAIN" -->
+				<DESCRIPTION>? Median pointing Declination (J2000)</DESCRIPTION>
+				<ATTRIBUTES null="NaN" />
+			</FIELD>
+			<FIELD name="Obs0" ucd="time.epoch" datatype="char"
+				arraysize="19" unit="s">
+				<!-- ucd="TIME_DATE" -->
+				<DESCRIPTION>? Observation start date (UT)</DESCRIPTION>
+				<ATTRIBUTES null=" " />
+			</FIELD>
+			<FIELD name="Obs1" ucd="time.epoch" datatype="char"
+				arraysize="19" unit="s">
+				<!-- ucd="TIME_DATE" -->
+				<DESCRIPTION>? Observation end date (UT)</DESCRIPTION>
+				<ATTRIBUTES null=" " />
+			</FIELD>
+			<FIELD name="ObsDur" ucd="time.expo" datatype="int" width="7"
+				unit="s">
+				<!-- ucd="TIME_EXPTIME" -->
+				<DESCRIPTION>? Observation on-time [NULL integer written as an empty
+					string]
+				</DESCRIPTION>
+				<ATTRIBUTES null="-2147483648" />
+			</FIELD>
+			<FIELD name="SASVersion" ucd="stat.fit.param" datatype="char"
+				arraysize="5">
+				<!-- ucd="REDUCT_PARAM" -->
+				<DESCRIPTION>SAS version for PPS products(2)</DESCRIPTION>
+			</FIELD>
+			<FIELD name="Image" ucd="meta.ref.url" datatype="char"
+				arraysize="1">
+				<!-- ucd="DATA_LINK" -->
+				<DESCRIPTION>[YN] Epic image of this observation (FITS)
+				</DESCRIPTION>
+				<LINK content-type="image/fits" title="Image"
+					href="http://vizier.u-strasbg.fr/viz-bin/nph-htx/A?%5cvizContent%7bimage/fits%7d%5cvizTitle%7bImage%7d%5cifmatch%7bY%7d%7b${Image}%7d%5cglutag%7bXMM.fits%20${Obsno}%7cFITS%7d%20%5celse%7b${Image}%7d%5cfi" />
+			</FIELD>
+			<FIELD name="PPSp" ucd="meta.ref.url" datatype="char"
+				arraysize="4">
+				<!-- ucd="DATA_LINK" -->
+				<DESCRIPTION>Retrieve PPS products at XMM for this exposure
+				</DESCRIPTION>
+				<LINK
+					href="http://vizier.u-strasbg.fr/viz-bin/nph-htx/A?%5cifmatch%7bNOPPS%7d%7b${SASVersion}%7d%5celse%5cA%7bhttp://nxsa.esac.esa.int/nxsa-sl/servlet/data-action-aio?obsno=${Obsno}%26level=PPS%7d%7b${PPSp}%7d%5cfi" />
+			</FIELD>
+			<FIELD name="FITS" ucd="meta.ref.url" datatype="char"
+				arraysize="4">
+				<!-- ucd="DATA_LINK" -->
+				<DESCRIPTION>retrieve the FITS image from the XMM Archive
+				</DESCRIPTION>
+				<LINK content-type="image/fits" title="Image"
+					href="http://vizier.u-strasbg.fr/viz-bin/nph-htx/A?%5cvizContent%7bimage/fits%7d%5cvizTitle%7bImage%7d%5cglutag%7bXMM.fits%20${Obsno}%7c%5cifmatch%7bY%7d%7b${XSAlink}${FITS}%7d%5celse%7b%7d%5cfi%7d" />
+			</FIELD>
+			<FIELD name="XSAlink" ucd="meta.code" datatype="char"
+				arraysize="1">
+				<!-- ucd="CODE_MISC" -->
+				<DESCRIPTION>[YN] XMM-Newton Science Archive link available for this
+					observation (yes/no)
+				</DESCRIPTION>
+				<LINK
+					href="http://vizier.u-strasbg.fr/viz-bin/nph-htx/A?%5cifmatch%7bY%7d%7b${XSAlink}%7d%5cA%7bhttp://nxsa.esac.esa.int/nxsa-web/bsid=${Obsno}%7d%7b${XSAlink}%7d%5celse%7b${XSAlink}%7d%5cfi" />
+			</FIELD>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>064.9254200</TD>
+						<TD>+55.9994400</TD>
+						<TD>1</TD>
+						<TD>0000110101</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2002-09-29</TD>
+						<TD>XTE J0421+560</TD>
+						<TD>064.92542</TD>
+						<TD>+55.99944</TD>
+						<TD>2001-08-19T07:05:23</TD>
+						<TD>2001-08-19T16:13:56</TD>
+						<TD>32913</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD></TD>
+						<TD></TD>
+						<TD>2</TD>
+						<TD>0001730101</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2004-12-31</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2002-03-18T06:40:01</TD>
+						<TD>2002-03-18T13:41:37</TD>
+						<TD>25296</TD>
+						<TD>NOPPS</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>N</TD>
+					</TR>
+					<TR>
+						<TD>263.6749500</TD>
+						<TD>-32.5816700</TD>
+						<TD>3</TD>
+						<TD>0001730201</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2002-05-25</TD>
+						<TD>HD159176</TD>
+						<TD>263.67495</TD>
+						<TD>-32.58167</TD>
+						<TD>2001-03-09T12:44:21</TD>
+						<TD>2001-03-09T17:29:04</TD>
+						<TD>17083</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>263.6749500</TD>
+						<TD>-32.5816700</TD>
+						<TD>4</TD>
+						<TD>0001730301</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2002-05-25</TD>
+						<TD>HD159176</TD>
+						<TD>263.67495</TD>
+						<TD>-32.58167</TD>
+						<TD>2001-03-09T17:30:16</TD>
+						<TD>2001-03-09T20:06:18</TD>
+						<TD>9362</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>263.6749500</TD>
+						<TD>-32.5816700</TD>
+						<TD>5</TD>
+						<TD>0001730401</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2002-05-25</TD>
+						<TD>HD159176</TD>
+						<TD>263.67495</TD>
+						<TD>-32.58167</TD>
+						<TD>2001-03-09T09:41:25</TD>
+						<TD>2001-03-09T12:42:24</TD>
+						<TD>10859</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>099.3499900</TD>
+						<TD>+06.1352800</TD>
+						<TD>6</TD>
+						<TD>0001730501</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2004-12-31</TD>
+						<TD>HD47129</TD>
+						<TD>099.34999</TD>
+						<TD>+06.13528</TD>
+						<TD>2002-09-17T18:35:28</TD>
+						<TD>2002-09-18T00:41:07</TD>
+						<TD>21939</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>099.3499900</TD>
+						<TD>+06.1352800</TD>
+						<TD>7</TD>
+						<TD>0001730601</TD>
+						<TD>Rauw, Gregor</TD>
+						<TD>2004-12-31</TD>
+						<TD>HD47129</TD>
+						<TD>099.34999</TD>
+						<TD>+06.13528</TD>
+						<TD>2003-03-16T16:01:51</TD>
+						<TD>2003-03-16T22:06:14</TD>
+						<TD>21863</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>006.5291700</TD>
+						<TD>+10.6891700</TD>
+						<TD>8</TD>
+						<TD>0001930101</TD>
+						<TD>Wilman, Richard</TD>
+						<TD>2002-09-18</TD>
+						<TD>IRAS F00235+1024</TD>
+						<TD>006.52917</TD>
+						<TD>+10.68917</TD>
+						<TD>2001-01-10T18:47:04</TD>
+						<TD>2001-01-11T02:10:33</TD>
+						<TD>26609</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>193.5000000</TD>
+						<TD>+10.1863900</TD>
+						<TD>9</TD>
+						<TD>0001930301</TD>
+						<TD>Wilman, Richard</TD>
+						<TD>2003-01-16</TD>
+						<TD>IRAS F12514+1027</TD>
+						<TD>193.50000</TD>
+						<TD>+10.18639</TD>
+						<TD>2001-12-28T14:44:54</TD>
+						<TD>2001-12-28T21:44:46</TD>
+						<TD>25192</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>058.4795900</TD>
+						<TD>+23.3937500</TD>
+						<TD>10</TD>
+						<TD>0002740101</TD>
+						<TD>Neuhaeuser, Ralph</TD>
+						<TD>2002-09-28</TD>
+						<TD>CFHT-Pl-12</TD>
+						<TD>058.47959</TD>
+						<TD>+23.39375</TD>
+						<TD>2001-09-02T04:28:59</TD>
+						<TD>2001-09-02T14:10:03</TD>
+						<TD>34864</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>187.0575000</TD>
+						<TD>-15.7863900</TD>
+						<TD>11</TD>
+						<TD>0002740301</TD>
+						<TD>Neuhaeuser, Ralph</TD>
+						<TD>2003-01-16</TD>
+						<TD>Denis-J1228</TD>
+						<TD>187.05750</TD>
+						<TD>-15.78639</TD>
+						<TD>2001-12-29T18:30:19</TD>
+						<TD>2001-12-29T21:52:00</TD>
+						<TD>12101</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>166.9704000</TD>
+						<TD>-77.6155500</TD>
+						<TD>12</TD>
+						<TD>0002740501</TD>
+						<TD>Neuhaeuser, Ralph</TD>
+						<TD>2003-06-05</TD>
+						<TD>Cha-Ha-3</TD>
+						<TD>166.97040</TD>
+						<TD>-77.61555</TD>
+						<TD>2002-04-09T09:40:54</TD>
+						<TD>2002-04-09T19:07:20</TD>
+						<TD>33986</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>187.0575000</TD>
+						<TD>-15.7863900</TD>
+						<TD>13</TD>
+						<TD>0002740601</TD>
+						<TD>Neuhaeuser, Ralph</TD>
+						<TD>2003-01-16</TD>
+						<TD>Denis-J1228</TD>
+						<TD>187.05750</TD>
+						<TD>-15.78639</TD>
+						<TD>2001-12-29T17:14:47</TD>
+						<TD>2001-12-29T18:28:10</TD>
+						<TD>4403</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>196.7746500</TD>
+						<TD>-23.6766700</TD>
+						<TD>14</TD>
+						<TD>0002940101</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2010-04-08</TD>
+						<TD>NGC4968</TD>
+						<TD>196.77465</TD>
+						<TD>-23.67667</TD>
+						<TD>2001-01-05T05:57:30</TD>
+						<TD>2001-01-05T08:19:30</TD>
+						<TD>8520</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>017.8645800</TD>
+						<TD>-38.0836100</TD>
+						<TD>15</TD>
+						<TD>0002940301</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2003-01-10</TD>
+						<TD>NGC424</TD>
+						<TD>017.86458</TD>
+						<TD>-38.08361</TD>
+						<TD>2001-06-20T16:18:56</TD>
+						<TD>2001-06-20T18:32:37</TD>
+						<TD>8021</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>055.2950000</TD>
+						<TD>-01.2991700</TD>
+						<TD>16</TD>
+						<TD>0002940401</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2003-02-13</TD>
+						<TD>NGC1410</TD>
+						<TD>055.29500</TD>
+						<TD>-01.29917</TD>
+						<TD>2002-01-28T20:27:01</TD>
+						<TD>2002-01-28T22:38:10</TD>
+						<TD>7869</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>121.0245900</TD>
+						<TD>+05.1138900</TD>
+						<TD>17</TD>
+						<TD>0002940701</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2002-09-20</TD>
+						<TD>UGC4203</TD>
+						<TD>121.02459</TD>
+						<TD>+05.11389</TD>
+						<TD>2001-05-05T19:22:41</TD>
+						<TD>2001-05-05T21:42:52</TD>
+						<TD>8411</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD></TD>
+						<TD></TD>
+						<TD>18</TD>
+						<TD>0002940901</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2002-02-13</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2001-02-10T19:54:13</TD>
+						<TD>2001-02-10T23:02:00</TD>
+						<TD>11267</TD>
+						<TD>NOPPS</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>N</TD>
+					</TR>
+					<TR>
+						<TD>017.8645800</TD>
+						<TD>-38.0836100</TD>
+						<TD>19</TD>
+						<TD>0002942301</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2003-01-10</TD>
+						<TD>NGC424</TD>
+						<TD>017.86458</TD>
+						<TD>-38.08361</TD>
+						<TD>2001-12-10T04:38:35</TD>
+						<TD>2001-12-10T06:55:24</TD>
+						<TD>8209</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>048.7558400</TD>
+						<TD>+42.0358300</TD>
+						<TD>20</TD>
+						<TD>0002942401</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2003-02-13</TD>
+						<TD>UGC2608</TD>
+						<TD>048.75584</TD>
+						<TD>+42.03583</TD>
+						<TD>2002-01-28T16:56:46</TD>
+						<TD>2002-01-28T19:07:54</TD>
+						<TD>7868</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>048.7558400</TD>
+						<TD>+42.0358300</TD>
+						<TD>21</TD>
+						<TD>0002942501</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2003-02-13</TD>
+						<TD>UGC2608</TD>
+						<TD>048.75584</TD>
+						<TD>+42.03583</TD>
+						<TD>2002-01-28T16:15:13</TD>
+						<TD>2002-01-28T16:50:33</TD>
+						<TD>2120</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>354.6208300</TD>
+						<TD>+27.0314200</TD>
+						<TD>22</TD>
+						<TD>0002960101</TD>
+						<TD>Hardcastle, Martin</TD>
+						<TD>2003-08-05</TD>
+						<TD>3C465</TD>
+						<TD>354.62083</TD>
+						<TD>+27.03142</TD>
+						<TD>2002-06-22T05:08:28</TD>
+						<TD>2002-06-22T08:20:53</TD>
+						<TD>11545</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>337.8358500</TD>
+						<TD>+39.3583600</TD>
+						<TD>23</TD>
+						<TD>0002970101</TD>
+						<TD>Hardcastle, Martin</TD>
+						<TD>2003-01-10</TD>
+						<TD>3C449</TD>
+						<TD>337.83585</TD>
+						<TD>+39.35836</TD>
+						<TD>2001-12-09T20:49:47</TD>
+						<TD>2001-12-10T02:51:30</TD>
+						<TD>21703</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>035.7973800</TD>
+						<TD>+42.9920500</TD>
+						<TD>24</TD>
+						<TD>0002970201</TD>
+						<TD>Hardcastle, Martin</TD>
+						<TD>2003-02-27</TD>
+						<TD>3C66B</TD>
+						<TD>035.79738</TD>
+						<TD>+42.99205</TD>
+						<TD>2002-02-05T16:29:30</TD>
+						<TD>2002-02-05T22:49:52</TD>
+						<TD>22822</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>230.5069500</TD>
+						<TD>+76.9163100</TD>
+						<TD>25</TD>
+						<TD>0002970401</TD>
+						<TD>Hardcastle, Martin</TD>
+						<TD>2003-01-10</TD>
+						<TD>3C449</TD>
+						<TD>230.50695</TD>
+						<TD>+76.91631</TD>
+						<TD>2001-12-09T18:19:20</TD>
+						<TD>2001-12-09T20:42:36</TD>
+						<TD>8596</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>035.7973800</TD>
+						<TD>+42.9920500</TD>
+						<TD>26</TD>
+						<TD>0002970501</TD>
+						<TD>Hardcastle, Martin</TD>
+						<TD>2003-02-27</TD>
+						<TD>3C66B</TD>
+						<TD>035.79738</TD>
+						<TD>+42.99205</TD>
+						<TD>2002-02-05T15:14:58</TD>
+						<TD>2002-02-05T16:17:00</TD>
+						<TD>3722</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>031.4070900</TD>
+						<TD>+64.8283300</TD>
+						<TD>27</TD>
+						<TD>0004010101</TD>
+						<TD>Helfand, David</TD>
+						<TD>2002-06-26</TD>
+						<TD>3C58</TD>
+						<TD>031.40709</TD>
+						<TD>+64.82833</TD>
+						<TD>2001-02-22T03:00:32</TD>
+						<TD>2001-02-22T05:34:35</TD>
+						<TD>9243</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>031.4070900</TD>
+						<TD>+64.8283300</TD>
+						<TD>28</TD>
+						<TD>0004010201</TD>
+						<TD>Helfand, David</TD>
+						<TD>2002-06-26</TD>
+						<TD>3C58</TD>
+						<TD>031.40709</TD>
+						<TD>+64.82833</TD>
+						<TD>2001-02-22T05:35:52</TD>
+						<TD>2001-02-22T12:09:22</TD>
+						<TD>23610</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>275.2366500</TD>
+						<TD>-14.3277800</TD>
+						<TD>29</TD>
+						<TD>0004210201</TD>
+						<TD>Helfand, David</TD>
+						<TD>2002-05-18</TD>
+						<TD>G16.7+0.1</TD>
+						<TD>275.23665</TD>
+						<TD>-14.32778</TD>
+						<TD>2001-03-08T22:05:12</TD>
+						<TD>2001-03-09T01:37:50</TD>
+						<TD>12758</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>275.4087000</TD>
+						<TD>+68.4644500</TD>
+						<TD>30</TD>
+						<TD>0004610101</TD>
+						<TD>Gioia, Isabella</TD>
+						<TD>2004-08-06</TD>
+						<TD>NEP5281</TD>
+						<TD>275.40870</TD>
+						<TD>+68.46445</TD>
+						<TD>2002-11-09T06:38:14</TD>
+						<TD>2002-11-09T13:52:17</TD>
+						<TD>26043</TD>
+						<TD>12.09</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>275.4087000</TD>
+						<TD>+68.4644500</TD>
+						<TD>31</TD>
+						<TD>0004610201</TD>
+						<TD>Gioia, Isabella</TD>
+						<TD>2004-08-06</TD>
+						<TD>NEP5281</TD>
+						<TD>275.40870</TD>
+						<TD>+68.46445</TD>
+						<TD>2002-11-13T06:42:06</TD>
+						<TD>2002-11-13T13:34:23</TD>
+						<TD>24737</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>275.4087000</TD>
+						<TD>+68.4644500</TD>
+						<TD>32</TD>
+						<TD>0004610301</TD>
+						<TD>Gioia, Isabella</TD>
+						<TD>2004-08-06</TD>
+						<TD>NEP5281</TD>
+						<TD>275.40870</TD>
+						<TD>+68.46445</TD>
+						<TD>2002-11-23T03:43:44</TD>
+						<TD>2002-11-23T10:22:20</TD>
+						<TD>23916</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>275.4087000</TD>
+						<TD>+68.4644500</TD>
+						<TD>33</TD>
+						<TD>0004610401</TD>
+						<TD>Gioia, Isabella</TD>
+						<TD>2004-08-06</TD>
+						<TD>NEP5281</TD>
+						<TD>275.40870</TD>
+						<TD>+68.46445</TD>
+						<TD>2002-12-19T04:16:21</TD>
+						<TD>2002-12-19T11:05:55</TD>
+						<TD>24574</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>220.5309000</TD>
+						<TD>+35.4397200</TD>
+						<TD>34</TD>
+						<TD>0005010101</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2004-05-16</TD>
+						<TD>Mkn478</TD>
+						<TD>220.53090</TD>
+						<TD>+35.43972</TD>
+						<TD>2003-01-01T22:57:38</TD>
+						<TD>2003-01-02T06:40:09</TD>
+						<TD>27751</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>220.5309000</TD>
+						<TD>+35.4397200</TD>
+						<TD>35</TD>
+						<TD>0005010201</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2004-05-16</TD>
+						<TD>Mkn478</TD>
+						<TD>220.53090</TD>
+						<TD>+35.43972</TD>
+						<TD>2003-01-04T01:54:59</TD>
+						<TD>2003-01-04T10:05:34</TD>
+						<TD>29435</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>220.5309000</TD>
+						<TD>+35.4397200</TD>
+						<TD>36</TD>
+						<TD>0005010301</TD>
+						<TD>Guainazzi, Matteo</TD>
+						<TD>2004-05-16</TD>
+						<TD>Mkn478</TD>
+						<TD>220.53090</TD>
+						<TD>+35.43972</TD>
+						<TD>2003-01-07T22:05:26</TD>
+						<TD>2003-01-08T05:26:19</TD>
+						<TD>26453</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>175.8153700</TD>
+						<TD>+20.0558300</TD>
+						<TD>37</TD>
+						<TD>0005210101</TD>
+						<TD>Fusco-Femiano, Roberto</TD>
+						<TD>2002-12-13</TD>
+						<TD>A1367</TD>
+						<TD>175.81537</TD>
+						<TD>+20.05583</TD>
+						<TD>2001-11-22T05:32:20</TD>
+						<TD>2001-11-22T14:50:03</TD>
+						<TD>33463</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>116.3287500</TD>
+						<TD>+28.0261100</TD>
+						<TD>38</TD>
+						<TD>0006010301</TD>
+						<TD>Drake, Stephen</TD>
+						<TD>2002-09-16</TD>
+						<TD>Beta Geminorum</TD>
+						<TD>116.32875</TD>
+						<TD>+28.02611</TD>
+						<TD>2001-04-26T20:48:44</TD>
+						<TD>2001-04-27T06:35:34</TD>
+						<TD>35210</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>006.4379200</TD>
+						<TD>-77.2550000</TD>
+						<TD>39</TD>
+						<TD>0006010401</TD>
+						<TD>Drake, Stephen</TD>
+						<TD>2003-05-05</TD>
+						<TD>Beta Hydri</TD>
+						<TD>006.43792</TD>
+						<TD>-77.25500</TD>
+						<TD>2002-03-15T22:49:14</TD>
+						<TD>2002-03-16T08:47:49</TD>
+						<TD>35915</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>188.8950000</TD>
+						<TD>-39.9152800</TD>
+						<TD>40</TD>
+						<TD>0006220201</TD>
+						<TD>Turner, Tracey Jane</TD>
+						<TD>2002-07-31</TD>
+						<TD>NGC 4507</TD>
+						<TD>188.89500</TD>
+						<TD>-39.91528</TD>
+						<TD>2001-01-04T16:03:17</TD>
+						<TD>2001-01-05T04:53:24</TD>
+						<TD>46207</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>188.8950000</TD>
+						<TD>-39.9152800</TD>
+						<TD>41</TD>
+						<TD>0006220301</TD>
+						<TD>Turner, Tracey Jane</TD>
+						<TD>2002-07-31</TD>
+						<TD>NGC 4507</TD>
+						<TD>188.89500</TD>
+						<TD>-39.91528</TD>
+						<TD>2001-01-04T13:06:33</TD>
+						<TD>2001-01-04T15:56:42</TD>
+						<TD>10209</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>340.6638000</TD>
+						<TD>+29.7252800</TD>
+						<TD>42</TD>
+						<TD>0006810101</TD>
+						<TD>Brandt, William</TD>
+						<TD>2003-01-21</TD>
+						<TD>Akn 564</TD>
+						<TD>340.66380</TD>
+						<TD>+29.72528</TD>
+						<TD>2000-06-17T08:46:31</TD>
+						<TD>2000-06-17T18:20:57</TD>
+						<TD>34466</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>340.6638000</TD>
+						<TD>+29.7252800</TD>
+						<TD>43</TD>
+						<TD>0006810201</TD>
+						<TD>Brandt, William</TD>
+						<TD>2003-01-21</TD>
+						<TD>Akn 564</TD>
+						<TD>340.66380</TD>
+						<TD>+29.72528</TD>
+						<TD>2000-06-17T03:48:06</TD>
+						<TD>2000-06-17T08:41:16</TD>
+						<TD>17590</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>340.6638000</TD>
+						<TD>+29.7252800</TD>
+						<TD>44</TD>
+						<TD>0006810301</TD>
+						<TD>Brandt, William</TD>
+						<TD>2003-01-21</TD>
+						<TD>Akn 564</TD>
+						<TD>340.66380</TD>
+						<TD>+29.72528</TD>
+						<TD>2001-06-09T07:25:45</TD>
+						<TD>2001-06-09T11:55:56</TD>
+						<TD>16211</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>340.6638000</TD>
+						<TD>+29.7252800</TD>
+						<TD>45</TD>
+						<TD>0006810401</TD>
+						<TD>Brandt, William</TD>
+						<TD>2003-01-21</TD>
+						<TD>Akn 564</TD>
+						<TD>340.66380</TD>
+						<TD>+29.72528</TD>
+						<TD>2001-06-09T04:26:50</TD>
+						<TD>2001-06-09T07:19:50</TD>
+						<TD>10380</TD>
+						<TD>9.0</TD>
+						<TD>N</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>210.4512000</TD>
+						<TD>-62.1753000</TD>
+						<TD>46</TD>
+						<TD>0007420701</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2002-03-15</TD>
+						<TD>Galactic Plane 07</TD>
+						<TD>210.45120</TD>
+						<TD>-62.17530</TD>
+						<TD>2001-02-06T14:08:20</TD>
+						<TD>2001-02-06T17:47:01</TD>
+						<TD>13121</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>209.7873000</TD>
+						<TD>-61.8286100</TD>
+						<TD>47</TD>
+						<TD>0007420801</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2002-03-21</TD>
+						<TD>Galactic Plane 08</TD>
+						<TD>209.78730</TD>
+						<TD>-61.82861</TD>
+						<TD>2001-02-06T18:28:00</TD>
+						<TD>2001-02-06T22:51:41</TD>
+						<TD>15821</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>209.9833500</TD>
+						<TD>-61.3718600</TD>
+						<TD>48</TD>
+						<TD>0007420901</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2003-03-07</TD>
+						<TD>Galactic Plane 09</TD>
+						<TD>209.98335</TD>
+						<TD>-61.37186</TD>
+						<TD>2002-02-17T21:20:42</TD>
+						<TD>2002-02-18T01:33:34</TD>
+						<TD>15172</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>209.3416500</TD>
+						<TD>-61.0230000</TD>
+						<TD>49</TD>
+						<TD>0007421001</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2002-03-21</TD>
+						<TD>Galactic Plane 10</TD>
+						<TD>209.34165</TD>
+						<TD>-61.02300</TD>
+						<TD>2001-02-06T23:31:36</TD>
+						<TD>2001-02-07T03:10:11</TD>
+						<TD>13115</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+					<TR>
+						<TD>209.5389000</TD>
+						<TD>-60.5669200</TD>
+						<TD>50</TD>
+						<TD>0007421101</TD>
+						<TD>Parmar, Arvind</TD>
+						<TD>2003-03-05</TD>
+						<TD>Galactic Plane 11</TD>
+						<TD>209.53890</TD>
+						<TD>-60.56692</TD>
+						<TD>2002-02-13T22:21:56</TD>
+						<TD>2002-02-14T01:37:13</TD>
+						<TD>11717</TD>
+						<TD>9.0</TD>
+						<TD>Y</TD>
+						<TD>PPSp</TD>
+						<TD>FITS</TD>
+						<TD>Y</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+		<INFO name="matches" value="50">matching records</INFO>
+		<INFO name="Warning" value="No center provided++++" />
+		<INFO name="Warning" value="skip recno in all column selection" />
+		<INFO name="Warning"
+			value="increase the precision for computed column 8" />
+		<INFO name="Warning"
+			value="increase the precision for computed column 8" />
+		<INFO name="Warning"
+			value="change VO format int  (%010lld) to char" />
+		<INFO name="Warning"
+			value="change VO format int  (%010lld) to char" />
+		<INFO name="Warning" value="truncated result (maxtup=50)" />
+		<INFO name="QUERY_STATUS" value="OVERFLOW">truncated result (maxtup=50)</INFO>
+	</RESOURCE>
+</VOTABLE>

@@ -1,0 +1,1201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vo-dml:model xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 http://www.ivoa.net/xml/VODML/vo-dml-v1.xsd">
+  <name>mango</name>
+  <description>Data model based oon components and data association for source data</description>
+  <uri/>
+  <title>Mango</title>
+  <author>Laurent Michel, François Bonnarel, Gilles Landais, Mireille Louys, Marco Molinaro, Jesue Salgado</author>
+  <version>1.0</version>
+  <previousVersion>0.0</previousVersion>
+  <lastModified>2020-07-21T12:00:38</lastModified>
+  <import>
+    <name>ivoa</name>
+    <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
+    <documentationURL>https://volute.g-vo.org/svn/trunk/projects/dm/vo-dml/models/ivoa/vo-dml/IVOA-v1.0.html</documentationURL>
+  </import>
+  <import>
+    <name>meas</name>
+    <url>http://volute.g-vo.org/svn/trunk/projects/dm/STC/Meas/vo-dml/STC_meas-v1.0.vo-dml.xml</url>
+    <documentationURL>https://volute.g-vo.org/svn/trunk/projects/dm/STC/Meas/vo-dml/STC_meas-v1.0.html</documentationURL>
+  </import>
+  <import>
+    <name>coords</name>
+    <url>http://volute.g-vo.org/svn/trunk/projects/dm/STC/Coords/vo-dml/STC_coords-v1.0.vo-dml.xml</url>
+    <documentationURL>https://volute.g-vo.org/svn/trunk/projects/dm/STC/Coords/vo-dml/STC_coords-v1.0.html</documentationURL>
+  </import>
+  <enumeration>
+    <vodml-id>MangoInstanceRole</vodml-id>
+    <name>MangoInstanceRole</name>
+    <description>Enumeration of the possible roles of associated Mango Instances</description>
+    <literal>
+      <vodml-id>MangoInstanceRole.Detection</vodml-id>
+      <name>Detection</name>
+      <description>The associated Mango instance is another dectection of the same object</description>
+    </literal>
+    <literal>
+      <vodml-id>MangoInstanceRole.Companion</vodml-id>
+      <name>Companion</name>
+      <description>The associated Mango instance is a companion object e.g. binary star</description>
+    </literal>
+    <literal>
+      <vodml-id>MangoInstanceRole.Counterpart</vodml-id>
+      <name>Counterpart</name>
+      <description>The associated Mango instance is a source counterpart taken out of another dataset e.g cross-match result</description>
+    </literal>
+  </enumeration>
+
+  <enumeration>
+    <vodml-id>ReductionStatus</vodml-id>
+    <name>ReductionStatus</name>
+    <description>Enumeration of the possible reduction status of a parameter
+</description>
+    <literal>
+      <vodml-id>ReductionStatus.Raw</vodml-id>
+      <name>Raw</name>
+      <description>The parameter carry a raw value</description>
+    </literal>
+    <literal>
+      <vodml-id>ReductionStatus.Calibrated</vodml-id>
+      <name>Calibrated</name>
+      <description>The parameter value is calibrated
+</description>
+    </literal>
+    <literal>
+      <vodml-id>ReductionStatus.Corrected</vodml-id>
+      <name>Corrected</name>
+      <description>The paramter value has been corrected this the reduction software. The operation usually comes after the calibration process e.g. adding a systematic error.
+</description>
+    </literal>
+    <literal>
+      <vodml-id>ReductionStatus.Computed</vodml-id>
+      <name>Computed</name>
+      <description>The parameter value has been computed. It is not directly derived from the raw data e.g. deetction flag</description>
+    </literal>
+  </enumeration>
+
+  <objectType>
+    <vodml-id>MangoInstance</vodml-id>
+    <name>MangoInstance</name>
+    <description>Root class of the model. Mango instance are meant ot be Source instances.
+A source has an identifier and to sets of hooks either for parameters or for associated data.</description>
+    <attribute>
+      <vodml-id>MangoInstance.identifier</vodml-id>
+      <name>identifier</name>
+      <description>Unique identifier for a Source.
+The uniqness of that identifier is not managed by the model.
+The format is free.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>MangoInstance.associatedData</vodml-id>
+      <name>associatedData</name>
+      <description>Composition link pointing on all data associated with the source.</description>
+      <datatype>
+        <vodml-ref>mango:AssociatedData</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>-1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <composition>
+      <vodml-id>MangoInstance.parameters</vodml-id>
+      <name>parameters</name>
+      <description>Composition link pointing on all parameters attached to the source.</description>
+      <datatype>
+        <vodml-ref>mango:Parameter</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>-1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType abstract="true">
+    <vodml-id>AssociatedData</vodml-id>
+    <name>AssociatedData</name>
+    <description>Abstract reference to a particular dataset associated to the Source.
+This class is used to specify the type of the dataset as well as its role.</description>
+    <attribute>
+      <vodml-id>AssociatedData.semantic</vodml-id>
+      <name>semantic</name>
+      <description>Optional vocabulary term giving a standard description of the associated data. This term does not necessary relate to a VO vocabulary e.g. UAT.</description>
+      <datatype>
+        <vodml-ref>mango:stcextend.VocabularyTerm</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>AssociatedData.description</vodml-id>
+      <name>description</name>
+      <description>Free text description of the associated data</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>WebEndpoint</vodml-id>
+    <name>WebEndpoint</name>
+    <description>Class for associated data referenced by an URL</description>
+    <extends>
+      <vodml-ref>mango:AssociatedData</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>WebEndpoint.ContentType</vodml-id>
+      <name>ContentType</name>
+      <description>Mime type of the URL
+</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>WebEndpoint.url</vodml-id>
+      <name>url</name>
+      <description>Web endpoint</description>
+      <datatype>
+        <vodml-ref>ivoa:anyURI</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>VOService</vodml-id>
+    <name>VOService</name>
+    <description>Class for associated data referenced by a fixed URL that is a VO service.</description>
+    <extends>
+      <vodml-ref>mango:WebEndpoint</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>VOService.ivoid</vodml-id>
+      <name>ivoid</name>
+      <description>IVOA id of the service (for example in the registry)</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>VOModelInstance</vodml-id>
+    <name>VOModelInstance</name>
+    <description>Reference to a VO model instance that is part of the associated data.</description>
+    <extends>
+      <vodml-ref>mango:AssociatedData</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>VOModelInstance.ivoid</vodml-id>
+      <name>ivoid</name>
+      <description>VO-DML id of the referenced model
+</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>VOModelInstance.modelUrl</vodml-id>
+      <name>modelUrl</name>
+      <description>URL on the VO-DML model</description>
+      <datatype>
+        <vodml-ref>ivoa:anyURI</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>VOModelInstance.modelName</vodml-id>
+      <name>modelName</name>
+      <description>Name of the referenced model</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>VOModelInstance.modelDoc</vodml-id>
+      <name>modelDoc</name>
+      <description>Documentation URL of the model</description>
+      <datatype>
+        <vodml-ref>ivoa:anyURI</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>VOModelInstance.modelInstance</vodml-id>
+      <name>modelInstance</name>
+      <description>Composition link pointing on one VO instance instance associated with the source.</description>
+      <datatype>
+        <vodml-ref>mango:ModelInstance</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>ModelInstance</vodml-id>
+    <name>ModelInstance</name>
+    <description>Placeholder for the mapping block of the model instance
+ </description>
+  </objectType>
+
+  <objectType>
+    <vodml-id>AssociatedMangoInstance</vodml-id>
+    <name>AssociatedMangoInstance</name>
+    <description>Reference to another MANGO instance that is part of the associated data.</description>
+    <extends>
+      <vodml-ref>mango:AssociatedData</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>AssociatedMangoInstance.role</vodml-id>
+      <name>role</name>
+      <description>Role of the associated Mango Source</description>
+      <datatype>
+        <vodml-ref>mango:MangoInstanceRole</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>AssociatedMangoInstance.associatedMangoInstance</vodml-id>
+      <name>associatedMangoInstance</name>
+      <description>Composition link pointing on one cab_msd instance associated with the source.</description>
+      <datatype>
+        <vodml-ref>mango:MangoInstance</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Parameter</vodml-id>
+    <name>Parameter</name>
+    <description>Reference to a particular measure of the Source.
+This class is used to specify the type of the measure as well as its role.</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>Parameter.ucd</vodml-id>
+      <name>ucd</name>
+      <description>UCD1+ giving the type of the physical measure. The model defines a UCD space for each Measure class.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Parameter.reductionStatus</vodml-id>
+      <name>reductionStatus</name>
+      <description>Reduction  status of the Measure carried by the Parameter.</description>
+      <datatype>
+        <vodml-ref>mango:ReductionStatus</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Parameter.semantic</vodml-id>
+      <name>semantic</name>
+      <description>Optional vocabulary term giving a standard description of the Parameter. This term does not necessary relate to a VO vocabulary e.g. UAT.</description>
+      <datatype>
+        <vodml-ref>mango:stcextend.VocabularyTerm</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Parameter.description</vodml-id>
+      <name>description</name>
+      <description>Free text description of the measure. 
+</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>Parameter.measure</vodml-id>
+      <name>measure</name>
+      <description>Reference to the meas:Measure subclass instance carrying the Parameter value(s)</description>
+      <datatype>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <reference>
+      <vodml-id>Parameter.associatedParameters</vodml-id>
+      <name>associatedParameters</name>
+      <description>This relation allows to build logical sets of parameters e.g. associating a flag with a position. Such parameter sets have no particular semantic.
+</description>
+      <datatype>
+        <vodml-ref>mango:Parameter</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>-1</maxOccurs>
+      </multiplicity>
+    </reference>
+  </objectType>
+
+
+
+  <package>
+    <vodml-id>stcextend</vodml-id>
+    <name>stcextend</name>
+    <description>This package contains all object and type classes that has been extended from the Measure and Coordinates datamodels. 
+This extension mechanism is used to add new types of measures while staying whithin the Mes/Coords pattern.</description>
+    <enumeration>
+      <vodml-id>stcextend.ShapeFrame</vodml-id>
+      <name>ShapeFrame</name>
+      <description>Enumeration of the possible options to encode a shape in  a string.</description>
+      <literal>
+        <vodml-id>stcextend.ShapeFrame.MOC</vodml-id>
+        <name>MOC</name>
+        <description>MOC serialization</description>
+      </literal>
+      <literal>
+        <vodml-id>stcextend.ShapeFrame.STCs</vodml-id>
+        <name>STCs</name>
+        <description>STCs serialization</description>
+      </literal>
+    </enumeration>
+
+    <dataType>
+      <vodml-id>stcextend.LonLatPoint</vodml-id>
+      <name>LonLatPoint</name>
+      <description>Coordinate of a point on the sky sphere expressed in spherical coordinates.</description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>mango:LonLatCoordSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.LonLatPoint.longitude</vodml-id>
+        <name>longitude</name>
+        <description>longitude of the point
+</description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.LonLatPoint.latitude</vodml-id>
+        <name>latitude</name>
+        <description>Latitude of the point</description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.FlagCoord</vodml-id>
+      <name>FlagCoord</name>
+      <description>Coordinate of a status Measure</description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>FlagSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.FlagCoord.status</vodml-id>
+        <name>status</name>
+        <description>Value of the status</description>
+        <datatype>
+          <vodml-ref>ivoa:integer</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.FlagState</vodml-id>
+      <name>FlagState</name>
+      <description>Possible value of a status</description>
+      <attribute>
+        <vodml-id>stcextend.FlagState.value</vodml-id>
+        <name>value</name>
+        <description>Status value</description>
+        <datatype>
+          <vodml-ref>ivoa:integer</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.FlagState.label</vodml-id>
+        <name>label</name>
+        <description>Label attached to that status value
+
+</description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.ShapeCoord</vodml-id>
+      <name>ShapeCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>ShapeSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.ShapeCoord.shape</vodml-id>
+        <name>shape</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.OrbitCoord</vodml-id>
+      <name>OrbitCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>coords:SpaceSys</vodml-ref>
+        </datatype>
+      </constraint>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.ObjectTypeCoord</vodml-id>
+      <name>ObjectTypeCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>ObjectTypeSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.ObjectTypeCoord.objectType</vodml-id>
+        <name>objectType</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.PhotometryCoord</vodml-id>
+      <name>PhotometryCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>PhotometryCoordSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.PhotometryCoord.luminosity</vodml-id>
+        <name>luminosity</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.HardnessRatioCoord</vodml-id>
+      <name>HardnessRatioCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>mango:HardnessRatioSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.HardnessRatioCoord.hardnessRatio</vodml-id>
+        <name>hardnessRatio</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.RedshiftCoord</vodml-id>
+      <name>RedshiftCoord</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:Coordinate</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:Coordinate.coordSys</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>RedshiftSys</vodml-ref>
+        </datatype>
+      </constraint>
+      <attribute>
+        <vodml-id>stcextend.RedshiftCoord.redshift</vodml-id>
+        <name>redshift</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <dataType>
+      <vodml-id>stcextend.VocabularyTerm</vodml-id>
+      <name>VocabularyTerm</name>
+      <description>Datatype  for vocabulary word. Provides a pointer to the word description and a label.</description>
+      <attribute>
+        <vodml-id>stcextend.VocabularyTerm.uri</vodml-id>
+        <name>uri</name>
+        <description>URI extarcted from the DRF document and refering ot the word
+
+</description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.VocabularyTerm.label</vodml-id>
+        <name>label</name>
+        <description>RDF label. Matched the URL fragment for IVOA vocabularies
+
+</description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </dataType>
+
+    <objectType>
+      <vodml-id>stcextend.HRFrame</vodml-id>
+      <name>HRFrame</name>
+      <description>Hardness ratio frame.
+Defined by 2 energy bands Eheigh ELow.
+HR = (Eheigh - Elow)/(Eheigh + Elow)
+Energy bands are deemed to special photometric filters</description>
+      <extends>
+        <vodml-ref>coords:CoordFrame</vodml-ref>
+      </extends>
+      <reference>
+        <vodml-id>stcextend.HRFrame.low</vodml-id>
+        <name>low</name>
+        <description>Low energy band</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.PhotFilter</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </reference>
+      <reference>
+        <vodml-id>stcextend.HRFrame.high</vodml-id>
+        <name>high</name>
+        <description>Heigh energy band</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.PhotFilter</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </reference>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.LonLatSkyPosition</vodml-id>
+      <name>LonLatSkyPosition</name>
+      <description>Measure to used for sky points expressed with a spherical coordinate system</description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.LonLatSkyPosition.coord</vodml-id>
+        <name>coord</name>
+        <description>Coordinate of spherical sky position</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.LonLatPoint</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Flag</vodml-id>
+      <name>Flag</name>
+      <description>Measure to be used for status parameters</description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Flag.coord</vodml-id>
+        <name>coord</name>
+        <description>Coordinate holding the statsu value</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.FlagCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.FlagSys</vodml-id>
+      <name>FlagSys</name>
+      <description>Coordinate system to be used for statur measures.</description>
+      <extends>
+        <vodml-ref>coords:CoordSys</vodml-ref>
+      </extends>
+      <composition>
+        <vodml-id>stcextend.FlagSys.statusLabel</vodml-id>
+        <name>statusLabel</name>
+        <description>Composition loink to all possible status values for this system</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.FlagState</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>0</minOccurs>
+          <maxOccurs>-1</maxOccurs>
+        </multiplicity>
+      </composition>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Shape</vodml-id>
+      <name>Shape</name>
+      <description>Measure giving the shape of a source</description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Shape.coord</vodml-id>
+        <name>coord</name>
+        <description>String serialization of the source shape</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.ShapeCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.ShapeSys</vodml-id>
+      <name>ShapeSys</name>
+      <description>Coordinate systen to be used for shape measure</description>
+      <extends>
+        <vodml-ref>coords:CoordSys</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.ShapeSys.shapeFrame</vodml-id>
+        <name>shapeFrame</name>
+        <description>Frame of the shape measure. Gives a enumeration of the supported serializations.</description>
+        <datatype>
+          <vodml-ref>mango:stcextend.ShapeFrame</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.PhotFilter</vodml-id>
+      <name>PhotFilter</name>
+      <description>Photometric filter description, compliant with photDM</description>
+      <extends>
+        <vodml-ref>coords:CoordFrame</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.name</vodml-id>
+        <name>name</name>
+        <description>Filter name</description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.zeroPointFlux</vodml-id>
+        <name>zeroPointFlux</name>
+        <description>Zero point flux of the filter</description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.magnitudeSystem</vodml-id>
+        <name>magnitudeSystem</name>
+        <description>Magnitude system used by the filter</description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.effectiveWavelength</vodml-id>
+        <name>effectiveWavelength</name>
+        <description>Effective wavelength of the filter</description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.unit</vodml-id>
+        <name>unit</name>
+        <description>Wavelength unit used for that filter</description>
+        <datatype>
+          <vodml-ref>ivoa:Unit</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+      <attribute>
+        <vodml-id>stcextend.PhotFilter.bandWidth</vodml-id>
+        <name>bandWidth</name>
+        <description>Band width of the filter</description>
+        <datatype>
+          <vodml-ref>ivoa:real</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Photometry</vodml-id>
+      <name>Photometry</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Photometry.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>mango:stcextend.PhotometryCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.HardnessRatio</vodml-id>
+      <name>HardnessRatio</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.HardnessRatio.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>mango:stcextend.HardnessRatioCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Redshift</vodml-id>
+      <name>Redshift</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Redshift.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>mango:stcextend.RedshiftCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.ObjectType</vodml-id>
+      <name>ObjectType</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.ObjectType.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>mango:stcextend.OrbitCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Orbit</vodml-id>
+      <name>Orbit</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Orbit.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>mango:stcextend.OrbitCoord</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.RedshiftSys</vodml-id>
+      <name>RedshiftSys</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:PhysicalCoordSys</vodml-ref>
+      </extends>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.ObjectTypeSys</vodml-id>
+      <name>ObjectTypeSys</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:CoordSys</vodml-ref>
+      </extends>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.LonLatCoordSys</vodml-id>
+      <name>LonLatCoordSys</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:PhysicalCoordSys</vodml-ref>
+      </extends>
+      <constraint>
+        <description>coordSpace[0]</description>
+      </constraint>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:PhysicalCoordSys.frame</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>coords:SpaceFrame</vodml-ref>
+        </datatype>
+      </constraint>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.Temperature</vodml-id>
+      <name>Temperature</name>
+      <description>TBC
+</description>
+      <extends>
+        <vodml-ref>meas:Measure</vodml-ref>
+      </extends>
+      <attribute>
+        <vodml-id>stcextend.Temperature.coord</vodml-id>
+        <name>coord</name>
+        <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+        <datatype>
+          <vodml-ref>ivoa:string</vodml-ref>
+        </datatype>
+        <multiplicity>
+          <minOccurs>1</minOccurs>
+          <maxOccurs>1</maxOccurs>
+        </multiplicity>
+      </attribute>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.HardnessRatioSys</vodml-id>
+      <name>HardnessRatioSys</name>
+      <description>
+          TODO : Missing description : please, update your UML model asap.
+        </description>
+      <extends>
+        <vodml-ref>coords:PhysicalCoordSys</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:PhysicalCoordSys.frame</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>mango:HRFrame</vodml-ref>
+        </datatype>
+      </constraint>
+    </objectType>
+
+    <objectType>
+      <vodml-id>stcextend.PhotometryCoordSys</vodml-id>
+      <name>PhotometryCoordSys</name>
+      <description>TBC with photDM</description>
+      <extends>
+        <vodml-ref>coords:PhysicalCoordSys</vodml-ref>
+      </extends>
+      <constraint xsi:type="vo-dml:SubsettedRole">
+        <role>
+          <vodml-ref>coords:PhysicalCoordSys.frame</vodml-ref>
+        </role>
+        <datatype>
+          <vodml-ref>mango:PhotFilter</vodml-ref>
+        </datatype>
+      </constraint>
+    </objectType>
+
+  </package>
+
+</vo-dml:model>

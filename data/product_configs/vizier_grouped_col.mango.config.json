@@ -1,0 +1,72 @@
+{
+	"identifier": "recno",
+	"parameters": [
+        {
+            "measure": "GenericMeasure",
+            "ucd": "spect.dopplerVeloc;pos.heliocentric",
+            "semantic": "#radial velocity",
+            "description": "Radial velocity, derived from the shift of some spectral feature in Heliocentric position coordinate (solar system bodies)",
+            "reductionStatus": "Calibrated",
+            "coordinate": {
+                "value": "@RV",
+                "unit": "km/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "",
+                    "unit": ""
+                }
+            }
+        },
+        {
+            "measure": "GenericMeasure",
+            "ucd": "meta.number",
+            "semantic": "#Number.of.plates",
+            "description": "Number of plates used for radial velocity ",
+            "reductionStatus": "Computed",
+            "coordinate": {
+                "value": "@o_RV",
+                "unit": "-"
+            },
+            "errors": {
+                "random": {
+                    "value": "",
+                    "unit": ""
+                }
+            }
+        },
+        {
+            "measure": "GenericMeasure",
+            "ucd": "meta.ref;pos.frame ",
+            "semantic": "#observatory",
+            "description": "the observatories contributing to the mean radial velocity  ",
+            "reductionStatus": "Computed",
+            "coordinate": {
+                "value": "@r_RV",
+                "unit": "-"
+            },
+            "errors": {
+                "random": {
+                    "value": "",
+                    "unit": ""
+                }
+            }
+        },
+		{
+			"measure": "DetectionFlag",
+			"ucd": "meta.code.qual",
+			"semantic": "#quality_flag",
+			"description": " Quality of radial velocity ",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": "QRVFLAG"
+			},
+			"coordinate": {
+				"value": "@q_RV"
+			}
+		}
+	],
+	"associatedData": {
+		
+	}
+}

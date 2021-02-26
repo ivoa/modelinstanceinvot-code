@@ -1,0 +1,11 @@
+   <!--
+   Pseudo filter for the XMM EB3 (3 4.5 KeV) 
+    -->
+    <INSTANCE ID="PhotFrame_EB3" dmrole="" dmtype="mango:stcextend.PhotFilter" >
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB3"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="1"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="1.5"/>
+    </INSTANCE>

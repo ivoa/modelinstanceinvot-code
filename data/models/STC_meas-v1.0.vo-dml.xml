@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vo-dml:model xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 http://www.ivoa.net/xml/VODML/vo-dml-v1.xsd">
+  <name>meas</name>
+  <description>This model defines objects and datatypes which represent 'measured' or 'determined' data.  It associates a Coordinate (ie: the determined value with associated physical context) with corresponding Error(s).  As such, this model is at least the foundation for representing the vast majority of the Astronomical data found in catalogs and data products.  
+
+We define here, several specialized classes which cover the most basic and common types, such as Position and Time.  We also provide a generic model which can accommodate virtually any data, but may require a bit more effort to fully describe the coordinate metadata.  Additional specializations, e.g. Flux, Magnitude, Luminosity, Pressure, Temperature, etc. may be added to this model, or in other models focusing on particular domains or use cases.
+
+We include a fairly simple Error model, describing errors as a 'shape' of uncertainty, and define a small set of commonly occuring forms (e.g. Symmetrical, Bounds, Ellipsoid). 
+</description>
+  <uri/>
+  <title>Astronomical Measurements Model</title>
+  <author>Arnold Rots, Mark Cresitello-Dittmar, Omar Laurino</author>
+  <version>2.0</version>
+  <previousVersion>0.x</previousVersion>
+  <lastModified>2020-04-13T11:27:25</lastModified>
+  <import>
+    <name>ivoa</name>
+    <url>http://www.ivoa.net/xml/VODML/20180519/IVOA-v1.0.vo-dml.xml</url>
+    <documentationURL>http://volute.g-vo.org/svn/trunk/projects/dm/vo-dml/models/ivoa/vo-dml/IVOA-v1.0.html</documentationURL>
+  </import>
+  <import>
+    <name>coords</name>
+    <url>https://volute.g-vo.org/svn/trunk/projects/dm/STC/Coords/vo-dml/STC_coords-v1.0.vo-dml.xml</url>
+    <documentationURL>https://volute.g-vo.org/svn/trunk/projects/dm/STC/Coords/vo-dml/STC_coords-v1.0.html</documentationURL>
+  </import>
+  <dataType abstract="true">
+    <vodml-id>Uncertainty</vodml-id>
+    <name>Uncertainty</name>
+    <description>Abstract head of uncertainty types.  These classes define the shape of the uncertainty, and are designed to be reusable in different contexts.  Uncertainties are designed to be associated with a Coordinate or other object which provides the 'center' or reference location about which the uncertainty resides.  In this model, we use them in the context of defining measurement errors, but they are also compatible for use in defining resolutions which are to be modeled at a later date.
+
+This initial version of teh model forms a fundamental basis which can then be expanded to include more complex and varied use cases as they present themselves.  The current model assumes Gaussian distributions with shpes defined at the 68% confidence level.
+</description>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Symmetrical</vodml-id>
+    <name>Symmetrical</name>
+    <description>Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Symmetrical.radius</vodml-id>
+      <name>radius</name>
+      <description>The uncertainty extent, constant in all dimensions and directions.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Asymmetrical1D</vodml-id>
+    <name>Asymmetrical1D</name>
+    <description>Uncertainty with different extent in the positive and negative directions from the associated Coordinate.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Asymmetrical1D.plus</vodml-id>
+      <name>plus</name>
+      <description>Extent in the positive axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Asymmetrical1D.minus</vodml-id>
+      <name>minus</name>
+      <description>Extent in the negative axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Asymmetrical2D</vodml-id>
+    <name>Asymmetrical2D</name>
+    <description>2D Uncertainty with different extent in the positive and negative axis directions from the associated Coordinate.  i.e.: an offset rectangle.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Asymmetrical2D.plus</vodml-id>
+      <name>plus</name>
+      <description>Extent in each positive axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Asymmetrical2D.minus</vodml-id>
+      <name>minus</name>
+      <description>Extent in each negative axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Asymmetrical3D</vodml-id>
+    <name>Asymmetrical3D</name>
+    <description>3D Uncertainty with different extent in the positive and negative axis directions from the associated Coordinate.  i.e.: an offset box.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Asymmetrical3D.plus</vodml-id>
+      <name>plus</name>
+      <description>Extent in each positive axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>3</minOccurs>
+        <maxOccurs>3</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Asymmetrical3D.minus</vodml-id>
+      <name>minus</name>
+      <description>Extent in each negative axis direction.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>3</minOccurs>
+        <maxOccurs>3</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Bounds1D</vodml-id>
+    <name>Bounds1D</name>
+    <description>Provide the edges of the uncertainty space.  Rather than being relative to the associated Coordinate, these represent a range within that Coordinate space.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Bounds1D.loLimit</vodml-id>
+      <name>loLimit</name>
+      <description>Lower limit of the uncertainty range.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bounds1D.hiLimit</vodml-id>
+      <name>hiLimit</name>
+      <description>Upper limit of the uncertainty range.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Bounds2D</vodml-id>
+    <name>Bounds2D</name>
+    <description>Provide the edges of a 2D uncertainty space.  Rather than being relative to the associated Coordinate, these represent ranges along each axis of that Coordinate space.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Bounds2D.loLimit</vodml-id>
+      <name>loLimit</name>
+      <description>Lower edges of the uncertainty rectangle.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bounds2D.hiLimit</vodml-id>
+      <name>hiLimit</name>
+      <description>Upper edges of the uncertainty rectangle.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Bounds3D</vodml-id>
+    <name>Bounds3D</name>
+    <description>Provide the edges of a 3D uncertainty space.  Rather than being relative to the associated Coordinate, these represent ranges along each axis of that Coordinate space.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Bounds3D.loLimit</vodml-id>
+      <name>loLimit</name>
+      <description>Lower edges of the uncertainty box.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>3</minOccurs>
+        <maxOccurs>3</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bounds3D.hiLimit</vodml-id>
+      <name>hiLimit</name>
+      <description>Upper edges of the uncertainty box.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>3</minOccurs>
+        <maxOccurs>3</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Ellipse</vodml-id>
+    <name>Ellipse</name>
+    <description>Elliptical uncertainty shape.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Ellipse.semiAxis</vodml-id>
+      <name>semiAxis</name>
+      <description>Extent of the semi-major and semi-minor axes, provided in the order of the associated Coordinate axes.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Ellipse.posAngle</vodml-id>
+      <name>posAngle</name>
+      <description>Position angle, counter-clockwise from the positive direction of the first axis of the associated Coordinate.  When used in the spatial domain, the expectation is that the 'first axis' corresponds to the 'North Celestial Pole', and the second to 'East', thereby conforming to the IAU definition of the position angle direction being 'East of North'.
+</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <dataType>
+    <vodml-id>Ellipsoid</vodml-id>
+    <name>Ellipsoid</name>
+    <description>Ellipsoidal uncertainty shape.</description>
+    <extends>
+      <vodml-ref>meas:Uncertainty</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Ellipsoid.semiAxis</vodml-id>
+      <name>semiAxis</name>
+      <description>Extent of the semi axes, provided in the order of the associated Coordinate axes.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>3</minOccurs>
+        <maxOccurs>3</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Ellipsoid.posAngle</vodml-id>
+      <name>posAngle</name>
+      <description>Position angles 
+  * counter-clockwise from the positive direction of the first axis toward the second axis
+  * angle 'above' the plane of the first two axes of the associated Coordinate.  
+When used in the spatial domain, the expectation is that the 'first axis' corresponds to the 'North Celestial Pole', and the second to 'East', thereby conforming to the IAU definition of the position angle direction being 'East of North'.</description>
+      <datatype>
+        <vodml-ref>ivoa:RealQuantity</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>2</minOccurs>
+        <maxOccurs>2</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </dataType>
+
+  <objectType abstract="true">
+    <vodml-id>Measure</vodml-id>
+    <name>Measure</name>
+    <description>Abstract base of Measure classes, associates a 'determined value' (Coordinate) with corresponding errors.
+
+We associate the Error(s) with the full Measure, rather than the individual values, in order to support both correlated and uncorrelated errors.  In many cases with multi-dimensional data, the associated errors are correlated and must be considered with the value set as a whole.  One consequence of this approach is that there is a looser association between the Error dimensions and the corresponding value dimension.  We require that the Error content MUST be compatible with the value dimension and nature (e.g. dimension, domain, units, etc).
+
+</description>
+    <composition>
+      <vodml-id>Measure.error</vodml-id>
+      <name>error</name>
+      <description>Measurement error.</description>
+      <datatype>
+        <vodml-ref>meas:Error</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Error</vodml-id>
+    <name>Error</name>
+    <description>The Error class uses the Uncertainty types to describe measurement errors from various sources.</description>
+    <attribute>
+      <vodml-id>Error.statError</vodml-id>
+      <name>statError</name>
+      <description>Statistical error.  The Uncertainty type MUST be dimensionally compatible with the associated Measure value.</description>
+      <datatype>
+        <vodml-ref>meas:Uncertainty</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Error.sysError</vodml-id>
+      <name>sysError</name>
+      <description>Systematic error.  The Uncertainty type MUST be dimensionally compatible with the associated Measure value.</description>
+      <datatype>
+        <vodml-ref>meas:Uncertainty</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>GenericMeasure</vodml-id>
+    <name>GenericMeasure</name>
+    <description>The most generic Measure class.  This class may be used to represent any data not covered by the specialized cases.  The coordinate value type allows for the construction of multi-dimensional values to accommodate virtually any case.  </description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>GenericMeasure.coord</vodml-id>
+      <name>coord</name>
+      <description>The measured coordinate value.  May be of any dimensionality (current support 1,2 and 3-dimension).  For many cases, the Standard1DCoord should suffice, providing a clean and simple representation of the measured value.  For other cases, users will need to provide a complete coordinate description.</description>
+      <datatype>
+        <vodml-ref>coords:PhysicalCoordinate</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Position</vodml-id>
+    <name>Position</name>
+    <description>Provides a complete description of a measured positional instant.</description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Position.coord</vodml-id>
+      <name>coord</name>
+      <description>The measured Position value.  The Point coordinate supports 1,2, and 3-dimensional cases.  Details of the coordinate system (space and frame), are associated with the Point.</description>
+      <datatype>
+        <vodml-ref>coords:Point</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Time</vodml-id>
+    <name>Time</name>
+    <description>Provides a complete description of a measured Temporal instant.</description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Time.coord</vodml-id>
+      <name>coord</name>
+      <description>The measured time value.  May be provided in any of the TimeStamp subtypes.</description>
+      <datatype>
+        <vodml-ref>coords:TimeStamp</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Polarization</vodml-id>
+    <name>Polarization</name>
+    <description>Provides a complete description of a determined polarization state.  Since the polarization coordinate is an enumerated type, there can be no associated numerical error sources.</description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <constraint>
+      <description>error:Error[0]</description>
+    </constraint>
+    <attribute>
+      <vodml-id>Polarization.coord</vodml-id>
+      <name>coord</name>
+      <description>Determined polarization state.  May be provided by any of the PolCoordValue subtypes.</description>
+      <datatype>
+        <vodml-ref>coords:PolCoordinate</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Velocity</vodml-id>
+    <name>Velocity</name>
+    <description>Provides a comple description of a measured Velocity instant.</description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>Velocity.coord</vodml-id>
+      <name>coord</name>
+      <description>The measured Velocity value.  The Point coordinate supports 1,2, and 3-dimensional cases.  Details of the coordinate system (space and frame), are associated with the Point.</description>
+      <datatype>
+        <vodml-ref>coords:Point</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>ProperMotion</vodml-id>
+    <name>ProperMotion</name>
+    <description>Proper motion represented as the velocity in Longitude and Latitude directions of a spherical coordinate space.  The associated SpaceFrame provides the details regarding the nature of the coordinate space (eg: Equatorial, Galactic, etc).</description>
+    <extends>
+      <vodml-ref>meas:Measure</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>ProperMotion.lon</vodml-id>
+      <name>lon</name>
+      <description>Velocity in angular distance per unit time along the Longitude axis.  It is common, though not universal, practice to quote longitudinal proper motion pre-multiplied by cos(lat) so that the magnitude of the quantity is not affected by its longitudinal position.  We do not constrain this value to one form or the other in this model, leaving it to be specified by the particular usage thread.</description>
+      <datatype>
+        <vodml-ref>coords:PhysicalCoordinate</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>ProperMotion.lat</vodml-id>
+      <name>lat</name>
+      <description>Velocity in angular distance per unit time along the Latitude axis.</description>
+      <datatype>
+        <vodml-ref>coords:PhysicalCoordinate</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+</vo-dml:model>

@@ -1,0 +1,84 @@
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+  <GLOBALS>
+    <INSTANCE ID="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
+      <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet"/>
+      </INSTANCE>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet"/>
+    </INSTANCE>
+    <INSTANCE ID="SpaceFrame_Galactic" dmtype="coords:SpaceFrame">
+      <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet"/>
+      </INSTANCE>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="Galactic"/>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet"/>
+    </INSTANCE>
+  </GLOBALS>
+  <TABLE_MAPPING tableref="Results">
+    <COLLECTION dmrole="root">
+      <TABLE_ROW_TEMPLATE>
+        <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+          <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="2CXO"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.associatedData"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq;meta.main"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+                <INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="RAICRS"/>
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="DEICRS"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+                <INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="GLON"/>
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="GLAT"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_Galactic"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </COLLECTION>
+        </INSTANCE>
+      </TABLE_ROW_TEMPLATE>
+    </COLLECTION>
+  </TABLE_MAPPING>
+</MODEL_INSTANCE>

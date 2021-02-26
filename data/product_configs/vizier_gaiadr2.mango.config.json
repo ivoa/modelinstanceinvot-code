@@ -1,0 +1,128 @@
+{
+    "identifier": "Source",
+	"parameters": [
+		{
+			"measure": "Position",
+			"ucd": "pos.eq;meta.main",
+			"semantic": "#position.calibrated",
+			"description": "calibrated position",
+			"reductionStatus": "Calibrated",
+			"frame": {
+				"frame": "ICRS",
+				"equinox": null
+			},
+			"position": {
+				"longitude": "@RA_ICRS",
+				"latitude": "@DE_ICRS",
+				"unit": "deg"
+			},
+			"errors": {
+				"random": {
+					"longitude": "@e_RA_ICRS",
+					"latitude": "@e_DE_ICRS",
+					"unit": "mas"
+				}
+			}
+		},
+		{
+			"measure": "ProperMotion",
+			"ucd": "pos.pm",
+			"semantic": "#propermotion",
+			"description": "Proper Motion",
+   			"reductionStatus": "Calibrated",
+			"position": {
+				"longitude": "@pmRA",
+				"latitude": "@pmDE",
+				"unit": "mas/y"
+			},
+			"errors": {
+				"random": {
+					"longitude": "@e_pmRA",
+					"latitude": "@e_pmDE",
+					"unit": "mas/y"
+				}
+			}
+		},
+		{
+			"measure": "Photometry",
+			"ucd": "phot.mag;stat.mean;em.opt",
+			"semantic": "#magnitude",
+			"description": "Magnitude in G band",
+   			"reductionStatus": "Calibrated",
+			"frame": {
+				"frame": "gaiaG"
+			},
+			"luminosity": {
+				"luminosity": "@Gmag",
+				"unit": "mag"
+			},
+			"errors": {
+				"random": {
+					"value": "@e_Gmag",
+				"unit": "mag"
+				}
+			}
+		},
+		{
+			"measure": "Photometry",
+			"ucd": "phot.mag;stat.mean;em.opt",
+			"semantic": "#magnitude",
+			"description": "Magnitude in BP band",
+   			"reductionStatus": "Calibrated",
+			"frame": {
+				"frame": "gaiaBP"
+			},
+			"luminosity": {
+				"luminosity": "@BPmag",
+				"unit": "mag"
+			},
+			"errors": {
+				"random": {
+					"value": "@e_BPmag",
+				"unit": "mag"
+				}
+			}
+		},
+		{
+			"measure": "Photometry",
+			"ucd": "phot.mag;stat.mean;em.opt",
+			"semantic": "#magnitude",
+			"description": "Magnitude in RP band",
+   			"reductionStatus": "Calibrated",
+			"frame": {
+				"frame": "gaiaRP"
+			},
+			"luminosity": {
+				"luminosity": "@RPmag",
+				"unit": "mag"
+			},
+			"errors": {
+				"random": {
+					"value": "@e_RPmag",
+				"unit": "mag"
+				}
+			}
+		},
+		{
+			"measure": "GenericMeasure",
+			"ucd": "pos.parallax",
+			"semantic": "#parallax",
+			"description": "Parallax",
+   			"reductionStatus": "Computed",
+			"coordinate": {
+				"value": "@Plx",
+				"unit": "mas"
+			},
+			"errors": {
+				"random": {
+					"value": "@e_Plx",
+				"unit": "mas"
+				}
+			}
+		}
+
+	],
+	"associatedData": {
+		
+	}
+}

@@ -1,0 +1,16 @@
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot" >
+	<GLOBALS />
+	<TABLE_MAPPING tableref='Results'>
+		<COLLECTION dmrole="root">
+			<TABLE_ROW_TEMPLATE>
+				<INSTANCE dmrole="root" dmtype="mango:MangoObject">
+					<ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string"
+						ref="@@@@@@" />
+					<COLLECTION size="-1"
+						dmrole="mango:MangoObject.associatedData" />
+					<COLLECTION size="-1" dmrole="mango:MangoObject.parameters" />
+				</INSTANCE>
+			</TABLE_ROW_TEMPLATE>
+		</COLLECTION>
+	</TABLE_MAPPING>
+</MODEL_INSTANCE>

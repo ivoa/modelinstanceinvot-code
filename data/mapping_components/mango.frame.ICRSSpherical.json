@@ -1,0 +1,70 @@
+{
+  "INSTANCE": {
+    "@ID": "SpaceSys_ICRS_Spherical",
+    "@dmtype": "coords:SpaceSys",
+    "INSTANCE": [
+      {
+        "@dmrole": "coords:PhysicalCoordSys.coordSpace",
+        "@dmtype": "coords:SphericalCoordSpace",
+        "COLLECTION": {
+          "@dmrole": "coords:CoordSpace.axis",
+          "@size": "-1",
+          "INSTANCE": [
+            {
+              "@dmrole": "coords:CoordSpace.axis",
+              "@dmtype": "coords:ContinuousAxis",
+              "ATTRIBUTE": {
+                "@dmrole": "coords:Axis.name",
+                "@dmtype": "ivoa:string",
+                "@value": "ra"
+              }
+            },
+            {
+              "@dmrole": "coords:CoordSpace.axis",
+              "@dmtype": "coords:ContinuousAxis",
+              "ATTRIBUTE": {
+                "@dmrole": "coords:Axis.name",
+                "@dmtype": "ivoa:string",
+                "@value": "dec"
+              }
+            },
+            {
+              "@dmrole": "coords:CoordSpace.axis",
+              "@dmtype": "coords:ContinuousAxis",
+              "ATTRIBUTE": {
+                "@dmrole": "coords:Axis.name",
+                "@dmtype": "ivoa:string",
+                "@value": "r"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@dmrole": "coords:PhysicalCoordSys.frame",
+        "@dmtype": "coords:SpaceFrame",
+        "ATTRIBUTE": [
+          {
+            "@dmrole": "coords:SpaceFrame.spaceRefFrame",
+            "@dmtype": "ivoa:string",
+            "@value": "ICRS"
+          },
+          {
+            "@dmrole": "coords:SpaceFrame.equinox",
+            "@dmtype": "coords:Epoch",
+            "@value": "NoSet"
+          }
+        ],
+        "INSTANCE": {
+          "@dmrole": "coords:SpaceFrame.refPosition",
+          "@dmtype": "coords:StdRefLocation",
+          "ATTRIBUTE": {
+            "@dmrole": "coords:StdRefLocation.position",
+            "@dmtype": "ivoa:string",
+            "@value": "NoSet"
+          }
+        }
+      }
+    ]
+  }
+}

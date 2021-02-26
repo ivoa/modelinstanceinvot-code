@@ -1,0 +1,1558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+  <GLOBALS>
+    <INSTANCE ID="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
+      <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet"/>
+      </INSTANCE>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_EB1" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB1"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="0.35"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="0.3"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_EB2" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB2"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="0.75"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="0.5"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_EB3" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB3"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="1"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="1.5"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_EB4" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB4"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="3.25"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="3.5"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_EB5" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="XMM EB5"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="XMM"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="8.25"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="5.5"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_HR1" dmrole="" dmtype="mango:stcextend.HRFrame">
+      <INSTANCE dmrole="mango:stcextend.HRFrame.low" dmref="PhotFrame_EB1"/>
+      <INSTANCE dmrole="mango:stcextend.HRFrame.high" dmref="PhotFrame_EB2"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_HR2" dmrole="" dmtype="mango:stcextend.HRFrame">
+      <INSTANCE dmrole="mango:stcextend.HRFrame.low" dmref="PhotFrame_EB2"/>
+      <INSTANCE dmrole="mango:stcextend.HRFrame.high" dmref="PhotFrame_EB3"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_HR3" dmrole="" dmtype="mango:stcextend.HRFrame">
+      <INSTANCE dmrole="mango:stcextend.HRFrame.low" dmref="PhotFrame_EB3"/>
+      <INSTANCE dmrole="mango:stcextend.HRFrame.high" dmref="PhotFrame_EB4"/>
+    </INSTANCE>
+    <INSTANCE ID="PhotFrame_HR4" dmrole="" dmtype="mango:stcextend.HRFrame">
+      <INSTANCE dmrole="mango:stcextend.HRFrame.low" dmref="PhotFrame_EB4"/>
+      <INSTANCE dmrole="mango:stcextend.HRFrame.high" dmref="PhotFrame_EB5"/>
+    </INSTANCE>
+    <INSTANCE ID="TimeFrame_BARYCENTER" dmrole="" dmtype="coords:TimeFrame">
+      <INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER"/>
+      </INSTANCE>
+      <INSTANCE dmrole="coords:TimeFrame.refLocation" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="GEOCENTRIC"/>
+      </INSTANCE>
+      <ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB"/>
+    </INSTANCE>
+    <INSTANCE ID="StatusFrame_DETFLAG" dmrole="" dmtype="cab_msd:STCStatusSys">
+      <COLLECTION size="5" dmrole="cab_msd:STCStatusSys.statusLabel">
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="0"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="good"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="1"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="source parameters may be affected"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="2"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="possibly spurious"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="3"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="located in a area where spurious detection may occur"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="4"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="located in a area where spurious detection may occur and possibly spurious"/>
+        </INSTANCE>
+      </COLLECTION>
+    </INSTANCE>
+  </GLOBALS>
+  <TABLE_MAPPING tableref="Results">
+    <COLLECTION dmrole="root">
+      <TABLE_ROW_TEMPLATE>
+        <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+          <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="namesaada"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.associatedData"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#postion.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Corrected position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+                <INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="_ra_146"/>
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="_dec_147"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_poserr_148"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_poserr_148"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flux in Energy band 1 0.2-0.5KeV (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="_ep_1_flux_166"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_EB1"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_1_flux_err_167"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flux in Energy band 2 0.5-1KeV (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="_ep_2_flux_168"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_EB2"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_2_flux_err_169"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flux in Energy band 2 1-2KeV (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="_ep_3_flux_170"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_EB3"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_3_flux_err_171"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flux in Energy band 2 2-4.5KeV (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="_ep_4_flux_172"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_EB4"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_4_flux_err_173"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flux in Energy band 2 4.5-12KeV (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="_ep_5_flux_174"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_EB5"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_5_flux_err_175"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardness_ration.computed"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Hardness Ratio in Energy band 1 and 2 (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+                <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="_ep_hr1_302"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_HR1"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_hr1_err_303"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardness_ration.computed"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Hardness Ratio in Energy band 2 and 3 (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+                <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="_ep_hr2_304"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_HR2"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_hr2_err_305"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardness_ration.computed"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Hardness Ratio in Energy band 3 and 4 (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+                <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="_ep_hr3_306"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_HR3"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_hr3_err_307"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardness_ration.computed"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Hardness Ratio in Energy band 4 and 5 (cameras merged)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+                <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="_ep_hr4_308"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_HR4"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_ep_hr4_err_309"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#observation.duration"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="time.duration;obs.exposure"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="PN exposure time in Energy band 1 0.2-0.5KeV"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="calibrated"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="_pn_1_exp_334"/>
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="sec"/>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#observation.starttime"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="time;obs.start"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Observation time"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="calibrated"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:Time">
+                <INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+                  <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_mjd_start_137"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="TimeFrame_BARYCENTER"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#quality_flag"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.code.qual"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Summary quality flag"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Flag">
+                <INSTANCE dmrole="mango:stcextend.Flag.coord" dmtype="mango:stcextend.FlagCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.FlagCoord.coord" dmtype="ivoa:integer" ref="_sum_flag_394"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="StatusFrame_DETFLAG"/>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </COLLECTION>
+        </INSTANCE>
+      </TABLE_ROW_TEMPLATE>
+    </COLLECTION>
+  </TABLE_MAPPING>
+</MODEL_INSTANCE>
+<DESCRIPTION><![CDATA[
+SaadaDB:
+   name : FourXMMdr9
+   url  : http://xcatdb.unistra.fr/4xmmdr9
+   date : Wed Apr 08 17:24:01 CEST 2020
+Query parameters:
+   query: Select ENTRY From CatalogueEntry In CATALOGUE
+Order By oidsaada desc
+
+Limit 100
+
+   limit: 10000
+   collection: CATALOGUE
+   class: CatalogueEntry
+   category: ENTRY
+Archive generated by SAADA: http://saada.u-strasbg.fr
+]]></DESCRIPTION>
+<COOSYS ID="ICRS" system="ICRS"/>
+<RESOURCE type="results"><DESCRIPTION>Native Saada</DESCRIPTION>
+<INFO name="QUERY_STATUS" value="OK"/>
+<TABLE name="Results">
+<FIELD ID="oidsaada_100" name="oidsaada" datatype="long" ucd="meta.id;meta.main">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="namesaada_101" name="namesaada" datatype="char" ucd="meta.id" arraysize="*">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="pos_ra_csa_102" name="pos_ra_csa" datatype="double" ucd="pos.eq.ra;meta.main" unit="deg">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="pos_dec_csa_103" name="pos_dec_csa" datatype="double" ucd="pos.eq.dec;meta.main" unit="deg">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="healpix_csa_104" name="healpix_csa" datatype="long">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="error_maj_csa_105" name="error_maj_csa" datatype="double" ucd="stat.error;phys.size" unit="deg">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="error_min_csa_106" name="error_min_csa" datatype="double" ucd="stat.error;phys.size" unit="deg">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="error_angle_csa_107" name="error_angle_csa" datatype="double" ucd="stat.error;pos.posAng" unit="deg">
+<DESCRIPTION>Attribute managed by Saada</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_OBSID_108" name="XCAT_OBSID" datatype="char" arraysize="*">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_INSTRUME_109" name="XCAT_INSTRUME" datatype="char" arraysize="*">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_OBSERVER_110" name="XCAT_OBSERVER" datatype="char" arraysize="*">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_SEQID_111" name="XCAT_SEQID" datatype="int">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="EPIC_IMAGE_112" name="EPIC_IMAGE" datatype="long">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_SRCNUM_113" name="XCAT_SRCNUM" datatype="int">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="VIZIER_KW_114" name="VIZIER_KW" datatype="long">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="E_BminusV_115" name="E_BminusV" datatype="double">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="NH_116" name="NH" datatype="double">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_EBAND_117" name="XCAT_EBAND" datatype="int">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="XCAT_FLUX_118" name="XCAT_FLUX" datatype="double">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="VARIAB_FLAG_119" name="VARIAB_FLAG" datatype="double">
+<DESCRIPTION>No description given</DESCRIPTION>
+</FIELD>
+<FIELD ID="DATALINK_120" name="DATALINK" datatype="char" ucd="data.link" arraysize="*">
+<DESCRIPTION>URL returning data product linked to the current row</DESCRIPTION>
+</FIELD>
+<FIELD ID="_detid_121" name="_detid" datatype="long"/>
+<FIELD ID="_srcid_122" name="_srcid" datatype="long"/>
+<FIELD ID="_dr3srcid_123" name="_dr3srcid" datatype="int"/>
+<FIELD ID="_dr3detid_124" name="_dr3detid" datatype="int"/>
+<FIELD ID="_dr3detdist_125" name="_dr3detdist" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 5</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dr3srcdist_126" name="_dr3srcdist" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 6</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dr3mult_127" name="_dr3mult" datatype="char"/>
+<FIELD ID="_dr4srcid_128" name="_dr4srcid" datatype="int"/>
+<FIELD ID="_dr4detid_129" name="_dr4detid" datatype="int"/>
+<FIELD ID="_dr4detdist_130" name="_dr4detdist" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 10</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dr4srcdist_131" name="_dr4srcdist" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 11</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dr4mult_132" name="_dr4mult" datatype="char"/>
+<FIELD ID="_iauname_133" name="_iauname" datatype="char" arraysize="*"/>
+<FIELD ID="_src_num_134" name="_src_num" datatype="char"/>
+<FIELD ID="_obs_id_135" name="_obs_id" datatype="char" arraysize="*"/>
+<FIELD ID="_revolut_136" name="_revolut" datatype="char" arraysize="*" unit="orbit">
+<DESCRIPTION>units for column 16</DESCRIPTION>
+</FIELD>
+<FIELD ID="_mjd_start_137" name="_mjd_start" datatype="double" unit="d">
+<DESCRIPTION>units for column 17</DESCRIPTION>
+</FIELD>
+<FIELD ID="_mjd_stop_138" name="_mjd_stop" datatype="double" unit="d">
+<DESCRIPTION>units for column 18</DESCRIPTION>
+</FIELD>
+<FIELD ID="_obs_class_139" name="_obs_class" datatype="char"/>
+<FIELD ID="_pn_filter_140" name="_pn_filter" datatype="char" arraysize="*"/>
+<FIELD ID="_m1_filter_141" name="_m1_filter" datatype="char" arraysize="*"/>
+<FIELD ID="_m2_filter_142" name="_m2_filter" datatype="char" arraysize="*"/>
+<FIELD ID="_pn_submode_143" name="_pn_submode" datatype="char" arraysize="*"/>
+<FIELD ID="_m1_submode_144" name="_m1_submode" datatype="char" arraysize="*"/>
+<FIELD ID="_m2_submode_145" name="_m2_submode" datatype="char" arraysize="*"/>
+<FIELD ID="_ra_146" name="_ra" datatype="double" unit="deg">
+<DESCRIPTION>units for column 26</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dec_147" name="_dec" datatype="double" unit="deg">
+<DESCRIPTION>units for column 27</DESCRIPTION>
+</FIELD>
+<FIELD ID="_poserr_148" name="_poserr" datatype="double" unit="arcsec">
+<DESCRIPTION>units for column 28</DESCRIPTION>
+</FIELD>
+<FIELD ID="_lii_149" name="_lii" datatype="double" unit="deg">
+<DESCRIPTION>units for column 29</DESCRIPTION>
+</FIELD>
+<FIELD ID="_bii_150" name="_bii" datatype="double" unit="deg">
+<DESCRIPTION>units for column 30</DESCRIPTION>
+</FIELD>
+<FIELD ID="_radec_err_151" name="_radec_err" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 31</DESCRIPTION>
+</FIELD>
+<FIELD ID="_syserrcc_152" name="_syserrcc" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 32</DESCRIPTION>
+</FIELD>
+<FIELD ID="_refcat_153" name="_refcat" datatype="char"/>
+<FIELD ID="_poscorok_154" name="_poscorok" datatype="boolean"/>
+<FIELD ID="_ra_unc_155" name="_ra_unc" datatype="double" unit="deg">
+<DESCRIPTION>units for column 35</DESCRIPTION>
+</FIELD>
+<FIELD ID="_dec_unc_156" name="_dec_unc" datatype="double" unit="deg">
+<DESCRIPTION>units for column 36</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ccdpn_157" name="_ccdpn" datatype="char"/>
+<FIELD ID="_pn_rawx_158" name="_pn_rawx" datatype="char"/>
+<FIELD ID="_pn_rawy_159" name="_pn_rawy" datatype="char"/>
+<FIELD ID="_ccdm1_160" name="_ccdm1" datatype="char"/>
+<FIELD ID="_m1_rawx_161" name="_m1_rawx" datatype="char"/>
+<FIELD ID="_m1_rawy_162" name="_m1_rawy" datatype="char"/>
+<FIELD ID="_ccdm2_163" name="_ccdm2" datatype="char"/>
+<FIELD ID="_m2_rawx_164" name="_m2_rawx" datatype="char"/>
+<FIELD ID="_m2_rawy_165" name="_m2_rawy" datatype="char"/>
+<FIELD ID="_ep_1_flux_166" name="_ep_1_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 46</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_1_flux_err_167" name="_ep_1_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 47</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_2_flux_168" name="_ep_2_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 48</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_2_flux_err_169" name="_ep_2_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 49</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_3_flux_170" name="_ep_3_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 50</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_3_flux_err_171" name="_ep_3_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 51</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_4_flux_172" name="_ep_4_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 52</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_4_flux_err_173" name="_ep_4_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 53</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_5_flux_174" name="_ep_5_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 54</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_5_flux_err_175" name="_ep_5_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 55</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_flux_176" name="_ep_8_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 56</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_flux_err_177" name="_ep_8_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 57</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_9_flux_178" name="_ep_9_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 58</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_9_flux_err_179" name="_ep_9_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 59</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_1_flux_180" name="_pn_1_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 60</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_1_flux_err_181" name="_pn_1_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 61</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_flux_182" name="_pn_2_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 62</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_flux_err_183" name="_pn_2_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 63</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_flux_184" name="_pn_3_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 64</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_flux_err_185" name="_pn_3_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 65</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_flux_186" name="_pn_4_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 66</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_flux_err_187" name="_pn_4_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 67</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_flux_188" name="_pn_5_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 68</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_flux_err_189" name="_pn_5_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 69</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_flux_190" name="_pn_8_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 70</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_flux_err_191" name="_pn_8_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 71</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_9_flux_192" name="_pn_9_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 72</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_9_flux_err_193" name="_pn_9_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 73</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_flux_194" name="_m1_1_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 74</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_flux_err_195" name="_m1_1_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 75</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_flux_196" name="_m1_2_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 76</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_flux_err_197" name="_m1_2_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 77</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_flux_198" name="_m1_3_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 78</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_flux_err_199" name="_m1_3_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 79</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_flux_200" name="_m1_4_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 80</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_flux_err_201" name="_m1_4_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 81</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_flux_202" name="_m1_5_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 82</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_flux_err_203" name="_m1_5_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 83</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_flux_204" name="_m1_8_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 84</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_flux_err_205" name="_m1_8_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 85</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_9_flux_206" name="_m1_9_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 86</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_9_flux_err_207" name="_m1_9_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 87</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_flux_208" name="_m2_1_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 88</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_flux_err_209" name="_m2_1_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 89</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_flux_210" name="_m2_2_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 90</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_flux_err_211" name="_m2_2_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 91</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_flux_212" name="_m2_3_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 92</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_flux_err_213" name="_m2_3_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 93</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_flux_214" name="_m2_4_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 94</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_flux_err_215" name="_m2_4_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 95</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_flux_216" name="_m2_5_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 96</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_flux_err_217" name="_m2_5_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 97</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_flux_218" name="_m2_8_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 98</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_flux_err_219" name="_m2_8_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 99</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_9_flux_220" name="_m2_9_flux" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 100</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_9_flux_err_221" name="_m2_9_flux_err" datatype="double" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 101</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_rate_222" name="_ep_8_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 102</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_rate_err_223" name="_ep_8_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 103</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_9_rate_224" name="_ep_9_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 104</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_9_rate_err_225" name="_ep_9_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 105</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_1_rate_226" name="_pn_1_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 106</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_1_rate_err_227" name="_pn_1_rate_err" datatype="char" unit="count/s">
+<DESCRIPTION>units for column 107</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_rate_228" name="_pn_2_rate" datatype="char" unit="count/s">
+<DESCRIPTION>units for column 108</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_rate_err_229" name="_pn_2_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 109</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_rate_230" name="_pn_3_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 110</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_rate_err_231" name="_pn_3_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 111</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_rate_232" name="_pn_4_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 112</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_rate_err_233" name="_pn_4_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 113</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_rate_234" name="_pn_5_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 114</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_rate_err_235" name="_pn_5_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 115</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_rate_236" name="_pn_8_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 116</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_rate_err_237" name="_pn_8_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 117</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_9_rate_238" name="_pn_9_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 118</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_9_rate_err_239" name="_pn_9_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 119</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_rate_240" name="_m1_1_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 120</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_rate_err_241" name="_m1_1_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 121</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_rate_242" name="_m1_2_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 122</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_rate_err_243" name="_m1_2_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 123</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_rate_244" name="_m1_3_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 124</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_rate_err_245" name="_m1_3_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 125</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_rate_246" name="_m1_4_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 126</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_rate_err_247" name="_m1_4_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 127</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_rate_248" name="_m1_5_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 128</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_rate_err_249" name="_m1_5_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 129</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_rate_250" name="_m1_8_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 130</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_rate_err_251" name="_m1_8_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 131</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_9_rate_252" name="_m1_9_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 132</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_9_rate_err_253" name="_m1_9_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 133</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_rate_254" name="_m2_1_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 134</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_rate_err_255" name="_m2_1_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 135</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_rate_256" name="_m2_2_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 136</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_rate_err_257" name="_m2_2_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 137</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_rate_258" name="_m2_3_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 138</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_rate_err_259" name="_m2_3_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 139</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_rate_260" name="_m2_4_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 140</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_rate_err_261" name="_m2_4_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 141</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_rate_262" name="_m2_5_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 142</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_rate_err_263" name="_m2_5_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 143</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_rate_264" name="_m2_8_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 144</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_rate_err_265" name="_m2_8_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 145</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_9_rate_266" name="_m2_9_rate" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 146</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_9_rate_err_267" name="_m2_9_rate_err" datatype="double" unit="count/s">
+<DESCRIPTION>units for column 147</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_cts_268" name="_ep_8_cts" datatype="double" unit="count">
+<DESCRIPTION>units for column 148</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_cts_err_269" name="_ep_8_cts_err" datatype="double" unit="count">
+<DESCRIPTION>units for column 149</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_cts_270" name="_pn_8_cts" datatype="double" unit="count">
+<DESCRIPTION>units for column 150</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_8_cts_err_271" name="_pn_8_cts_err" datatype="double" unit="count">
+<DESCRIPTION>units for column 151</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_cts_272" name="_m1_8_cts" datatype="double" unit="count">
+<DESCRIPTION>units for column 152</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_8_cts_err_273" name="_m1_8_cts_err" datatype="double" unit="count">
+<DESCRIPTION>units for column 153</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_cts_274" name="_m2_8_cts" datatype="double" unit="count">
+<DESCRIPTION>units for column 154</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_8_cts_err_275" name="_m2_8_cts_err" datatype="double" unit="count">
+<DESCRIPTION>units for column 155</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_8_det_ml_276" name="_ep_8_det_ml" datatype="double"/>
+<FIELD ID="_ep_9_det_ml_277" name="_ep_9_det_ml" datatype="double"/>
+<FIELD ID="_pn_1_det_ml_278" name="_pn_1_det_ml" datatype="double"/>
+<FIELD ID="_pn_2_det_ml_279" name="_pn_2_det_ml" datatype="double"/>
+<FIELD ID="_pn_3_det_ml_280" name="_pn_3_det_ml" datatype="double"/>
+<FIELD ID="_pn_4_det_ml_281" name="_pn_4_det_ml" datatype="double"/>
+<FIELD ID="_pn_5_det_ml_282" name="_pn_5_det_ml" datatype="double"/>
+<FIELD ID="_pn_8_det_ml_283" name="_pn_8_det_ml" datatype="double"/>
+<FIELD ID="_pn_9_det_ml_284" name="_pn_9_det_ml" datatype="double"/>
+<FIELD ID="_m1_1_det_ml_285" name="_m1_1_det_ml" datatype="double"/>
+<FIELD ID="_m1_2_det_ml_286" name="_m1_2_det_ml" datatype="double"/>
+<FIELD ID="_m1_3_det_ml_287" name="_m1_3_det_ml" datatype="double"/>
+<FIELD ID="_m1_4_det_ml_288" name="_m1_4_det_ml" datatype="double"/>
+<FIELD ID="_m1_5_det_ml_289" name="_m1_5_det_ml" datatype="double"/>
+<FIELD ID="_m1_8_det_ml_290" name="_m1_8_det_ml" datatype="double"/>
+<FIELD ID="_m1_9_det_ml_291" name="_m1_9_det_ml" datatype="double"/>
+<FIELD ID="_m2_1_det_ml_292" name="_m2_1_det_ml" datatype="double"/>
+<FIELD ID="_m2_2_det_ml_293" name="_m2_2_det_ml" datatype="double"/>
+<FIELD ID="_m2_3_det_ml_294" name="_m2_3_det_ml" datatype="double"/>
+<FIELD ID="_m2_4_det_ml_295" name="_m2_4_det_ml" datatype="double"/>
+<FIELD ID="_m2_5_det_ml_296" name="_m2_5_det_ml" datatype="double"/>
+<FIELD ID="_m2_8_det_ml_297" name="_m2_8_det_ml" datatype="double"/>
+<FIELD ID="_m2_9_det_ml_298" name="_m2_9_det_ml" datatype="double"/>
+<FIELD ID="_ep_extent_299" name="_ep_extent" datatype="double" unit="arcsec">
+<DESCRIPTION>units for column 179</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_extent_err_300" name="_ep_extent_err" datatype="double" unit="arcsec">
+<DESCRIPTION>units for column 180</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_extent_ml_301" name="_ep_extent_ml" datatype="double"/>
+<FIELD ID="_ep_hr1_302" name="_ep_hr1" datatype="double"/>
+<FIELD ID="_ep_hr1_err_303" name="_ep_hr1_err" datatype="double"/>
+<FIELD ID="_ep_hr2_304" name="_ep_hr2" datatype="double"/>
+<FIELD ID="_ep_hr2_err_305" name="_ep_hr2_err" datatype="double"/>
+<FIELD ID="_ep_hr3_306" name="_ep_hr3" datatype="double"/>
+<FIELD ID="_ep_hr3_err_307" name="_ep_hr3_err" datatype="double"/>
+<FIELD ID="_ep_hr4_308" name="_ep_hr4" datatype="double"/>
+<FIELD ID="_ep_hr4_err_309" name="_ep_hr4_err" datatype="double"/>
+<FIELD ID="_pn_hr1_310" name="_pn_hr1" datatype="double"/>
+<FIELD ID="_pn_hr1_err_311" name="_pn_hr1_err" datatype="double"/>
+<FIELD ID="_pn_hr2_312" name="_pn_hr2" datatype="double"/>
+<FIELD ID="_pn_hr2_err_313" name="_pn_hr2_err" datatype="double"/>
+<FIELD ID="_pn_hr3_314" name="_pn_hr3" datatype="double"/>
+<FIELD ID="_pn_hr3_err_315" name="_pn_hr3_err" datatype="double"/>
+<FIELD ID="_pn_hr4_316" name="_pn_hr4" datatype="double"/>
+<FIELD ID="_pn_hr4_err_317" name="_pn_hr4_err" datatype="double"/>
+<FIELD ID="_m1_hr1_318" name="_m1_hr1" datatype="double"/>
+<FIELD ID="_m1_hr1_err_319" name="_m1_hr1_err" datatype="double"/>
+<FIELD ID="_m1_hr2_320" name="_m1_hr2" datatype="double"/>
+<FIELD ID="_m1_hr2_err_321" name="_m1_hr2_err" datatype="double"/>
+<FIELD ID="_m1_hr3_322" name="_m1_hr3" datatype="double"/>
+<FIELD ID="_m1_hr3_err_323" name="_m1_hr3_err" datatype="double"/>
+<FIELD ID="_m1_hr4_324" name="_m1_hr4" datatype="double"/>
+<FIELD ID="_m1_hr4_err_325" name="_m1_hr4_err" datatype="double"/>
+<FIELD ID="_m2_hr1_326" name="_m2_hr1" datatype="double"/>
+<FIELD ID="_m2_hr1_err_327" name="_m2_hr1_err" datatype="double"/>
+<FIELD ID="_m2_hr2_328" name="_m2_hr2" datatype="double"/>
+<FIELD ID="_m2_hr2_err_329" name="_m2_hr2_err" datatype="double"/>
+<FIELD ID="_m2_hr3_330" name="_m2_hr3" datatype="double"/>
+<FIELD ID="_m2_hr3_err_331" name="_m2_hr3_err" datatype="double"/>
+<FIELD ID="_m2_hr4_332" name="_m2_hr4" datatype="double"/>
+<FIELD ID="_m2_hr4_err_333" name="_m2_hr4_err" datatype="double"/>
+<FIELD ID="_pn_1_exp_334" name="_pn_1_exp" datatype="double" unit="s">
+<DESCRIPTION>units for column 214</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_exp_335" name="_pn_2_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 215</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_exp_336" name="_pn_3_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 216</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_exp_337" name="_pn_4_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 217</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_exp_338" name="_pn_5_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 218</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_exp_339" name="_m1_1_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 219</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_exp_340" name="_m1_2_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 220</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_exp_341" name="_m1_3_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 221</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_exp_342" name="_m1_4_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 222</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_exp_343" name="_m1_5_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 223</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_exp_344" name="_m2_1_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 224</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_exp_345" name="_m2_2_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 225</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_exp_346" name="_m2_3_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 226</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_exp_347" name="_m2_4_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 227</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_exp_348" name="_m2_5_exp" datatype="char" unit="s">
+<DESCRIPTION>units for column 228</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_1_bg_349" name="_pn_1_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 229</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_2_bg_350" name="_pn_2_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 230</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_3_bg_351" name="_pn_3_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 231</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_4_bg_352" name="_pn_4_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 232</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_5_bg_353" name="_pn_5_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 233</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_1_bg_354" name="_m1_1_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 234</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_2_bg_355" name="_m1_2_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 235</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_3_bg_356" name="_m1_3_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 236</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_4_bg_357" name="_m1_4_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 237</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_5_bg_358" name="_m1_5_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 238</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_1_bg_359" name="_m2_1_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 239</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_2_bg_360" name="_m2_2_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 240</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_3_bg_361" name="_m2_3_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 241</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_4_bg_362" name="_m2_4_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 242</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_5_bg_363" name="_m2_5_bg" datatype="char" unit="count/pixel">
+<DESCRIPTION>units for column 243</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_pileup_364" name="_pn_pileup" datatype="char"/>
+<FIELD ID="_m1_pileup_365" name="_m1_pileup" datatype="char"/>
+<FIELD ID="_m2_pileup_366" name="_m2_pileup" datatype="char"/>
+<FIELD ID="_pn_1_vig_367" name="_pn_1_vig" datatype="char"/>
+<FIELD ID="_pn_2_vig_368" name="_pn_2_vig" datatype="char"/>
+<FIELD ID="_pn_3_vig_369" name="_pn_3_vig" datatype="char"/>
+<FIELD ID="_pn_4_vig_370" name="_pn_4_vig" datatype="char"/>
+<FIELD ID="_pn_5_vig_371" name="_pn_5_vig" datatype="char"/>
+<FIELD ID="_m1_1_vig_372" name="_m1_1_vig" datatype="char"/>
+<FIELD ID="_m1_2_vig_373" name="_m1_2_vig" datatype="char"/>
+<FIELD ID="_m1_3_vig_374" name="_m1_3_vig" datatype="char"/>
+<FIELD ID="_m1_4_vig_375" name="_m1_4_vig" datatype="char"/>
+<FIELD ID="_m1_5_vig_376" name="_m1_5_vig" datatype="char"/>
+<FIELD ID="_m2_1_vig_377" name="_m2_1_vig" datatype="char"/>
+<FIELD ID="_m2_2_vig_378" name="_m2_2_vig" datatype="char"/>
+<FIELD ID="_m2_3_vig_379" name="_m2_3_vig" datatype="char"/>
+<FIELD ID="_m2_4_vig_380" name="_m2_4_vig" datatype="char"/>
+<FIELD ID="_m2_5_vig_381" name="_m2_5_vig" datatype="char"/>
+<FIELD ID="_pn_ontime_382" name="_pn_ontime" datatype="char" unit="s">
+<DESCRIPTION>units for column 262</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_ontime_383" name="_m1_ontime" datatype="char" unit="s">
+<DESCRIPTION>units for column 263</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_ontime_384" name="_m2_ontime" datatype="char" unit="s">
+<DESCRIPTION>units for column 264</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_ontime_385" name="_ep_ontime" datatype="char" unit="s">
+<DESCRIPTION>units for column 265</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_offax_386" name="_pn_offax" datatype="char" unit="arcmin">
+<DESCRIPTION>units for column 266</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m1_offax_387" name="_m1_offax" datatype="char" unit="arcmin">
+<DESCRIPTION>units for column 267</DESCRIPTION>
+</FIELD>
+<FIELD ID="_m2_offax_388" name="_m2_offax" datatype="char" unit="arcmin">
+<DESCRIPTION>units for column 268</DESCRIPTION>
+</FIELD>
+<FIELD ID="_ep_offax_389" name="_ep_offax" datatype="char" unit="arcmin">
+<DESCRIPTION>units for column 269</DESCRIPTION>
+</FIELD>
+<FIELD ID="_pn_maskfrac_390" name="_pn_maskfrac" datatype="char"/>
+<FIELD ID="_m1_maskfrac_391" name="_m1_maskfrac" datatype="char"/>
+<FIELD ID="_m2_maskfrac_392" name="_m2_maskfrac" datatype="char"/>
+<FIELD ID="_dist_nn_393" name="_dist_nn" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 273</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sum_flag_394" name="_sum_flag" datatype="int"/>
+<FIELD ID="_ep_flag_395" name="_ep_flag" datatype="char" arraysize="*"/>
+<FIELD ID="_pn_flag_396" name="_pn_flag" datatype="char" arraysize="*"/>
+<FIELD ID="_m1_flag_397" name="_m1_flag" datatype="char" arraysize="*"/>
+<FIELD ID="_m2_flag_398" name="_m2_flag" datatype="char" arraysize="*"/>
+<FIELD ID="_tseries_399" name="_tseries" datatype="boolean"/>
+<FIELD ID="_spectra_400" name="_spectra" datatype="boolean"/>
+<FIELD ID="_ep_chi2prob_401" name="_ep_chi2prob" datatype="double"/>
+<FIELD ID="_pn_chi2prob_402" name="_pn_chi2prob" datatype="double"/>
+<FIELD ID="_m1_chi2prob_403" name="_m1_chi2prob" datatype="double"/>
+<FIELD ID="_m2_chi2prob_404" name="_m2_chi2prob" datatype="double"/>
+<FIELD ID="_pn_fvar_405" name="_pn_fvar" datatype="double"/>
+<FIELD ID="_pn_fvarerr_406" name="_pn_fvarerr" datatype="double"/>
+<FIELD ID="_m1_fvar_407" name="_m1_fvar" datatype="double"/>
+<FIELD ID="_m1_fvarerr_408" name="_m1_fvarerr" datatype="double"/>
+<FIELD ID="_m2_fvar_409" name="_m2_fvar" datatype="double"/>
+<FIELD ID="_m2_fvarerr_410" name="_m2_fvarerr" datatype="double"/>
+<FIELD ID="_var_flag_411" name="_var_flag" datatype="boolean"/>
+<FIELD ID="_var_exp_id_412" name="_var_exp_id" datatype="char" arraysize="*"/>
+<FIELD ID="_var_inst_id_413" name="_var_inst_id" datatype="char" arraysize="*"/>
+<FIELD ID="_sc_ra_414" name="_sc_ra" datatype="double" unit="deg">
+<DESCRIPTION>units for column 294</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_dec_415" name="_sc_dec" datatype="double" unit="deg">
+<DESCRIPTION>units for column 295</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_poserr_416" name="_sc_poserr" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 296</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_det_ml_417" name="_sc_det_ml" datatype="char"/>
+<FIELD ID="_sc_ep_1_flux_418" name="_sc_ep_1_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 298</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_1_flux_err_419" name="_sc_ep_1_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 299</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_2_flux_420" name="_sc_ep_2_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 300</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_2_flux_err_421" name="_sc_ep_2_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 301</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_3_flux_422" name="_sc_ep_3_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 302</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_3_flux_err_423" name="_sc_ep_3_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 303</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_4_flux_424" name="_sc_ep_4_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 304</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_4_flux_err_425" name="_sc_ep_4_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 305</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_5_flux_426" name="_sc_ep_5_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 306</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_5_flux_err_427" name="_sc_ep_5_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 307</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_8_flux_428" name="_sc_ep_8_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 308</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_8_flux_err_429" name="_sc_ep_8_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 309</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_9_flux_430" name="_sc_ep_9_flux" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 310</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_9_flux_err_431" name="_sc_ep_9_flux_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 311</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_hr1_432" name="_sc_hr1" datatype="char"/>
+<FIELD ID="_sc_hr1_err_433" name="_sc_hr1_err" datatype="char"/>
+<FIELD ID="_sc_hr2_434" name="_sc_hr2" datatype="char"/>
+<FIELD ID="_sc_hr2_err_435" name="_sc_hr2_err" datatype="char"/>
+<FIELD ID="_sc_hr3_436" name="_sc_hr3" datatype="char"/>
+<FIELD ID="_sc_hr3_err_437" name="_sc_hr3_err" datatype="char"/>
+<FIELD ID="_sc_hr4_438" name="_sc_hr4" datatype="char"/>
+<FIELD ID="_sc_hr4_err_439" name="_sc_hr4_err" datatype="char"/>
+<FIELD ID="_sc_extent_440" name="_sc_extent" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 320</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ext_err_441" name="_sc_ext_err" datatype="char" unit="arcsec">
+<DESCRIPTION>units for column 321</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ext_ml_442" name="_sc_ext_ml" datatype="char"/>
+<FIELD ID="_sc_chi2prob_443" name="_sc_chi2prob" datatype="double"/>
+<FIELD ID="_sc_fvar_444" name="_sc_fvar" datatype="double"/>
+<FIELD ID="_sc_fvarerr_445" name="_sc_fvarerr" datatype="double"/>
+<FIELD ID="_sc_var_flag_446" name="_sc_var_flag" datatype="boolean"/>
+<FIELD ID="_sc_sum_flag_447" name="_sc_sum_flag" datatype="char"/>
+<FIELD ID="_sc_ep_8_fmin_448" name="_sc_ep_8_fmin" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 328</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_8_fmin_err_449" name="_sc_ep_8_fmin_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 329</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_8_fmax_450" name="_sc_ep_8_fmax" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 330</DESCRIPTION>
+</FIELD>
+<FIELD ID="_sc_ep_8_fmax_err_451" name="_sc_ep_8_fmax_err" datatype="char" unit="erg/cm**2/s">
+<DESCRIPTION>units for column 331</DESCRIPTION>
+</FIELD>
+<FIELD ID="_mjd_first_452" name="_mjd_first" datatype="double" unit="d">
+<DESCRIPTION>units for column 332</DESCRIPTION>
+</FIELD>
+<FIELD ID="_mjd_last_453" name="_mjd_last" datatype="double" unit="d">
+<DESCRIPTION>units for column 333</DESCRIPTION>
+</FIELD>
+<FIELD ID="_n_detections_454" name="_n_detections" datatype="char"/>
+<FIELD ID="_confused_455" name="_confused" datatype="boolean"/>
+<FIELD ID="_high_background_456" name="_high_background" datatype="boolean"/>
+<GROUP name="Native Collection Attributes">
+<FIELDref ref="oidsaada_100"/>
+<FIELDref ref="namesaada_101"/>
+<FIELDref ref="pos_ra_csa_102"/>
+<FIELDref ref="pos_dec_csa_103"/>
+<FIELDref ref="healpix_csa_104"/>
+<FIELDref ref="error_maj_csa_105"/>
+<FIELDref ref="error_min_csa_106"/>
+<FIELDref ref="error_angle_csa_107"/>
+<FIELDref ref="XCAT_OBSID_108"/>
+<FIELDref ref="XCAT_INSTRUME_109"/>
+<FIELDref ref="XCAT_OBSERVER_110"/>
+<FIELDref ref="XCAT_SEQID_111"/>
+<FIELDref ref="EPIC_IMAGE_112"/>
+<FIELDref ref="XCAT_SRCNUM_113"/>
+<FIELDref ref="VIZIER_KW_114"/>
+<FIELDref ref="E_BminusV_115"/>
+<FIELDref ref="NH_116"/>
+<FIELDref ref="XCAT_EBAND_117"/>
+<FIELDref ref="XCAT_FLUX_118"/>
+<FIELDref ref="VARIAB_FLAG_119"/>
+<FIELDref ref="DATALINK_120"/>
+</GROUP>
+<GROUP name="Native Class Attributes">
+<FIELDref ref="_detid_121"/>
+<FIELDref ref="_srcid_122"/>
+<FIELDref ref="_dr3srcid_123"/>
+<FIELDref ref="_dr3detid_124"/>
+<FIELDref ref="_dr3detdist_125"/>
+<FIELDref ref="_dr3srcdist_126"/>
+<FIELDref ref="_dr3mult_127"/>
+<FIELDref ref="_dr4srcid_128"/>
+<FIELDref ref="_dr4detid_129"/>
+<FIELDref ref="_dr4detdist_130"/>
+<FIELDref ref="_dr4srcdist_131"/>
+<FIELDref ref="_dr4mult_132"/>
+<FIELDref ref="_iauname_133"/>
+<FIELDref ref="_src_num_134"/>
+<FIELDref ref="_obs_id_135"/>
+<FIELDref ref="_revolut_136"/>
+<FIELDref ref="_mjd_start_137"/>
+<FIELDref ref="_mjd_stop_138"/>
+<FIELDref ref="_obs_class_139"/>
+<FIELDref ref="_pn_filter_140"/>
+<FIELDref ref="_m1_filter_141"/>
+<FIELDref ref="_m2_filter_142"/>
+<FIELDref ref="_pn_submode_143"/>
+<FIELDref ref="_m1_submode_144"/>
+<FIELDref ref="_m2_submode_145"/>
+<FIELDref ref="_ra_146"/>
+<FIELDref ref="_dec_147"/>
+<FIELDref ref="_poserr_148"/>
+<FIELDref ref="_lii_149"/>
+<FIELDref ref="_bii_150"/>
+<FIELDref ref="_radec_err_151"/>
+<FIELDref ref="_syserrcc_152"/>
+<FIELDref ref="_refcat_153"/>
+<FIELDref ref="_poscorok_154"/>
+<FIELDref ref="_ra_unc_155"/>
+<FIELDref ref="_dec_unc_156"/>
+<FIELDref ref="_ccdpn_157"/>
+<FIELDref ref="_pn_rawx_158"/>
+<FIELDref ref="_pn_rawy_159"/>
+<FIELDref ref="_ccdm1_160"/>
+<FIELDref ref="_m1_rawx_161"/>
+<FIELDref ref="_m1_rawy_162"/>
+<FIELDref ref="_ccdm2_163"/>
+<FIELDref ref="_m2_rawx_164"/>
+<FIELDref ref="_m2_rawy_165"/>
+<FIELDref ref="_ep_1_flux_166"/>
+<FIELDref ref="_ep_1_flux_err_167"/>
+<FIELDref ref="_ep_2_flux_168"/>
+<FIELDref ref="_ep_2_flux_err_169"/>
+<FIELDref ref="_ep_3_flux_170"/>
+<FIELDref ref="_ep_3_flux_err_171"/>
+<FIELDref ref="_ep_4_flux_172"/>
+<FIELDref ref="_ep_4_flux_err_173"/>
+<FIELDref ref="_ep_5_flux_174"/>
+<FIELDref ref="_ep_5_flux_err_175"/>
+<FIELDref ref="_ep_8_flux_176"/>
+<FIELDref ref="_ep_8_flux_err_177"/>
+<FIELDref ref="_ep_9_flux_178"/>
+<FIELDref ref="_ep_9_flux_err_179"/>
+<FIELDref ref="_pn_1_flux_180"/>
+<FIELDref ref="_pn_1_flux_err_181"/>
+<FIELDref ref="_pn_2_flux_182"/>
+<FIELDref ref="_pn_2_flux_err_183"/>
+<FIELDref ref="_pn_3_flux_184"/>
+<FIELDref ref="_pn_3_flux_err_185"/>
+<FIELDref ref="_pn_4_flux_186"/>
+<FIELDref ref="_pn_4_flux_err_187"/>
+<FIELDref ref="_pn_5_flux_188"/>
+<FIELDref ref="_pn_5_flux_err_189"/>
+<FIELDref ref="_pn_8_flux_190"/>
+<FIELDref ref="_pn_8_flux_err_191"/>
+<FIELDref ref="_pn_9_flux_192"/>
+<FIELDref ref="_pn_9_flux_err_193"/>
+<FIELDref ref="_m1_1_flux_194"/>
+<FIELDref ref="_m1_1_flux_err_195"/>
+<FIELDref ref="_m1_2_flux_196"/>
+<FIELDref ref="_m1_2_flux_err_197"/>
+<FIELDref ref="_m1_3_flux_198"/>
+<FIELDref ref="_m1_3_flux_err_199"/>
+<FIELDref ref="_m1_4_flux_200"/>
+<FIELDref ref="_m1_4_flux_err_201"/>
+<FIELDref ref="_m1_5_flux_202"/>
+<FIELDref ref="_m1_5_flux_err_203"/>
+<FIELDref ref="_m1_8_flux_204"/>
+<FIELDref ref="_m1_8_flux_err_205"/>
+<FIELDref ref="_m1_9_flux_206"/>
+<FIELDref ref="_m1_9_flux_err_207"/>
+<FIELDref ref="_m2_1_flux_208"/>
+<FIELDref ref="_m2_1_flux_err_209"/>
+<FIELDref ref="_m2_2_flux_210"/>
+<FIELDref ref="_m2_2_flux_err_211"/>
+<FIELDref ref="_m2_3_flux_212"/>
+<FIELDref ref="_m2_3_flux_err_213"/>
+<FIELDref ref="_m2_4_flux_214"/>
+<FIELDref ref="_m2_4_flux_err_215"/>
+<FIELDref ref="_m2_5_flux_216"/>
+<FIELDref ref="_m2_5_flux_err_217"/>
+<FIELDref ref="_m2_8_flux_218"/>
+<FIELDref ref="_m2_8_flux_err_219"/>
+<FIELDref ref="_m2_9_flux_220"/>
+<FIELDref ref="_m2_9_flux_err_221"/>
+<FIELDref ref="_ep_8_rate_222"/>
+<FIELDref ref="_ep_8_rate_err_223"/>
+<FIELDref ref="_ep_9_rate_224"/>
+<FIELDref ref="_ep_9_rate_err_225"/>
+<FIELDref ref="_pn_1_rate_226"/>
+<FIELDref ref="_pn_1_rate_err_227"/>
+<FIELDref ref="_pn_2_rate_228"/>
+<FIELDref ref="_pn_2_rate_err_229"/>
+<FIELDref ref="_pn_3_rate_230"/>
+<FIELDref ref="_pn_3_rate_err_231"/>
+<FIELDref ref="_pn_4_rate_232"/>
+<FIELDref ref="_pn_4_rate_err_233"/>
+<FIELDref ref="_pn_5_rate_234"/>
+<FIELDref ref="_pn_5_rate_err_235"/>
+<FIELDref ref="_pn_8_rate_236"/>
+<FIELDref ref="_pn_8_rate_err_237"/>
+<FIELDref ref="_pn_9_rate_238"/>
+<FIELDref ref="_pn_9_rate_err_239"/>
+<FIELDref ref="_m1_1_rate_240"/>
+<FIELDref ref="_m1_1_rate_err_241"/>
+<FIELDref ref="_m1_2_rate_242"/>
+<FIELDref ref="_m1_2_rate_err_243"/>
+<FIELDref ref="_m1_3_rate_244"/>
+<FIELDref ref="_m1_3_rate_err_245"/>
+<FIELDref ref="_m1_4_rate_246"/>
+<FIELDref ref="_m1_4_rate_err_247"/>
+<FIELDref ref="_m1_5_rate_248"/>
+<FIELDref ref="_m1_5_rate_err_249"/>
+<FIELDref ref="_m1_8_rate_250"/>
+<FIELDref ref="_m1_8_rate_err_251"/>
+<FIELDref ref="_m1_9_rate_252"/>
+<FIELDref ref="_m1_9_rate_err_253"/>
+<FIELDref ref="_m2_1_rate_254"/>
+<FIELDref ref="_m2_1_rate_err_255"/>
+<FIELDref ref="_m2_2_rate_256"/>
+<FIELDref ref="_m2_2_rate_err_257"/>
+<FIELDref ref="_m2_3_rate_258"/>
+<FIELDref ref="_m2_3_rate_err_259"/>
+<FIELDref ref="_m2_4_rate_260"/>
+<FIELDref ref="_m2_4_rate_err_261"/>
+<FIELDref ref="_m2_5_rate_262"/>
+<FIELDref ref="_m2_5_rate_err_263"/>
+<FIELDref ref="_m2_8_rate_264"/>
+<FIELDref ref="_m2_8_rate_err_265"/>
+<FIELDref ref="_m2_9_rate_266"/>
+<FIELDref ref="_m2_9_rate_err_267"/>
+<FIELDref ref="_ep_8_cts_268"/>
+<FIELDref ref="_ep_8_cts_err_269"/>
+<FIELDref ref="_pn_8_cts_270"/>
+<FIELDref ref="_pn_8_cts_err_271"/>
+<FIELDref ref="_m1_8_cts_272"/>
+<FIELDref ref="_m1_8_cts_err_273"/>
+<FIELDref ref="_m2_8_cts_274"/>
+<FIELDref ref="_m2_8_cts_err_275"/>
+<FIELDref ref="_ep_8_det_ml_276"/>
+<FIELDref ref="_ep_9_det_ml_277"/>
+<FIELDref ref="_pn_1_det_ml_278"/>
+<FIELDref ref="_pn_2_det_ml_279"/>
+<FIELDref ref="_pn_3_det_ml_280"/>
+<FIELDref ref="_pn_4_det_ml_281"/>
+<FIELDref ref="_pn_5_det_ml_282"/>
+<FIELDref ref="_pn_8_det_ml_283"/>
+<FIELDref ref="_pn_9_det_ml_284"/>
+<FIELDref ref="_m1_1_det_ml_285"/>
+<FIELDref ref="_m1_2_det_ml_286"/>
+<FIELDref ref="_m1_3_det_ml_287"/>
+<FIELDref ref="_m1_4_det_ml_288"/>
+<FIELDref ref="_m1_5_det_ml_289"/>
+<FIELDref ref="_m1_8_det_ml_290"/>
+<FIELDref ref="_m1_9_det_ml_291"/>
+<FIELDref ref="_m2_1_det_ml_292"/>
+<FIELDref ref="_m2_2_det_ml_293"/>
+<FIELDref ref="_m2_3_det_ml_294"/>
+<FIELDref ref="_m2_4_det_ml_295"/>
+<FIELDref ref="_m2_5_det_ml_296"/>
+<FIELDref ref="_m2_8_det_ml_297"/>
+<FIELDref ref="_m2_9_det_ml_298"/>
+<FIELDref ref="_ep_extent_299"/>
+<FIELDref ref="_ep_extent_err_300"/>
+<FIELDref ref="_ep_extent_ml_301"/>
+<FIELDref ref="_ep_hr1_302"/>
+<FIELDref ref="_ep_hr1_err_303"/>
+<FIELDref ref="_ep_hr2_304"/>
+<FIELDref ref="_ep_hr2_err_305"/>
+<FIELDref ref="_ep_hr3_306"/>
+<FIELDref ref="_ep_hr3_err_307"/>
+<FIELDref ref="_ep_hr4_308"/>
+<FIELDref ref="_ep_hr4_err_309"/>
+<FIELDref ref="_pn_hr1_310"/>
+<FIELDref ref="_pn_hr1_err_311"/>
+<FIELDref ref="_pn_hr2_312"/>
+<FIELDref ref="_pn_hr2_err_313"/>
+<FIELDref ref="_pn_hr3_314"/>
+<FIELDref ref="_pn_hr3_err_315"/>
+<FIELDref ref="_pn_hr4_316"/>
+<FIELDref ref="_pn_hr4_err_317"/>
+<FIELDref ref="_m1_hr1_318"/>
+<FIELDref ref="_m1_hr1_err_319"/>
+<FIELDref ref="_m1_hr2_320"/>
+<FIELDref ref="_m1_hr2_err_321"/>
+<FIELDref ref="_m1_hr3_322"/>
+<FIELDref ref="_m1_hr3_err_323"/>
+<FIELDref ref="_m1_hr4_324"/>
+<FIELDref ref="_m1_hr4_err_325"/>
+<FIELDref ref="_m2_hr1_326"/>
+<FIELDref ref="_m2_hr1_err_327"/>
+<FIELDref ref="_m2_hr2_328"/>
+<FIELDref ref="_m2_hr2_err_329"/>
+<FIELDref ref="_m2_hr3_330"/>
+<FIELDref ref="_m2_hr3_err_331"/>
+<FIELDref ref="_m2_hr4_332"/>
+<FIELDref ref="_m2_hr4_err_333"/>
+<FIELDref ref="_pn_1_exp_334"/>
+<FIELDref ref="_pn_2_exp_335"/>
+<FIELDref ref="_pn_3_exp_336"/>
+<FIELDref ref="_pn_4_exp_337"/>
+<FIELDref ref="_pn_5_exp_338"/>
+<FIELDref ref="_m1_1_exp_339"/>
+<FIELDref ref="_m1_2_exp_340"/>
+<FIELDref ref="_m1_3_exp_341"/>
+<FIELDref ref="_m1_4_exp_342"/>
+<FIELDref ref="_m1_5_exp_343"/>
+<FIELDref ref="_m2_1_exp_344"/>
+<FIELDref ref="_m2_2_exp_345"/>
+<FIELDref ref="_m2_3_exp_346"/>
+<FIELDref ref="_m2_4_exp_347"/>
+<FIELDref ref="_m2_5_exp_348"/>
+<FIELDref ref="_pn_1_bg_349"/>
+<FIELDref ref="_pn_2_bg_350"/>
+<FIELDref ref="_pn_3_bg_351"/>
+<FIELDref ref="_pn_4_bg_352"/>
+<FIELDref ref="_pn_5_bg_353"/>
+<FIELDref ref="_m1_1_bg_354"/>
+<FIELDref ref="_m1_2_bg_355"/>
+<FIELDref ref="_m1_3_bg_356"/>
+<FIELDref ref="_m1_4_bg_357"/>
+<FIELDref ref="_m1_5_bg_358"/>
+<FIELDref ref="_m2_1_bg_359"/>
+<FIELDref ref="_m2_2_bg_360"/>
+<FIELDref ref="_m2_3_bg_361"/>
+<FIELDref ref="_m2_4_bg_362"/>
+<FIELDref ref="_m2_5_bg_363"/>
+<FIELDref ref="_pn_pileup_364"/>
+<FIELDref ref="_m1_pileup_365"/>
+<FIELDref ref="_m2_pileup_366"/>
+<FIELDref ref="_pn_1_vig_367"/>
+<FIELDref ref="_pn_2_vig_368"/>
+<FIELDref ref="_pn_3_vig_369"/>
+<FIELDref ref="_pn_4_vig_370"/>
+<FIELDref ref="_pn_5_vig_371"/>
+<FIELDref ref="_m1_1_vig_372"/>
+<FIELDref ref="_m1_2_vig_373"/>
+<FIELDref ref="_m1_3_vig_374"/>
+<FIELDref ref="_m1_4_vig_375"/>
+<FIELDref ref="_m1_5_vig_376"/>
+<FIELDref ref="_m2_1_vig_377"/>
+<FIELDref ref="_m2_2_vig_378"/>
+<FIELDref ref="_m2_3_vig_379"/>
+<FIELDref ref="_m2_4_vig_380"/>
+<FIELDref ref="_m2_5_vig_381"/>
+<FIELDref ref="_pn_ontime_382"/>
+<FIELDref ref="_m1_ontime_383"/>
+<FIELDref ref="_m2_ontime_384"/>
+<FIELDref ref="_ep_ontime_385"/>
+<FIELDref ref="_pn_offax_386"/>
+<FIELDref ref="_m1_offax_387"/>
+<FIELDref ref="_m2_offax_388"/>
+<FIELDref ref="_ep_offax_389"/>
+<FIELDref ref="_pn_maskfrac_390"/>
+<FIELDref ref="_m1_maskfrac_391"/>
+<FIELDref ref="_m2_maskfrac_392"/>
+<FIELDref ref="_dist_nn_393"/>
+<FIELDref ref="_sum_flag_394"/>
+<FIELDref ref="_ep_flag_395"/>
+<FIELDref ref="_pn_flag_396"/>
+<FIELDref ref="_m1_flag_397"/>
+<FIELDref ref="_m2_flag_398"/>
+<FIELDref ref="_tseries_399"/>
+<FIELDref ref="_spectra_400"/>
+<FIELDref ref="_ep_chi2prob_401"/>
+<FIELDref ref="_pn_chi2prob_402"/>
+<FIELDref ref="_m1_chi2prob_403"/>
+<FIELDref ref="_m2_chi2prob_404"/>
+<FIELDref ref="_pn_fvar_405"/>
+<FIELDref ref="_pn_fvarerr_406"/>
+<FIELDref ref="_m1_fvar_407"/>
+<FIELDref ref="_m1_fvarerr_408"/>
+<FIELDref ref="_m2_fvar_409"/>
+<FIELDref ref="_m2_fvarerr_410"/>
+<FIELDref ref="_var_flag_411"/>
+<FIELDref ref="_var_exp_id_412"/>
+<FIELDref ref="_var_inst_id_413"/>
+<FIELDref ref="_sc_ra_414"/>
+<FIELDref ref="_sc_dec_415"/>
+<FIELDref ref="_sc_poserr_416"/>
+<FIELDref ref="_sc_det_ml_417"/>
+<FIELDref ref="_sc_ep_1_flux_418"/>
+<FIELDref ref="_sc_ep_1_flux_err_419"/>
+<FIELDref ref="_sc_ep_2_flux_420"/>
+<FIELDref ref="_sc_ep_2_flux_err_421"/>
+<FIELDref ref="_sc_ep_3_flux_422"/>
+<FIELDref ref="_sc_ep_3_flux_err_423"/>
+<FIELDref ref="_sc_ep_4_flux_424"/>
+<FIELDref ref="_sc_ep_4_flux_err_425"/>
+<FIELDref ref="_sc_ep_5_flux_426"/>
+<FIELDref ref="_sc_ep_5_flux_err_427"/>
+<FIELDref ref="_sc_ep_8_flux_428"/>
+<FIELDref ref="_sc_ep_8_flux_err_429"/>
+<FIELDref ref="_sc_ep_9_flux_430"/>
+<FIELDref ref="_sc_ep_9_flux_err_431"/>
+<FIELDref ref="_sc_hr1_432"/>
+<FIELDref ref="_sc_hr1_err_433"/>
+<FIELDref ref="_sc_hr2_434"/>
+<FIELDref ref="_sc_hr2_err_435"/>
+<FIELDref ref="_sc_hr3_436"/>
+<FIELDref ref="_sc_hr3_err_437"/>
+<FIELDref ref="_sc_hr4_438"/>
+<FIELDref ref="_sc_hr4_err_439"/>
+<FIELDref ref="_sc_extent_440"/>
+<FIELDref ref="_sc_ext_err_441"/>
+<FIELDref ref="_sc_ext_ml_442"/>
+<FIELDref ref="_sc_chi2prob_443"/>
+<FIELDref ref="_sc_fvar_444"/>
+<FIELDref ref="_sc_fvarerr_445"/>
+<FIELDref ref="_sc_var_flag_446"/>
+<FIELDref ref="_sc_sum_flag_447"/>
+<FIELDref ref="_sc_ep_8_fmin_448"/>
+<FIELDref ref="_sc_ep_8_fmin_err_449"/>
+<FIELDref ref="_sc_ep_8_fmax_450"/>
+<FIELDref ref="_sc_ep_8_fmax_err_451"/>
+<FIELDref ref="_mjd_first_452"/>
+<FIELDref ref="_mjd_last_453"/>
+<FIELDref ref="_n_detections_454"/>
+<FIELDref ref="_confused_455"/>
+<FIELDref ref="_high_background_456"/>
+</GROUP>
+<DATA>
+<TABLEDATA>
+<TR><TD>581245887037857579</TD><TD><![CDATA[4XMM J224338.5-170418]]></TD><TD>340.91055060369</TD><TD>-17.071667101891</TD><TD>4478004847</TD><TD>4.10477777777778E-4</TD><TD>4.10477777777778E-4</TD><TD>0.0</TD><TD><![CDATA[0830191201]]></TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>0</TD><TD>867224420425401186</TD><TD>117</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD><![CDATA[NULL]]></TD><TD>108301912010117</TD><TD>208301912010117</TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD><![CDATA[4XMM J224338.5-170418]]></TD><TD><![CDATA[117]]></TD><TD><![CDATA[0830191201]]></TD><TD><![CDATA[3382]]></TD><TD>58266.8187847222</TD><TD>58267.197962963</TD><TD><![CDATA[1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD>340.91055060369</TD><TD>-17.071667101891</TD><TD><![CDATA[1.50765]]></TD><TD>45.047902617151</TD><TD>-58.844644495713</TD><TD><![CDATA[1.47772]]></TD><TD><![CDATA[0.298875]]></TD><TD><![CDATA[3]]></TD><TD>true</TD><TD>340.91129059476</TD><TD>-17.071979257963</TD><TD><![CDATA[10]]></TD><TD><![CDATA[51]]></TD><TD><![CDATA[147]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[554]]></TD><TD><![CDATA[132]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[462]]></TD><TD><![CDATA[544]]></TD><TD><![CDATA[5.34639E-17]]></TD><TD><![CDATA[1.19444E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.11143E-16]]></TD><TD><![CDATA[6.13462E-16]]></TD><TD><![CDATA[2.79874E-16]]></TD><TD><![CDATA[1.38337E-15]]></TD><TD><![CDATA[7.51169E-16]]></TD><TD><![CDATA[8.08018E-15]]></TD><TD><![CDATA[4.66989E-15]]></TD><TD><![CDATA[1.30491E-14]]></TD><TD><![CDATA[4.87925E-15]]></TD><TD><![CDATA[1.20672E-15]]></TD><TD><![CDATA[5.39937E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.26541E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.53655E-16]]></TD><TD><![CDATA[4.81906E-16]]></TD><TD><![CDATA[3.53917E-16]]></TD><TD><![CDATA[5.48502E-16]]></TD><TD><![CDATA[8.73484E-16]]></TD><TD><![CDATA[2.08179E-14]]></TD><TD><![CDATA[8.93615E-15]]></TD><TD><![CDATA[2.18484E-14]]></TD><TD><![CDATA[8.98792E-15]]></TD><TD><![CDATA[5.82265E-16]]></TD><TD><![CDATA[6.34608E-16]]></TD><TD><![CDATA[6.42807E-16]]></TD><TD><![CDATA[5.14473E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.86268E-16]]></TD><TD><![CDATA[7.86027E-16]]></TD><TD><![CDATA[6.4835E-16]]></TD><TD><![CDATA[4.84359E-15]]></TD><TD><![CDATA[2.27038E-15]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[6.18447E-15]]></TD><TD><![CDATA[6.27243E-15]]></TD><TD><![CDATA[6.64244E-15]]></TD><TD><![CDATA[3.10676E-15]]></TD><TD><![CDATA[1.5182E-15]]></TD><TD><![CDATA[3.4134E-16]]></TD><TD><![CDATA[5.08743E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[3.19825E-16]]></TD><TD><![CDATA[8.79578E-16]]></TD><TD><![CDATA[6.4495E-16]]></TD><TD><![CDATA[2.96396E-15]]></TD><TD><![CDATA[1.93315E-15]]></TD><TD><![CDATA[1.52805E-14]]></TD><TD><![CDATA[1.17959E-14]]></TD><TD><![CDATA[1.94653E-14]]></TD><TD><![CDATA[1.19857E-14]]></TD><TD><![CDATA[2.62175E-15]]></TD><TD><![CDATA[1.39586E-15]]></TD><TD><![CDATA[0.00294156]]></TD><TD><![CDATA[7.20273E-4]]></TD><TD><![CDATA[0.001067]]></TD><TD><![CDATA[4.08615E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.2052E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.24779E-4]]></TD><TD><![CDATA[2.8271E-4]]></TD><TD><![CDATA[2.07626E-4]]></TD><TD><![CDATA[1.071E-4]]></TD><TD><![CDATA[1.70556E-4]]></TD><TD><![CDATA[0.0012014]]></TD><TD><![CDATA[5.15705E-4]]></TD><TD><![CDATA[0.00159121]]></TD><TD><![CDATA[6.06832E-4]]></TD><TD><![CDATA[2.65425E-4]]></TD><TD><![CDATA[2.89286E-4]]></TD><TD><![CDATA[1.14503E-4]]></TD><TD><![CDATA[9.16431E-5]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[3.35487E-5]]></TD><TD><![CDATA[1.61301E-4]]></TD><TD><![CDATA[1.33048E-4]]></TD><TD><![CDATA[3.6603E-4]]></TD><TD><![CDATA[1.71573E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[9.20868E-5]]></TD><TD><![CDATA[6.41834E-4]]></TD><TD><![CDATA[2.55231E-4]]></TD><TD><![CDATA[4.33797E-4]]></TD><TD><![CDATA[2.11986E-4]]></TD><TD><![CDATA[6.05981E-5]]></TD><TD><![CDATA[9.03171E-5]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[5.78404E-5]]></TD><TD><![CDATA[1.80797E-4]]></TD><TD><![CDATA[1.32569E-4]]></TD><TD><![CDATA[2.26447E-4]]></TD><TD><![CDATA[1.47692E-4]]></TD><TD><![CDATA[2.40667E-4]]></TD><TD><![CDATA[1.85785E-4]]></TD><TD><![CDATA[7.08509E-4]]></TD><TD><![CDATA[2.92244E-4]]></TD><TD><![CDATA[3.67779E-4]]></TD><TD><![CDATA[1.95811E-4]]></TD><TD><![CDATA[57.9261]]></TD><TD><![CDATA[13.4088]]></TD><TD><![CDATA[24.9453]]></TD><TD><![CDATA[9.63126]]></TD><TD><![CDATA[16.35]]></TD><TD><![CDATA[6.3786]]></TD><TD><![CDATA[16.6307]]></TD><TD><![CDATA[6.80795]]></TD><TD><![CDATA[7.72888]]></TD><TD><![CDATA[4.00241]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.00209]]></TD><TD><![CDATA[0.0494351]]></TD><TD><![CDATA[4.18868]]></TD><TD><![CDATA[2.9541]]></TD><TD><![CDATA[0.104004]]></TD><TD><![CDATA[1.22498]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.755706]]></TD><TD><![CDATA[4.29641]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[4.02296]]></TD><TD><![CDATA[2.30079]]></TD><TD><![CDATA[0.0842145]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.09119]]></TD><TD><![CDATA[1.83741]]></TD><TD><![CDATA[1.06738]]></TD><TD><![CDATA[2.42525]]></TD><TD><![CDATA[1.77914]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.513487]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.56019]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.324356]]></TD><TD><![CDATA[0.156174]]></TD><TD><![CDATA[0.283198]]></TD><TD><![CDATA[0.404971]]></TD><TD><![CDATA[0.203504]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.882732]]></TD><TD><![CDATA[-0.4505]]></TD><TD><![CDATA[0.698884]]></TD><TD><![CDATA[0.836301]]></TD><TD><![CDATA[0.247895]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.585988]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.415978]]></TD><TD><![CDATA[0.388238]]></TD><TD><![CDATA[0.402864]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.503165]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[1.90899]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.639837]]></TD><TD><![CDATA[0.112094]]></TD><TD><![CDATA[0.484508]]></TD><TD><![CDATA[0.0304433]]></TD><TD><![CDATA[0.50483]]></TD><TD><![CDATA[18379.0]]></TD><TD><![CDATA[18361.5]]></TD><TD><![CDATA[18705.8]]></TD><TD><![CDATA[18495.9]]></TD><TD><![CDATA[14712.9]]></TD><TD><![CDATA[25606.3]]></TD><TD><![CDATA[25601.5]]></TD><TD><![CDATA[25605.0]]></TD><TD><![CDATA[25374.8]]></TD><TD><![CDATA[21397.2]]></TD><TD><![CDATA[25182.1]]></TD><TD><![CDATA[25175.8]]></TD><TD><![CDATA[25180.4]]></TD><TD><![CDATA[24902.0]]></TD><TD><![CDATA[20415.0]]></TD><TD><![CDATA[0.160796]]></TD><TD><![CDATA[0.215585]]></TD><TD><![CDATA[0.184621]]></TD><TD><![CDATA[0.222092]]></TD><TD><![CDATA[0.465823]]></TD><TD><![CDATA[0.0527556]]></TD><TD><![CDATA[0.0559295]]></TD><TD><![CDATA[0.132801]]></TD><TD><![CDATA[0.0868058]]></TD><TD><![CDATA[0.173599]]></TD><TD><![CDATA[0.0461681]]></TD><TD><![CDATA[0.0569611]]></TD><TD><![CDATA[0.137773]]></TD><TD><![CDATA[0.0788066]]></TD><TD><![CDATA[0.181295]]></TD><TD><![CDATA[7.28799E-4]]></TD><TD><![CDATA[0.00133304]]></TD><TD><![CDATA[0.00141702]]></TD><TD><![CDATA[0.740404]]></TD><TD><![CDATA[0.740113]]></TD><TD><![CDATA[0.740231]]></TD><TD><![CDATA[0.731797]]></TD><TD><![CDATA[0.59108]]></TD><TD><![CDATA[0.757854]]></TD><TD><![CDATA[0.757679]]></TD><TD><![CDATA[0.757742]]></TD><TD><![CDATA[0.750722]]></TD><TD><![CDATA[0.632106]]></TD><TD><![CDATA[0.725709]]></TD><TD><![CDATA[0.725488]]></TD><TD><![CDATA[0.725569]]></TD><TD><![CDATA[0.717521]]></TD><TD><![CDATA[0.584638]]></TD><TD><![CDATA[29835.7]]></TD><TD><![CDATA[34328.6]]></TD><TD><![CDATA[34588.3]]></TD><TD><![CDATA[34588.3]]></TD><TD><![CDATA[6.26904]]></TD><TD><![CDATA[5.42342]]></TD><TD><![CDATA[6.06477]]></TD><TD><![CDATA[5.42342]]></TD><TD><![CDATA[0.931845]]></TD><TD><![CDATA[0.981449]]></TD><TD><![CDATA[0.981728]]></TD><TD><![CDATA[76.1197]]></TD><TD><![CDATA[0]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD>false</TD><TD>false</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>340.91055060369</TD><TD>-17.071667101891</TD><TD><![CDATA[1.50765]]></TD><TD><![CDATA[7.72888]]></TD><TD><![CDATA[5.34639E-17]]></TD><TD><![CDATA[1.19444E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.11143E-16]]></TD><TD><![CDATA[6.13462E-16]]></TD><TD><![CDATA[2.79874E-16]]></TD><TD><![CDATA[1.38337E-15]]></TD><TD><![CDATA[7.51169E-16]]></TD><TD><![CDATA[8.08018E-15]]></TD><TD><![CDATA[4.66989E-15]]></TD><TD><![CDATA[1.30491E-14]]></TD><TD><![CDATA[4.87925E-15]]></TD><TD><![CDATA[1.20672E-15]]></TD><TD><![CDATA[5.39937E-16]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.56019]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.324356]]></TD><TD><![CDATA[0.156174]]></TD><TD><![CDATA[0.283198]]></TD><TD><![CDATA[0.404971]]></TD><TD><![CDATA[0.203504]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.513487]]></TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[0]]></TD><TD><![CDATA[1.30491E-14]]></TD><TD><![CDATA[4.87925E-15]]></TD><TD><![CDATA[1.30491E-14]]></TD><TD><![CDATA[4.87925E-15]]></TD><TD>58266.8187847222</TD><TD>58267.197962963</TD><TD><![CDATA[1]]></TD><TD>false</TD><TD>false</TD></TR>
+<TR><TD>581245887037857578</TD><TD><![CDATA[4XMM J033028.0-274314]]></TD><TD>52.616760006165</TD><TD>-27.720584349377</TD><TD>9425945691</TD><TD>4.30905555555556E-4</TD><TD>4.30905555555556E-4</TD><TD>0.0</TD><TD><![CDATA[0827210501]]></TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>0</TD><TD>867224420425401291</TD><TD>113</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD><![CDATA[NULL]]></TD><TD>108272105010113</TD><TD>208272105010113</TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD><![CDATA[4XMM J033028.0-274314]]></TD><TD><![CDATA[113]]></TD><TD><![CDATA[0827210501]]></TD><TD><![CDATA[3411]]></TD><TD>58323.7536342593</TD><TD>58324.1328356481</TD><TD><![CDATA[0]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD>52.616760006165</TD><TD>-27.720584349377</TD><TD><![CDATA[1.60959]]></TD><TD>223.31049345015</TD><TD>-54.861696722387</TD><TD><![CDATA[1.55126]]></TD><TD><![CDATA[0.429398]]></TD><TD><![CDATA[3]]></TD><TD>true</TD><TD>52.617012561491</TD><TD>-27.721055129561</TD><TD><![CDATA[4]]></TD><TD><![CDATA[21]]></TD><TD><![CDATA[194]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[328]]></TD><TD><![CDATA[352]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[241]]></TD><TD><![CDATA[319]]></TD><TD><![CDATA[3.77671E-17]]></TD><TD><![CDATA[8.51657E-17]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[6.91223E-17]]></TD><TD><![CDATA[9.06205E-16]]></TD><TD><![CDATA[3.12483E-16]]></TD><TD><![CDATA[2.44696E-15]]></TD><TD><![CDATA[8.52066E-16]]></TD><TD><![CDATA[9.47465E-16]]></TD><TD><![CDATA[1.81967E-15]]></TD><TD><![CDATA[5.03455E-15]]></TD><TD><![CDATA[2.13977E-15]]></TD><TD><![CDATA[2.52971E-15]]></TD><TD><![CDATA[6.34418E-16]]></TD><TD><![CDATA[1.34583E-17]]></TD><TD><![CDATA[8.82934E-17]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[8.42904E-17]]></TD><TD><![CDATA[1.03662E-15]]></TD><TD><![CDATA[4.35595E-16]]></TD><TD><![CDATA[2.92618E-15]]></TD><TD><![CDATA[1.34092E-15]]></TD><TD><![CDATA[1.89174E-15]]></TD><TD><![CDATA[3.25121E-15]]></TD><TD><![CDATA[5.86799E-15]]></TD><TD><![CDATA[3.54586E-15]]></TD><TD><![CDATA[2.45214E-15]]></TD><TD><![CDATA[8.37242E-16]]></TD><TD><![CDATA[2.16602E-16]]></TD><TD><![CDATA[3.99805E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[2.13984E-16]]></TD><TD><![CDATA[3.5003E-16]]></TD><TD><![CDATA[5.37322E-16]]></TD><TD><![CDATA[3.13752E-15]]></TD><TD><![CDATA[1.7823E-15]]></TD><TD><![CDATA[5.5489E-15]]></TD><TD><![CDATA[7.1954E-15]]></TD><TD><![CDATA[9.25305E-15]]></TD><TD><![CDATA[7.44612E-15]]></TD><TD><![CDATA[2.36105E-15]]></TD><TD><![CDATA[1.35085E-15]]></TD><TD><![CDATA[6.36622E-16]]></TD><TD><![CDATA[5.47281E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.46318E-16]]></TD><TD><![CDATA[1.7283E-15]]></TD><TD><![CDATA[8.1454E-16]]></TD><TD><![CDATA[1.49141E-15]]></TD><TD><![CDATA[1.40521E-15]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[2.30579E-15]]></TD><TD><![CDATA[3.85633E-15]]></TD><TD><![CDATA[2.87675E-15]]></TD><TD><![CDATA[2.92793E-15]]></TD><TD><![CDATA[1.40034E-15]]></TD><TD><![CDATA[0.00231384]]></TD><TD><![CDATA[5.2931E-4]]></TD><TD><![CDATA[0.00185821]]></TD><TD><![CDATA[4.68857E-4]]></TD><TD><![CDATA[1.2818E-5]]></TD><TD><![CDATA[8.40924E-5]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[6.84497E-5]]></TD><TD><![CDATA[6.08131E-4]]></TD><TD><![CDATA[2.55542E-4]]></TD><TD><![CDATA[5.71367E-4]]></TD><TD><![CDATA[2.61829E-4]]></TD><TD><![CDATA[1.09172E-4]]></TD><TD><![CDATA[1.87628E-4]]></TD><TD><![CDATA[0.00130149]]></TD><TD><![CDATA[4.25226E-4]]></TD><TD><![CDATA[0.00111781]]></TD><TD><![CDATA[3.81657E-4]]></TD><TD><![CDATA[3.85833E-5]]></TD><TD><![CDATA[7.12172E-5]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[3.85407E-5]]></TD><TD><![CDATA[7.18296E-5]]></TD><TD><![CDATA[1.10264E-4]]></TD><TD><![CDATA[2.37102E-4]]></TD><TD><![CDATA[1.34689E-4]]></TD><TD><![CDATA[8.26231E-5]]></TD><TD><![CDATA[1.0714E-4]]></TD><TD><![CDATA[4.30139E-4]]></TD><TD><![CDATA[2.19853E-4]]></TD><TD><![CDATA[3.29674E-4]]></TD><TD><![CDATA[1.88619E-4]]></TD><TD><![CDATA[1.1302E-4]]></TD><TD><![CDATA[9.71587E-5]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[2.64616E-5]]></TD><TD><![CDATA[3.55252E-4]]></TD><TD><![CDATA[1.67429E-4]]></TD><TD><![CDATA[1.13944E-4]]></TD><TD><![CDATA[1.07358E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[3.63161E-5]]></TD><TD><![CDATA[5.82215E-4]]></TD><TD><![CDATA[2.2587E-4]]></TD><TD><![CDATA[4.1073E-4]]></TD><TD><![CDATA[1.96439E-4]]></TD><TD><![CDATA[50.8807]]></TD><TD><![CDATA[11.4663]]></TD><TD><![CDATA[24.8505]]></TD><TD><![CDATA[8.11748]]></TD><TD><![CDATA[11.0279]]></TD><TD><![CDATA[5.63609]]></TD><TD><![CDATA[15.0023]]></TD><TD><![CDATA[5.81517]]></TD><TD><![CDATA[9.42641]]></TD><TD><![CDATA[10.4233]]></TD><TD><![CDATA[2.55498E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[5.00537]]></TD><TD><![CDATA[3.94272]]></TD><TD><![CDATA[0.0312236]]></TD><TD><![CDATA[6.12344]]></TD><TD><![CDATA[5.87561]]></TD><TD><![CDATA[0.0472687]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0523308]]></TD><TD><![CDATA[3.23477]]></TD><TD><![CDATA[0.189928]]></TD><TD><![CDATA[1.64697]]></TD><TD><![CDATA[1.48887]]></TD><TD><![CDATA[1.09548]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[4.0947]]></TD><TD><![CDATA[0.648504]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[3.64057]]></TD><TD><![CDATA[2.71709]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.563289]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.455495]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.12341]]></TD><TD><![CDATA[-0.109315]]></TD><TD><![CDATA[0.223829]]></TD><TD><![CDATA[-0.69129]]></TD><TD><![CDATA[0.312902]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[10.6803]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.225115]]></TD><TD><![CDATA[-0.0311695]]></TD><TD><![CDATA[0.310571]]></TD><TD><![CDATA[-0.67916]]></TD><TD><![CDATA[0.479126]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[1.99779]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[1.07311]]></TD><TD><![CDATA[0.534981]]></TD><TD><![CDATA[0.584174]]></TD><TD><![CDATA[-0.483162]]></TD><TD><![CDATA[0.542603]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.468266]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.148974]]></TD><TD><![CDATA[-0.514302]]></TD><TD><![CDATA[0.387423]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.637441]]></TD><TD><![CDATA[19091.9]]></TD><TD><![CDATA[19096.5]]></TD><TD><![CDATA[19107.9]]></TD><TD><![CDATA[19084.6]]></TD><TD><![CDATA[19065.0]]></TD><TD><![CDATA[25662.9]]></TD><TD><![CDATA[25668.3]]></TD><TD><![CDATA[25680.8]]></TD><TD><![CDATA[25654.8]]></TD><TD><![CDATA[25541.5]]></TD><TD><![CDATA[25770.7]]></TD><TD><![CDATA[25771.2]]></TD><TD><![CDATA[25778.4]]></TD><TD><![CDATA[25730.8]]></TD><TD><![CDATA[24975.8]]></TD><TD><![CDATA[0.137295]]></TD><TD><![CDATA[0.120058]]></TD><TD><![CDATA[0.157473]]></TD><TD><![CDATA[0.19188]]></TD><TD><![CDATA[0.43687]]></TD><TD><![CDATA[0.0421867]]></TD><TD><![CDATA[0.0368257]]></TD><TD><![CDATA[0.127086]]></TD><TD><![CDATA[0.0760398]]></TD><TD><![CDATA[0.154911]]></TD><TD><![CDATA[0.0423098]]></TD><TD><![CDATA[0.0347529]]></TD><TD><![CDATA[0.109304]]></TD><TD><![CDATA[0.0864567]]></TD><TD><![CDATA[0.158561]]></TD><TD><![CDATA[5.961E-4]]></TD><TD><![CDATA[8.93365E-4]]></TD><TD><![CDATA[0.00116443]]></TD><TD><![CDATA[0.99136]]></TD><TD><![CDATA[0.991351]]></TD><TD><![CDATA[0.991357]]></TD><TD><![CDATA[0.991112]]></TD><TD><![CDATA[0.986882]]></TD><TD><![CDATA[0.996598]]></TD><TD><![CDATA[0.996541]]></TD><TD><![CDATA[0.996579]]></TD><TD><![CDATA[0.99595]]></TD><TD><![CDATA[0.985108]]></TD><TD><![CDATA[0.970939]]></TD><TD><![CDATA[0.970842]]></TD><TD><![CDATA[0.970898]]></TD><TD><![CDATA[0.969435]]></TD><TD><![CDATA[0.940665]]></TD><TD><![CDATA[22737.4]]></TD><TD><![CDATA[26368.6]]></TD><TD><![CDATA[26949.5]]></TD><TD><![CDATA[26949.5]]></TD><TD><![CDATA[0.776629]]></TD><TD><![CDATA[1.20298]]></TD><TD><![CDATA[2.07292]]></TD><TD><![CDATA[0.776629]]></TD><TD><![CDATA[0.962278]]></TD><TD><![CDATA[0.988779]]></TD><TD><![CDATA[0.989084]]></TD><TD><![CDATA[75.8635]]></TD><TD><![CDATA[0]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD>false</TD><TD>false</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>52.616760006165</TD><TD>-27.720584349377</TD><TD><![CDATA[1.60959]]></TD><TD><![CDATA[9.42641]]></TD><TD><![CDATA[3.77671E-17]]></TD><TD><![CDATA[8.51657E-17]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[6.91223E-17]]></TD><TD><![CDATA[9.06205E-16]]></TD><TD><![CDATA[3.12483E-16]]></TD><TD><![CDATA[2.44696E-15]]></TD><TD><![CDATA[8.52066E-16]]></TD><TD><![CDATA[9.47465E-16]]></TD><TD><![CDATA[1.81967E-15]]></TD><TD><![CDATA[5.03455E-15]]></TD><TD><![CDATA[2.13977E-15]]></TD><TD><![CDATA[2.52971E-15]]></TD><TD><![CDATA[6.34418E-16]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.455495]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.12341]]></TD><TD><![CDATA[-0.109315]]></TD><TD><![CDATA[0.223829]]></TD><TD><![CDATA[-0.69129]]></TD><TD><![CDATA[0.312902]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.563289]]></TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[0]]></TD><TD><![CDATA[5.03455E-15]]></TD><TD><![CDATA[2.13977E-15]]></TD><TD><![CDATA[5.03455E-15]]></TD><TD><![CDATA[2.13977E-15]]></TD><TD>58323.7536342593</TD><TD>58324.1328356481</TD><TD><![CDATA[1]]></TD><TD>false</TD><TD>false</TD></TR>
+<TR><TD>581245887037857577</TD><TD><![CDATA[4XMM J121304.2+274229]]></TD><TD>183.26788065337</TD><TD>27.708167795858</TD><TD>7468727010</TD><TD>3.51741666666667E-4</TD><TD>3.51741666666667E-4</TD><TD>0.0</TD><TD><![CDATA[0827020301]]></TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>0</TD><TD>867224420425403482</TD><TD>106</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD><![CDATA[NULL]]></TD><TD>108270203010106</TD><TD>208270203010106</TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD><![CDATA[4XMM J121304.2+274229]]></TD><TD><![CDATA[106]]></TD><TD><![CDATA[0827020301]]></TD><TD><![CDATA[3399]]></TD><TD>58300.4448842593</TD><TD>58300.947974537</TD><TD><![CDATA[2]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[PrimeFullWindowExtended]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD>183.26788065337</TD><TD>27.708167795858</TD><TD><![CDATA[1.32942]]></TD><TD>206.8289904481</TD><TD>81.46836732096</TD><TD><![CDATA[1.26627]]></TD><TD><![CDATA[0.404853]]></TD><TD><![CDATA[1]]></TD><TD>true</TD><TD>183.26799468389</TD><TD>27.708614845382</TD><TD><![CDATA[10]]></TD><TD><![CDATA[13]]></TD><TD><![CDATA[46]]></TD><TD><![CDATA[3]]></TD><TD><![CDATA[4]]></TD><TD><![CDATA[268]]></TD><TD><![CDATA[4]]></TD><TD><![CDATA[328]]></TD><TD><![CDATA[294]]></TD><TD><![CDATA[1.10133E-16]]></TD><TD><![CDATA[2.27797E-16]]></TD><TD><![CDATA[3.29027E-16]]></TD><TD><![CDATA[2.6241E-16]]></TD><TD><![CDATA[3.24808E-15]]></TD><TD><![CDATA[8.17006E-16]]></TD><TD><![CDATA[2.02561E-15]]></TD><TD><![CDATA[1.38038E-15]]></TD><TD><![CDATA[2.86715E-14]]></TD><TD><![CDATA[1.52935E-14]]></TD><TD><![CDATA[3.60649E-14]]></TD><TD><![CDATA[1.53961E-14]]></TD><TD><![CDATA[7.37495E-15]]></TD><TD><![CDATA[1.52805E-15]]></TD><TD><![CDATA[3.94823E-17]]></TD><TD><![CDATA[2.34185E-16]]></TD><TD><![CDATA[2.06279E-15]]></TD><TD><![CDATA[6.57039E-16]]></TD><TD><![CDATA[2.9782E-15]]></TD><TD><![CDATA[9.22563E-16]]></TD><TD><![CDATA[2.48267E-15]]></TD><TD><![CDATA[1.95691E-15]]></TD><TD><![CDATA[3.42105E-14]]></TD><TD><![CDATA[2.02876E-14]]></TD><TD><![CDATA[4.17736E-14]]></TD><TD><![CDATA[2.04145E-14]]></TD><TD><![CDATA[8.51507E-15]]></TD><TD><![CDATA[1.89589E-15]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.35245E-15]]></TD><TD><![CDATA[9.82012E-16]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[2.86228E-16]]></TD><TD><![CDATA[4.22913E-15]]></TD><TD><![CDATA[1.75896E-15]]></TD><TD><![CDATA[1.57296E-15]]></TD><TD><![CDATA[1.94743E-15]]></TD><TD><![CDATA[2.13808E-14]]></TD><TD><![CDATA[2.32756E-14]]></TD><TD><![CDATA[2.85353E-14]]></TD><TD><![CDATA[2.34454E-14]]></TD><TD><![CDATA[5.26126E-15]]></TD><TD><![CDATA[2.58142E-15]]></TD><TD><![CDATA[0.00739112]]></TD><TD><![CDATA[0.00155547]]></TD><TD><![CDATA[0.00453594]]></TD><TD><![CDATA[9.19878E-4]]></TD><TD><![CDATA[3.3044E-5]]></TD><TD><![CDATA[1.95996E-4]]></TD><TD><![CDATA[0.00162298]]></TD><TD><![CDATA[5.16952E-4]]></TD><TD><![CDATA[0.00171758]]></TD><TD><![CDATA[5.32061E-4]]></TD><TD><![CDATA[4.78957E-4]]></TD><TD><![CDATA[3.77527E-4]]></TD><TD><![CDATA[0.00197223]]></TD><TD><![CDATA[0.00116958]]></TD><TD><![CDATA[0.0058248]]></TD><TD><![CDATA[0.00144886]]></TD><TD><![CDATA[0.00379789]]></TD><TD><![CDATA[8.45603E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[2.40101E-4]]></TD><TD><![CDATA[1.74337E-4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[5.17644E-5]]></TD><TD><![CDATA[8.69297E-4]]></TD><TD><![CDATA[3.61554E-4]]></TD><TD><![CDATA[1.20174E-4]]></TD><TD><![CDATA[1.48784E-4]]></TD><TD><![CDATA[3.36747E-4]]></TD><TD><![CDATA[3.66591E-4]]></TD><TD><![CDATA[0.00156632]]></TD><TD><![CDATA[5.65968E-4]]></TD><TD><![CDATA[7.38049E-4]]></TD><TD><![CDATA[3.62121E-4]]></TD><TD><![CDATA[85.024]]></TD><TD><![CDATA[15.5746]]></TD><TD><![CDATA[62.0539]]></TD><TD><![CDATA[13.5174]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[22.9701]]></TD><TD><![CDATA[7.73608]]></TD><TD><![CDATA[23.1315]]></TD><TD><![CDATA[20.2005]]></TD><TD><![CDATA[2.11917E-4]]></TD><TD><![CDATA[10.4843]]></TD><TD><![CDATA[10.3056]]></TD><TD><![CDATA[0.695808]]></TD><TD><![CDATA[1.48821]]></TD><TD><![CDATA[19.8188]]></TD><TD><![CDATA[17.7829]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[1.53408]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[4.96544]]></TD><TD><![CDATA[0.260731]]></TD><TD><![CDATA[0.32697]]></TD><TD><![CDATA[4.82289]]></TD><TD><![CDATA[2.32947]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.938551]]></TD><TD><![CDATA[0.519109]]></TD><TD><![CDATA[0.204522]]></TD><TD><![CDATA[0.782819]]></TD><TD><![CDATA[0.104945]]></TD><TD><![CDATA[-0.663929]]></TD><TD><![CDATA[0.200555]]></TD><TD><![CDATA[0.583429]]></TD><TD><![CDATA[0.279036]]></TD><TD><![CDATA[0.960092]]></TD><TD><![CDATA[0.232318]]></TD><TD><![CDATA[0.0283202]]></TD><TD><![CDATA[0.221978]]></TD><TD><![CDATA[-0.563899]]></TD><TD><![CDATA[0.288805]]></TD><TD><![CDATA[0.609204]]></TD><TD><![CDATA[0.310158]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-1.0]]></TD><TD><![CDATA[0.431188]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.119095]]></TD><TD><![CDATA[-0.757094]]></TD><TD><![CDATA[0.278719]]></TD><TD><![CDATA[0.473983]]></TD><TD><![CDATA[0.639117]]></TD><TD><![CDATA[12334.6]]></TD><TD><![CDATA[12304.6]]></TD><TD><![CDATA[12663.6]]></TD><TD><![CDATA[12150.2]]></TD><TD><![CDATA[7152.27]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[16240.7]]></TD><TD><![CDATA[16221.5]]></TD><TD><![CDATA[16228.2]]></TD><TD><![CDATA[15574.8]]></TD><TD><![CDATA[9181.79]]></TD><TD><![CDATA[0.137219]]></TD><TD><![CDATA[0.123292]]></TD><TD><![CDATA[0.18981]]></TD><TD><![CDATA[0.20553]]></TD><TD><![CDATA[0.476877]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0476088]]></TD><TD><![CDATA[0.0369124]]></TD><TD><![CDATA[0.158235]]></TD><TD><![CDATA[0.106779]]></TD><TD><![CDATA[0.242346]]></TD><TD><![CDATA[0.00755404]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.00313264]]></TD><TD><![CDATA[0.372012]]></TD><TD><![CDATA[0.371509]]></TD><TD><![CDATA[0.371693]]></TD><TD><![CDATA[0.357002]]></TD><TD><![CDATA[0.211271]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.34643]]></TD><TD><![CDATA[0.346012]]></TD><TD><![CDATA[0.346154]]></TD><TD><![CDATA[0.332278]]></TD><TD><![CDATA[0.195825]]></TD><TD><![CDATA[43213.4]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[47325.9]]></TD><TD><![CDATA[47325.9]]></TD><TD><![CDATA[13.5694]]></TD><TD><![CDATA[12.8211]]></TD><TD><![CDATA[13.5236]]></TD><TD><![CDATA[12.8211]]></TD><TD><![CDATA[0.89243]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.9813]]></TD><TD><![CDATA[103.941]]></TD><TD><![CDATA[0]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD>false</TD><TD>false</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>183.26788065337</TD><TD>27.708167795858</TD><TD><![CDATA[1.32942]]></TD><TD><![CDATA[23.1315]]></TD><TD><![CDATA[1.10133E-16]]></TD><TD><![CDATA[2.27797E-16]]></TD><TD><![CDATA[3.29027E-16]]></TD><TD><![CDATA[2.6241E-16]]></TD><TD><![CDATA[3.24808E-15]]></TD><TD><![CDATA[8.17006E-16]]></TD><TD><![CDATA[2.02561E-15]]></TD><TD><![CDATA[1.38038E-15]]></TD><TD><![CDATA[2.86715E-14]]></TD><TD><![CDATA[1.52935E-14]]></TD><TD><![CDATA[3.60649E-14]]></TD><TD><![CDATA[1.53961E-14]]></TD><TD><![CDATA[7.37495E-15]]></TD><TD><![CDATA[1.52805E-15]]></TD><TD><![CDATA[0.519109]]></TD><TD><![CDATA[0.204522]]></TD><TD><![CDATA[0.782819]]></TD><TD><![CDATA[0.104945]]></TD><TD><![CDATA[-0.663929]]></TD><TD><![CDATA[0.200555]]></TD><TD><![CDATA[0.583429]]></TD><TD><![CDATA[0.279036]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.938551]]></TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[0]]></TD><TD><![CDATA[3.60649E-14]]></TD><TD><![CDATA[1.53961E-14]]></TD><TD><![CDATA[3.60649E-14]]></TD><TD><![CDATA[1.53961E-14]]></TD><TD>58300.4448842593</TD><TD>58300.947974537</TD><TD><![CDATA[1]]></TD><TD>false</TD><TD>false</TD></TR>
+<TR><TD>581245887037857576</TD><TD><![CDATA[4XMM J082514.0-775015]]></TD><TD>126.30836740325</TD><TD>-77.837500228876</TD><TD>9703241236</TD><TD>2.20793611111111E-4</TD><TD>2.20793611111111E-4</TD><TD>0.0</TD><TD><![CDATA[0805150401]]></TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>0</TD><TD>867224420425404809</TD><TD>10</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD><![CDATA[NULL]]></TD><TD>108051504010010</TD><TD>208051504010010</TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD><![CDATA[4XMM J082514.0-775015]]></TD><TD><![CDATA[10]]></TD><TD><![CDATA[0805150401]]></TD><TD><![CDATA[3276]]></TD><TD>58055.8436342593</TD><TD>58056.0315972222</TD><TD><![CDATA[1]]></TD><TD><![CDATA[Thin1]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD>126.30836740325</TD><TD>-77.837500228876</TD><TD><![CDATA[1.27277]]></TD><TD>290.91731754532</TD><TD>-21.784598316586</TD><TD><![CDATA[0.794857]]></TD><TD><![CDATA[0.994058]]></TD><TD><![CDATA[3]]></TD><TD>true</TD><TD>126.3113089779</TD><TD>-77.836614374878</TD><TD><![CDATA[8]]></TD><TD><![CDATA[14]]></TD><TD><![CDATA[165]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[491]]></TD><TD><![CDATA[485]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[109]]></TD><TD><![CDATA[482]]></TD><TD><![CDATA[7.1976E-16]]></TD><TD><![CDATA[3.79227E-16]]></TD><TD><![CDATA[3.69542E-15]]></TD><TD><![CDATA[7.39996E-16]]></TD><TD><![CDATA[6.75223E-15]]></TD><TD><![CDATA[1.0916E-15]]></TD><TD><![CDATA[1.15081E-14]]></TD><TD><![CDATA[2.3455E-15]]></TD><TD><![CDATA[2.22146E-14]]></TD><TD><![CDATA[1.07317E-14]]></TD><TD><![CDATA[4.46347E-14]]></TD><TD><![CDATA[1.11053E-14]]></TD><TD><![CDATA[2.08484E-14]]></TD><TD><![CDATA[2.19756E-15]]></TD><TD><![CDATA[8.82528E-16]]></TD><TD><![CDATA[5.06737E-16]]></TD><TD><![CDATA[4.72346E-15]]></TD><TD><![CDATA[1.09411E-15]]></TD><TD><![CDATA[5.83585E-15]]></TD><TD><![CDATA[1.56163E-15]]></TD><TD><![CDATA[8.95672E-15]]></TD><TD><![CDATA[3.41245E-15]]></TD><TD><![CDATA[1.52105E-14]]></TD><TD><![CDATA[1.34617E-14]]></TD><TD><![CDATA[3.5609E-14]]></TD><TD><![CDATA[1.40269E-14]]></TD><TD><![CDATA[1.93398E-14]]></TD><TD><![CDATA[3.10377E-15]]></TD><TD><![CDATA[8.44138E-16]]></TD><TD><![CDATA[1.07969E-15]]></TD><TD><![CDATA[1.82671E-15]]></TD><TD><![CDATA[1.39062E-15]]></TD><TD><![CDATA[6.43333E-15]]></TD><TD><![CDATA[2.28529E-15]]></TD><TD><![CDATA[1.46763E-14]]></TD><TD><![CDATA[5.0933E-15]]></TD><TD><![CDATA[4.96647E-14]]></TD><TD><![CDATA[3.04472E-14]]></TD><TD><![CDATA[7.34452E-14]]></TD><TD><![CDATA[3.10048E-14]]></TD><TD><![CDATA[1.97649E-14]]></TD><TD><![CDATA[4.67589E-15]]></TD><TD><![CDATA[3.83335E-16]]></TD><TD><![CDATA[6.74E-16]]></TD><TD><![CDATA[3.92245E-15]]></TD><TD><![CDATA[1.45295E-15]]></TD><TD><![CDATA[8.5901E-15]]></TD><TD><![CDATA[2.05117E-15]]></TD><TD><![CDATA[1.3199E-14]]></TD><TD><![CDATA[4.17573E-15]]></TD><TD><![CDATA[2.65481E-14]]></TD><TD><![CDATA[2.18949E-14]]></TD><TD><![CDATA[5.2643E-14]]></TD><TD><![CDATA[2.24409E-14]]></TD><TD><![CDATA[2.4432E-14]]></TD><TD><![CDATA[4.16932E-15]]></TD><TD><![CDATA[0.0182106]]></TD><TD><![CDATA[0.00200647]]></TD><TD><![CDATA[0.0148862]]></TD><TD><![CDATA[0.00165572]]></TD><TD><![CDATA[8.40537E-4]]></TD><TD><![CDATA[4.82627E-4]]></TD><TD><![CDATA[0.00383578]]></TD><TD><![CDATA[8.88496E-4]]></TD><TD><![CDATA[0.0034236]]></TD><TD><![CDATA[9.16133E-4]]></TD><TD><![CDATA[0.00174889]]></TD><TD><![CDATA[6.66315E-4]]></TD><TD><![CDATA[8.77797E-4]]></TD><TD><![CDATA[7.76875E-4]]></TD><TD><![CDATA[0.0107266]]></TD><TD><![CDATA[0.00170563]]></TD><TD><![CDATA[0.00881603]]></TD><TD><![CDATA[0.00141485]]></TD><TD><![CDATA[1.31998E-4]]></TD><TD><![CDATA[1.68831E-4]]></TD><TD><![CDATA[3.19674E-4]]></TD><TD><![CDATA[2.43359E-4]]></TD><TD><![CDATA[0.00129786]]></TD><TD><![CDATA[4.61034E-4]]></TD><TD><![CDATA[0.00109617]]></TD><TD><![CDATA[3.80419E-4]]></TD><TD><![CDATA[7.38018E-4]]></TD><TD><![CDATA[4.52446E-4]]></TD><TD><![CDATA[0.00358372]]></TD><TD><![CDATA[8.06043E-4]]></TD><TD><![CDATA[0.00270779]]></TD><TD><![CDATA[6.40597E-4]]></TD><TD><![CDATA[5.9532E-5]]></TD><TD><![CDATA[1.04672E-4]]></TD><TD><![CDATA[6.89096E-4]]></TD><TD><![CDATA[2.55254E-4]]></TD><TD><![CDATA[0.00173589]]></TD><TD><![CDATA[4.145E-4]]></TD><TD><![CDATA[9.96E-4]]></TD><TD><![CDATA[3.15101E-4]]></TD><TD><![CDATA[4.19726E-4]]></TD><TD><![CDATA[3.46158E-4]]></TD><TD><![CDATA[0.00390024]]></TD><TD><![CDATA[6.83399E-4]]></TD><TD><![CDATA[0.00336233]]></TD><TD><![CDATA[5.73781E-4]]></TD><TD><![CDATA[160.17]]></TD><TD><![CDATA[16.4996]]></TD><TD><![CDATA[66.1511]]></TD><TD><![CDATA[10.3646]]></TD><TD><![CDATA[40.4973]]></TD><TD><![CDATA[9.00452]]></TD><TD><![CDATA[53.5214]]></TD><TD><![CDATA[9.1504]]></TD><TD><![CDATA[138.364]]></TD><TD><![CDATA[143.648]]></TD><TD><![CDATA[3.24771]]></TD><TD><![CDATA[35.3823]]></TD><TD><![CDATA[20.8648]]></TD><TD><![CDATA[8.80445]]></TD><TD><![CDATA[0.522873]]></TD><TD><![CDATA[65.5279]]></TD><TD><![CDATA[62.055]]></TD><TD><![CDATA[0.27184]]></TD><TD><![CDATA[1.08756]]></TD><TD><![CDATA[7.99781]]></TD><TD><![CDATA[13.0049]]></TD><TD><![CDATA[2.15472]]></TD><TD><![CDATA[21.7001]]></TD><TD><![CDATA[21.6352]]></TD><TD><![CDATA[0.0642671]]></TD><TD><![CDATA[13.9393]]></TD><TD><![CDATA[27.8874]]></TD><TD><![CDATA[14.7876]]></TD><TD><![CDATA[0.837269]]></TD><TD><![CDATA[53.8924]]></TD><TD><![CDATA[57.7348]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-1.50754]]></TD><TD><![CDATA[0.689425]]></TD><TD><![CDATA[0.145724]]></TD><TD><![CDATA[0.2602]]></TD><TD><![CDATA[0.113713]]></TD><TD><![CDATA[-0.244065]]></TD><TD><![CDATA[0.120272]]></TD><TD><![CDATA[-0.302234]]></TD><TD><![CDATA[0.215588]]></TD><TD><![CDATA[0.640513]]></TD><TD><![CDATA[0.18257]]></TD><TD><![CDATA[-0.0567788]]></TD><TD><![CDATA[0.17639]]></TD><TD><![CDATA[-0.323773]]></TD><TD><![CDATA[0.208386]]></TD><TD><![CDATA[-0.331631]]></TD><TD><![CDATA[0.42879]]></TD><TD><![CDATA[0.415515]]></TD><TD><![CDATA[0.615733]]></TD><TD><![CDATA[0.604739]]></TD><TD><![CDATA[0.266425]]></TD><TD><![CDATA[-0.0842455]]></TD><TD><![CDATA[0.246544]]></TD><TD><![CDATA[-0.195266]]></TD><TD><![CDATA[0.338804]]></TD><TD><![CDATA[0.840957]]></TD><TD><![CDATA[0.26305]]></TD><TD><![CDATA[0.43167]]></TD><TD><![CDATA[0.179295]]></TD><TD><![CDATA[-0.270834]]></TD><TD><![CDATA[0.183645]]></TD><TD><![CDATA[-0.407052]]></TD><TD><![CDATA[0.368482]]></TD><TD><![CDATA[6239.18]]></TD><TD><![CDATA[6237.63]]></TD><TD><![CDATA[6238.02]]></TD><TD><![CDATA[6198.44]]></TD><TD><![CDATA[5449.72]]></TD><TD><![CDATA[11638.6]]></TD><TD><![CDATA[11632.8]]></TD><TD><![CDATA[11629.3]]></TD><TD><![CDATA[11522.0]]></TD><TD><![CDATA[10188.0]]></TD><TD><![CDATA[14039.6]]></TD><TD><![CDATA[14033.3]]></TD><TD><![CDATA[14036.5]]></TD><TD><![CDATA[13899.9]]></TD><TD><![CDATA[11448.4]]></TD><TD><![CDATA[0.0442308]]></TD><TD><![CDATA[0.0521799]]></TD><TD><![CDATA[0.0620016]]></TD><TD><![CDATA[0.0787113]]></TD><TD><![CDATA[0.162349]]></TD><TD><![CDATA[0.0259061]]></TD><TD><![CDATA[0.0289025]]></TD><TD><![CDATA[0.0821683]]></TD><TD><![CDATA[0.0619526]]></TD><TD><![CDATA[0.105094]]></TD><TD><![CDATA[0.0290069]]></TD><TD><![CDATA[0.0333508]]></TD><TD><![CDATA[0.0856379]]></TD><TD><![CDATA[0.0488992]]></TD><TD><![CDATA[0.108559]]></TD><TD><![CDATA[0.00491294]]></TD><TD><![CDATA[0.00744312]]></TD><TD><![CDATA[0.00780048]]></TD><TD><![CDATA[0.833171]]></TD><TD><![CDATA[0.832984]]></TD><TD><![CDATA[0.833066]]></TD><TD><![CDATA[0.827698]]></TD><TD><![CDATA[0.729669]]></TD><TD><![CDATA[0.853886]]></TD><TD><![CDATA[0.853589]]></TD><TD><![CDATA[0.853731]]></TD><TD><![CDATA[0.847721]]></TD><TD><![CDATA[0.735622]]></TD><TD><![CDATA[0.804292]]></TD><TD><![CDATA[0.803928]]></TD><TD><![CDATA[0.804094]]></TD><TD><![CDATA[0.796213]]></TD><TD><![CDATA[0.657495]]></TD><TD><![CDATA[8679.97]]></TD><TD><![CDATA[16498.0]]></TD><TD><![CDATA[17688.1]]></TD><TD><![CDATA[17688.1]]></TD><TD><![CDATA[4.55063]]></TD><TD><![CDATA[4.93094]]></TD><TD><![CDATA[5.9092]]></TD><TD><![CDATA[4.55063]]></TD><TD><![CDATA[0.985913]]></TD><TD><![CDATA[0.784646]]></TD><TD><![CDATA[0.983858]]></TD><TD><![CDATA[55.0105]]></TD><TD><![CDATA[0]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD>true</TD><TD>true</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>126.30836740325</TD><TD>-77.837500228876</TD><TD><![CDATA[1.27277]]></TD><TD><![CDATA[138.364]]></TD><TD><![CDATA[7.1976E-16]]></TD><TD><![CDATA[3.79227E-16]]></TD><TD><![CDATA[3.69542E-15]]></TD><TD><![CDATA[7.39996E-16]]></TD><TD><![CDATA[6.75223E-15]]></TD><TD><![CDATA[1.0916E-15]]></TD><TD><![CDATA[1.15081E-14]]></TD><TD><![CDATA[2.3455E-15]]></TD><TD><![CDATA[2.22146E-14]]></TD><TD><![CDATA[1.07317E-14]]></TD><TD><![CDATA[4.46347E-14]]></TD><TD><![CDATA[1.11053E-14]]></TD><TD><![CDATA[2.08484E-14]]></TD><TD><![CDATA[2.19756E-15]]></TD><TD><![CDATA[0.689425]]></TD><TD><![CDATA[0.145724]]></TD><TD><![CDATA[0.2602]]></TD><TD><![CDATA[0.113713]]></TD><TD><![CDATA[-0.244065]]></TD><TD><![CDATA[0.120272]]></TD><TD><![CDATA[-0.302234]]></TD><TD><![CDATA[0.215588]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-1.50754]]></TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[0]]></TD><TD><![CDATA[4.46347E-14]]></TD><TD><![CDATA[1.11053E-14]]></TD><TD><![CDATA[4.46347E-14]]></TD><TD><![CDATA[1.11053E-14]]></TD><TD>58055.8436342593</TD><TD>58056.0315972222</TD><TD><![CDATA[1]]></TD><TD>false</TD><TD>false</TD></TR>
+<TR><TD>581245887037857575</TD><TD><![CDATA[4XMM J071001.5-390809]]></TD><TD>107.50660784022</TD><TD>-39.13598613038</TD><TD>10365735004</TD><TD>3.70241666666667E-4</TD><TD>3.70241666666667E-4</TD><TD>0.0</TD><TD><![CDATA[0804790601]]></TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>0</TD><TD>867224420425410497</TD><TD>25</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD>0</TD><TD>0.0</TD><TD>0.0</TD><TD><![CDATA[NULL]]></TD><TD>108047906010025</TD><TD>208047906010025</TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD>-2147483648</TD><TD>-2147483648</TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-32768]]></TD><TD><![CDATA[4XMM J071001.5-390809]]></TD><TD><![CDATA[25]]></TD><TD><![CDATA[0804790601]]></TD><TD><![CDATA[3173]]></TD><TD>57849.2112037037</TD><TD>57849.2811342593</TD><TD><![CDATA[1]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[Medium]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD><![CDATA[PrimeFullWindow]]></TD><TD>107.50660784022</TD><TD>-39.13598613038</TD><TD><![CDATA[1.5981]]></TD><TD>250.2993331923</TD><TD>-13.407374359243</TD><TD><![CDATA[1.33287]]></TD><TD><![CDATA[0.881685]]></TD><TD><![CDATA[3]]></TD><TD>true</TD><TD>107.5065018477</TD><TD>-39.13605937689</TD><TD><![CDATA[5]]></TD><TD><![CDATA[42]]></TD><TD><![CDATA[153]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[173]]></TD><TD><![CDATA[518]]></TD><TD><![CDATA[1]]></TD><TD><![CDATA[74]]></TD><TD><![CDATA[164]]></TD><TD><![CDATA[4.35456E-16]]></TD><TD><![CDATA[4.24161E-16]]></TD><TD><![CDATA[3.05102E-15]]></TD><TD><![CDATA[9.03318E-16]]></TD><TD><![CDATA[1.87405E-15]]></TD><TD><![CDATA[8.3934E-16]]></TD><TD><![CDATA[4.04794E-15]]></TD><TD><![CDATA[2.17156E-15]]></TD><TD><![CDATA[7.11627E-15]]></TD><TD><![CDATA[6.9892E-15]]></TD><TD><![CDATA[1.97706E-14]]></TD><TD><![CDATA[7.83575E-15]]></TD><TD><![CDATA[1.08329E-14]]></TD><TD><![CDATA[2.21916E-15]]></TD><TD><![CDATA[1.11637E-15]]></TD><TD><![CDATA[7.74121E-16]]></TD><TD><![CDATA[2.43017E-15]]></TD><TD><![CDATA[1.0827E-15]]></TD><TD><![CDATA[1.06487E-15]]></TD><TD><![CDATA[9.63295E-16]]></TD><TD><![CDATA[7.3892E-15]]></TD><TD><![CDATA[4.01178E-15]]></TD><TD><![CDATA[4.46638E-15]]></TD><TD><![CDATA[7.72854E-15]]></TD><TD><![CDATA[1.6467E-14]]></TD><TD><![CDATA[8.86139E-15]]></TD><TD><![CDATA[8.61147E-15]]></TD><TD><![CDATA[2.78239E-15]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[5.3741E-16]]></TD><TD><![CDATA[4.74872E-15]]></TD><TD><![CDATA[2.46254E-15]]></TD><TD><![CDATA[2.57798E-15]]></TD><TD><![CDATA[2.0818E-15]]></TD><TD><![CDATA[1.5825E-15]]></TD><TD><![CDATA[3.02493E-15]]></TD><TD><![CDATA[1.3365E-14]]></TD><TD><![CDATA[2.04035E-14]]></TD><TD><![CDATA[2.22742E-14]]></TD><TD><![CDATA[2.0884E-14]]></TD><TD><![CDATA[1.06276E-14]]></TD><TD><![CDATA[4.70756E-15]]></TD><TD><![CDATA[1.30543E-15]]></TD><TD><![CDATA[1.53026E-15]]></TD><TD><![CDATA[4.25399E-15]]></TD><TD><![CDATA[2.19505E-15]]></TD><TD><![CDATA[8.26295E-15]]></TD><TD><![CDATA[3.00059E-15]]></TD><TD><![CDATA[5.56955E-15]]></TD><TD><![CDATA[4.9606E-15]]></TD><TD><![CDATA[2.92324E-14]]></TD><TD><![CDATA[2.74486E-14]]></TD><TD><![CDATA[4.86243E-14]]></TD><TD><![CDATA[2.81815E-14]]></TD><TD><![CDATA[2.11308E-14]]></TD><TD><![CDATA[5.8962E-15]]></TD><TD><![CDATA[0.0103137]]></TD><TD><![CDATA[0.00191442]]></TD><TD><![CDATA[0.00820489]]></TD><TD><![CDATA[0.00161693]]></TD><TD><![CDATA[9.34322E-4]]></TD><TD><![CDATA[6.47885E-4]]></TD><TD><![CDATA[0.00191204]]></TD><TD><![CDATA[8.51858E-4]]></TD><TD><![CDATA[6.14133E-4]]></TD><TD><![CDATA[5.55552E-4]]></TD><TD><![CDATA[0.00142552]]></TD><TD><![CDATA[7.73952E-4]]></TD><TD><![CDATA[2.57487E-4]]></TD><TD><![CDATA[4.4555E-4]]></TD><TD><![CDATA[0.0051435]]></TD><TD><![CDATA[0.00150052]]></TD><TD><![CDATA[0.00384089]]></TD><TD><![CDATA[0.001241]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[8.40348E-5]]></TD><TD><![CDATA[8.31026E-4]]></TD><TD><![CDATA[4.30944E-4]]></TD><TD><![CDATA[5.20081E-4]]></TD><TD><![CDATA[4.19983E-4]]></TD><TD><![CDATA[1.18197E-4]]></TD><TD><![CDATA[2.25932E-4]]></TD><TD><![CDATA[1.98604E-4]]></TD><TD><![CDATA[3.03196E-4]]></TD><TD><![CDATA[0.00166791]]></TD><TD><![CDATA[7.15635E-4]]></TD><TD><![CDATA[0.00145598]]></TD><TD><![CDATA[6.44936E-4]]></TD><TD><![CDATA[2.02733E-4]]></TD><TD><![CDATA[2.37649E-4]]></TD><TD><![CDATA[7.47341E-4]]></TD><TD><![CDATA[3.85627E-4]]></TD><TD><![CDATA[0.00166978]]></TD><TD><![CDATA[6.06359E-4]]></TD><TD><![CDATA[4.20278E-4]]></TD><TD><![CDATA[3.74327E-4]]></TD><TD><![CDATA[4.62165E-4]]></TD><TD><![CDATA[4.33963E-4]]></TD><TD><![CDATA[0.00350229]]></TD><TD><![CDATA[9.49369E-4]]></TD><TD><![CDATA[0.00290802]]></TD><TD><![CDATA[8.11435E-4]]></TD><TD><![CDATA[55.0451]]></TD><TD><![CDATA[9.90676]]></TD><TD><![CDATA[22.025]]></TD><TD><![CDATA[6.43708]]></TD><TD><![CDATA[10.7391]]></TD><TD><![CDATA[4.57608]]></TD><TD><![CDATA[22.281]]></TD><TD><![CDATA[5.98058]]></TD><TD><![CDATA[32.5792]]></TD><TD><![CDATA[35.8242]]></TD><TD><![CDATA[2.5426]]></TD><TD><![CDATA[6.77316]]></TD><TD><![CDATA[0.700993]]></TD><TD><![CDATA[3.9268]]></TD><TD><![CDATA[0.0773274]]></TD><TD><![CDATA[11.6193]]></TD><TD><![CDATA[10.5744]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[6.12509]]></TD><TD><![CDATA[0.778132]]></TD><TD><![CDATA[0.0384798]]></TD><TD><![CDATA[0.135577]]></TD><TD><![CDATA[4.49441]]></TD><TD><![CDATA[4.521]]></TD><TD><![CDATA[0.472697]]></TD><TD><![CDATA[7.32895]]></TD><TD><![CDATA[12.093]]></TD><TD><![CDATA[0.93881]]></TD><TD><![CDATA[1.01101]]></TD><TD><![CDATA[19.0548]]></TD><TD><![CDATA[19.74]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.940079]]></TD><TD><![CDATA[0.805552]]></TD><TD><![CDATA[0.163459]]></TD><TD><![CDATA[0.0157552]]></TD><TD><![CDATA[0.196615]]></TD><TD><![CDATA[-0.323208]]></TD><TD><![CDATA[0.235099]]></TD><TD><![CDATA[-0.368551]]></TD><TD><![CDATA[0.360631]]></TD><TD><![CDATA[0.343497]]></TD><TD><![CDATA[0.363484]]></TD><TD><![CDATA[-0.513783]]></TD><TD><![CDATA[0.371094]]></TD><TD><![CDATA[0.397808]]></TD><TD><![CDATA[0.444035]]></TD><TD><![CDATA[-0.694016]]></TD><TD><![CDATA[0.47002]]></TD><TD><![CDATA[1.0]]></TD><TD><![CDATA[0.202244]]></TD><TD><![CDATA[-0.230141]]></TD><TD><![CDATA[0.454435]]></TD><TD><![CDATA[-0.629638]]></TD><TD><![CDATA[0.626209]]></TD><TD><![CDATA[0.25381]]></TD><TD><![CDATA[1.14436]]></TD><TD><![CDATA[0.573227]]></TD><TD><![CDATA[0.429961]]></TD><TD><![CDATA[0.381626]]></TD><TD><![CDATA[0.269539]]></TD><TD><![CDATA[-0.59783]]></TD><TD><![CDATA[0.309041]]></TD><TD><![CDATA[0.0474664]]></TD><TD><![CDATA[0.645644]]></TD><TD><![CDATA[4114.49]]></TD><TD><![CDATA[4112.84]]></TD><TD><![CDATA[4557.28]]></TD><TD><![CDATA[4533.82]]></TD><TD><![CDATA[4097.07]]></TD><TD><![CDATA[6544.57]]></TD><TD><![CDATA[6542.37]]></TD><TD><![CDATA[6543.49]]></TD><TD><![CDATA[6500.79]]></TD><TD><![CDATA[5693.1]]></TD><TD><![CDATA[6492.26]]></TD><TD><![CDATA[6489.79]]></TD><TD><![CDATA[6491.07]]></TD><TD><![CDATA[6443.15]]></TD><TD><![CDATA[5556.85]]></TD><TD><![CDATA[0.0258285]]></TD><TD><![CDATA[0.0328093]]></TD><TD><![CDATA[0.0348655]]></TD><TD><![CDATA[0.034065]]></TD><TD><![CDATA[0.0783276]]></TD><TD><![CDATA[0.00751616]]></TD><TD><![CDATA[0.010303]]></TD><TD><![CDATA[0.0307893]]></TD><TD><![CDATA[0.0176648]]></TD><TD><![CDATA[0.0410841]]></TD><TD><![CDATA[0.00752279]]></TD><TD><![CDATA[0.00979553]]></TD><TD><![CDATA[0.0278679]]></TD><TD><![CDATA[0.0173302]]></TD><TD><![CDATA[0.0359547]]></TD><TD><![CDATA[0.0023558]]></TD><TD><![CDATA[0.00346412]]></TD><TD><![CDATA[0.00700459]]></TD><TD><![CDATA[0.873501]]></TD><TD><![CDATA[0.87336]]></TD><TD><![CDATA[0.873423]]></TD><TD><![CDATA[0.869374]]></TD><TD><![CDATA[0.79264]]></TD><TD><![CDATA[0.866346]]></TD><TD><![CDATA[0.866042]]></TD><TD><![CDATA[0.866191]]></TD><TD><![CDATA[0.860411]]></TD><TD><![CDATA[0.750938]]></TD><TD><![CDATA[0.871196]]></TD><TD><![CDATA[0.870882]]></TD><TD><![CDATA[0.871036]]></TD><TD><![CDATA[0.865269]]></TD><TD><![CDATA[0.75546]]></TD><TD><![CDATA[6041.31]]></TD><TD><![CDATA[7649.23]]></TD><TD><![CDATA[7620.73]]></TD><TD><![CDATA[7649.23]]></TD><TD><![CDATA[3.81001]]></TD><TD><![CDATA[4.82382]]></TD><TD><![CDATA[4.82231]]></TD><TD><![CDATA[3.81001]]></TD><TD><![CDATA[0.897534]]></TD><TD><![CDATA[0.988934]]></TD><TD><![CDATA[0.98895]]></TD><TD><![CDATA[73.9349]]></TD><TD><![CDATA[0]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD><![CDATA[FFFFFFFFFFFF]]></TD><TD>false</TD><TD>false</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[NULL]]></TD><TD><![CDATA[NULL]]></TD><TD>107.50660784022</TD><TD>-39.13598613038</TD><TD><![CDATA[1.5981]]></TD><TD><![CDATA[32.5792]]></TD><TD><![CDATA[4.35456E-16]]></TD><TD><![CDATA[4.24161E-16]]></TD><TD><![CDATA[3.05102E-15]]></TD><TD><![CDATA[9.03318E-16]]></TD><TD><![CDATA[1.87405E-15]]></TD><TD><![CDATA[8.3934E-16]]></TD><TD><![CDATA[4.04794E-15]]></TD><TD><![CDATA[2.17156E-15]]></TD><TD><![CDATA[7.11627E-15]]></TD><TD><![CDATA[6.9892E-15]]></TD><TD><![CDATA[1.97706E-14]]></TD><TD><![CDATA[7.83575E-15]]></TD><TD><![CDATA[1.08329E-14]]></TD><TD><![CDATA[2.21916E-15]]></TD><TD><![CDATA[0.805552]]></TD><TD><![CDATA[0.163459]]></TD><TD><![CDATA[0.0157552]]></TD><TD><![CDATA[0.196615]]></TD><TD><![CDATA[-0.323208]]></TD><TD><![CDATA[0.235099]]></TD><TD><![CDATA[-0.368551]]></TD><TD><![CDATA[0.360631]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[0.0]]></TD><TD><![CDATA[-0.940079]]></TD><TD>0.0</TD><TD>0.0</TD><TD>0.0</TD><TD>false</TD><TD><![CDATA[0]]></TD><TD><![CDATA[1.97706E-14]]></TD><TD><![CDATA[7.83575E-15]]></TD><TD><![CDATA[1.97706E-14]]></TD><TD><![CDATA[7.83575E-15]]></TD><TD>57849.2112037037</TD><TD>57849.2811342593</TD><TD><![CDATA[1]]></TD><TD>false</TD><TD>false</TD></TR>
+</TABLEDATA>
+
+</DATA>
+</TABLE>
+</RESOURCE>
+</VOTABLE>

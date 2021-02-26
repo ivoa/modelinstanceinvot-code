@@ -1,0 +1,39 @@
+{
+  "INSTANCE": {
+    "@ID": "PhotFrame_ACISSoft",
+    "@dmrole": "",
+    "@dmtype": "mango:stcextend.PhotFilter",
+    "ATTRIBUTE": [
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.name",
+        "@dmtype": "ivoa:string",
+        "@value": "ACIS Soft"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.zeroPointFlux",
+        "@dmtype": "ivoa:real",
+        "@value": "NoSet"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.magnitudeSystem",
+        "@dmtype": "ivoa:string",
+        "@value": "Chandra"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.effectiveWavlength",
+        "@dmtype": "ivoa:real",
+        "@value": "0.5"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.unit",
+        "@dmtype": "ivoa:string",
+        "@value": "KeV"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.bandWidth",
+        "@dmtype": "ivoa:real",
+        "@value": "1.2"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "@tableref": "Results",
+  "meas:Measure.errors": [
+    {
+          "@dmrole": "meas:Error.statError",
+          "@dmtype": "meas:Symmetrical"
+     },
+    {
+          "@dmrole": "meas:Error.sysError",
+          "@dmtype": "meas:Symmetrical"
+     }
+  ]
+}

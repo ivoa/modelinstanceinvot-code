@@ -1,0 +1,117 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": {
+      "DATATYPE": {
+        "@dmtype": "coords:PolStateEnum",
+        "ENUM": {
+          "LITERAL": [
+            {
+              "@dmrole": "PolStateEnum.I",
+              "@name": "I"
+            },
+            {
+              "@dmrole": "PolStateEnum.Q",
+              "@name": "Q"
+            },
+            {
+              "@dmrole": "PolStateEnum.U",
+              "@name": "U"
+            },
+            {
+              "@dmrole": "PolStateEnum.V",
+              "@name": "V"
+            },
+            {
+              "@dmrole": "PolStateEnum.RR",
+              "@name": "RR"
+            },
+            {
+              "@dmrole": "PolStateEnum.LL",
+              "@name": "LL"
+            },
+            {
+              "@dmrole": "PolStateEnum.RL",
+              "@name": "RL"
+            },
+            {
+              "@dmrole": "PolStateEnum.LR",
+              "@name": "LR"
+            },
+            {
+              "@dmrole": "PolStateEnum.XX",
+              "@name": "XX"
+            },
+            {
+              "@dmrole": "PolStateEnum.YY",
+              "@name": "YY"
+            },
+            {
+              "@dmrole": "PolStateEnum.XY",
+              "@name": "XY"
+            },
+            {
+              "@dmrole": "PolStateEnum.YX",
+              "@name": "YX"
+            },
+            {
+              "@dmrole": "PolStateEnum.PF",
+              "@name": "PF"
+            },
+            {
+              "@dmrole": "PolStateEnum.PP",
+              "@name": "PP"
+            },
+            {
+              "@dmrole": "PolStateEnum.PA",
+              "@name": "PA"
+            }
+          ]
+        }
+      }
+    },
+    "TABLE_MAPPING": {
+      "@tableref": "Results",
+      "INSTANCE": {
+        "@dmrole": "mango:MangoObject.parameters",
+        "@dmtype": "mango:Parameter",
+        "ATTRIBUTE": [
+          {
+            "@dmrole": "mango:Parameter.semantic",
+            "@dmtype": "ivoa:string",
+            "@value": "@@@@@@"
+          },
+          {
+            "@dmrole": "mango:Parameter.ucd",
+            "@dmtype": "ivoa:string",
+            "@value": "@@@@@@"
+          },
+          {
+            "@dmrole": "mango:Parameter.description",
+            "@dmtype": "ivoa:string",
+            "@value": "@@@@@@"
+          },
+          {
+            "@dmrole": "mango:Parameter.reductionStatus",
+            "@dmtype": "ivoa:string",
+            "@value": "@@@@@@"
+          }
+        ],
+        "INSTANCE": {
+          "@dmrole": "mango:Parameter.measure",
+          "@dmtype": "meas:Polarization",
+          "INSTANCE": {
+            "@dmrole": "meas:Polarization.coord",
+            "@dmtype": "coords:PolState",
+            "ATTRIBUTE": {
+              "@dmrole": "coords:PolState.cval",
+              "@dmtype": "coords:PolStateEnum",
+              "@ref": "@@@@@@"
+            }
+          }
+        }
+      }
+    }
+  }
+}

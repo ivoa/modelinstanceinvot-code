@@ -1,0 +1,39 @@
+{
+  "INSTANCE": {
+    "@ID": "PhotFrame_gaiaG",
+    "@dmrole": "",
+    "@dmtype": "mango:stcextend.PhotFilter",
+    "ATTRIBUTE": [
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.name",
+        "@dmtype": "ivoa:string",
+        "@value": "GAIA/GAIA2r.G"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.zeroPointFlux",
+        "@dmtype": "ivoa:real",
+        "@value": "2.49524e-9"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.magnitudeSystem",
+        "@dmtype": "ivoa:string",
+        "@value": "Vega"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.effectiveWavlength",
+        "@dmtype": "ivoa:real",
+        "@value": "6246.77"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.unit",
+        "@dmtype": "ivoa:string",
+        "@value": "Angstrom"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.bandWidth",
+        "@dmtype": "ivoa:real",
+        "@value": "4578.32"
+      }
+    ]
+  }
+}

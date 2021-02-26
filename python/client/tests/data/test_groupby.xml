@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.3">
+	<MODEL_INSTANCE name="TEST" syntax="ModelInstanceInVot">
+		<GLOBALS>
+		</GLOBALS>
+		<TABLE_MAPPING tableref="Results">
+			<GROUPBY ref="_col1" >
+				<INSTANCE dmrole="test.points" dmtype="test.Point">
+					<ATTRIBUTE dmrole="test.Point.Source" dmtype="ivoa:string" ref="_col1" />
+					<ATTRIBUTE dmrole="test.Point.Time" dmtype="ivoa:string" ref="_col2" />
+					<ATTRIBUTE dmrole="test.Point.Flux" dmtype="ivoa:string" ref="_col3" />
+				</INSTANCE>
+			</GROUPBY>
+		</TABLE_MAPPING>
+	</MODEL_INSTANCE>
+	<RESOURCE type="results">
+		<TABLE name="Results">
+			<FIELD ID="_col1" name="oidsaada" datatype="long" ucd="meta.id;meta.main" />
+			<FIELD ID="_col2" name="time" datatype="char" arraysize="*" />
+			<FIELD ID="_col3" name="flux" datatype="char" arraysize="*" />
+
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>1</TD>
+						<TD>t11</TD>
+						<TD>f11</TD>
+					</TR>
+					<TR>
+						<TD>1</TD>
+						<TD>t12</TD>
+						<TD>f12</TD>
+					</TR>
+					<TR>
+						<TD>2</TD>
+						<TD>t21</TD>
+						<TD>f21</TD>
+					</TR>
+					<TR>
+						<TD>2</TD>
+						<TD>t22</TD>
+						<TD>f22</TD>
+					</TR>
+					<TR>
+						<TD>2</TD>
+						<TD>t23</TD>
+						<TD>f23</TD>
+					</TR>
+					<TR>
+						<TD>3</TD>
+						<TD>t31</TD>
+						<TD>f31</TD>
+					</TR>
+					<TR>
+						<TD>6</TD>
+						<TD>t61</TD>
+						<TD>f61</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>

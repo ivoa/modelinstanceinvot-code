@@ -1,0 +1,262 @@
+<!-- XML Schema for the VODML lite mapping L. Michel 06/2020 -->
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" version="1.1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<!-- Top level structure of the mapping block -->
+	<xs:element name="MODEL_INSTANCE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="MODELS">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="MODEL" minOccurs="0"
+								maxOccurs="unbounded" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="GLOBALS" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="TABLE_MAPPING" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Mapping of the data contained in a particular table -->
+	<xs:element name="TABLE_MAPPING">
+		<xs:complexType>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element ref="COLLECTION" minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="GROUPBY" minOccurs="0" maxOccurs="1" />
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element ref="INSTANCE" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:choice>
+			<xs:attribute type="xs:string" name="tableref"
+				use="required" />
+			<xs:assert test="@tableref != ''" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Declaration of one used model -->
+	<xs:element name="MODEL">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element type="xs:string" name="NAME" />
+				<xs:element type="xs:anyURI" name="URL" />
+			</xs:sequence>
+			<xs:assert
+				test="(count(./NAME) eq 1) and (count(./URL) eq 1)" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Mapping of the data that have a global scope (e.g. frames) -->
+	<xs:element name="GLOBALS">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="INSTANCE" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="DATATYPE" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Mapping of primitive data types: Must be in globals, only ENUM supported 
+		yet -->
+	<xs:element name="DATATYPE">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="ENUM" minOccurs="1" maxOccurs="1" />
+			</xs:all>
+			<xs:attribute type="xs:string" name="dmtype" />
+			<xs:assert test="(./@dmtype  and @dmtype != '')" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- enum of literals, used by DATATYPE -->
+	<xs:element name="ENUM">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="LITERAL" minOccurs="1"
+					maxOccurs="unbounded" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- literal , used by ENUM -->
+	<xs:element name="LITERAL">
+		<xs:complexType>
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="name" />
+			<xs:assert test="(./@dmrole  and @dmrole != '')" />
+			<xs:assert test="(./@name  and @name != '')" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Mapping of either a Datatype or an Objecttype -->
+	<xs:element name="INSTANCE">
+		<xs:complexType>
+			<xs:all>
+				<xs:element ref="ATTRIBUTE" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="COLLECTION" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="INSTANCE" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="SC_REALQUANTITY" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="SC_INTQUANTITY" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:all>
+			<xs:attribute type="xs:string" name="dmref" />
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="dmtype" />
+			<xs:attribute type="xs:string" name="ID" />
+			<xs:assert
+				test="(./@dmref and ./@dmrole and not (./@dmtype) and not (./@ID)) or (./@dmtype and ./@dmrole and not (./@dmref) and not (./@ID)) or (./@dmtype and ./@ID )" />
+			<xs:assert
+				test="if (@dmref) then ( @dmref != '') else true()  " />
+			<xs:assert
+				test="if (@dmtype) then ( @dmtype != '') else true()  " />
+			<xs:assert test="if (@ID) then ( @ID != '') else true()  " />
+			<xs:assert test="if (@ID) then (@ID != '') else true()  " />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Atomic attribute -->
+	<xs:element name="ATTRIBUTE">
+		<xs:complexType>
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="dmtype" />
+			<xs:attribute type="xs:string" name="ref" />
+			<xs:attribute type="xs:string" name="value" />
+			<xs:assert
+				test="(not(./@ref) and ./@value) or (not(./@value) and ./@ref) or (./@value and ./@ref)" />
+			<xs:assert test="if (@ref) then (@ref != '') else true()  " />
+			<xs:assert
+				test="if (@value) then (@value != '') else true()  " />
+			<xs:assert test="@dmrole != '' and @dmtype != ''  " />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Data list mapping block -->
+	<xs:element name="COLLECTION">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="1">
+				<xs:element ref="INSTANCE" maxOccurs="unbounded" />
+				<xs:element ref="COLLECTION" maxOccurs="unbounded" />
+				<xs:element ref="TABLE_ROW_TEMPLATE" minOccurs="0"
+					maxOccurs="unbounded" />
+				<xs:element ref="JOIN" minOccurs="0"
+					maxOccurs="unbounded" />
+			</xs:choice>
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="size" />
+			<xs:assert test="@dmrole != '' " />
+			<xs:assert
+				test="(count(./TABLE_ROW_TEMPLATE) lt 2 and count(./JOIN) eq 0 and count(./INSTANCE) eq 0  and count(./COLLECTION) eq 0) or (count(./TABLE_ROW_TEMPLATE) eq 0 and count(./JOIN) lt 2  and count(./INSTANCE) eq 0 and count(./COLLECTION) eq 0) or (count(./TABLE_ROW_TEMPLATE) eq 0 and count(./JOIN) eq 0)" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- One instance must be created for each selected table row -->
+	<xs:element name="TABLE_ROW_TEMPLATE">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="FILTER" minOccurs="0" maxOccurs="1" />
+				</xs:choice>
+				<xs:choice>
+					<xs:element ref="INSTANCE" minOccurs="1" maxOccurs="1" />
+					<xs:element ref="COLLECTION" minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Select table rows with value of the column @ref = @value -->
+	<xs:element name="FILTER">
+		<xs:complexType>
+			<xs:attribute type="xs:string" name="ref" />
+			<xs:attribute type="xs:string" name="value" />
+			<xs:assert
+				test="(./@ref and ./@value and @ref != '' and @value != '')" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Group table rows by the content of the column @ref -->
+	<xs:element name="GROUPBY">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="FILTER" minOccurs="0" maxOccurs="1" />
+				</xs:choice>
+				<xs:choice>
+					<xs:element ref="INSTANCE" minOccurs="1" maxOccurs="1" />
+					<xs:element ref="COLLECTION" minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="ref" />
+			<xs:assert test="(./@ref  and @ref != '')" />
+		</xs:complexType>
+	</xs:element>
+
+
+	<!-- Join with another table One instance created for joined row of the 
+		secondary table -->
+	<xs:element name="JOIN">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element ref="INSTANCE" minOccurs="1" maxOccurs="1" />
+					<xs:element ref="COLLECTION" minOccurs="1" maxOccurs="1" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute type="xs:string" name="tableref" />
+			<xs:attribute type="xs:string" name="primary" />
+			<xs:attribute type="xs:string" name="foreign" />
+			<xs:assert test="(./@tableref and @tableref != '' )" />
+			<xs:assert test="(./@primary and @primary != '' )" />
+			<xs:assert test="(./@foreign and @foreign != '' )" />
+		</xs:complexType>
+	</xs:element>
+
+	<!-- Shortcut -->
+	<xs:element name="SC_REALQUANTITY">
+		<xs:complexType>
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="ref" />
+			<xs:attribute type="xs:string" name="value" />
+			<xs:attribute type="xs:string" name="unit" />
+			<xs:assert
+				test="(not(./@ref) and ./@value) or (not(./@value) and ./@ref) or (./@value and ./@ref)" />
+			<xs:assert test="if (@ref) then (@ref != '') else true()  " />
+			<xs:assert
+				test="if (@value) then (@value != '') else true()  " />
+			<xs:assert test="@dmrole != ''  " />
+			<xs:assert test="@unit  " />
+		</xs:complexType>
+	</xs:element>
+	<!-- Shortcut -->
+	<xs:element name="SC_INTQUANTITY">
+		<xs:complexType>
+			<xs:attribute type="xs:string" name="dmrole" />
+			<xs:attribute type="xs:string" name="ref" />
+			<xs:attribute type="xs:string" name="value" />
+			<xs:attribute type="xs:string" name="unit" />
+			<xs:assert
+				test="(not(./@ref) and ./@value) or (not(./@value) and ./@ref) or (./@value and ./@ref)" />
+			<xs:assert test="if (@ref) then (@ref != '') else true()  " />
+			<xs:assert
+				test="if (@value) then (@value != '') else true()  " />
+			<xs:assert test="@dmrole != ''  " />
+			<xs:assert test="@unit  " />
+		</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>

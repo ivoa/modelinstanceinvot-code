@@ -1,0 +1,39 @@
+{
+  "INSTANCE": {
+    "@ID": "PhotFrame_EB1",
+    "@dmrole": "",
+    "@dmtype": "mango:stcextend.PhotFilter",
+    "ATTRIBUTE": [
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.name",
+        "@dmtype": "ivoa:string",
+        "@value": "XMM EB1"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.zeroPointFlux",
+        "@dmtype": "ivoa:real",
+        "@value": "NoSet"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.magnitudeSystem",
+        "@dmtype": "ivoa:string",
+        "@value": "XMM"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.effectiveWavlength",
+        "@dmtype": "ivoa:real",
+        "@value": "0.35"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.unit",
+        "@dmtype": "ivoa:string",
+        "@value": "KeV"
+      },
+      {
+        "@dmrole": "mango:stcextend.PhotFilter.bandWidth",
+        "@dmtype": "ivoa:real",
+        "@value": "0.3"
+      }
+    ]
+  }
+}

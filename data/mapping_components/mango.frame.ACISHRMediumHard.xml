@@ -1,0 +1,10 @@
+
+
+<INSTANCE ID="PhotFrame_ACISHRMediumHard" dmrole=""
+	dmtype="mango:stcextend.HRFrame">
+	<INSTANCE dmrole="mango:stcextend.HRFrame.low" 
+		dmref="PhotFrame_ACISMedium" />
+	<INSTANCE dmrole="mango:stcextend.HRFrame.high" 
+		dmref="PhotFrame_ACISHard" />
+</INSTANCE>
+    

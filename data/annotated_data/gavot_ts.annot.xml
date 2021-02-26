@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	version="1.4"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://vo.ari.uni-heidelberg.de/docs/schemata/VOTable-1.4.xsd">
+
+    <!-- 
+     ModelInstanceInVot Mapping block
+     
+     This example has been derived from the Markus TS use-case
+     - It relies on a mock model built on purpose
+     - This model defines a TS as an object with one DataSet instance, one position and an open collection of Mango parameters typed as meas:Time.
+     
+     The Time instances represent the independent axis and their associated parameters represent the dependent axes 
+     
+     A model aware client should just read the block to get the time-series
+     -->
+
+	<MODEL_INSTANCE name="MOCKTSMANGO" syntax="ModelInstanceInVot">
+	    <!-- 
+	    Global variables: the frames
+	     -->
+		<GLOBALS>
+		    <!-- 
+		    GAIA G Photometric filter definiton
+		     -->
+			<INSTANCE ID="PhotFrame_gaiaG" dmrole="" dmtype="mango:stcextend.PhotFilter">
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="2.49524e-9" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="6246.77" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="Angstrom" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="4578.32" />
+			</INSTANCE>
+            <!-- 
+            Time frame
+             -->
+			<INSTANCE ID="TimeFrame_BARYCENTER" dmrole="" dmtype="coords:TimeFrame">
+				<INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
+					<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER" />
+				</INSTANCE>
+				<ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB" />
+			</INSTANCE>
+            <!-- 
+            Space frame
+             -->
+			<INSTANCE ID="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
+				<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
+				<ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="2015.5" />
+			</INSTANCE>
+		</GLOBALS>
+
+        <!--
+        Mapping of data contained in the table instance_G
+         -->
+		<TABLE_MAPPING tableref='instance_G'>
+			<INSTANCE dmrole="root" dmtype="mock_ts:TimeSeries">
+
+				<INSTANCE dmrole="mock_ts:TimeSeries.dataSet" dmtype="mock_ts:DataSet">
+					<ATTRIBUTE dmrole="s:TimeSeries.dataSet.dataProductType" dmtype="ivoa:string" value="TIMESERIES" />
+					<ATTRIBUTE dmrole="title" dmtype="ivoa:string" ref="ndupgttbwtit" />
+					<INSTANCE dmrole="mock_ts:DataSet.curation" dmtype="ds:Curation">
+						<ATTRIBUTE dmrole="ds:Curation.calibLevel" dmtype="ivoa:string" value="1" />
+						<INSTANCE dmrole="ds:Curation.publisher" dmtype="ds:Publisher">
+							<ATTRIBUTE dmrole="ds:Publisher.name" dmtype="ivoa:string" value="GAVO Data Center" />
+							<ATTRIBUTE dmrole="ds:Publisher.publisherId" dmtype="ivoa:string" value="ivo://org.gavo.dc" />
+						</INSTANCE>
+					</INSTANCE>
+				</INSTANCE>
+
+				<INSTANCE dmrole="mock_ts:TimeSeries.position" dmtype="mango:stcextend.LonLatSkyPosition">
+					<INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+						<ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="ndupgttbwuga" />
+						<ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="ndupgttbwltt" />
+						<INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
+					</INSTANCE>
+				</INSTANCE>
+
+				<COLLECTION dmrole="mock_ts:TimeSeries.points">
+					<TABLE_ROW_TEMPLATE>
+
+						<INSTANCE dmrole="mock_ts:TimeSeries.points" dmtype="mango:Parameter">
+							<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="time.epoch" />
+							<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Time stamp" />
+
+							<INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:Time">
+								<INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+									<ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="obs_time" />
+									<INSTANCE dmrole="coords:Coordinate.coordSys" dmref="TimeFrame_BARYCENTER" />
+								</INSTANCE>
+
+								<COLLECTION dmrole="mango:Parameter.associatedParameter">
+									<INSTANCE dmrole="mango:Parameter.associatedParameter" dmtype="mango:Parameter">
+										<INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+											<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.mag;em.opt" />
+											<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Mag G" />
+
+											<INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+												<INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+													<ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="phot" />
+													<INSTANCE dmrole="coords:Coordinate.coordSys" dmref="PhotFrame_gaiaG" />
+												</INSTANCE>
+											</INSTANCE>
+										</INSTANCE>
+									</INSTANCE>
+								</COLLECTION>
+
+							</INSTANCE>
+						</INSTANCE>
+						
+					</TABLE_ROW_TEMPLATE>
+				</COLLECTION>
+			</INSTANCE>
+		</TABLE_MAPPING>
+	</MODEL_INSTANCE>
+
+	<DESCRIPTION>
+		At the GAVO data Center, we hold several data collections part of
+		or derived from Gaia data release 2:
+
+		* A version
+		of GDR2's gaia_source table with just enough columns
+		to allow basic science (but therefore a bit faster and simpler to
+		deal with
+		than the full gaia_source table). This table also
+		has Lindegren's RUWE measure for filtering out marginal solutions.
+		* The light
+		curves released with DR2 as both a TAP-queriable table
+		(light curves as arrays) and an SSA service.
+		* The gdr2dist.main table
+		with distances estimates computed by
+		Bailer-Jones et al (:bibcode:`2018AJ....156...58B`) that should be
+		used in preference to
+		simple parallax operations.
+		* The gdr2mock schema, which contains a virtual Gaia catalog
+		generated from a carefully built model
+		of the Galaxy.
+	</DESCRIPTION>
+
+	<!-- <VODML> <MODEL> <NAME version="0.x">stc2</NAME> <URL>http://www.ivoa.net/dm/STC.vo-dml.xml</URL> </MODEL> <MODEL> <NAME version="invalid">ndcube</NAME> 
+		<URL>urn:dachsjunk:not-model:ndcube</URL> </MODEL> <MODEL> <NAME version="invalid">phot</NAME> <URL>urn:dachsjunk:not-model:phot</URL> 
+		</MODEL> <MODEL> <NAME version="1.0">ivoa</NAME> <URL>http://www.ivoa.net/dm/ivoa.vo-dml.xml</URL> </MODEL> <MODEL> <NAME version="1.0">ds</NAME> 
+		<URL>http://www.ivoa.net/dm/DatasetMetadata-1.0.vo-dml.xml</URL> </MODEL> <MODEL> <NAME version="0.x">vo-dml</NAME> <URL>http://www.ivoa.net/dm/VO-DML.vo-dml.xml</URL> 
+		</MODEL> <TEMPLATES> <INSTANCE ID="ndupgwotpost" dmtype="stc2:Coords"> <ATTRIBUTE dmrole="time"> <INSTANCE ID="ndupgogudgda" dmtype="stc2:TimeCoordinate"> 
+		<ATTRIBUTE dmrole="frame"> <INSTANCE ID="ndupgogudoia" dmtype="stc2:TimeFrame"> <ATTRIBUTE dmrole="timescale"> <LITERAL dmtype="ivoa:string">TCB</LITERAL> 
+		</ATTRIBUTE> <ATTRIBUTE dmrole="refPosition"> <LITERAL dmtype="ivoa:string">BARYCENTER</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="time0"> 
+		<LITERAL dmtype="ivoa:string">0</LITERAL> </ATTRIBUTE> </INSTANCE> </ATTRIBUTE> <ATTRIBUTE dmrole="location"> <COLUMN ref="obs_time" 
+		/> </ATTRIBUTE> </INSTANCE> </ATTRIBUTE> <ATTRIBUTE dmrole="space"> <INSTANCE ID="ndupgogudnea" dmtype="stc2:SphericalCoordinate"> 
+		<ATTRIBUTE dmrole="frame"> <INSTANCE ID="ndupgoguduna" dmtype="stc2:SpaceFrame"> <ATTRIBUTE dmrole="orientation"> <LITERAL dmtype="ivoa:string">ICRS</LITERAL> 
+		</ATTRIBUTE> <ATTRIBUTE dmrole="epoch"> <LITERAL dmtype="ivoa:string">J2015.5</LITERAL> </ATTRIBUTE> </INSTANCE> </ATTRIBUTE> <ATTRIBUTE 
+		dmrole="longitude"> <CONSTANT ref="ndupgttbwuga" /> </ATTRIBUTE> <ATTRIBUTE dmrole="latitude"> <CONSTANT ref="ndupgttbwltt" /> </ATTRIBUTE> 
+		</INSTANCE> </ATTRIBUTE> </INSTANCE> <INSTANCE ID="nduppompmgea" dmtype="ndcube:Cube"> <ATTRIBUTE dmrole="independent_axes"> <COLUMN 
+		ref="obs_time" /> </ATTRIBUTE> <ATTRIBUTE dmrole="dependent_axes"> <COLUMN ref="phot" /> </ATTRIBUTE> </INSTANCE> <INSTANCE ID="ndupgbaameit" 
+		dmtype="phot:PhotCal"> <ATTRIBUTE dmrole="filterIdentifier"> <LITERAL dmtype="ivoa:string">GAIA/GAIA2.G</LITERAL> </ATTRIBUTE> <ATTRIBUTE 
+		dmrole="zeroPointFlux"> <LITERAL dmtype="ivoa:string">2836.53</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="magnitudeSystem"> <LITERAL 
+		dmtype="ivoa:string">Vega</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="effectiveWavelength"> <LITERAL dmtype="ivoa:string">6.23e-7</LITERAL> 
+		</ATTRIBUTE> <ATTRIBUTE dmrole="value"> <COLUMN ref="phot" /> </ATTRIBUTE> </INSTANCE> <INSTANCE ID="ndupgttnahba" dmtype="phot:PhotCal"> 
+		<ATTRIBUTE dmrole="filterIdentifier"> <LITERAL dmtype="ivoa:string">GAIA/GAIA2.G</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="effectiveWavelength"> 
+		<LITERAL dmtype="ivoa:string">6.23e-7</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="value"> <COLUMN ref="flux" /> </ATTRIBUTE> </INSTANCE> 
+		<INSTANCE ID="ndugetimobna" dmtype="ivoa:Measurement"> <ATTRIBUTE dmrole="value"> <COLUMN ref="flux" /> </ATTRIBUTE> <ATTRIBUTE dmrole="statError"> 
+		<COLUMN ref="flux_error" /> </ATTRIBUTE> </INSTANCE> <INSTANCE ID="ndupgwwmloia" dmtype="ds:Dataset"> <ATTRIBUTE dmrole="dataProductType"> 
+		<LITERAL dmtype="ivoa:string">TIMESERIES</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="title"> <CONSTANT ref="ndupgttbwtit" /> </ATTRIBUTE> 
+		<ATTRIBUTE dmrole="curation"> <INSTANCE ID="ndupgwotpset" dmtype="ds:Curation"> <ATTRIBUTE dmrole="calibLevel"> <LITERAL dmtype="ivoa:string">1</LITERAL> 
+		</ATTRIBUTE> <ATTRIBUTE dmrole="publisher"> <INSTANCE ID="ndupgwotpgea" dmtype="ds:Publisher"> <ATTRIBUTE dmrole="name"> <LITERAL 
+		dmtype="ivoa:string">GAVO Data Center</LITERAL> </ATTRIBUTE> <ATTRIBUTE dmrole="publisherId"> <LITERAL dmtype="ivoa:string">ivo://org.gavo.dc</LITERAL> 
+		</ATTRIBUTE> </INSTANCE> </ATTRIBUTE> </INSTANCE> </ATTRIBUTE> </INSTANCE> <INSTANCE ID="ndupgbsgtpoa" dmtype="ndcube:Cube"> <ATTRIBUTE 
+		dmrole="independent_axes"> <COLUMN ref="obs_time" /> </ATTRIBUTE> <ATTRIBUTE dmrole="dependent_axes"> <COLUMN ref="flux" /> <COLUMN 
+		ref="phot" /> </ATTRIBUTE> </INSTANCE> </TEMPLATES> </VODML> -->
+	<INFO name="legal"
+		value=" If you use public Gaia DR2 data in a paper, please take note of  `ESAC's guide`_ on how to acknowledge and cite it.  .. _ESAC's guide: http://gea.esac.esa.int/archive/documentation/GDR2/Miscellaneous/sec_credit_and_citation_instructions/" />
+	<RESOURCE>
+		<COOSYS ID="system" epoch="J2015.5" system="ICRS" />
+		<TIMESYS ID="ts" refposition="BARYCENTER" timeorigin="0" timescale="TCB" />
+		<GROUP ID="phot_def" name="photcal">
+			<PARAM arraysize="*" datatype="char" name="filterIdentifier" ucd="meta.id;instr.filter"
+				utype="photDM:PhotometryFilter.identifier" value="GAIA/GAIA2.G" />
+			<PARAM datatype="double" name="zeroPointFlux" ucd="phot.mag;arith.zp" unit="Jy"
+				utype="photDM:PhotCal.zeroPoint.flux.value" value="2836.53" />
+			<PARAM arraysize="*" datatype="char" name="magnitudeSystem" ucd="meta.code" utype="photDM:PhotCal.magnitudeSystem.type"
+				value="Vega" />
+			<PARAM datatype="double" name="effectiveWavelength" ucd="em.wl.effective" unit="m"
+				utype="photDM:PhotometryFilter.spectralLocation.value" value="6.23e-7" />
+			<FIELDref ref="phot" utype="adhoc:location" />
+		</GROUP>
+		<GROUP ID="phot_def0" name="photcal">
+			<PARAM arraysize="*" datatype="char" name="filterIdentifier" ucd="meta.id;instr.filter"
+				utype="photDM:PhotometryFilter.identifier" value="GAIA/GAIA2.G" />
+			<PARAM datatype="double" name="effectiveWavelength" ucd="em.wl.effective" unit="m"
+				utype="photDM:PhotometryFilter.spectralLocation.value" value="6.23e-7" />
+			<FIELDref ref="flux" utype="adhoc:location" />
+		</GROUP>
+		<TABLE name="instance_G">
+			<DESCRIPTION> With data relase 2, the Gaia DPAC released lightcurves for objects
+				considered variable. This is such a
+				lightcurve (with invalid points
+				removed), for the GAIA/GAIA2.G band.
+
+				Note that the magnitudes in phot are blindly converted to
+				flux using
+				the zero point given in the metadata. If flux_error/flux&lt;0.1, you can
+				use 1.09*flux_error/flux as a good
+				estimate for the error; else the
+				distribution is so skewed that you should work with fluxes rather than
+				magnitude.
+
+				The zero
+				point in the magnitude metadata has been taken from the SVO
+				filter profile service.
+			</DESCRIPTION>
+			<FIELD ID="obs_time" datatype="double" name="obs_time" ref="ts" ucd="time.epoch" unit="d">
+				<DESCRIPTION>Observation time (JD in barycentric TCB).</DESCRIPTION>
+			</FIELD>
+			<FIELD ID="phot" datatype="double" name="phot" ref="phot_def" ucd="phot.mag;em.opt" unit="mag">
+				<DESCRIPTION>Magnitude in GAIA/GAIA2.G, Vega system.</DESCRIPTION>
+			</FIELD>
+			<FIELD ID="flux" datatype="float" name="flux" ref="phot_def0" ucd="phot.flux;em.opt" unit="s**-1">
+				<DESCRIPTION>Integrated flux in GAIA/GAIA2.G. This is in CCD electrons per second.</DESCRIPTION>
+			</FIELD>
+			<FIELD ID="flux_error" datatype="float" name="flux_error" ucd="stat.error;phot.flux;em.opt" unit="s**-1">
+				<DESCRIPTION>Error in GAIA/GAIA2.G flux.</DESCRIPTION>
+			</FIELD>
+			<PARAM arraysize="*" datatype="char" name="dataproduct_type" ucd="meta.code.class"
+				utype="obscore:ObsDataset.dataProductType" value="timeseries" />
+			<PARAM arraysize="*" datatype="char" name="dataproduct_subtype" ucd="meta.code.class"
+				utype="obscore:ObsDataset.dataProductSubtype" value="lightcurve" />
+			<PARAM arraysize="*" datatype="char" name="source_id" ucd="meta.id;meta.main" value="1866721434011386240">
+				<DESCRIPTION>Gaia DR2 source_id of the object</DESCRIPTION>
+			</PARAM>
+			<PARAM ID="ndupgttbwtit" arraysize="*" datatype="char" name="title" ucd="meta.title;obs"
+				value="Gaia DR2 G photometry time series for star 1866721434011386240">
+				<DESCRIPTION>Publisher-assigned title of the data set</DESCRIPTION>
+			</PARAM>
+			<PARAM ID="ndupgttbwuga" datatype="double" name="ra" ref="system" ucd="pos.eq.ra" value="315.018457397759">
+				<DESCRIPTION>Gaia DR2 RA of source object</DESCRIPTION>
+			</PARAM>
+			<PARAM ID="ndupgttbwltt" datatype="double" name="dec" ref="system" ucd="pos.eq.dec" value="35.3014389949649">
+				<DESCRIPTION>Gaia DR2 Dec of source object</DESCRIPTION>
+			</PARAM>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>2456964.614751482</TD>
+						<TD>13.1433285545337</TD>
+						<TD>104238.602</TD>
+						<TD>784.756287</TD>
+					</TR>
+					<TR>
+						<TD>2456964.688753904</TD>
+						<TD>13.145307101711005</TD>
+						<TD>104048.82</TD>
+						<TD>203.058762</TD>
+					</TR>
+					<TR>
+						<TD>2456990.105054711</TD>
+						<TD>13.051750456984891</TD>
+						<TD>113412.211</TD>
+						<TD>520.204834</TD>
+					</TR>
+					<TR>
+						<TD>2457019.3419295456</TD>
+						<TD>13.080361680003474</TD>
+						<TD>110462.617</TD>
+						<TD>115.218361</TD>
+					</TR>
+					<TR>
+						<TD>2457019.4159321445</TD>
+						<TD>13.085564601049686</TD>
+						<TD>109934.539</TD>
+						<TD>126.182106</TD>
+					</TR>
+					<TR>
+						<TD>2457065.898628062</TD>
+						<TD>13.10800968029834</TD>
+						<TD>107685.227</TD>
+						<TD>389.942261</TD>
+					</TR>
+					<TR>
+						<TD>2457066.074785681</TD>
+						<TD>13.104134378611676</TD>
+						<TD>108070.273</TD>
+						<TD>74.146286</TD>
+					</TR>
+					<TR>
+						<TD>2457066.1487640734</TD>
+						<TD>13.109822897622953</TD>
+						<TD>107505.539</TD>
+						<TD>188.289246</TD>
+					</TR>
+					<TR>
+						<TD>2457066.3249472557</TD>
+						<TD>13.10128410191652</TD>
+						<TD>108354.352</TD>
+						<TD>96.1394348</TD>
+					</TR>
+					<TR>
+						<TD>2457066.3989527393</TD>
+						<TD>13.100995597528158</TD>
+						<TD>108383.148</TD>
+						<TD>105.116081</TD>
+					</TR>
+					<TR>
+						<TD>2457081.5825963076</TD>
+						<TD>13.008353874924927</TD>
+						<TD>118037.078</TD>
+						<TD>1208.80115</TD>
+					</TR>
+					<TR>
+						<TD>2457081.6566034523</TD>
+						<TD>13.031208830929806</TD>
+						<TD>115578.344</TD>
+						<TD>195.553192</TD>
+					</TR>
+					<TR>
+						<TD>2457081.832762772</TD>
+						<TD>13.001301277300179</TD>
+						<TD>118806.305</TD>
+						<TD>1245.4635</TD>
+					</TR>
+					<TR>
+						<TD>2457081.906770964</TD>
+						<TD>13.031768797857135</TD>
+						<TD>115518.75</TD>
+						<TD>109.625305</TD>
+					</TR>
+					<TR>
+						<TD>2457130.3938809815</TD>
+						<TD>13.085899752457955</TD>
+						<TD>109900.609</TD>
+						<TD>82.0990906</TD>
+					</TR>
+					<TR>
+						<TD>2457130.5700473306</TD>
+						<TD>13.086879782098539</TD>
+						<TD>109801.453</TD>
+						<TD>183.367706</TD>
+					</TR>
+					<TR>
+						<TD>2457160.812671543</TD>
+						<TD>12.990842870790523</TD>
+						<TD>119956.242</TD>
+						<TD>106.287735</TD>
+					</TR>
+					<TR>
+						<TD>2457188.0564631657</TD>
+						<TD>13.093987718627234</TD>
+						<TD>109084.969</TD>
+						<TD>501.87973</TD>
+					</TR>
+					<TR>
+						<TD>2457188.1304746564</TD>
+						<TD>13.101001387701364</TD>
+						<TD>108382.57</TD>
+						<TD>539.240479</TD>
+					</TR>
+					<TR>
+						<TD>2457230.2618075702</TD>
+						<TD>13.089965407523454</TD>
+						<TD>109489.844</TD>
+						<TD>929.107666</TD>
+					</TR>
+					<TR>
+						<TD>2457230.3358171373</TD>
+						<TD>13.100171884467892</TD>
+						<TD>108465.406</TD>
+						<TD>580.758545</TD>
+					</TR>
+					<TR>
+						<TD>2457242.0168405203</TD>
+						<TD>13.139704520994812</TD>
+						<TD>104587.117</TD>
+						<TD>144.969971</TD>
+					</TR>
+					<TR>
+						<TD>2457242.090848804</TD>
+						<TD>13.13877482897491</TD>
+						<TD>104676.711</TD>
+						<TD>91.0609665</TD>
+					</TR>
+					<TR>
+						<TD>2457288.200282992</TD>
+						<TD>13.244023933780452</TD>
+						<TD>95005.8672</TD>
+						<TD>103.232765</TD>
+					</TR>
+					<TR>
+						<TD>2457301.777669793</TD>
+						<TD>13.233471623690427</TD>
+						<TD>95933.7344</TD>
+						<TD>256.566437</TD>
+					</TR>
+					<TR>
+						<TD>2457301.9538197825</TD>
+						<TD>13.22494127431079</TD>
+						<TD>96690.4297</TD>
+						<TD>73.0098953</TD>
+					</TR>
+					<TR>
+						<TD>2457369.2196098543</TD>
+						<TD>13.256924561828937</TD>
+						<TD>93883.6953</TD>
+						<TD>141.182571</TD>
+					</TR>
+					<TR>
+						<TD>2457395.9637804604</TD>
+						<TD>13.159863472720843</TD>
+						<TD>102663.156</TD>
+						<TD>318.280396</TD>
+					</TR>
+					<TR>
+						<TD>2457446.1992984903</TD>
+						<TD>13.106650583650332</TD>
+						<TD>107820.109</TD>
+						<TD>111.751579</TD>
+					</TR>
+					<TR>
+						<TD>2457446.375459385</TD>
+						<TD>13.103625026194251</TD>
+						<TD>108120.984</TD>
+						<TD>145.705811</TD>
+					</TR>
+					<TR>
+						<TD>2457446.4494390027</TD>
+						<TD>13.105192839011954</TD>
+						<TD>107964.969</TD>
+						<TD>185.77774</TD>
+					</TR>
+					<TR>
+						<TD>2457446.625625258</TD>
+						<TD>13.099763974466097</TD>
+						<TD>108506.164</TD>
+						<TD>723.06897</TD>
+					</TR>
+					<TR>
+						<TD>2457463.6336232</TD>
+						<TD>13.030502392158379</TD>
+						<TD>115653.57</TD>
+						<TD>102.266785</TD>
+					</TR>
+					<TR>
+						<TD>2457463.7076316085</TD>
+						<TD>13.030362897946631</TD>
+						<TD>115668.43</TD>
+						<TD>124.907585</TD>
+					</TR>
+					<TR>
+						<TD>2457463.883794405</TD>
+						<TD>13.02936852134825</TD>
+						<TD>115774.414</TD>
+						<TD>386.660461</TD>
+					</TR>
+					<TR>
+						<TD>2457463.957804125</TD>
+						<TD>13.034002422426937</TD>
+						<TD>115281.344</TD>
+						<TD>98.1785889</TD>
+					</TR>
+					<TR>
+						<TD>2457507.3690639553</TD>
+						<TD>13.019767042062135</TD>
+						<TD>116802.781</TD>
+						<TD>137.408569</TD>
+					</TR>
+					<TR>
+						<TD>2457507.443075384</TD>
+						<TD>13.014477387452114</TD>
+						<TD>117373.227</TD>
+						<TD>457.469208</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>

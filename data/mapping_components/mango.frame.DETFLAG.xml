@@ -1,0 +1,43 @@
+		<INSTANCE ID="StatusFrame_DETFLAG" dmrole=""
+			dmtype="cab_msd:STCStatusSys">
+			<COLLECTION size="5"
+				dmrole="cab_msd:STCStatusSys.statusLabel">
+				<INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+					dmtype="cab_msd:StatusLabel">
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+						dmtype="ivoa:integer" value="0" />
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+						dmtype="ivoa:string" value="good" />
+				</INSTANCE>
+				<INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+					dmtype="cab_msd:StatusLabel">
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+						dmtype="ivoa:integer" value="1" />
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+						dmtype="ivoa:string" value="source parameters may be affected" />
+				</INSTANCE>
+				<INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+					dmtype="cab_msd:StatusLabel">
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+						dmtype="ivoa:integer" value="2" />
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+						dmtype="ivoa:string" value="possibly spurious" />
+				</INSTANCE>
+				<INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+					dmtype="cab_msd:StatusLabel">
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+						dmtype="ivoa:integer" value="3" />
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+						dmtype="ivoa:string"
+						value="located in a area where spurious detection may occur" />
+				</INSTANCE>
+				<INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+					dmtype="cab_msd:StatusLabel">
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+						dmtype="ivoa:integer" value="4" />
+					<ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+						dmtype="ivoa:string"
+						value="located in a area where spurious detection may occur and possibly spurious" />
+				</INSTANCE>
+			</COLLECTION>
+		</INSTANCE>

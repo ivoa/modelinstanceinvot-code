@@ -1,0 +1,76 @@
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot" >
+	<GLOBALS>
+		<INSTANCE ID="SpaceCoordFrame" dmrole="">
+			<INSTANCE dmrole="coords:SpaceFrame.refPosition"
+				dmtype="coords:StdRefLocation">
+				<ATTRIBUTE dmrole="coords:StdRefLocation.position"
+					dmtype="ivoa:string" ref="@@@@@@" />
+			</INSTANCE>
+			<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame"
+				dmtype="ivoa:string" ref="@@@@@@" />
+			<ATTRIBUTE dmrole="coords:SpaceFrame.equinox"
+				dmtype="coords:Epoch" ref="@@@@@@" />
+		</INSTANCE>
+
+	</GLOBALS>
+
+	<TABLE_MAPPING tableref='Results'>
+		<INSTANCE dmrole="mango:MangoObject.parameters"
+			dmtype="mango:Parameter">
+			<ATTRIBUTE dmrole="mango:Parameter.semantic"
+				dmtype="ivoa:string" value="#propermotion" />
+			<ATTRIBUTE dmrole="mango:Parameter.ucd"
+				dmtype="ivoa:string" value="pos.pm" />
+			<ATTRIBUTE dmrole="mango:Parameter.description"
+				dmtype="ivoa:string" value="calibrated" />
+
+			<INSTANCE dmrole="mango:Parameter.measure"
+				dmtype="cab_msd:STCSphericalSkyPosition">
+				<INSTANCE dmrole="cab_msd:STCSphericalSkyPosition.coord"
+					dmtype="cab_msd:STCSphericalPoint">
+					<INSTANCE dmrole="cab_msd:STCSphericalPoint.longitude"
+						dmtype="ivoa:RealQuantity">
+						<ATTRIBUTE dmrole="ivoa:RealQuantity.value"
+							dmtype="ivoa:real" ref="@@@@@@" />
+						<ATTRIBUTE dmrole="ivoa:Quantity.unit"
+							dmtype="ivoa:Unit" ref="@@@@@@" />
+					</INSTANCE>
+					<INSTANCE dmrole="cab_msd:STCSphericalPoint.latitude"
+						dmtype="ivoa:RealQuantity">
+						<ATTRIBUTE dmrole="ivoa:RealQuantity.value"
+							dmtype="ivoa:real" ref="@@@@@@" />
+						<ATTRIBUTE dmrole="ivoa:Quantity.unit"
+							dmtype="ivoa:Unit" ref="@@@@@@" />
+					</INSTANCE>
+					<INSTANCE dmrole="coords:Coordinate.coordSys"
+						dmtype="coords:SpaceSys">
+						<INSTANCE ref="SpaceCoordFrame"
+							dmrole="coords:PhysicalCoordSys.frame" />
+					</INSTANCE>
+				</INSTANCE>
+				<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+					<INSTANCE dmrole="meas:Error.statError"
+						dmtype="meas:Symmetrical">
+						<INSTANCE dmrole="meas:Symmetrical.radius"
+							dmtype="ivoa:RealQuantity">
+							<ATTRIBUTE dmrole="ivoa:RealQuantity.value"
+								dmtype="ivoa:real" ref="@@@@@@" />
+							<ATTRIBUTE dmrole="ivoa:Quantity.unit"
+								dmtype="ivoa:Unit" ref="@@@@@@" />
+						</INSTANCE>
+					</INSTANCE>
+					<INSTANCE dmrole="meas:Error.sysError"
+						dmtype="meas:Symmetrical">
+						<INSTANCE dmrole="meas:Symmetrical.radius"
+							dmtype="ivoa:RealQuantity">
+							<ATTRIBUTE dmrole="ivoa:RealQuantity.value"
+								dmtype="ivoa:real" ref="@@@@@@" />
+							<ATTRIBUTE dmrole="ivoa:Quantity.unit"
+								dmtype="ivoa:Unit" ref="@@@@@@" />
+						</INSTANCE>
+					</INSTANCE>
+				</INSTANCE>
+			</INSTANCE>
+		</INSTANCE>
+	</TABLE_MAPPING>
+</MODEL_INSTANCE>

@@ -1,0 +1,50 @@
+{
+    "identifier": "PPM",
+    "parameters": [
+        {
+            "measure": "Position",
+            "ucd": "pos.eq;meta.main",
+            "semantic": "#position",
+            "description": "position",
+            "reductionStatus": "Computed",
+            "frame": {
+                "frame": "ICRS",
+                "equinox": null
+            },
+            "position": {
+                "longitude": "@RAJ2000",
+                "latitude": "@DEJ2000",
+                "unit": "deg"
+            },
+            "errors": {
+                "random": {
+                    "longitude": "@e_RAs",
+                    "latitude": "@e_DEs",
+                    "unit": "arcsec"
+                }
+            }
+        },
+        {
+            "measure": "ProperMotion",
+            "ucd": "pos.pm",
+            "semantic": "#propermotion",
+            "description": "Proper Motion",
+            "reductionStatus": "Calibrated",
+            "position": {
+                "longitude": "@pmRA",
+                "latitude": "@pmDE",
+                "unit": "s/y"
+            },
+            "errors": {
+                "random": {
+                    "longitude": "@e_pmRA",
+                    "latitude": "@e_pmDE",
+                    "unit": "mas/y"
+                }
+            }
+        }
+    ],
+    "associatedData": {
+        
+    }
+}

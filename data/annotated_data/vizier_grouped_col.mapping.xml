@@ -1,0 +1,117 @@
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+  <GLOBALS>
+    <INSTANCE ID="StatusFrame_QRVFLAG" dmrole="" dmtype="cab_msd:STCStatusSys">
+      <COLLECTION size="5" dmrole="cab_msd:STCStatusSys.statusLabel">
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="B"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="Mean (max) error 0.5 (0.9)"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="B"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="Mean (max) error 1.2 (2.0)"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="C"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="Mean (max) error 2.5 (5.0)"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="D"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="Mean (max) error 5 (10)"/>
+        </INSTANCE>
+        <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel" dmtype="cab_msd:StatusLabel">
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.value" dmtype="ivoa:integer" value="E"/>
+          <ATTRIBUTE dmrole="cab_msd:StatusLabel.label" dmtype="ivoa:string" value="Mean error &gt; 10"/>
+        </INSTANCE>
+      </COLLECTION>
+    </INSTANCE>
+  </GLOBALS>
+  <TABLE_MAPPING tableref="Results">
+    <COLLECTION dmrole="root">
+      <TABLE_ROW_TEMPLATE>
+        <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+          <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="recno"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.associatedData"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#radial velocity"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="spect.dopplerVeloc;pos.heliocentric"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Radial velocity, derived from the shift of some spectral feature in Heliocentric position coordinate (solar system bodies)"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="RV"/>
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="km/sec"/>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#Number.of.plates"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.number"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Number of plates used for radial velocity "/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="o_RV"/>
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="-"/>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#observatory"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.ref;pos.frame "/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="the observatories contributing to the mean radial velocity  "/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="r_RV"/>
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="-"/>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#quality_flag"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.code.qual"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value=" Quality of radial velocity "/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Flag">
+                <INSTANCE dmrole="mango:stcextend.Flag.coord" dmtype="mango:stcextend.FlagCoord">
+                  <ATTRIBUTE dmrole="mango:stcextend.FlagCoord.coord" dmtype="ivoa:integer" ref="q_RV"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="StatusFrame_QRVFLAG"/>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </COLLECTION>
+        </INSTANCE>
+      </TABLE_ROW_TEMPLATE>
+    </COLLECTION>
+  </TABLE_MAPPING>
+</MODEL_INSTANCE>

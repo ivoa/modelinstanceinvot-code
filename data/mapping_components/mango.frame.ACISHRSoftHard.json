@@ -1,0 +1,17 @@
+{
+  "INSTANCE": {
+    "@ID": "PhotFrame_ACISHRSoftHard",
+    "@dmrole": "",
+    "@dmtype": "mango:stcextend.HRFrame",
+    "INSTANCE": [
+      {
+        "@dmref": "PhotFrame_ACISSoft",
+        "@dmrole": "mango:stcextend.HRFrame.low"
+      },
+      {
+        "@dmref": "PhotFrame_ACISHard",
+        "@dmrole": "mango:stcextend.HRFrame.high"
+      }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+  <GLOBALS>
+    <INSTANCE ID="SpaceSys_ICRS_Spherical" dmtype="coords:SpaceSys">
+      <INSTANCE dmrole="coords:PhysicalCoordSys.coordSpace" dmtype="coords:SphericalCoordSpace">
+        <COLLECTION size="-1" dmrole="coords:CoordSpace.axis">
+          <INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+            <ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="ra"/>
+          </INSTANCE>
+          <INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+            <ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="dec"/>
+          </INSTANCE>
+          <INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+            <ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="r"/>
+          </INSTANCE>
+        </COLLECTION>
+      </INSTANCE>
+      <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+        <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+          <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet"/>
+        </INSTANCE>
+        <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+        <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet"/>
+      </INSTANCE>
+    </INSTANCE>
+  </GLOBALS>
+  <TABLE_MAPPING tableref="Results">
+    <COLLECTION dmrole="root">
+      <TABLE_ROW_TEMPLATE>
+        <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+          <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="PPM"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.associatedData"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq;meta.main"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="coords:Point">
+                <INSTANCE dmrole="coords:Point.axis1" dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="RAJ2000"/>
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                </INSTANCE>
+                <INSTANCE dmrole="coords:Point.axis2" dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="DEJ2000"/>
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                </INSTANCE>
+                <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRSSpherical"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Ellipse">
+                  <COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
+                    <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="e_RAs"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec"/>
+                    </INSTANCE>
+                    <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="e_DEs"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec"/>
+                    </INSTANCE>
+                  </COLLECTION>
+                  <INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="0.0"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#propermotion"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.pm"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Proper Motion"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:ProperMotion">
+                <INSTANCE dmrole="meas:ProperMotion.lon" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmRA"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="s/y"/>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:ProperMotion.lat" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmDE"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="s/y"/>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="Ellipse">
+                    <COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="e_pmRA"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                      </INSTANCE>
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="e_pmDE"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                      </INSTANCE>
+                    </COLLECTION>
+                    <INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="0.0"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </COLLECTION>
+        </INSTANCE>
+      </TABLE_ROW_TEMPLATE>
+    </COLLECTION>
+  </TABLE_MAPPING>
+</MODEL_INSTANCE>

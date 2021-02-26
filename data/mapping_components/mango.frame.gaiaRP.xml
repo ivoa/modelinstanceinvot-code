@@ -1,0 +1,11 @@
+   <!--
+   Pseudo filter for the XMM EB1 (0.2 0.5 KeV) 
+    -->
+    <INSTANCE ID="PhotFrame_gaiaRP" dmrole="" dmtype="mango:stcextend.PhotFilter" >
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Grp"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="1.29363e-9"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="7740.87"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="Angstrom"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="2943.72"/>
+    </INSTANCE>

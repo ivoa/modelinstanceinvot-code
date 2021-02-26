@@ -1,0 +1,52 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": null,
+    "TABLE_MAPPING": {
+      "@tableref": "Results",
+      "INSTANCE": {
+        "@dmrole": "root",
+        "@dmtype": "mango:stcextend.Flag",
+        "INSTANCE": {
+          "@dmrole": "mango:MangoObject.parameters",
+          "@dmtype": "mango:Parameter",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "mango:Parameter.semantic",
+              "@dmtype": "ivoa:string",
+              "@value": "@@@@@@"
+            },
+            {
+              "@dmrole": "mango:Parameter.ucd",
+              "@dmtype": "ivoa:string",
+              "@value": "@@@@@@"
+            },
+            {
+              "@dmrole": "mango:Parameter.description",
+              "@dmtype": "ivoa:string",
+              "@value": "@@@@@@"
+            }
+          ],
+          "INSTANCE": {
+            "@dmrole": "mango:Parameter.measure",
+            "@dmtype": "mango:stcextend.Flag",
+            "INSTANCE": {
+              "@dmrole": "mango:stcextend.Flag.coord",
+              "@dmtype": "mango:stcextend.FlagCoord",
+              "ATTRIBUTE": {
+                "@dmrole": "mango:stcextend.FlagCoord.coord",
+                "@dmtype": "ivoa:integer",
+                "@ref": "@@@@@@"
+              },
+              "INSTANCE": {
+                "@dmref": "@@@@@@",
+                "@dmrole": "coords:Coordinate.coordSys"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

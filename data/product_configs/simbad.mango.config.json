@@ -1,0 +1,51 @@
+{
+    "identifier": "main_id",
+	"parameters": [
+		{
+			"measure": "LonLatSkyPositionEllErr",
+			"ucd": "pos.eq;meta.main",
+			"semantic": "#position",
+			"description": "position",
+			"reductionStatus": "Computed",
+			"frame": {
+				"frame": "ICRS",
+				"equinox": null
+			},
+			"position": {
+				"longitude": "@ra",
+				"latitude": "@dec",
+				"unit": "deg"
+			},
+			"errors": {
+				"random": {
+                    "semiAxis": ["@coo_err_maj", "@coo_err_min"],
+                    "posAngle": "@coo_err_angle",
+                    "unit": "mas",
+                    "angleUnit": "deg"
+				}
+			}
+		},
+		{
+			"measure": "ProperMotion",
+			"ucd": "pos.pm",
+			"semantic": "#propermotion",
+			"description": "Proper Motion",
+			"reductionStatus": "Calibrated",
+			"position": {
+				"longitude": "@pmra",
+				"latitude": "@pmdec",
+				"unit": "mas/y"
+			},
+			"errors": {
+				"random": {
+					"longitude": "@pmra_prec",
+					"latitude": "@pmdec_prec",
+					"unit": "mas/y"
+				}
+			}
+		}
+	],
+	"associatedData": {
+		
+	}
+}

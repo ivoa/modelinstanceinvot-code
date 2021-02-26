@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+	<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+		<GLOBALS>
+			<INSTANCE ID="SpaceSys_ICRS_Spherical" dmtype="coords:SpaceSys">
+				<INSTANCE dmrole="coords:PhysicalCoordSys.coordSpace" dmtype="coords:SphericalCoordSpace">
+					<COLLECTION size="-1" dmrole="coords:CoordSpace.axis">
+						<INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="ra" />
+						</INSTANCE>
+						<INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="dec" />
+						</INSTANCE>
+						<INSTANCE dmrole="coords:CoordSpace.axis" dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string" value="r" />
+						</INSTANCE>
+					</COLLECTION>
+				</INSTANCE>
+				<INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+					<INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+						<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
+					</INSTANCE>
+					<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
+					<ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet" />
+				</INSTANCE>
+			</INSTANCE>
+		</GLOBALS>
+		<TABLE_MAPPING tableref="Results">
+			<COLLECTION dmrole="root">
+				<TABLE_ROW_TEMPLATE>
+					<INSTANCE dmrole="root" dmtype="mango:MangoObject">
+						<ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="name" />
+						<COLLECTION size="-1" dmrole="mango:MangoObject.associatedData" />
+						<COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+							<INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq;meta.main" />
+								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position" />
+								<ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed" />
+								<INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+									<INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+
+										<INSTANCE dmrole="coords:Point.axis1" dmtype="ivoa:RealQuantity">
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pos_RA" />
+											<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+										</INSTANCE>
+										<INSTANCE dmrole="coords:Point.axis2" dmtype="ivoa:RealQuantity">
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pos_DEC" />
+											<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+										</INSTANCE>
+										<INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRSSpherical" />
+									</INSTANCE>
+
+									<INSTANCE dmrole="meas:Measure.error" dmtype="mango:CorrelatedError">
+										<INSTANCE dmrole="mango:CorrelatedError.error" dmtype="mango:CorrError2D">
+											<ATTRIBUTE dmrole="mango:CorrError2D.confidenceLevel" dmtype="ivoa:real" value="1" />
+											<ATTRIBUTE dmrole="mango:CorrError2D.sigma1" dmtype="ivoa:real" ref="pos_RA_err" />
+											<ATTRIBUTE dmrole="mango:CorrError2D.sigma2" dmtype="ivoa:real" ref="pos_DEC_err" />
+											<ATTRIBUTE dmrole="mango:CorrError2D.correlation" dmtype="ivoa:real" ref="pos_RADEC_corr" />
+										</INSTANCE>
+										<COLLECTION dmrole="mango:CorrelatedError.coupledErrors">
+
+											<INSTANCE dmrole="mango:CorrelatedError.coupledErrors" dmtype="mango:CorrelatedError2D">
+												<ATTRIBUTE dmrole="mango:CorrelatedError2D.ucd" dmtype="ivoa:string" value="pos.pm" />
+												<INSTANCE dmrole="mango:CorrelatedError2D.correlations1_1" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_1.value" dmtype="real" ref="pm_RA_pos_RA_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError2D.correlations1_2" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_2.value" dmtype="real" ref="pm_RA_pos_DEC_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError2D.correlations2_1" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations2_1.value" dmtype="real" ref="pm_DEC_pos_RA_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError2D.correlations2_2" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations2_2.value" dmtype="real" ref="pm_DEC_pos_DEC_corr" />
+												</INSTANCE>
+											</INSTANCE>
+
+											<INSTANCE dmrole="mango:CorrelatedError.coupledErrors" dmtype="mango:CorrelatedError1D">
+												<ATTRIBUTE dmrole="mango:CorrelatedError1D.ucd" dmtype="ivoa:string" value="spect.dopplerVeloc" />
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_1" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_1.value" dmtype="real" ref="RV_pos_RA_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_2" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_2.value" dmtype="real" ref="RV_pos_DEC_corr" />
+												</INSTANCE>
+											</INSTANCE>
+
+											<INSTANCE dmrole="mango:CorrelatedError.coupledErrors" dmtype="mango:CorrelatedError1D">
+												<ATTRIBUTE dmrole="mango:CorrelatedError1D.ucd" dmtype="ivoa:string" value="pos.parallax" />
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_1" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_1.value" dmtype="real" ref="PARALLAX_pos_RA_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_2" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_2.value" dmtype="real" ref="PARALLAX_pos_DEC_corr" />
+												</INSTANCE>
+											</INSTANCE>
+
+										</COLLECTION>
+									</INSTANCE>
+
+									<COLLECTION size="-1" dmrole="mango:Parameter.associatedParameters">
+										<INSTANCE dmref="_pm" dmrole="mango:Parameter.associatedParameters" />
+										<INSTANCE dmref="_vr" dmrole="mango:Parameter.associatedParameters" />
+										<INSTANCE dmref="_plx" dmrole="mango:Parameter.associatedParameters" />
+									</COLLECTION>
+								</INSTANCE>
+							</INSTANCE>
+
+							<INSTANCE ID="_pm" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#propermotion" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.pm" />
+								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Proper Motion" />
+								<ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated" />
+								<INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:ProperMotion">
+									<INSTANCE dmrole="meas:ProperMotion.lon" dmtype="coords:PhysicalCoordinate">
+
+										<INSTANCE dmrole="meas:ProperMotion.lon" dmtype="coords:PhysicalCoordinate">
+											<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+												<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pm_RA" />
+												<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="s/y" />
+											</INSTANCE>
+										</INSTANCE>
+										<INSTANCE dmrole="meas:ProperMotion.lat" dmtype="coords:PhysicalCoordinate">
+											<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+												<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pm_DEC" />
+												<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="s/y" />
+											</INSTANCE>
+										</INSTANCE>
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError" dmtype="Ellipse">
+											<COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
+												<INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pm_RA_err" />
+													<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y" />
+												</INSTANCE>
+												<INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pm_DEC_err" />
+													<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y" />
+												</INSTANCE>
+											</COLLECTION>
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+
+							<INSTANCE ID="_vr" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#radial velocity" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="spect.dopplerVeloc" />
+								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Radial velocity" />
+								<ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated" />
+								<INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+									<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+										<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="RV" />
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="km/s" />
+										</INSTANCE>
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+											<INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+												<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="RV_err" />
+												<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="km/s" />
+											</INSTANCE>
+										</INSTANCE>
+									</INSTANCE>
+
+								</INSTANCE>
+							</INSTANCE>
+
+							<INSTANCE ID="_plx" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#parallax" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.parallax" />
+								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Parallax" />
+								<ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated" />
+								<INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+									<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+										<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="PARALLAX" />
+											<ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="mas" />
+										</INSTANCE>
+
+
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error" dmtype="mango:CorrelatedError">
+										<INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+											<INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+												<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="PARALLAX_err" />
+												<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas" />
+											</INSTANCE>
+										</INSTANCE>
+										<COLLECTION dmrole="mango:CorrelatedError.coupledErrors">
+
+											<INSTANCE dmrole="mango:CorrelatedError.coupledErrors" dmtype="mango:CorrelatedError1D">
+												<ATTRIBUTE dmrole="mango:CorrelatedError1D.ucd" dmtype="ivoa:string" value="pos.pm" />
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_1" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_1.value" dmtype="real" ref="PARALLAX_pm_RA_corr" />
+												</INSTANCE>
+												<INSTANCE dmrole="mango:CorrelatedError1D.correlations1_2" dmtype="ivoa:RealQuantity">
+													<ATTRIBUTE dmrole="mango:correlations1_2.value" dmtype="real" ref="PARALLAX_pm_DEC_corr" />
+												</INSTANCE>
+											</INSTANCE>
+
+										</COLLECTION>
+									</INSTANCE>
+
+								</INSTANCE>
+							</INSTANCE>
+
+						</COLLECTION>
+					</INSTANCE>
+				</TABLE_ROW_TEMPLATE>
+			</COLLECTION>
+		</TABLE_MAPPING>
+	</MODEL_INSTANCE>
+
+	<RESOURCE ID="yCat_1146" name="I/146">
+		<DESCRIPTION>Prototype for covariance errors</DESCRIPTION>
+		<TABLE ID="Results" name="Result">
+			<FIELD name="name" ucd="meta.id;meta.main" datatype="char" arraysize="*" />
+
+			<!-- Sky position Errors on RA and DEC correlated -->
+			<FIELD name="pos_RA" ucd="pos.eq.ra;meta.main" datatype="double" unit="deg" />
+			<FIELD name="pos_DEC" ucd="pos.eq.dec;meta.main" datatype="double" unit="deg" />
+			<FIELD name="pos_RA_err" ucd="stat.error" datatype="double" unit="arcsec" />
+			<FIELD name="pos_DEC_err" ucd="stat.error" datatype="double" unit="arcsec" />
+			<FIELD name="pos_RADEC_corr" ucd="stat.error" datatype="double" unit="arcsec" />
+
+			<!-- Proper motion Errors on RA and DEC correlated each to other Errors on RA and DEC correlated with errors on the sky position -->
+			<FIELD name="pm_RA" ucd="pos.pm.ra;meta.main" datatype="double" unit="mas/y" />
+			<FIELD name="pm_DEC" ucd="pos.pm.dec;meta.main" datatype="double" unit="mas/year" />
+			<FIELD name="pm_RA_err" ucd="stat.error" datatype="double" unit="arcsec" />
+			<FIELD name="pm_DEC_err" ucd="stat.error" datatype="double" unit="arcsec" />
+			<FIELD name="pm_RADEC_corr" ucd="stat.error" datatype="double" unit="arcsec" />
+			<FIELD name="pm_RA_pos_RA_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="pm_RA_pos_DEC_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="pm_DEC_pos_RA_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="pm_DEC_pos_DEC_corr" ucd="stat.error" datatype="double" unit="?" />
+
+			<!-- Radial velocity Error correlated with errors on the sky position -->
+			<FIELD name="RV" ucd="spect.dopplerVeloc;pos.heliocentric" datatype="double" unit="km/s" />
+			<FIELD name="RV_err" ucd="stat.error" datatype="double" unit="km/s" />
+			<FIELD name="RV_pos_RA_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="RV_pos_DEC_corr" ucd="stat.error" datatype="double" unit="?" />
+
+			<!-- Parallax Error correlated with errors on the sky position -->
+			<FIELD name="PARALLAX" ucd="pos.parallax" datatype="double" unit="mas" />
+			<FIELD name="PARALLAX_err" ucd="stat.error" datatype="double" unit="mas" />
+			<FIELD name="PARALLAX_pos_DEC_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="PARALLAX_pos_RA_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="PARALLAX_pm_DEC_corr" ucd="stat.error" datatype="double" unit="?" />
+			<FIELD name="PARALLAX_pm_RA_corr" ucd="stat.error" datatype="double" unit="?" />
+
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>SourceName</TD>
+						<TD>1</TD>
+						<TD>-1</TD>
+						<TD>110</TD>
+						<TD>120</TD>
+						<TD>112</TD>
+						<TD>2</TD>
+						<TD>-2</TD>
+						<TD>210</TD>
+						<TD>220</TD>
+						<TD>212</TD>
+						<TD>2111</TD>
+						<TD>2112</TD>
+						<TD>2211</TD>
+						<TD>2212</TD>
+						<TD>3</TD>
+						<TD>300</TD>
+						<TD>311</TD>
+						<TD>312</TD>
+						<TD>4</TD>
+						<TD>400</TD>
+						<TD>411</TD>
+						<TD>412</TD>
+						<TD>421</TD>
+						<TD>422</TD>
+
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+
+	</RESOURCE>
+</VOTABLE>

@@ -1,0 +1,3 @@
+astropy>=4.0
+lxml
+xmlschema>=1.1.2

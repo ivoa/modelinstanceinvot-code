@@ -1,0 +1,33 @@
+{
+  "@tableref": "Results",
+  "meas:Error.statError": {
+    "@dmtype": "meas:Symmetrical",
+    "meas:Symmetrical.radius": {
+      "@dmtype": "ivoa:RealQuantity",
+      "ivoa:Quantity.unit": {
+        "@dmtype": "ivoa:Unit",
+        "@value": "arcsec"
+      },
+      "ivoa:RealQuantity.value": {
+        "@dmtype": "ivoa:real",
+        "@ref": "_poserr_148",
+        "@value": ""
+      }
+    }
+  },
+  "meas:Error.sysError": {
+    "@dmtype": "meas:Symmetrical",
+    "meas:Symmetrical.radius": {
+      "@dmtype": "ivoa:RealQuantity",
+      "ivoa:Quantity.unit": {
+        "@dmtype": "ivoa:Unit",
+        "@value": "arcsec"
+      },
+      "ivoa:RealQuantity.value": {
+        "@dmtype": "ivoa:real",
+        "@ref": "_syserrcc_152",
+        "@value": ""
+      }
+    }
+  }
+}

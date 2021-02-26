@@ -1,0 +1,42 @@
+		<INSTANCE ID="StatusFrame_QRVFLAG" dmrole=""
+			dmtype="cab_msd:STCStatusSys">
+			<COLLECTION size="5"
+				dmrole="cab_msd:STCStatusSys.statusLabel">
+                <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+                    dmtype="cab_msd:StatusLabel">
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+                        dmtype="ivoa:integer" value="B" />
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+                        dmtype="ivoa:string" value="Mean (max) error 0.5 (0.9)" />
+                </INSTANCE>
+                <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+                    dmtype="cab_msd:StatusLabel">
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+                        dmtype="ivoa:integer" value="B" />
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+                        dmtype="ivoa:string" value="Mean (max) error 1.2 (2.0)" />
+                </INSTANCE>
+                <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+                    dmtype="cab_msd:StatusLabel">
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+                        dmtype="ivoa:integer" value="C" />
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+                        dmtype="ivoa:string" value="Mean (max) error 2.5 (5.0)" />
+                </INSTANCE>
+                <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+                    dmtype="cab_msd:StatusLabel">
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+                        dmtype="ivoa:integer" value="D" />
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+                        dmtype="ivoa:string" value="Mean (max) error 5 (10)" />
+                </INSTANCE>
+                <INSTANCE dmrole="cab_msd:STCStatusSys.statusLabel"
+                    dmtype="cab_msd:StatusLabel">
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.value"
+                        dmtype="ivoa:integer" value="E" />
+                    <ATTRIBUTE dmrole="cab_msd:StatusLabel.label"
+                        dmtype="ivoa:string" value="Mean error > 10" />
+                </INSTANCE>
+				
+			</COLLECTION>
+		</INSTANCE>

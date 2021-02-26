@@ -1,0 +1,44 @@
+{
+    "identifier": "2CXO",
+    "parameters": [
+        {
+            "measure": "LonLatSkyPosition",
+            "ucd": "pos.eq;meta.main",
+            "semantic": "#position",
+            "description": "position",
+            "reductionStatus": "Computed",
+            "frame": {
+                "frame": "ICRS",
+                "equinox": null
+            },
+            "position": {
+                "longitude": "@RAICRS",
+                "latitude": "@DEICRS",
+                "unit": "deg"
+            },
+            "errors": {
+            }
+        },
+        {
+            "measure": "LonLatSkyPosition",
+            "ucd": "pos.eq",
+            "semantic": "#position",
+            "description": "position",
+            "reductionStatus": "Computed",
+            "frame": {
+                "frame": "Galactic",
+                "equinox": null
+            },
+            "position": {
+                "longitude": "@GLON",
+                "latitude": "@GLAT",
+                "unit": "deg"
+            },
+            "errors": {
+            }
+        }
+     ],
+    "associatedData": {
+        
+    }
+}

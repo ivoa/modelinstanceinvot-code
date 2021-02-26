@@ -1,0 +1,2236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+	<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot" >
+		<GLOBALS>
+			<INSTANCE ID="SpaceSys_ICRS_Spherical"
+				dmtype="coords:SpaceSys">
+				<INSTANCE dmrole="coords:PhysicalCoordSys.coordSpace"
+					dmtype="coords:SphericalCoordSpace">
+					<COLLECTION size="-1" dmrole="coords:CoordSpace.axis">
+						<INSTANCE dmrole="coords:CoordSpace.axis"
+							dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name"
+								dmtype="ivoa:string" value="ra" />
+						</INSTANCE>
+						<INSTANCE dmrole="coords:CoordSpace.axis"
+							dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name"
+								dmtype="ivoa:string" value="dec" />
+						</INSTANCE>
+						<INSTANCE dmrole="coords:CoordSpace.axis"
+							dmtype="coords:ContinuousAxis">
+							<ATTRIBUTE dmrole="coords:Axis.name"
+								dmtype="ivoa:string" value="r" />
+						</INSTANCE>
+					</COLLECTION>
+				</INSTANCE>
+				<INSTANCE dmrole="coords:PhysicalCoordSys.frame"
+					dmtype="coords:SpaceFrame">
+					<INSTANCE dmrole="coords:SpaceFrame.refPosition"
+						dmtype="coords:StdRefLocation">
+						<ATTRIBUTE dmrole="coords:StdRefLocation.position"
+							dmtype="ivoa:string" value="NoSet" />
+					</INSTANCE>
+					<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame"
+						dmtype="ivoa:string" value="ICRS" />
+					<ATTRIBUTE dmrole="coords:SpaceFrame.equinox"
+						dmtype="coords:Epoch" value="NoSet" />
+				</INSTANCE>
+			</INSTANCE>
+			<INSTANCE ID="PhotFrame_gaiaG" dmrole=""
+				dmtype="mango:stcextend.PhotFilter">
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name"
+					dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.zeroPointFlux"
+					dmtype="ivoa:real" value="2.49524e-9" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.magnitudeSystem"
+					dmtype="ivoa:string" value="Vega" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.effectiveWavlength"
+					dmtype="ivoa:real" value="6246.77" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit"
+					dmtype="ivoa:string" value="Angstrom" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth"
+					dmtype="ivoa:real" value="4578.32" />
+			</INSTANCE>
+			<INSTANCE ID="PhotFrame_gaiaBP" dmrole=""
+				dmtype="mango:stcextend.PhotFilter">
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name"
+					dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.zeroPointFlux"
+					dmtype="ivoa:real" value="4.03528e-9" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.magnitudeSystem"
+					dmtype="ivoa:string" value="Vega" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.effectiveWavlength"
+					dmtype="ivoa:real" value="5278.58" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit"
+					dmtype="ivoa:string" value="Angstrom" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth"
+					dmtype="ivoa:real" value="2279.45" />
+			</INSTANCE>
+			<INSTANCE ID="PhotFrame_gaiaRP" dmrole=""
+				dmtype="mango:stcextend.PhotFilter">
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name"
+					dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.zeroPointFlux"
+					dmtype="ivoa:real" value="1.29363e-9" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.magnitudeSystem"
+					dmtype="ivoa:string" value="Vega" />
+				<ATTRIBUTE
+					dmrole="mango:stcextend.PhotFilter.effectiveWavlength"
+					dmtype="ivoa:real" value="7740.87" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit"
+					dmtype="ivoa:string" value="Angstrom" />
+				<ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth"
+					dmtype="ivoa:real" value="2943.72" />
+			</INSTANCE>
+		</GLOBALS>
+		<TABLE_MAPPING tableref="Results">
+			<COLLECTION dmrole="root">
+				<TABLE_ROW_TEMPLATE>
+					<INSTANCE dmrole="root" dmtype="mango:MangoObject">
+						<ATTRIBUTE dmrole="mango:MangoObject.identifier"
+							dmtype="ivoa:string" ref="Source" />
+						<COLLECTION size="-1"
+							dmrole="mango:MangoObject.associatedData" />
+						<COLLECTION size="-1"
+							dmrole="mango:MangoObject.parameters">
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#position" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="pos.eq;meta.main" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the position" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="coords:Point">
+									<SC_REALQUANTITY dmrole="coords:Point.axis1"
+										ref="RA_ICRS" unit="deg" />
+									<SC_REALQUANTITY dmrole="coords:Point.axis2"
+										ref="DE_ICRS" unit="deg" />
+									<INSTANCE dmrole="coords:Coordinate.coordSys"
+										dmref="SpaceFrame_ICRSSpherical" />
+								</INSTANCE>
+								<INSTANCE dmrole="meas:Measure.error"
+									dmtype="meas:Error">
+									<INSTANCE dmrole="meas:Error.statError"
+										dmtype="meas:Ellipse">
+										<COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
+											<SC_REALQUANTITY
+												dmrole="meas:Ellipse.semiAxis" ref="e_RA_ICRS" unkit="mas" />
+											<SC_REALQUANTITY
+												dmrole="meas:Ellipse.semiAxis" ref="e_DE_ICRS" unkit="mas" />
+										</COLLECTION>
+										<SC_REALQUANTITY
+											dmrole="meas:Ellipse.posAngle" val="0.0" unkit="deg" />
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#uat/propermotion" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="pos.pm" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the proper motion" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="meas:ProperMotion">
+									<INSTANCE dmrole="meas:ProperMotion.lon"
+										dmtype="coords:PhysicalCoordinate">
+										<SC_REALQUANTITY
+											dmrole="coords:PhysicalCoordinate.cval" ref="pmRA"
+											unkit="mas/y" />
+									</INSTANCE>
+									<INSTANCE dmrole="meas:ProperMotion.lat"
+										dmtype="coords:PhysicalCoordinate">
+										<SC_REALQUANTITY
+											dmrole="coords:PhysicalCoordinate.cval" ref="pmDE"
+											unkit="mas/y" />
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error"
+										dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError"
+											dmtype="Ellipse">
+											<COLLECTION size="2"
+												dmrole="meas:Ellipse.semiAxis">
+												<SC_REALQUANTITY
+													dmrole="meas:Ellipse.semiAxis" ref="e_pmRA" unkit="mas/y" />
+												<SC_REALQUANTITY
+													dmrole="meas:Ellipse.semiAxis" ref="e_pmDE" unkit="mas/y" />
+											</COLLECTION>
+											<SC_REALQUANTITY
+												dmrole="meas:Ellipse.posAngle" value="0.0" unkit="deg" />
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#uat/magnitude" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="phot.mag;stat.mean;em.opt" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the G mag" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="mango:stcextend.Photometry">
+									<INSTANCE dmrole="mango:stcextend.Photometry.coord"
+										dmtype="mango:stcextend.PhotometryCoord">
+										<ATTRIBUTE
+											dmrole="mango:stcextend.PhotometryCoord.luminosity"
+											dmtype="ivoa:real" ref="Gmag" />
+										<INSTANCE dmrole="coords:Coordinate.coordSys"
+											dmref="PhotFrame_gaiaG" />
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error"
+										dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError"
+											dmtype="meas:Symmetrical">
+											<SC_REALQUANTITY
+												dmrole="meas:Symmetrical.radius" ref="e_Gmag" unkit="mag" />
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#uat/magnitude" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="phot.mag;stat.mean;em.opt" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the BP mag" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="mango:stcextend.Photometry">
+									<INSTANCE dmrole="mango:stcextend.Photometry.coord"
+										dmtype="mango:stcextend.PhotometryCoord">
+										<ATTRIBUTE
+											dmrole="mango:stcextend.PhotometryCoord.luminosity"
+											dmtype="ivoa:real" ref="BPmag" />
+										<INSTANCE dmrole="coords:Coordinate.coordSys"
+											dmref="PhotFrame_gaiaBP" />
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error"
+										dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError"
+											dmtype="meas:Symmetrical">
+											<SC_REALQUANTITY
+												dmrole="meas:Symmetrical.radius" ref="e_BPmag" unkit="mag" />
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#uat/magnitude" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="phot.mag;stat.mean;em.opt" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the RP mag" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="mango:stcextend.Photometry">
+									<INSTANCE dmrole="mango:stcextend.Photometry.coord"
+										dmtype="mango:stcextend.PhotometryCoord">
+										<ATTRIBUTE
+											dmrole="mango:stcextend.PhotometryCoord.luminosity"
+											dmtype="ivoa:real" ref="RPmag" />
+										<INSTANCE dmrole="coords:Coordinate.coordSys"
+											dmref="PhotFrame_gaiaRP" />
+									</INSTANCE>
+									<INSTANCE dmrole="meas:Measure.error"
+										dmtype="meas:Error">
+										<INSTANCE dmrole="meas:Error.statError"
+											dmtype="meas:Symmetrical">
+											<SC_REALQUANTITY
+												dmrole="meas:Symmetrical.radius" ref="e_RPmag" unkit="mag" />
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+							<INSTANCE dmrole="mango:MangoObject.parameters"
+								dmtype="mango:Parameter">
+								<ATTRIBUTE dmrole="mango:Parameter.semantic"
+									dmtype="ivoa:string" value="#uat/parallax" />
+								<ATTRIBUTE dmrole="mango:Parameter.ucd"
+									dmtype="ivoa:string" value="pos.parallax" />
+								<ATTRIBUTE dmrole="mango:Parameter.description"
+									dmtype="ivoa:string" value="this is the parallax" />
+								<INSTANCE dmrole="mango:Parameter.measure"
+									dmtype="meas:GenericMeasure">
+									<INSTANCE dmrole="meas:GenericMeasure.coord"
+										dmtype="coords:PhysicalCoordinate">
+										<SC_REALQUANTITY
+											dmrole="coords:PhysicalCoordinate.cval" ref="Plx" unkit="mas" />
+										<INSTANCE dmrole="meas:Measure.error"
+											dmtype="meas:Error">
+											<INSTANCE dmrole="meas:Error.statError"
+												dmtype="meas:Symmetrical">
+												<SC_REALQUANTITY
+													dmrole="meas:Symmetrical.radius" ref="e_Plx" unkit="mas" />
+											</INSTANCE>
+										</INSTANCE>
+									</INSTANCE>
+								</INSTANCE>
+							</INSTANCE>
+						</COLLECTION>
+					</INSTANCE>
+				</TABLE_ROW_TEMPLATE>
+			</COLLECTION>
+		</TABLE_MAPPING>
+	</MODEL_INSTANCE>
+	<DESCRIPTION>
+		VizieR Astronomical Server vizier.u-strasbg.fr
+		Date:
+		2020-10-22T15:57:54 [V1.99+ (14-Oct-2013)]
+		Explanations and Statistics
+		of UCDs: See LINK below
+		In case of problem, please report to:
+		cds-question@unistra.fr
+		In this version, NULL integer columns are
+		written as an empty string
+		&lt;TD&gt;&lt;/TD&gt;, explicitely possible
+		from VOTable-1.3
+	</DESCRIPTION>
+	<!-- VOTable description at http://www.ivoa.net/Documents/latest/VOT.html -->
+	<INFO ID="VERSION" name="votable-version"
+		value="1.99+ (14-Oct-2013)" />
+	<INFO ID="Ref" name="-ref" value="VIZ5f91a9ea661a" />
+	<INFO ID="MaxTuples" name="-out.max" value="50" />
+
+	<!-- Execution Reports -->
+
+	<RESOURCE ID="yCat_1345" name="I/345">
+		<DESCRIPTION>Gaia DR2 (Gaia Collaboration, 2018)</DESCRIPTION>
+		<COOSYS ID="H_2015.500" system="ICRS" epoch="2015.500" />
+		<TABLE ID="Results" name="I/345/gaia2">
+			<DESCRIPTION>GaiaSource DR2 data</DESCRIPTION>
+			<!-- Gaia data release 2 (Gaia DR2). \inputViz{gaiadr2.intro.htx} (\originalcolumnnames) -->
+
+			<!-- Definitions of GROUPs and FIELDs -->
+			<FIELD name="RA_ICRS" ucd="pos.eq.ra;meta.main"
+				ref="H_2015.500" datatype="double" width="15" precision="11"
+				unit="deg"><!-- ucd="POS_EQ_RA_MAIN" -->
+				<DESCRIPTION>Barycentric right ascension (ICRS) at Ep=2015.5 (ra)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="e_RA_ICRS" ucd="stat.error;pos.eq.ra"
+				datatype="double" width="7" precision="4" unit="mas"><!-- ucd="ERROR" -->
+				<DESCRIPTION>Standard error of right ascension (e_RA*cosDE)
+					(ra_error)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="DE_ICRS" ucd="pos.eq.dec;meta.main"
+				ref="H_2015.500" datatype="double" width="15" precision="11"
+				unit="deg"><!-- ucd="POS_EQ_DEC_MAIN" -->
+				<DESCRIPTION>Barycentric declination (ICRS) at Ep=2015.5 (dec)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="e_DE_ICRS" ucd="stat.error;pos.eq.dec"
+				datatype="double" width="7" precision="4" unit="mas"><!-- ucd="ERROR" -->
+				<DESCRIPTION>Standard error of declination (dec_error)</DESCRIPTION>
+			</FIELD>
+			<FIELD name="Source" ucd="meta.id;meta.main" datatype="long"
+				width="19"><!-- ucd="ID_MAIN" -->
+				<DESCRIPTION>Unique source identifier (unique within a particular
+					Data Release) (source_id) (G2)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="Plx" ucd="pos.parallax" datatype="double"
+				width="10" precision="4" unit="mas"><!-- ucd="POS_PARLX_TRIG" -->
+				<DESCRIPTION>? Absolute stellar parallax (parallax)</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_Plx" ucd="stat.error;pos.parallax"
+				datatype="float" width="7" precision="4" unit="mas"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Standard error of parallax (parallax_error)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="pmRA" ucd="pos.pm;pos.eq.ra" ref="H_2015.500"
+				datatype="double" width="9" precision="3" unit="mas/yr"><!-- ucd="POS_EQ_PMRA" -->
+				<DESCRIPTION>? Proper motion in right ascension direction
+					(pmRA*cosDE) (pmra) (3)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_pmRA" ucd="stat.error;pos.pm;pos.eq.ra"
+				datatype="float" width="6" precision="3" unit="mas/yr"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Standard error of proper motion in right ascension
+					direction (pmra_error)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="pmDE" ucd="pos.pm;pos.eq.dec" ref="H_2015.500"
+				datatype="double" width="9" precision="3" unit="mas/yr"><!-- ucd="POS_EQ_PMDEC" -->
+				<DESCRIPTION>? Proper motion in declination direction (pmdec) (4)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_pmDE" ucd="stat.error;pos.pm;pos.eq.dec"
+				datatype="float" width="6" precision="3" unit="mas/yr"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Standard error of proper motion in declination
+					direction (pmdec_error)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="Dup" ucd="meta.code.status"
+				datatype="unsignedByte" width="1"><!-- ucd="CODE_MISC" -->
+				<DESCRIPTION>[0/1] Source with duplicate sources (duplicated_source)
+					(21)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="FG" ucd="phot.flux;stat.mean;em.opt"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="PHOT_FLUX_OPTICAL" -->
+				<DESCRIPTION>G-band mean flux (phot_g_mean_flux)</DESCRIPTION>
+			</FIELD>
+			<FIELD name="e_FG" ucd="stat.error;phot.flux;stat.mean"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="ERROR" -->
+				<DESCRIPTION>Error on G-band mean flux (phot_g_mean_flux_error)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="Gmag" ucd="phot.mag;stat.mean;em.opt"
+				datatype="double" width="7" precision="4" unit="mag"><!-- ucd="PHOT_MAG_OPTICAL" -->
+				<DESCRIPTION>G-band mean magnitude (Vega) (phot_g_mean_mag) (23)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="e_Gmag" ucd="stat.error;phot.mag;stat.mean"
+				datatype="double" width="6" precision="4" unit="mag"><!-- ucd="ERROR" -->
+				<DESCRIPTION>Standard error of G-band mean magnitude (Vega) (added
+					by CDS) (phot_g_mean_mag_error) (37)
+				</DESCRIPTION>
+			</FIELD>
+			<FIELD name="FBP" ucd="phot.flux;stat.mean;em.opt.B"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="PHOT_FLUX_B" -->
+				<DESCRIPTION>? Mean flux in the integrated BP band
+					(phot_bp_mean_flux)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_FBP" ucd="stat.error;phot.flux;stat.mean"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Error on the integrated BP mean flux
+					(phot_bp_mean_flux_error) (25)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="BPmag" ucd="phot.mag;stat.mean;em.opt.B"
+				datatype="double" width="7" precision="4" unit="mag"><!-- ucd="PHOT_MAG_B" -->
+				<DESCRIPTION>? Integrated BP mean magnitude (Vega)
+					(phot_bp_mean_mag) (26)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_BPmag" ucd="stat.error;phot.mag;stat.mean"
+				datatype="double" width="6" precision="4" unit="mag"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Standard error of BP mean magnitude (Vega) (added by
+					CDS) (phot_bp_mean_mag_error) (37)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="FRP" ucd="phot.flux.density;em.opt.R"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="PHOT_FLUX_R" -->
+				<DESCRIPTION>? Mean flux in the integrated RP band
+					(phot_rp_mean_flux)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_FRP" ucd="stat.error;phot.flux;stat.mean"
+				datatype="float" width="11" precision="E4" unit="e-/s"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Error on the integrated RP mean flux
+					(phot_rp_mean_flux_error) (28)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="RPmag" ucd="phot.mag;stat.mean;em.opt.R"
+				datatype="double" width="7" precision="4" unit="mag"><!-- ucd="PHOT_MAG_R" -->
+				<DESCRIPTION>? Integrated RP mean magnitude (Vega)
+					(phot_rp_mean_mag) (29)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_RPmag" ucd="stat.error;phot.mag;stat.mean"
+				datatype="double" width="6" precision="4" unit="mag"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Standard error of RP mean magnitude (Vega) (added by
+					CDS) (phot_rp_mean_mag_error) (37)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="BP-RP" ucd="phot.color;em.opt.B;em.opt.R"
+				datatype="double" width="7" precision="4" unit="mag"><!-- ucd="PHOT_CI_B-R" -->
+				<DESCRIPTION>? BP-RP colour (photBpMeanMag-photRMeanMag) (bp_rp)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="RV" ucd="spect.dopplerVeloc.opt;pos.barycenter"
+				datatype="double" width="7" precision="2" unit="km/s"><!-- ucd="VELOC_BARYCENTER" -->
+				<DESCRIPTION>? Spectroscopic radial velocity in the solar
+					barycentric reference frame (radial_velocity)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="e_RV"
+				ucd="stat.error;spect.dopplerVeloc.opt;pos.barycenter"
+				datatype="float" width="5" precision="2" unit="km/s"><!-- ucd="ERROR" -->
+				<DESCRIPTION>? Radial velocity error (radial_velocity_error) (30)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="Teff" ucd="phys.temperature.effective"
+				datatype="double" width="7" precision="2" unit="K"><!-- ucd="PHYS_TEMP_EFFEC" -->
+				<DESCRIPTION>? Stellar effective temperature (estimate from
+					Apsis-Priam) (teff_val)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="AG" ucd="phys.absorption.gal" datatype="float"
+				width="7" precision="4" unit="mag"><!-- ucd="PHOT_EXTINCTION_ISM" -->
+				<DESCRIPTION>? Estimate of extinction in the G band from Apsis-Priam
+					(a_g_val)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="E(BP-RP)" ucd="phot.color.excess" datatype="float"
+				width="7" precision="4" unit="mag"><!-- ucd="PHOT_COLOR_EXCESS" -->
+				<DESCRIPTION>? Estimate of redenning E(BP-RP) from Apsis-Priam
+					(e_bp_min_rp_val)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="Rad" ucd="phys.size.radius" datatype="float"
+				width="6" precision="2" unit="solRad"><!-- ucd="PHYS_SIZE_RADIUS_GENERAL" -->
+				<DESCRIPTION>? Estimate of radius from Apsis-FLAME (radius_val)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<FIELD name="Lum" ucd="phys.luminosity" datatype="double"
+				width="9" precision="3" unit="solLum"><!-- ucd="PHYS_LUMINOSITY_GENERAL" -->
+				<DESCRIPTION>? Esimate of luminosity from Apsis-FLAME (lum_val)
+				</DESCRIPTION>
+				<VALUES null="NaN" />
+			</FIELD>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>045.31187954932</TD>
+						<TD>0.5417</TD>
+						<TD>+00.90868213178</TD>
+						<TD>0.5663</TD>
+						<TD>117510305781248</TD>
+						<TD>1.7032</TD>
+						<TD>0.6493</TD>
+						<TD>8.354</TD>
+						<TD>1.159</TD>
+						<TD>-4.737</TD>
+						<TD>1.051</TD>
+						<TD>0</TD>
+						<TD>2.1937e+02</TD>
+						<TD>1.4225e+00</TD>
+						<TD>19.8354</TD>
+						<TD>0.0070</TD>
+						<TD>4.1121e+01</TD>
+						<TD>6.3610e+00</TD>
+						<TD>21.3162</TD>
+						<TD>0.1680</TD>
+						<TD>3.1246e+02</TD>
+						<TD>6.6513e+00</TD>
+						<TD>18.5249</TD>
+						<TD>0.0231</TD>
+						<TD>2.7913</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.32650522484</TD>
+						<TD>0.2236</TD>
+						<TD>+00.91251673336</TD>
+						<TD>0.1930</TD>
+						<TD>117548960702080</TD>
+						<TD>2.3129</TD>
+						<TD>0.2398</TD>
+						<TD>-4.607</TD>
+						<TD>0.519</TD>
+						<TD>-2.737</TD>
+						<TD>0.406</TD>
+						<TD>0</TD>
+						<TD>5.7117e+02</TD>
+						<TD>2.0112e+00</TD>
+						<TD>18.7965</TD>
+						<TD>0.0038</TD>
+						<TD>9.8095e+01</TD>
+						<TD>6.4240e+00</TD>
+						<TD>20.3723</TD>
+						<TD>0.0711</TD>
+						<TD>7.8002e+02</TD>
+						<TD>8.9326e+00</TD>
+						<TD>17.5317</TD>
+						<TD>0.0124</TD>
+						<TD>2.8406</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.31994074472</TD>
+						<TD>0.1988</TD>
+						<TD>+00.91603742079</TD>
+						<TD>0.1955</TD>
+						<TD>117544667186560</TD>
+						<TD>0.8221</TD>
+						<TD>0.2175</TD>
+						<TD>-0.827</TD>
+						<TD>0.428</TD>
+						<TD>-19.534</TD>
+						<TD>0.384</TD>
+						<TD>0</TD>
+						<TD>7.2092e+02</TD>
+						<TD>2.0074e+00</TD>
+						<TD>18.5436</TD>
+						<TD>0.0030</TD>
+						<TD>2.5005e+02</TD>
+						<TD>1.2114e+01</TD>
+						<TD>19.3563</TD>
+						<TD>0.0526</TD>
+						<TD>7.5889e+02</TD>
+						<TD>9.8941e+00</TD>
+						<TD>17.5615</TD>
+						<TD>0.0142</TD>
+						<TD>1.7948</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.32074936534</TD>
+						<TD>0.1037</TD>
+						<TD>+00.91626763998</TD>
+						<TD>0.1006</TD>
+						<TD>117548960701952</TD>
+						<TD>0.9694</TD>
+						<TD>0.1154</TD>
+						<TD>15.666</TD>
+						<TD>0.221</TD>
+						<TD>0.847</TD>
+						<TD>0.200</TD>
+						<TD>0</TD>
+						<TD>1.8583e+03</TD>
+						<TD>2.8038e+00</TD>
+						<TD>17.5156</TD>
+						<TD>0.0016</TD>
+						<TD>6.7490e+02</TD>
+						<TD>8.6626e+00</TD>
+						<TD>18.2783</TD>
+						<TD>0.0139</TD>
+						<TD>1.7384e+03</TD>
+						<TD>1.1603e+01</TD>
+						<TD>16.6615</TD>
+						<TD>0.0072</TD>
+						<TD>1.6168</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.29934372557</TD>
+						<TD>0.0431</TD>
+						<TD>+00.91032723668</TD>
+						<TD>0.0391</TD>
+						<TD>117579025070976</TD>
+						<TD>1.4892</TD>
+						<TD>0.0471</TD>
+						<TD>2.143</TD>
+						<TD>0.091</TD>
+						<TD>-16.753</TD>
+						<TD>0.082</TD>
+						<TD>0</TD>
+						<TD>9.3960e+03</TD>
+						<TD>8.4247e+00</TD>
+						<TD>15.7560</TD>
+						<TD>0.0010</TD>
+						<TD>3.8863e+03</TD>
+						<TD>2.0325e+01</TD>
+						<TD>16.3775</TD>
+						<TD>0.0057</TD>
+						<TD>7.9915e+03</TD>
+						<TD>2.7760e+01</TD>
+						<TD>15.0054</TD>
+						<TD>0.0038</TD>
+						<TD>1.3722</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4770.00</TD>
+						<TD>0.3613</TD>
+						<TD>0.1732</TD>
+						<TD>0.65</TD>
+						<TD>0.196</TD>
+					</TR>
+					<TR>
+						<TD>045.30127113140</TD>
+						<TD>0.6244</TD>
+						<TD>+00.92243027781</TD>
+						<TD>0.6659</TD>
+						<TD>117617680179200</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1</TD>
+						<TD>1.1170e+04</TD>
+						<TD>1.0202e+02</TD>
+						<TD>15.5682</TD>
+						<TD>0.0099</TD>
+						<TD>4.7561e+03</TD>
+						<TD>2.7488e+01</TD>
+						<TD>16.1583</TD>
+						<TD>0.0063</TD>
+						<TD>1.0685e+04</TD>
+						<TD>2.6431e+01</TD>
+						<TD>14.6900</TD>
+						<TD>0.0027</TD>
+						<TD>1.4683</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4460.00</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.21025149911</TD>
+						<TD>1.3117</TD>
+						<TD>+00.86980701350</TD>
+						<TD>1.4978</TD>
+						<TD>117716464205696</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>0</TD>
+						<TD>9.2857e+01</TD>
+						<TD>1.6167e+00</TD>
+						<TD>20.7688</TD>
+						<TD>0.0189</TD>
+						<TD>4.8503e+01</TD>
+						<TD>1.3035e+01</TD>
+						<TD>21.1370</TD>
+						<TD>0.2918</TD>
+						<TD>1.2536e+02</TD>
+						<TD>1.3283e+01</TD>
+						<TD>19.5165</TD>
+						<TD>0.1150</TD>
+						<TD>1.6204</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.23608824289</TD>
+						<TD>0.4586</TD>
+						<TD>+00.88603033821</TD>
+						<TD>0.5049</TD>
+						<TD>117785183684608</TD>
+						<TD>3.4942</TD>
+						<TD>0.4595</TD>
+						<TD>-3.255</TD>
+						<TD>0.942</TD>
+						<TD>-39.167</TD>
+						<TD>0.872</TD>
+						<TD>0</TD>
+						<TD>3.3366e+02</TD>
+						<TD>1.7796e+00</TD>
+						<TD>19.3801</TD>
+						<TD>0.0058</TD>
+						<TD>5.8865e+01</TD>
+						<TD>8.7220e+00</TD>
+						<TD>20.9267</TD>
+						<TD>0.1609</TD>
+						<TD>4.9835e+02</TD>
+						<TD>1.7076e+01</TD>
+						<TD>18.0181</TD>
+						<TD>0.0372</TD>
+						<TD>2.9086</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.24524340824</TD>
+						<TD>26.3524</TD>
+						<TD>+00.89734689677</TD>
+						<TD>44.9636</TD>
+						<TD>117819543235200</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>0</TD>
+						<TD>8.5524e+01</TD>
+						<TD>1.5477e+00</TD>
+						<TD>20.8581</TD>
+						<TD>0.0196</TD>
+						<TD>9.9892e+01</TD>
+						<TD>3.3696e+01</TD>
+						<TD>20.3526</TD>
+						<TD>0.3662</TD>
+						<TD>6.8198e+01</TD>
+						<TD>2.6649e+00</TD>
+						<TD>20.1775</TD>
+						<TD>0.0424</TD>
+						<TD>0.1751</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.23983265508</TD>
+						<TD>0.0532</TD>
+						<TD>+00.90468318457</TD>
+						<TD>0.0518</TD>
+						<TD>117892558088192</TD>
+						<TD>1.0427</TD>
+						<TD>0.0595</TD>
+						<TD>11.379</TD>
+						<TD>0.111</TD>
+						<TD>-7.615</TD>
+						<TD>0.110</TD>
+						<TD>0</TD>
+						<TD>6.6790e+03</TD>
+						<TD>5.3915e+00</TD>
+						<TD>16.1266</TD>
+						<TD>0.0009</TD>
+						<TD>2.8677e+03</TD>
+						<TD>1.4223e+01</TD>
+						<TD>16.7076</TD>
+						<TD>0.0054</TD>
+						<TD>5.4819e+03</TD>
+						<TD>5.5976e+01</TD>
+						<TD>15.4146</TD>
+						<TD>0.0111</TD>
+						<TD>1.2930</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5046.00</TD>
+						<TD>0.4420</TD>
+						<TD>0.2050</TD>
+						<TD>0.67</TD>
+						<TD>0.265</TD>
+					</TR>
+					<TR>
+						<TD>045.19944354378</TD>
+						<TD>0.5810</TD>
+						<TD>+00.90997341249</TD>
+						<TD>0.6331</TD>
+						<TD>118025701857280</TD>
+						<TD>0.9413</TD>
+						<TD>0.6534</TD>
+						<TD>14.677</TD>
+						<TD>1.483</TD>
+						<TD>-21.699</TD>
+						<TD>1.329</TD>
+						<TD>0</TD>
+						<TD>1.8543e+02</TD>
+						<TD>1.5077e+00</TD>
+						<TD>20.0179</TD>
+						<TD>0.0088</TD>
+						<TD>8.4106e+01</TD>
+						<TD>2.0067e+01</TD>
+						<TD>20.5393</TD>
+						<TD>0.2591</TD>
+						<TD>2.5738e+02</TD>
+						<TD>1.2613e+01</TD>
+						<TD>18.7355</TD>
+						<TD>0.0532</TD>
+						<TD>1.8039</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.20964071645</TD>
+						<TD>0.1492</TD>
+						<TD>+00.90527495715</TD>
+						<TD>0.1574</TD>
+						<TD>118060061406080</TD>
+						<TD>1.1265</TD>
+						<TD>0.1661</TD>
+						<TD>14.660</TD>
+						<TD>0.313</TD>
+						<TD>3.427</TD>
+						<TD>0.297</TD>
+						<TD>0</TD>
+						<TD>1.1502e+03</TD>
+						<TD>2.1621e+00</TD>
+						<TD>18.0364</TD>
+						<TD>0.0020</TD>
+						<TD>4.4082e+02</TD>
+						<TD>1.9291e+01</TD>
+						<TD>18.7407</TD>
+						<TD>0.0475</TD>
+						<TD>1.0844e+03</TD>
+						<TD>1.2104e+01</TD>
+						<TD>17.1740</TD>
+						<TD>0.0121</TD>
+						<TD>1.5668</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.22819309311</TD>
+						<TD>1.0744</TD>
+						<TD>+00.90820925295</TD>
+						<TD>1.3775</TD>
+						<TD>118098716518528</TD>
+						<TD>1.7934</TD>
+						<TD>1.0915</TD>
+						<TD>13.734</TD>
+						<TD>2.168</TD>
+						<TD>8.020</TD>
+						<TD>2.250</TD>
+						<TD>0</TD>
+						<TD>9.8123e+01</TD>
+						<TD>1.2680e+00</TD>
+						<TD>20.7089</TD>
+						<TD>0.0140</TD>
+						<TD>2.5835e+01</TD>
+						<TD>2.3483e+00</TD>
+						<TD>21.8209</TD>
+						<TD>0.0987</TD>
+						<TD>1.3213e+02</TD>
+						<TD>7.1754e+00</TD>
+						<TD>19.4594</TD>
+						<TD>0.0590</TD>
+						<TD>2.3614</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.23262971064</TD>
+						<TD>0.2853</TD>
+						<TD>+00.91182777869</TD>
+						<TD>0.3307</TD>
+						<TD>118094421147264</TD>
+						<TD>0.3615</TD>
+						<TD>0.3390</TD>
+						<TD>0.668</TD>
+						<TD>0.600</TD>
+						<TD>-8.746</TD>
+						<TD>0.586</TD>
+						<TD>0</TD>
+						<TD>4.3444e+02</TD>
+						<TD>1.5790e+00</TD>
+						<TD>19.0935</TD>
+						<TD>0.0039</TD>
+						<TD>1.2050e+02</TD>
+						<TD>1.3069e+01</TD>
+						<TD>20.1489</TD>
+						<TD>0.1177</TD>
+						<TD>4.7892e+02</TD>
+						<TD>7.0567e+00</TD>
+						<TD>18.0613</TD>
+						<TD>0.0160</TD>
+						<TD>2.0876</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.20391789913</TD>
+						<TD>0.1674</TD>
+						<TD>+00.91130962725</TD>
+						<TD>0.1726</TD>
+						<TD>118128780885376</TD>
+						<TD>-0.2070</TD>
+						<TD>0.1860</TD>
+						<TD>0.311</TD>
+						<TD>0.358</TD>
+						<TD>0.280</TD>
+						<TD>0.336</TD>
+						<TD>0</TD>
+						<TD>8.6725e+02</TD>
+						<TD>1.0497e+01</TD>
+						<TD>18.3430</TD>
+						<TD>0.0131</TD>
+						<TD>5.8505e+02</TD>
+						<TD>2.4488e+01</TD>
+						<TD>18.4334</TD>
+						<TD>0.0454</TD>
+						<TD>5.2735e+02</TD>
+						<TD>2.2835e+01</TD>
+						<TD>17.9567</TD>
+						<TD>0.0470</TD>
+						<TD>0.4767</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.21796816400</TD>
+						<TD>0.3698</TD>
+						<TD>+00.92871744806</TD>
+						<TD>0.3898</TD>
+						<TD>118167435994624</TD>
+						<TD>1.1363</TD>
+						<TD>0.3988</TD>
+						<TD>19.603</TD>
+						<TD>0.800</TD>
+						<TD>-25.985</TD>
+						<TD>0.731</TD>
+						<TD>0</TD>
+						<TD>3.7175e+02</TD>
+						<TD>1.4096e+00</TD>
+						<TD>19.2627</TD>
+						<TD>0.0041</TD>
+						<TD>1.1306e+02</TD>
+						<TD>7.6375e+00</TD>
+						<TD>20.2181</TD>
+						<TD>0.0733</TD>
+						<TD>4.1235e+02</TD>
+						<TD>7.7294e+00</TD>
+						<TD>18.2238</TD>
+						<TD>0.0204</TD>
+						<TD>1.9943</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.21917921222</TD>
+						<TD>0.5128</TD>
+						<TD>+00.93191206301</TD>
+						<TD>0.5337</TD>
+						<TD>118163140630272</TD>
+						<TD>0.7807</TD>
+						<TD>0.5488</TD>
+						<TD>1.620</TD>
+						<TD>1.130</TD>
+						<TD>-4.659</TD>
+						<TD>1.020</TD>
+						<TD>0</TD>
+						<TD>2.0333e+02</TD>
+						<TD>1.4049e+00</TD>
+						<TD>19.9178</TD>
+						<TD>0.0075</TD>
+						<TD>9.6275e+01</TD>
+						<TD>9.2127e+00</TD>
+						<TD>20.3926</TD>
+						<TD>0.1039</TD>
+						<TD>1.6471e+02</TD>
+						<TD>1.2024e+01</TD>
+						<TD>19.2201</TD>
+						<TD>0.0793</TD>
+						<TD>1.1725</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.26161545646</TD>
+						<TD>0.1509</TD>
+						<TD>+00.91973702080</TD>
+						<TD>0.1425</TD>
+						<TD>118300579579776</TD>
+						<TD>1.0441</TD>
+						<TD>0.1679</TD>
+						<TD>-0.076</TD>
+						<TD>0.314</TD>
+						<TD>-14.046</TD>
+						<TD>0.281</TD>
+						<TD>0</TD>
+						<TD>1.8051e+03</TD>
+						<TD>3.3594e+00</TD>
+						<TD>17.5471</TD>
+						<TD>0.0020</TD>
+						<TD>6.0360e+02</TD>
+						<TD>5.3499e+00</TD>
+						<TD>18.3995</TD>
+						<TD>0.0096</TD>
+						<TD>1.8557e+03</TD>
+						<TD>1.6956e+01</TD>
+						<TD>16.5906</TD>
+						<TD>0.0099</TD>
+						<TD>1.8089</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.26058136972</TD>
+						<TD>4.8668</TD>
+						<TD>+00.92163654956</TD>
+						<TD>4.4462</TD>
+						<TD>118304874947456</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1</TD>
+						<TD>2.6583e+02</TD>
+						<TD>5.6079e+00</TD>
+						<TD>19.6269</TD>
+						<TD>0.0229</TD>
+						<TD>3.6258e+02</TD>
+						<TD>8.6141e+00</TD>
+						<TD>18.9529</TD>
+						<TD>0.0258</TD>
+						<TD>7.9387e+02</TD>
+						<TD>1.8269e+01</TD>
+						<TD>17.5125</TD>
+						<TD>0.0250</TD>
+						<TD>1.4403</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.25779573105</TD>
+						<TD>0.0573</TD>
+						<TD>+00.92426650363</TD>
+						<TD>0.0565</TD>
+						<TD>118300579581184</TD>
+						<TD>2.1618</TD>
+						<TD>0.0620</TD>
+						<TD>-3.748</TD>
+						<TD>0.109</TD>
+						<TD>-16.637</TD>
+						<TD>0.103</TD>
+						<TD>0</TD>
+						<TD>6.8259e+03</TD>
+						<TD>6.7978e+00</TD>
+						<TD>16.1030</TD>
+						<TD>0.0011</TD>
+						<TD>2.3089e+03</TD>
+						<TD>1.3227e+01</TD>
+						<TD>16.9429</TD>
+						<TD>0.0062</TD>
+						<TD>6.6622e+03</TD>
+						<TD>1.6229e+01</TD>
+						<TD>15.2029</TD>
+						<TD>0.0026</TD>
+						<TD>1.7400</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4567.79</TD>
+						<TD>0.1980</TD>
+						<TD>0.1150</TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.29192825485</TD>
+						<TD>0.6941</TD>
+						<TD>+00.93203269759</TD>
+						<TD>0.7285</TD>
+						<TD>118369299243520</TD>
+						<TD>1.1302</TD>
+						<TD>0.8125</TD>
+						<TD>-2.176</TD>
+						<TD>2.108</TD>
+						<TD>-11.368</TD>
+						<TD>2.610</TD>
+						<TD>0</TD>
+						<TD>1.3279e+02</TD>
+						<TD>1.3780e+00</TD>
+						<TD>20.3804</TD>
+						<TD>0.0113</TD>
+						<TD>4.3069e+01</TD>
+						<TD>6.4984e+00</TD>
+						<TD>21.2660</TD>
+						<TD>0.1638</TD>
+						<TD>1.7742e+02</TD>
+						<TD>7.8316e+00</TD>
+						<TD>19.1394</TD>
+						<TD>0.0479</TD>
+						<TD>2.1265</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.29406704681</TD>
+						<TD>0.3020</TD>
+						<TD>+00.93492392151</TD>
+						<TD>0.3047</TD>
+						<TD>118369299060992</TD>
+						<TD>2.5137</TD>
+						<TD>0.3348</TD>
+						<TD>4.340</TD>
+						<TD>0.701</TD>
+						<TD>-25.690</TD>
+						<TD>0.691</TD>
+						<TD>0</TD>
+						<TD>4.3320e+02</TD>
+						<TD>1.9578e+00</TD>
+						<TD>19.0966</TD>
+						<TD>0.0049</TD>
+						<TD>7.9643e+01</TD>
+						<TD>7.3813e+00</TD>
+						<TD>20.5985</TD>
+						<TD>0.1006</TD>
+						<TD>5.5806e+02</TD>
+						<TD>1.0965e+01</TD>
+						<TD>17.8952</TD>
+						<TD>0.0213</TD>
+						<TD>2.7033</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.27680044263</TD>
+						<TD>0.7111</TD>
+						<TD>+00.92833786887</TD>
+						<TD>0.6910</TD>
+						<TD>118403658981504</TD>
+						<TD>2.0346</TD>
+						<TD>0.7883</TD>
+						<TD>6.185</TD>
+						<TD>1.985</TD>
+						<TD>-4.499</TD>
+						<TD>2.319</TD>
+						<TD>0</TD>
+						<TD>1.4287e+02</TD>
+						<TD>1.3718e+00</TD>
+						<TD>20.3010</TD>
+						<TD>0.0104</TD>
+						<TD>3.6677e+01</TD>
+						<TD>8.9878e+00</TD>
+						<TD>21.4404</TD>
+						<TD>0.2661</TD>
+						<TD>1.8297e+02</TD>
+						<TD>1.1909e+01</TD>
+						<TD>19.1059</TD>
+						<TD>0.0707</TD>
+						<TD>2.3345</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.23364713061</TD>
+						<TD>0.3351</TD>
+						<TD>+00.92433678860</TD>
+						<TD>0.3631</TD>
+						<TD>118472378273152</TD>
+						<TD>0.2600</TD>
+						<TD>0.3781</TD>
+						<TD>5.284</TD>
+						<TD>0.727</TD>
+						<TD>-6.368</TD>
+						<TD>0.687</TD>
+						<TD>0</TD>
+						<TD>3.5122e+02</TD>
+						<TD>1.8054e+00</TD>
+						<TD>19.3244</TD>
+						<TD>0.0056</TD>
+						<TD>1.9365e+02</TD>
+						<TD>8.4646e+00</TD>
+						<TD>19.6338</TD>
+						<TD>0.0475</TD>
+						<TD>2.3019e+02</TD>
+						<TD>1.6558e+01</TD>
+						<TD>18.8567</TD>
+						<TD>0.0781</TD>
+						<TD>0.7771</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.26257663126</TD>
+						<TD>0.0529</TD>
+						<TD>+00.96263285761</TD>
+						<TD>0.0500</TD>
+						<TD>118712896452096</TD>
+						<TD>0.9134</TD>
+						<TD>0.0610</TD>
+						<TD>9.435</TD>
+						<TD>0.105</TD>
+						<TD>-1.688</TD>
+						<TD>0.103</TD>
+						<TD>0</TD>
+						<TD>6.1457e+03</TD>
+						<TD>5.1532e+00</TD>
+						<TD>16.2169</TD>
+						<TD>0.0009</TD>
+						<TD>2.8875e+03</TD>
+						<TD>2.1546e+01</TD>
+						<TD>16.7001</TD>
+						<TD>0.0081</TD>
+						<TD>4.7075e+03</TD>
+						<TD>1.3151e+01</TD>
+						<TD>15.5800</TD>
+						<TD>0.0030</TD>
+						<TD>1.1201</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4953.01</TD>
+						<TD>0.1795</TD>
+						<TD>0.0840</TD>
+						<TD>0.77</TD>
+						<TD>0.325</TD>
+					</TR>
+					<TR>
+						<TD>045.09363380517</TD>
+						<TD>0.6193</TD>
+						<TD>+00.83329857716</TD>
+						<TD>0.6870</TD>
+						<TD>118747256348544</TD>
+						<TD>1.7320</TD>
+						<TD>0.6934</TD>
+						<TD>-2.973</TD>
+						<TD>1.299</TD>
+						<TD>-4.638</TD>
+						<TD>1.342</TD>
+						<TD>0</TD>
+						<TD>1.7968e+02</TD>
+						<TD>1.7885e+00</TD>
+						<TD>20.0521</TD>
+						<TD>0.0108</TD>
+						<TD>1.3615e+02</TD>
+						<TD>4.9377e+01</TD>
+						<TD>20.0163</TD>
+						<TD>0.3938</TD>
+						<TD>2.5172e+02</TD>
+						<TD>1.2103e+01</TD>
+						<TD>18.7596</TD>
+						<TD>0.0522</TD>
+						<TD>1.2567</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.07015836296</TD>
+						<TD>1.2166</TD>
+						<TD>+00.83976584042</TD>
+						<TD>1.2793</TD>
+						<TD>118815977442944</TD>
+						<TD>2.5626</TD>
+						<TD>1.6018</TD>
+						<TD>-5.707</TD>
+						<TD>3.186</TD>
+						<TD>-17.311</TD>
+						<TD>3.678</TD>
+						<TD>0</TD>
+						<TD>9.0366e+01</TD>
+						<TD>1.2153e+00</TD>
+						<TD>20.7984</TD>
+						<TD>0.0146</TD>
+						<TD>6.8911e+01</TD>
+						<TD>1.0727e+01</TD>
+						<TD>20.7557</TD>
+						<TD>0.1690</TD>
+						<TD>1.3502e+02</TD>
+						<TD>2.3672e+01</TD>
+						<TD>19.4360</TD>
+						<TD>0.1904</TD>
+						<TD>1.3197</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.11774617917</TD>
+						<TD>0.2218</TD>
+						<TD>+00.84998858284</TD>
+						<TD>0.2029</TD>
+						<TD>118884695112704</TD>
+						<TD>-0.0825</TD>
+						<TD>0.2441</TD>
+						<TD>8.413</TD>
+						<TD>0.438</TD>
+						<TD>-4.148</TD>
+						<TD>0.383</TD>
+						<TD>0</TD>
+						<TD>7.7351e+02</TD>
+						<TD>2.8471e+00</TD>
+						<TD>18.4672</TD>
+						<TD>0.0040</TD>
+						<TD>3.6871e+02</TD>
+						<TD>2.2117e+01</TD>
+						<TD>18.9347</TD>
+						<TD>0.0651</TD>
+						<TD>6.2798e+02</TD>
+						<TD>7.7058e+00</TD>
+						<TD>17.7671</TD>
+						<TD>0.0133</TD>
+						<TD>1.1676</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.10678567613</TD>
+						<TD>0.1126</TD>
+						<TD>+00.85100420589</TD>
+						<TD>0.1094</TD>
+						<TD>118888990506624</TD>
+						<TD>1.2987</TD>
+						<TD>0.1234</TD>
+						<TD>5.126</TD>
+						<TD>0.261</TD>
+						<TD>-11.180</TD>
+						<TD>0.223</TD>
+						<TD>0</TD>
+						<TD>1.5682e+03</TD>
+						<TD>2.9865e+00</TD>
+						<TD>17.6998</TD>
+						<TD>0.0021</TD>
+						<TD>5.9767e+02</TD>
+						<TD>5.4769e+01</TD>
+						<TD>18.4102</TD>
+						<TD>0.0995</TD>
+						<TD>1.6999e+03</TD>
+						<TD>7.3559e+00</TD>
+						<TD>16.6859</TD>
+						<TD>0.0047</TD>
+						<TD>1.7244</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.10426352387</TD>
+						<TD>0.3362</TD>
+						<TD>+00.86590089572</TD>
+						<TD>0.3687</TD>
+						<TD>118987774524672</TD>
+						<TD>1.4747</TD>
+						<TD>0.3962</TD>
+						<TD>7.030</TD>
+						<TD>0.767</TD>
+						<TD>-52.637</TD>
+						<TD>0.684</TD>
+						<TD>0</TD>
+						<TD>3.5243e+02</TD>
+						<TD>2.0505e+00</TD>
+						<TD>19.3207</TD>
+						<TD>0.0063</TD>
+						<TD>1.1607e+02</TD>
+						<TD>1.1580e+01</TD>
+						<TD>20.1896</TD>
+						<TD>0.1083</TD>
+						<TD>3.8358e+02</TD>
+						<TD>1.3508e+01</TD>
+						<TD>18.3023</TD>
+						<TD>0.0382</TD>
+						<TD>1.8873</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.06323511046</TD>
+						<TD>1.2635</TD>
+						<TD>+00.84526551115</TD>
+						<TD>1.2062</TD>
+						<TD>119022134258560</TD>
+						<TD>-1.9685</TD>
+						<TD>1.4137</TD>
+						<TD>6.943</TD>
+						<TD>4.487</TD>
+						<TD>-12.611</TD>
+						<TD>3.607</TD>
+						<TD>0</TD>
+						<TD>1.0168e+02</TD>
+						<TD>2.1608e+00</TD>
+						<TD>20.6703</TD>
+						<TD>0.0231</TD>
+						<TD>4.4286e+01</TD>
+						<TD>1.0512e+01</TD>
+						<TD>21.2357</TD>
+						<TD>0.2577</TD>
+						<TD>1.0963e+02</TD>
+						<TD>1.2191e+01</TD>
+						<TD>19.6621</TD>
+						<TD>0.1207</TD>
+						<TD>1.5736</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.07255635958</TD>
+						<TD>0.4643</TD>
+						<TD>+00.86013796293</TD>
+						<TD>0.5431</TD>
+						<TD>119060788518912</TD>
+						<TD>1.4387</TD>
+						<TD>0.5259</TD>
+						<TD>2.121</TD>
+						<TD>1.138</TD>
+						<TD>-4.153</TD>
+						<TD>1.037</TD>
+						<TD>0</TD>
+						<TD>2.4641e+02</TD>
+						<TD>2.0223e+00</TD>
+						<TD>19.7092</TD>
+						<TD>0.0089</TD>
+						<TD>1.2695e+02</TD>
+						<TD>1.1056e+01</TD>
+						<TD>20.0923</TD>
+						<TD>0.0946</TD>
+						<TD>2.1741e+02</TD>
+						<TD>6.4108e+00</TD>
+						<TD>18.9187</TD>
+						<TD>0.0320</TD>
+						<TD>1.1736</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.08145636419</TD>
+						<TD>0.6467</TD>
+						<TD>+00.86526531699</TD>
+						<TD>0.6550</TD>
+						<TD>119159573215872</TD>
+						<TD>0.6816</TD>
+						<TD>0.7122</TD>
+						<TD>2.955</TD>
+						<TD>1.449</TD>
+						<TD>-5.234</TD>
+						<TD>1.219</TD>
+						<TD>0</TD>
+						<TD>1.7182e+02</TD>
+						<TD>1.7494e+00</TD>
+						<TD>20.1007</TD>
+						<TD>0.0111</TD>
+						<TD>6.1888e+01</TD>
+						<TD>1.6839e+01</TD>
+						<TD>20.8724</TD>
+						<TD>0.2954</TD>
+						<TD>2.0856e+02</TD>
+						<TD>1.1296e+01</TD>
+						<TD>18.9639</TD>
+						<TD>0.0588</TD>
+						<TD>1.9085</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.09203227723</TD>
+						<TD>0.2223</TD>
+						<TD>+00.88359246701</TD>
+						<TD>0.2193</TD>
+						<TD>119262652243200</TD>
+						<TD>1.1120</TD>
+						<TD>0.2470</TD>
+						<TD>-0.118</TD>
+						<TD>0.518</TD>
+						<TD>-3.591</TD>
+						<TD>0.436</TD>
+						<TD>0</TD>
+						<TD>6.7371e+02</TD>
+						<TD>1.7111e+00</TD>
+						<TD>18.6172</TD>
+						<TD>0.0028</TD>
+						<TD>1.8011e+02</TD>
+						<TD>1.1023e+01</TD>
+						<TD>19.7126</TD>
+						<TD>0.0665</TD>
+						<TD>7.7799e+02</TD>
+						<TD>1.0417e+01</TD>
+						<TD>17.5345</TD>
+						<TD>0.0145</TD>
+						<TD>2.1781</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.08349384598</TD>
+						<TD>0.3092</TD>
+						<TD>+00.88288559971</TD>
+						<TD>0.3195</TD>
+						<TD>119262652242944</TD>
+						<TD>1.1280</TD>
+						<TD>0.3436</TD>
+						<TD>1.101</TD>
+						<TD>0.716</TD>
+						<TD>-8.641</TD>
+						<TD>0.622</TD>
+						<TD>0</TD>
+						<TD>3.6464e+02</TD>
+						<TD>1.8207e+00</TD>
+						<TD>19.2837</TD>
+						<TD>0.0054</TD>
+						<TD>1.0139e+02</TD>
+						<TD>7.3956e+00</TD>
+						<TD>20.3364</TD>
+						<TD>0.0792</TD>
+						<TD>4.2759e+02</TD>
+						<TD>1.0862e+01</TD>
+						<TD>18.1843</TD>
+						<TD>0.0276</TD>
+						<TD>2.1520</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.09069437461</TD>
+						<TD>1.3857</TD>
+						<TD>+00.89264722346</TD>
+						<TD>1.3360</TD>
+						<TD>119262654052096</TD>
+						<TD>0.7898</TD>
+						<TD>1.4978</TD>
+						<TD>-4.473</TD>
+						<TD>3.687</TD>
+						<TD>-7.588</TD>
+						<TD>3.723</TD>
+						<TD>0</TD>
+						<TD>8.6550e+01</TD>
+						<TD>1.6202e+00</TD>
+						<TD>20.8452</TD>
+						<TD>0.0203</TD>
+						<TD>3.4860e+01</TD>
+						<TD>4.3487e+00</TD>
+						<TD>21.4956</TD>
+						<TD>0.1354</TD>
+						<TD>6.7939e+01</TD>
+						<TD>1.4801e+01</TD>
+						<TD>20.1816</TD>
+						<TD>0.2365</TD>
+						<TD>1.3140</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.13566277587</TD>
+						<TD>0.5554</TD>
+						<TD>+00.86464501411</TD>
+						<TD>0.5740</TD>
+						<TD>119297011976320</TD>
+						<TD>0.4467</TD>
+						<TD>0.6070</TD>
+						<TD>3.981</TD>
+						<TD>1.248</TD>
+						<TD>-6.544</TD>
+						<TD>1.103</TD>
+						<TD>0</TD>
+						<TD>2.1777e+02</TD>
+						<TD>1.6432e+00</TD>
+						<TD>19.8434</TD>
+						<TD>0.0082</TD>
+						<TD>1.3299e+02</TD>
+						<TD>8.3984e+00</TD>
+						<TD>20.0418</TD>
+						<TD>0.0686</TD>
+						<TD>1.4463e+02</TD>
+						<TD>1.1990e+01</TD>
+						<TD>19.3613</TD>
+						<TD>0.0900</TD>
+						<TD>0.6805</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.11952600425</TD>
+						<TD>0.5979</TD>
+						<TD>+00.86938363147</TD>
+						<TD>0.6399</TD>
+						<TD>119365731647232</TD>
+						<TD>1.2279</TD>
+						<TD>0.6725</TD>
+						<TD>-1.461</TD>
+						<TD>1.412</TD>
+						<TD>4.734</TD>
+						<TD>1.242</TD>
+						<TD>0</TD>
+						<TD>1.5775e+02</TD>
+						<TD>1.5805e+00</TD>
+						<TD>20.1935</TD>
+						<TD>0.0109</TD>
+						<TD>7.7204e+01</TD>
+						<TD>1.3023e+01</TD>
+						<TD>20.6323</TD>
+						<TD>0.1832</TD>
+						<TD>1.6444e+02</TD>
+						<TD>9.0987e+00</TD>
+						<TD>19.2219</TD>
+						<TD>0.0601</TD>
+						<TD>1.4104</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.17381430060</TD>
+						<TD>0.8337</TD>
+						<TD>+00.89452387616</TD>
+						<TD>1.0060</TD>
+						<TD>119468810918912</TD>
+						<TD>0.0335</TD>
+						<TD>0.9045</TD>
+						<TD>19.518</TD>
+						<TD>1.916</TD>
+						<TD>-5.615</TD>
+						<TD>2.139</TD>
+						<TD>0</TD>
+						<TD>1.4877e+02</TD>
+						<TD>1.2365e+00</TD>
+						<TD>20.2571</TD>
+						<TD>0.0090</TD>
+						<TD>2.8519e+01</TD>
+						<TD>8.7145e+00</TD>
+						<TD>21.7136</TD>
+						<TD>0.3318</TD>
+						<TD>2.3795e+02</TD>
+						<TD>9.6505e+00</TD>
+						<TD>18.8207</TD>
+						<TD>0.0440</TD>
+						<TD>2.8929</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.17015795368</TD>
+						<TD>1.0295</TD>
+						<TD>+00.89660890402</TD>
+						<TD>0.9903</TD>
+						<TD>119468810676480</TD>
+						<TD>1.3691</TD>
+						<TD>1.2285</TD>
+						<TD>0.056</TD>
+						<TD>2.697</TD>
+						<TD>-1.376</TD>
+						<TD>3.283</TD>
+						<TD>0</TD>
+						<TD>1.1181e+02</TD>
+						<TD>1.6492e+00</TD>
+						<TD>20.5671</TD>
+						<TD>0.0160</TD>
+						<TD>6.1465e+01</TD>
+						<TD>7.4902e+00</TD>
+						<TD>20.8798</TD>
+						<TD>0.1323</TD>
+						<TD>1.0360e+02</TD>
+						<TD>1.4410e+01</TD>
+						<TD>19.7235</TD>
+						<TD>0.1510</TD>
+						<TD>1.1563</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.14928413013</TD>
+						<TD>1.2381</TD>
+						<TD>+00.90759573032</TD>
+						<TD>1.5381</TD>
+						<TD>119537531950080</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>0</TD>
+						<TD>9.1972e+01</TD>
+						<TD>1.5883e+00</TD>
+						<TD>20.7792</TD>
+						<TD>0.0188</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.14720883793</TD>
+						<TD>0.5136</TD>
+						<TD>+00.90753068801</TD>
+						<TD>0.5710</TD>
+						<TD>119537530344832</TD>
+						<TD>0.8888</TD>
+						<TD>0.5596</TD>
+						<TD>11.345</TD>
+						<TD>1.089</TD>
+						<TD>-12.616</TD>
+						<TD>1.046</TD>
+						<TD>0</TD>
+						<TD>2.0577e+02</TD>
+						<TD>1.6324e+00</TD>
+						<TD>19.9049</TD>
+						<TD>0.0086</TD>
+						<TD>4.7830e+01</TD>
+						<TD>7.8672e+00</TD>
+						<TD>21.1521</TD>
+						<TD>0.1786</TD>
+						<TD>2.7972e+02</TD>
+						<TD>8.9331e+00</TD>
+						<TD>18.6451</TD>
+						<TD>0.0347</TD>
+						<TD>2.5070</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.12737115436</TD>
+						<TD>0.5731</TD>
+						<TD>+00.89590750460</TD>
+						<TD>0.6492</TD>
+						<TD>119606249819520</TD>
+						<TD>1.0517</TD>
+						<TD>0.6239</TD>
+						<TD>6.093</TD>
+						<TD>1.171</TD>
+						<TD>3.127</TD>
+						<TD>1.149</TD>
+						<TD>0</TD>
+						<TD>1.8952e+02</TD>
+						<TD>1.5250e+00</TD>
+						<TD>19.9942</TD>
+						<TD>0.0087</TD>
+						<TD>6.2487e+01</TD>
+						<TD>8.5114e+00</TD>
+						<TD>20.8619</TD>
+						<TD>0.1479</TD>
+						<TD>1.9978e+02</TD>
+						<TD>9.1755e+00</TD>
+						<TD>19.0105</TD>
+						<TD>0.0499</TD>
+						<TD>1.8514</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.10763028853</TD>
+						<TD>0.5916</TD>
+						<TD>+00.90978230278</TD>
+						<TD>0.6447</TD>
+						<TD>119679263798272</TD>
+						<TD>0.2534</TD>
+						<TD>0.6918</TD>
+						<TD>3.731</TD>
+						<TD>1.265</TD>
+						<TD>-12.339</TD>
+						<TD>1.216</TD>
+						<TD>0</TD>
+						<TD>1.9485e+02</TD>
+						<TD>1.6189e+00</TD>
+						<TD>19.9641</TD>
+						<TD>0.0090</TD>
+						<TD>8.5084e+01</TD>
+						<TD>6.1653e+00</TD>
+						<TD>20.5268</TD>
+						<TD>0.0787</TD>
+						<TD>1.5426e+02</TD>
+						<TD>1.3805e+01</TD>
+						<TD>19.2913</TD>
+						<TD>0.0972</TD>
+						<TD>1.2355</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.13044830716</TD>
+						<TD>0.3728</TD>
+						<TD>+00.89921497070</TD>
+						<TD>0.3744</TD>
+						<TD>119709328846080</TD>
+						<TD>0.0342</TD>
+						<TD>0.3991</TD>
+						<TD>-0.543</TD>
+						<TD>0.786</TD>
+						<TD>0.082</TD>
+						<TD>0.686</TD>
+						<TD>1</TD>
+						<TD>4.1010e+02</TD>
+						<TD>2.8132e+00</TD>
+						<TD>19.1561</TD>
+						<TD>0.0074</TD>
+						<TD>3.2542e+02</TD>
+						<TD>1.3581e+01</TD>
+						<TD>19.0703</TD>
+						<TD>0.0453</TD>
+						<TD>3.8984e+02</TD>
+						<TD>1.2996e+01</TD>
+						<TD>18.2847</TD>
+						<TD>0.0362</TD>
+						<TD>0.7856</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.12432589092</TD>
+						<TD>0.3662</TD>
+						<TD>+00.92337280395</TD>
+						<TD>0.4003</TD>
+						<TD>119812408068736</TD>
+						<TD>1.4578</TD>
+						<TD>0.4762</TD>
+						<TD>23.995</TD>
+						<TD>0.736</TD>
+						<TD>-2.731</TD>
+						<TD>0.696</TD>
+						<TD>0</TD>
+						<TD>3.7508e+02</TD>
+						<TD>2.3034e+00</TD>
+						<TD>19.2530</TD>
+						<TD>0.0067</TD>
+						<TD>1.0056e+02</TD>
+						<TD>8.2400e+00</TD>
+						<TD>20.3453</TD>
+						<TD>0.0890</TD>
+						<TD>4.7455e+02</TD>
+						<TD>1.3547e+01</TD>
+						<TD>18.0712</TD>
+						<TD>0.0310</TD>
+						<TD>2.2741</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.02958287146</TD>
+						<TD>0.7049</TD>
+						<TD>+00.87711223084</TD>
+						<TD>0.6598</TD>
+						<TD>119915487462144</TD>
+						<TD>2.2267</TD>
+						<TD>0.8072</TD>
+						<TD>23.121</TD>
+						<TD>2.103</TD>
+						<TD>-48.672</TD>
+						<TD>1.730</TD>
+						<TD>0</TD>
+						<TD>1.5346e+02</TD>
+						<TD>1.8222e+00</TD>
+						<TD>20.2234</TD>
+						<TD>0.0129</TD>
+						<TD>5.6252e+01</TD>
+						<TD>7.8288e+00</TD>
+						<TD>20.9760</TD>
+						<TD>0.1511</TD>
+						<TD>2.1137e+02</TD>
+						<TD>1.1406e+01</TD>
+						<TD>18.9493</TD>
+						<TD>0.0586</TD>
+						<TD>2.0267</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.05227355952</TD>
+						<TD>0.1173</TD>
+						<TD>+00.88399317189</TD>
+						<TD>0.1031</TD>
+						<TD>119949847010816</TD>
+						<TD>0.3132</TD>
+						<TD>0.1254</TD>
+						<TD>-0.323</TD>
+						<TD>0.256</TD>
+						<TD>-2.442</TD>
+						<TD>0.205</TD>
+						<TD>0</TD>
+						<TD>2.1439e+03</TD>
+						<TD>4.3665e+00</TD>
+						<TD>17.3603</TD>
+						<TD>0.0022</TD>
+						<TD>1.1878e+03</TD>
+						<TD>1.4701e+01</TD>
+						<TD>17.6645</TD>
+						<TD>0.0134</TD>
+						<TD>1.4405e+03</TD>
+						<TD>8.8738e+00</TD>
+						<TD>16.8656</TD>
+						<TD>0.0067</TD>
+						<TD>0.7989</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.07812483591</TD>
+						<TD>0.5383</TD>
+						<TD>+00.89233249507</TD>
+						<TD>0.5438</TD>
+						<TD>120018566679552</TD>
+						<TD>4.3364</TD>
+						<TD>0.5942</TD>
+						<TD>-36.677</TD>
+						<TD>1.251</TD>
+						<TD>-40.853</TD>
+						<TD>1.062</TD>
+						<TD>0</TD>
+						<TD>2.4265e+02</TD>
+						<TD>2.0180e+00</TD>
+						<TD>19.7259</TD>
+						<TD>0.0090</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>045.06941996721</TD>
+						<TD>0.2041</TD>
+						<TD>+00.89566900280</TD>
+						<TD>0.1948</TD>
+						<TD>120018566489984</TD>
+						<TD>0.2373</TD>
+						<TD>0.2294</TD>
+						<TD>9.555</TD>
+						<TD>0.448</TD>
+						<TD>-10.183</TD>
+						<TD>0.384</TD>
+						<TD>0</TD>
+						<TD>7.2463e+02</TD>
+						<TD>2.4314e+00</TD>
+						<TD>18.5381</TD>
+						<TD>0.0036</TD>
+						<TD>3.8561e+02</TD>
+						<TD>1.0133e+01</TD>
+						<TD>18.8860</TD>
+						<TD>0.0285</TD>
+						<TD>5.1375e+02</TD>
+						<TD>6.8251e+00</TD>
+						<TD>17.9850</TD>
+						<TD>0.0144</TD>
+						<TD>0.9010</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+		<INFO name="matches" value="50">matching records</INFO>
+
+		<INFO name="Warning" value="No center provided++++" />
+		<INFO name="Warning" value="truncated result (maxtup=50)" />
+		<INFO name="QUERY_STATUS" value="OVERFLOW">truncated result (maxtup=50)</INFO>
+
+	</RESOURCE>
+</VOTABLE>

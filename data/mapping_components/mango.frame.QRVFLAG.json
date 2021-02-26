@@ -1,0 +1,93 @@
+{
+  "INSTANCE": {
+    "@ID": "StatusFrame_QRVFLAG",
+    "@dmrole": "",
+    "@dmtype": "cab_msd:STCStatusSys",
+    "COLLECTION": {
+      "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+      "@size": "5",
+      "INSTANCE": [
+        {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@dmtype": "cab_msd:StatusLabel",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "cab_msd:StatusLabel.value",
+              "@dmtype": "ivoa:integer",
+              "@value": "B"
+            },
+            {
+              "@dmrole": "cab_msd:StatusLabel.label",
+              "@dmtype": "ivoa:string",
+              "@value": "Mean (max) error 0.5 (0.9)"
+            }
+          ]
+        },
+        {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@dmtype": "cab_msd:StatusLabel",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "cab_msd:StatusLabel.value",
+              "@dmtype": "ivoa:integer",
+              "@value": "B"
+            },
+            {
+              "@dmrole": "cab_msd:StatusLabel.label",
+              "@dmtype": "ivoa:string",
+              "@value": "Mean (max) error 1.2 (2.0)"
+            }
+          ]
+        },
+        {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@dmtype": "cab_msd:StatusLabel",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "cab_msd:StatusLabel.value",
+              "@dmtype": "ivoa:integer",
+              "@value": "C"
+            },
+            {
+              "@dmrole": "cab_msd:StatusLabel.label",
+              "@dmtype": "ivoa:string",
+              "@value": "Mean (max) error 2.5 (5.0)"
+            }
+          ]
+        },
+        {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@dmtype": "cab_msd:StatusLabel",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "cab_msd:StatusLabel.value",
+              "@dmtype": "ivoa:integer",
+              "@value": "D"
+            },
+            {
+              "@dmrole": "cab_msd:StatusLabel.label",
+              "@dmtype": "ivoa:string",
+              "@value": "Mean (max) error 5 (10)"
+            }
+          ]
+        },
+        {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@dmtype": "cab_msd:StatusLabel",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "cab_msd:StatusLabel.value",
+              "@dmtype": "ivoa:integer",
+              "@value": "E"
+            },
+            {
+              "@dmrole": "cab_msd:StatusLabel.label",
+              "@dmtype": "ivoa:string",
+              "@value": "Mean error > 10"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

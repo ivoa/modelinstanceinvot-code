@@ -1,0 +1,35 @@
+
+<INSTANCE ID="SpaceSys_ICRS_Spherical"
+	dmtype="coords:SpaceSys">
+	<INSTANCE dmrole="coords:PhysicalCoordSys.coordSpace"
+		dmtype="coords:SphericalCoordSpace">
+		<COLLECTION size="-1" dmrole="coords:CoordSpace.axis">
+			<INSTANCE dmrole="coords:CoordSpace.axis"
+				dmtype="coords:ContinuousAxis">
+				<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string"
+					value="ra" />
+			</INSTANCE>
+			<INSTANCE dmrole="coords:CoordSpace.axis"
+				dmtype="coords:ContinuousAxis">
+				<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string"
+					value="dec" />
+			</INSTANCE>
+			<INSTANCE dmrole="coords:CoordSpace.axis"
+				dmtype="coords:ContinuousAxis">
+				<ATTRIBUTE dmrole="coords:Axis.name" dmtype="ivoa:string"
+					value="r" />
+			</INSTANCE>
+		</COLLECTION>
+	</INSTANCE>
+	<INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+		<INSTANCE dmrole="coords:SpaceFrame.refPosition"
+			dmtype="coords:StdRefLocation">
+			<ATTRIBUTE dmrole="coords:StdRefLocation.position"
+				dmtype="ivoa:string" value="NoSet" />
+		</INSTANCE>
+		<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame"
+			dmtype="ivoa:string" value="ICRS" />
+		<ATTRIBUTE dmrole="coords:SpaceFrame.equinox"
+			dmtype="coords:Epoch" value="NoSet" />
+	</INSTANCE>
+</INSTANCE>

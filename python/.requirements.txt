@@ -1,0 +1,12 @@
+PySimpleGUI
+copy
+json
+numpy
+astropy
+unittest
+urllib
+xmlschema
+xmltodict
+logging
+collections
+lxml

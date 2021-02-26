@@ -1,0 +1,27 @@
+{
+  "INSTANCE": {
+    "@ID": "SpaceFrame_Galactic",
+    "@dmtype": "coords:SpaceFrame",
+    "ATTRIBUTE": [
+      {
+        "@dmrole": "coords:SpaceFrame.spaceRefFrame",
+        "@dmtype": "ivoa:string",
+        "@value": "Galactic"
+      },
+      {
+        "@dmrole": "coords:SpaceFrame.equinox",
+        "@dmtype": "coords:Epoch",
+        "@value": "NoSet"
+      }
+    ],
+    "INSTANCE": {
+      "@dmrole": "coords:SpaceFrame.refPosition",
+      "@dmtype": "coords:StdRefLocation",
+      "ATTRIBUTE": {
+        "@dmrole": "coords:StdRefLocation.position",
+        "@dmtype": "ivoa:string",
+        "@value": "NoSet"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": null,
+    "TABLE_MAPPING": {
+      "@tableref": "Results",
+      "TABLE_ROW_TEMPLATE": {
+        "@dmrole": "root",
+        "INSTANCE": {
+          "@dmrole": "root",
+          "@dmtype": "cab_msd:Source",
+          "ATTRIBUTE": {
+            "@dmrole": "cab_msd:Source.identifier",
+            "@dmtype": "ivoa:string",
+            "@ref": "@@@@@@"
+          },
+          "COLLECTION": [
+            {
+              "@dmrole": "cab_msd:Source.associatedData",
+              "@size": "-1"
+            },
+            {
+              "@dmrole": "cab_msd:Source.parameters",
+              "@size": "-1"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

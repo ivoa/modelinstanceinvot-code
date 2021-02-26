@@ -1,0 +1,10 @@
+
+
+<INSTANCE ID="PhotFrame_HR3" dmrole=""
+	dmtype="mango:stcextend.HRFrame">
+	<INSTANCE dmrole="mango:stcextend.HRFrame.low" 
+		dmref="PhotFrame_EB3" />
+	<INSTANCE dmrole="mango:stcextend.HRFrame.high" 
+		dmref="PhotFrame_EB4" />
+</INSTANCE>
+    

@@ -1,0 +1,32 @@
+{
+  "INSTANCE": {
+    "@ID": "TimeFrame_BARYCENTER",
+    "@dmrole": "",
+    "@dmtype": "coords:TimeFrame",
+    "ATTRIBUTE": {
+      "@dmrole": "coords:TimeFrame.timescale",
+      "@dmtype": "ivoa:string",
+      "@value": "TCB"
+    },
+    "INSTANCE": [
+      {
+        "@dmrole": "coords:TimeFrame.refPosition",
+        "@dmtype": "coords:StdRefLocation",
+        "ATTRIBUTE": {
+          "@dmrole": "coords:StdRefLocation.position",
+          "@dmtype": "ivoa:string",
+          "@value": "BARYCENTER"
+        }
+      },
+      {
+        "@dmrole": "coords:TimeFrame.refLocation",
+        "@dmtype": "coords:StdRefLocation",
+        "ATTRIBUTE": {
+          "@dmrole": "coords:StdRefLocation.position",
+          "@dmtype": "ivoa:string",
+          "@value": "GEOCENTRIC"
+        }
+      }
+    ]
+  }
+}

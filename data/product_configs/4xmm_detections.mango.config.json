@@ -1,0 +1,246 @@
+{
+    "identifier": "namesaada",
+	"parameters": [
+		{
+			"measure": "LonLatSkyPosition",
+			"ucd": "pos",
+			"semantic": "#postion.corrected",
+			"description": "Corrected position",
+			"reductionStatus": "Corrected",
+			"frame": {
+				"frame": "ICRS",
+				"equinox": null
+			},
+			"position": {
+				"longitude": "@_ra_146",
+				"latitude": "@_dec_147",
+				"unit": "deg"
+			},
+			"errors": {
+				"systematic": {
+					"value": "@_syserrcc_152",
+					"unit": "arcsec"
+				},
+				"random": {
+					"value": "@_poserr_148",
+					"unit": "arcsec"
+				}
+			}
+		},
+        {
+            "measure": "Photometry",
+            "ucd": "phot.flux",
+            "semantic": "#flux.corrected",
+            "description": "Flux in Energy band 1 0.2-0.5KeV (cameras merged)",
+            "reductionStatus": "Corrected",
+            "frame": {
+                "frame": "EB1"
+            },
+            "luminosity": {
+                "luminosity": "@_ep_1_flux_166",
+                "unit": "erg/cm2/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "@_ep_1_flux_err_167",
+                "unit": "erg/cm2/sec"
+                }
+            }
+        },
+        {
+            "measure": "Photometry",
+            "ucd": "phot.flux",
+            "semantic": "#flux.corrected",
+            "description": "Flux in Energy band 2 0.5-1KeV (cameras merged)",
+            "reductionStatus": "Corrected",
+            "frame": {
+                "frame": "EB2"
+            },
+            "luminosity": {
+                "luminosity": "@_ep_2_flux_168",
+                "unit": "erg/cm2/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "@_ep_2_flux_err_169",
+                "unit": "erg/cm2/sec"
+                }
+            }
+        },
+        {
+            "measure": "Photometry",
+            "ucd": "phot.flux",
+            "semantic": "#flux.corrected",
+            "description": "Flux in Energy band 2 1-2KeV (cameras merged)",
+            "reductionStatus": "Corrected",
+            "frame": {
+                "frame": "EB3"
+            },
+            "luminosity": {
+                "luminosity": "@_ep_3_flux_170",
+                "unit": "erg/cm2/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "@_ep_3_flux_err_171",
+                "unit": "erg/cm2/sec"
+                }
+            }
+        },
+        {
+            "measure": "Photometry",
+            "ucd": "phot.flux",
+            "semantic": "#flux.corrected",
+            "description": "Flux in Energy band 2 2-4.5KeV (cameras merged)",
+            "reductionStatus": "Corrected",
+            "frame": {
+                "frame": "EB4"
+            },
+            "luminosity": {
+                "luminosity": "@_ep_4_flux_172",
+                "unit": "erg/cm2/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "@_ep_4_flux_err_173",
+                "unit": "erg/cm2/sec"
+                }
+            }
+        },
+        {
+            "measure": "Photometry",
+            "ucd": "phot.flux",
+            "semantic": "#flux.corrected",
+            "description": "Flux in Energy band 2 4.5-12KeV (cameras merged)",
+            "reductionStatus": "Corrected",
+            "frame": {
+                "frame": "EB5"
+            },
+            "luminosity": {
+                "luminosity": "@_ep_5_flux_174",
+                "unit": "erg/cm2/sec"
+            },
+            "errors": {
+                "random": {
+                    "value": "@_ep_5_flux_err_175",
+                "unit": "erg/cm2/sec"
+                }
+            }
+        },
+		{
+			"measure": "HardnessRatio",
+			"description": "Hardness Ratio in Energy band 1 and 2 (cameras merged)",
+			"ucd": "phot.flux",
+			"semantic": "#hardness_ration.computed",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": ["EB1", "EB2", "HR1"]
+			},
+			"coordinate": {
+				"value": "@_ep_hr1_302"
+			},
+			"errors": {
+				"random": {
+					"value": "@_ep_hr1_err_303"
+				}
+			}
+		},
+		{
+			"measure": "HardnessRatio",
+			"description": "Hardness Ratio in Energy band 2 and 3 (cameras merged)",
+			"ucd": "phot.flux",
+			"semantic": "#hardness_ration.computed",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": ["EB2", "EB3", "HR2"]
+			},
+			"coordinate": {
+				"value": "@_ep_hr2_304"
+			},
+			"errors": {
+				"random": {
+					"value": "@_ep_hr2_err_305"
+				}
+			}
+		},
+		{
+			"measure": "HardnessRatio",
+			"description": "Hardness Ratio in Energy band 3 and 4 (cameras merged)",
+			"ucd": "phot.flux",
+			"semantic": "#hardness_ration.computed",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": ["EB3", "EB4", "HR3"]
+			},
+			"coordinate": {
+				"value": "@_ep_hr3_306"
+			},
+			"errors": {
+				"random": {
+					"value": "@_ep_hr3_err_307"
+				}
+			}
+		},
+		{
+			"measure": "HardnessRatio",
+			"description": "Hardness Ratio in Energy band 4 and 5 (cameras merged)",
+			"ucd": "phot.flux",
+			"semantic": "#hardness_ration.computed",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": ["EB4", "EB5", "HR4"]
+			},
+			"coordinate": {
+				"value": "@_ep_hr4_308"
+			},
+			"errors": {
+				"random": {
+					"value": "@_ep_hr4_err_309"
+				}
+			}
+		},
+
+		{
+			"measure": "GenericMeasure",
+			"ucd": "time.duration;obs.exposure",
+			"description": "PN exposure time in Energy band 1 0.2-0.5KeV",
+			"semantic": "#observation.duration",
+			"reductionStatus": "calibrated",
+			"coordinate": {
+				"value": "@_pn_1_exp_334",
+				"unit": "sec"
+			}
+		},
+		{
+			"measure": "MJD",
+			"ucd": "time;obs.start",
+			"description": "Observation time",
+			"semantic": "#observation.starttime",
+			"reductionStatus": "calibrated",
+			"coordinate": {
+				"value": "@_mjd_start_137",
+				"unit": "d"
+			},
+			"frame": {
+				"frame": "BARYCENTER"
+			}
+		},
+		{
+			"measure": "DetectionFlag",
+			"ucd": "meta.code.qual",
+			"semantic": "#quality_flag",
+			"description": "Summary quality flag",
+			"reductionStatus": "computed",
+			"frame": {
+				"frame": "DETFLAG"
+			},
+			"coordinate": {
+				"value": "@_sum_flag_394"
+			}
+		}
+
+	],
+	"associatedData": {
+		
+	}
+}

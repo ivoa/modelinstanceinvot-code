@@ -1,0 +1,33 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "TEST",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": null,
+    "TABLE_MAPPING": {
+      "Results": {
+        "@tableref": "Results",
+        "GROUPBY": {
+          "@ref": "_col1",
+          "test.points": {
+            "@dmtype": "test.Point",
+            "test.Point.Flux": {
+              "@dmtype": "ivoa:string",
+              "@ref": "_col3",
+              "@value": ""
+            },
+            "test.Point.Source": {
+              "@dmtype": "ivoa:string",
+              "@ref": "_col1",
+              "@value": ""
+            },
+            "test.Point.Time": {
+              "@dmtype": "ivoa:string",
+              "@ref": "_col2",
+              "@value": ""
+            }
+          }
+        }
+      }
+    }
+  }
+}

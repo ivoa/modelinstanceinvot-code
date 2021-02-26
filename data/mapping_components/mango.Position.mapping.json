@@ -1,0 +1,146 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": null,
+    "TABLE_MAPPING": {
+      "@tableref": "Results",
+      "INSTANCE": {
+        "@dmrole": "root",
+        "@dmtype": "meas:Position",
+        "INSTANCE": {
+          "@dmrole": "mango:MangoObject.parameters",
+          "@dmtype": "mango:Parameter",
+          "ATTRIBUTE": [
+            {
+              "@dmrole": "mango:Parameter.semantic",
+              "@dmtype": "ivoa:string",
+              "@ref": "@@@@@@"
+            },
+            {
+              "@dmrole": "mango:Parameter.ucd",
+              "@dmtype": "ivoa:string",
+              "@ref": "@@@@@@"
+            },
+            {
+              "@dmrole": "mango:Parameter.description",
+              "@dmtype": "ivoa:string",
+              "@ref": "@@@@@@"
+            },
+            {
+              "@dmrole": "mango:Parameter.reductionStatus",
+              "@dmtype": "ivoa:string",
+              "@value": "@@@@@@"
+            }
+          ],
+          "INSTANCE": [
+            {
+              "@dmrole": "mango:Parameter.measure",
+              "@dmtype": "coords:Point",
+              "INSTANCE": [
+                {
+                  "@dmrole": "coords:Point.axis1",
+                  "@dmtype": "ivoa:RealQuantity",
+                  "ATTRIBUTE": [
+                    {
+                      "@dmrole": "ivoa:RealQuantity.value",
+                      "@dmtype": "ivoa:real",
+                      "@ref": "@@@@@@"
+                    },
+                    {
+                      "@dmrole": "ivoa:Quantity.unit",
+                      "@dmtype": "ivoa:Unit",
+                      "@ref": "@@@@@@"
+                    }
+                  ]
+                },
+                {
+                  "@dmrole": "coords:Point.axis2",
+                  "@dmtype": "ivoa:RealQuantity",
+                  "ATTRIBUTE": [
+                    {
+                      "@dmrole": "ivoa:RealQuantity.value",
+                      "@dmtype": "ivoa:real",
+                      "@ref": "@@@@@@"
+                    },
+                    {
+                      "@dmrole": "ivoa:Quantity.unit",
+                      "@dmtype": "ivoa:Unit",
+                      "@ref": "@@@@@@"
+                    }
+                  ]
+                },
+                {
+                  "@dmref": "@@@@@@",
+                  "@dmrole": "coords:Coordinate.coordSys"
+                }
+              ]
+            },
+            {
+              "@dmrole": "meas:Measure.error",
+              "@dmtype": "meas:Error",
+              "INSTANCE": {
+                "@dmrole": "meas:Error.statError",
+                "@dmtype": "meas:Ellipse",
+                "COLLECTION": {
+                  "@dmrole": "meas:Ellipse.semiAxis",
+                  "@size": "2",
+                  "INSTANCE": [
+                    {
+                      "@dmrole": "meas:Ellipse.semiAxis",
+                      "@dmtype": "ivoa:RealQuantity",
+                      "ATTRIBUTE": [
+                        {
+                          "@dmrole": "ivoa:RealQuantity.value",
+                          "@dmtype": "ivoa:real",
+                          "@ref": "@@@@@@"
+                        },
+                        {
+                          "@dmrole": "ivoa:Quantity.unit",
+                          "@dmtype": "ivoa:Unit",
+                          "@ref": "@@@@@@"
+                        }
+                      ]
+                    },
+                    {
+                      "@dmrole": "meas:Ellipse.semiAxis",
+                      "@dmtype": "ivoa:RealQuantity",
+                      "ATTRIBUTE": [
+                        {
+                          "@dmrole": "ivoa:RealQuantity.value",
+                          "@dmtype": "ivoa:real",
+                          "@ref": "@@@@@@"
+                        },
+                        {
+                          "@dmrole": "ivoa:Quantity.unit",
+                          "@dmtype": "ivoa:Unit",
+                          "@ref": "@@@@@@"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "INSTANCE": {
+                  "@dmrole": "meas:Ellipse.posAngle",
+                  "@dmtype": "ivoa:RealQuantity",
+                  "ATTRIBUTE": [
+                    {
+                      "@dmrole": "ivoa:RealQuantity.value",
+                      "@dmtype": "ivoa:real",
+                      "@ref": "@@@@@@"
+                    },
+                    {
+                      "@dmrole": "ivoa:Quantity.unit",
+                      "@dmtype": "ivoa:Unit",
+                      "@ref": "@@@@@@"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

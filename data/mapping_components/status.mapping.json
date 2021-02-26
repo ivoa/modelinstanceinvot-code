@@ -1,0 +1,140 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": {
+      "INSTANCE": {
+        "@ID": "StatusSys",
+        "@dmrole": "",
+        "@dmtype": "cab_msd:STCStatusSys",
+        "COLLECTION": {
+          "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+          "@size": "5",
+          "INSTANCE": [
+            {
+              "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+              "@dmtype": "cab_msd:StatusLabel",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "cab_msd:StatusLabel.value",
+                  "@dmtype": "ivoa:integer",
+                  "@value": "0"
+                },
+                {
+                  "@dmrole": "cab_msd:StatusLabel.label",
+                  "@dmtype": "ivoa:string",
+                  "@value": "good"
+                }
+              ]
+            },
+            {
+              "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+              "@dmtype": "cab_msd:StatusLabel",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "cab_msd:StatusLabel.value",
+                  "@dmtype": "ivoa:integer",
+                  "@value": "1"
+                },
+                {
+                  "@dmrole": "cab_msd:StatusLabel.label",
+                  "@dmtype": "ivoa:string",
+                  "@value": "source parameters may be affected"
+                }
+              ]
+            },
+            {
+              "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+              "@dmtype": "cab_msd:StatusLabel",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "cab_msd:StatusLabel.value",
+                  "@dmtype": "ivoa:integer",
+                  "@value": "2"
+                },
+                {
+                  "@dmrole": "cab_msd:StatusLabel.label",
+                  "@dmtype": "ivoa:string",
+                  "@value": "possibly spurious"
+                }
+              ]
+            },
+            {
+              "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+              "@dmtype": "cab_msd:StatusLabel",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "cab_msd:StatusLabel.value",
+                  "@dmtype": "ivoa:integer",
+                  "@value": "3"
+                },
+                {
+                  "@dmrole": "cab_msd:StatusLabel.label",
+                  "@dmtype": "ivoa:string",
+                  "@value": "located in a area where spurious detection may occur"
+                }
+              ]
+            },
+            {
+              "@dmrole": "cab_msd:STCStatusSys.statusLabel",
+              "@dmtype": "cab_msd:StatusLabel",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "cab_msd:StatusLabel.value",
+                  "@dmtype": "ivoa:integer",
+                  "@value": "4"
+                },
+                {
+                  "@dmrole": "cab_msd:StatusLabel.label",
+                  "@dmtype": "ivoa:string",
+                  "@value": "located in a area where spurious detection may occur and possibly spurious"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "TABLE_MAPPING": {
+      "@tableref": "Results",
+      "INSTANCE": {
+        "@dmrole": "mango:MangoObject.parameters",
+        "@dmtype": "mango:Parameter",
+        "ATTRIBUTE": [
+          {
+            "@dmrole": "mango:Parameter.semantic",
+            "@dmtype": "ivoa:string",
+            "@value": "#propermotion"
+          },
+          {
+            "@dmrole": "mango:Parameter.ucd",
+            "@dmtype": "ivoa:string",
+            "@value": "pos.pm"
+          },
+          {
+            "@dmrole": "mango:Parameter.description",
+            "@dmtype": "ivoa:string",
+            "@value": "calibrated"
+          }
+        ],
+        "INSTANCE": {
+          "@dmrole": "mango:Parameter.measure",
+          "@dmtype": "cab_msd:STCStatus",
+          "INSTANCE": {
+            "@dmrole": "cab_msd:STCStatus.coord",
+            "@dmtype": "cab_msd:STCStatusState",
+            "ATTRIBUTE": {
+              "@dmrole": "cab_msd:STCStatusState.status",
+              "@dmtype": "ivoa:integer",
+              "@ref": "@@@@@@"
+            },
+            "INSTANCE": {
+              "@dmrole": "coords:Coordinate.coordSys",
+              "@ref": "StatusSys"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "INSTANCE": {
+    "@ID": "PhotFrame_HR4",
+    "@dmrole": "",
+    "@dmtype": "mango:stcextend.HRFrame",
+    "INSTANCE": [
+      {
+        "@dmref": "PhotFrame_EB4",
+        "@dmrole": "mango:stcextend.HRFrame.low"
+      },
+      {
+        "@dmref": "PhotFrame_EB5",
+        "@dmrole": "mango:stcextend.HRFrame.high"
+      }
+    ]
+  }
+}

@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot">
+  <GLOBALS>
+    <INSTANCE ID="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
+      <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+        <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet"/>
+      </INSTANCE>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+      <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet"/>
+    </INSTANCE>
+  </GLOBALS>
+  <TABLE_MAPPING tableref="Results">
+    <COLLECTION dmrole="root">
+      <TABLE_ROW_TEMPLATE>
+        <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+          <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="main_id"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.associatedData"/>
+          <COLLECTION size="-1" dmrole="mango:MangoObject.parameters">
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq;meta.main"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+                <INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="ra"/>
+                  <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="dec"/>
+                  <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS"/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Ellipse">
+                    <COLLECTION size="2" dmrole="meas:Ellipse.semiAxes">
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="coo_err_maj"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas"/>
+                      </INSTANCE>
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="coo_err_min"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas"/>
+                      </INSTANCE>
+                    </COLLECTION>
+                    <INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="coo_err_angle"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+              <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#propermotion"/>
+              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.pm"/>
+              <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Proper Motion"/>
+              <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated"/>
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:ProperMotion">
+                <INSTANCE dmrole="meas:ProperMotion.lon" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmra"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:ProperMotion.lat" dmtype="coords:PhysicalCoordinate">
+                  <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmdec"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="Ellipse">
+                    <COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmra_prec"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                      </INSTANCE>
+                      <INSTANCE dmrole="meas:Ellipse.semiAxis" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="pmdec_prec"/>
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/y"/>
+                      </INSTANCE>
+                    </COLLECTION>
+                    <INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="0.0"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </COLLECTION>
+        </INSTANCE>
+      </TABLE_ROW_TEMPLATE>
+    </COLLECTION>
+  </TABLE_MAPPING>
+</MODEL_INSTANCE>
+	<RESOURCE type="results">
+		<INFO name="QUERY_STATUS" value="OK" />
+		<INFO name="PROVIDER" value="CDS">SIMBAD TAP Service</INFO>
+		<INFO name="QUERY"
+			value="SELECT  TOP 100  * FROM &quot;public&quot;.basic WHERE      CONTAINS(POINT('ICRS', ra, dec), CIRCLE('ICRS', 340.910551, -17.071667, 0.08)) = 1" />
+		<TABLE name="Results">
+			<FIELD arraysize="*" datatype="char" name="coo_bibcode" ucd="meta.bib.bibcode;pos.eq">
+				<DESCRIPTION>Coordinate reference</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="coo_err_angle" ucd="pos.posAng;pos.errorEllipse;pos.eq" unit="deg">
+				<DESCRIPTION>Coordinate error angle</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="coo_err_maj" ucd="phys.angSize.smajAxis;pos.errorEllipse;pos.eq" unit="mas">
+				<DESCRIPTION>Coordinate error major axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="coo_err_maj_prec">
+				<DESCRIPTION>Coordinate error major axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="coo_err_min" ucd="phys.angSize.sminAxis;pos.errorEllipse;pos.eq" unit="mas">
+				<DESCRIPTION>Coordinate error minor axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="coo_err_min_prec">
+				<DESCRIPTION>Coordinate error minor axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="coo_qual" ucd="meta.code.qual;pos.eq">
+				<DESCRIPTION>Coordinate quality</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="coo_wavelength" ucd="instr.bandpass;pos.eq">
+				<DESCRIPTION>Wavelength class for the origin of the coordinates (R,I,V,U,X,G)</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="dec_prec">
+				<DESCRIPTION>Declination precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="galdim_angle" ucd="pos.posAng" unit="deg">
+				<DESCRIPTION>Galaxy ellipse angle</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="galdim_bibcode" ucd="meta.bib.bibcode;phys.angSize">
+				<DESCRIPTION>Galaxy dimension reference</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="galdim_majaxis" ucd="phys.angSize.smajAxis" unit="arcmin">
+				<DESCRIPTION>Angular size major axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="galdim_majaxis_prec">
+				<DESCRIPTION>Angular size major axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="galdim_minaxis" ucd="phys.angSize.sminAxis" unit="arcmin">
+				<DESCRIPTION>Angular size minor axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="galdim_minaxis_prec">
+				<DESCRIPTION>Angular size minor axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="galdim_qual" ucd="meta.code.qual;phys.angSize">
+				<DESCRIPTION>Galaxy dimension quality</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="long" name="hpx" ucd="meta.id">
+				<DESCRIPTION>Healpix number at ORDER=10</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="morph_bibcode" ucd="meta.bib.bibcode;src.morph.type">
+				<DESCRIPTION>morphological type reference</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="morph_qual" ucd="meta.code.qual;src.morph.type">
+				<DESCRIPTION>Morphological type quality</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="morph_type" ucd="src.morph.type">
+				<DESCRIPTION>Morphological type</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="int" name="nbref" ucd="meta.bib;meta.number">
+				<DESCRIPTION>number of references</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="long" name="oid" ucd="meta.record;meta.id">
+				<DESCRIPTION>Object internal identifier</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="int" name="otype" ucd="src.class;meta.code.class">
+				<DESCRIPTION>Object type, binary form</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="plx_bibcode" ucd="meta.bib.bibcode;pos.parallax.trig">
+				<DESCRIPTION>Parallax reference</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="plx_err" ucd="stat.error;pos.parallax.trig" unit="mas">
+				<DESCRIPTION>Parallax error</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="plx_err_prec">
+				<DESCRIPTION>Parallax error precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="plx_prec">
+				<DESCRIPTION>Parallax precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="plx_qual" ucd="meta.code.qual;pos.parallax.trig">
+				<DESCRIPTION>Parallax quality</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="plx_value" ucd="pos.parallax.trig" unit="mas">
+				<DESCRIPTION>Parallax</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="pm_bibcode" ucd="meta.bib.bibcode;pos.pm">
+				<DESCRIPTION>Proper motion reference</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="pm_err_angle" ucd="pos.posAng;pos.errorEllipse;pos.pm" unit="deg">
+				<DESCRIPTION>Proper motion error angle</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="pm_err_maj" ucd="phys.angSize.smajAxis;pos.errorEllipse;pos.pm" unit="mas.yr-1">
+				<DESCRIPTION>Proper motion error major axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="pm_err_maj_prec">
+				<DESCRIPTION>Proper motion error major axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="pm_err_min" ucd="phys.angSize.sminAxis;pos.errorEllipse;pos.pm" unit="mas.yr-1">
+				<DESCRIPTION>Proper motion error minor axis</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="pm_err_min_prec">
+				<DESCRIPTION>Proper motion error minor axis precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="pm_qual" ucd="meta.code.qual;pos.pm">
+				<DESCRIPTION>Proper motion quality</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmdec" ucd="pos.pm;pos.eq.dec" unit="mas.yr-1">
+				<DESCRIPTION>Proper motion in DEC</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="pmdec_prec">
+				<DESCRIPTION>Proper motion in DEC precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmra" ucd="pos.pm;pos.eq.ra" unit="mas.yr-1">
+				<DESCRIPTION>Proper motion in RA</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="pmra_prec">
+				<DESCRIPTION>Proper motion in RA precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="ra_prec">
+				<DESCRIPTION>Right ascension precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="rvz_bibcode" ucd="meta.bib.bibcode;spect.dopplerVeloc">
+				<DESCRIPTION>Radial velocity / redshift reference</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="float" name="rvz_err" ucd="stat.error;spect.dopplerVeloc" unit="km.s-1">
+				<DESCRIPTION>Radial velocity / redshift error</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="rvz_err_prec">
+				<DESCRIPTION>Radial velocity / redshift error precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="rvz_nature" ucd="meta.code;spect.dopplerVeloc">
+				<DESCRIPTION>velocity / redshift nature</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="rvz_qual" ucd="meta.code.qual;spect.dopplerVeloc">
+				<DESCRIPTION>Radial velocity / redshift quality</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="rvz_radvel" ucd="spect.dopplerVeloc.opt" unit="km.s-1">
+				<DESCRIPTION>Radial Velocity</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="rvz_radvel_prec">
+				<DESCRIPTION>Radial velocity precision</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="rvz_redshift" ucd="src.redshift">
+				<DESCRIPTION>redshift</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="short" name="rvz_redshift_prec">
+				<DESCRIPTION>redshift precision</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="rvz_type">
+				<DESCRIPTION>Radial velocity / redshift type</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="sp_bibcode" ucd="meta.bib.bibcode;src.spType">
+				<DESCRIPTION>spectral type reference</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="1" datatype="char" name="sp_qual" ucd="meta.code.qual;src.spType">
+				<DESCRIPTION>Spectral type quality</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="sp_type" ucd="src.spType">
+				<DESCRIPTION>MK spectral type</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="update_date" ucd="time.processing">
+				<DESCRIPTION>Date of last modification</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="vlsr" ucd="phys.veloc;pos.lsr;stat.mean">
+				<DESCRIPTION>velocity in Local Standard of Rest reference frame</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="main_id" ucd="meta.id;meta.main">
+				<DESCRIPTION>Main identifier for an object</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="otype_txt" ucd="src.class">
+				<DESCRIPTION>Object type</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ra" ucd="pos.eq.ra;meta.main" unit="deg">
+				<DESCRIPTION>Right ascension</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="dec" ucd="pos.eq.dec;meta.main" unit="deg">
+				<DESCRIPTION>Declination</DESCRIPTION>
+			</FIELD>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>2003A&amp;A...412...45P</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>-1</TD>
+						<TD></TD>
+						<TD>-1</TD>
+						<TD>D</TD>
+						<TD>O</TD>
+						<TD>5</TD>
+						<TD>15</TD>
+						<TD>2003A&amp;A...412...45P</TD>
+						<TD>0.3</TD>
+						<TD>2</TD>
+						<TD>0.13</TD>
+						<TD>2</TD>
+						<TD>E</TD>
+						<TD>4373136</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1</TD>
+						<TD>11173722</TD>
+						<TD>-268435456</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2016-12-15</TD>
+						<TD></TD>
+						<TD>LEDA  888961</TD>
+						<TD>G</TD>
+						<TD>340.84541666666667</TD>
+						<TD>-17.08972222222222</TD>
+					</TR>
+					<TR>
+						<TD>2003A&amp;A...412...45P</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>-1</TD>
+						<TD></TD>
+						<TD>-1</TD>
+						<TD>D</TD>
+						<TD>O</TD>
+						<TD>5</TD>
+						<TD>63</TD>
+						<TD>2003A&amp;A...412...45P</TD>
+						<TD>0.41</TD>
+						<TD>2</TD>
+						<TD>0.17</TD>
+						<TD>2</TD>
+						<TD>E</TD>
+						<TD>4373050</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1</TD>
+						<TD>11173790</TD>
+						<TD>-268435456</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2016-12-15</TD>
+						<TD></TD>
+						<TD>LEDA  889060</TD>
+						<TD>G</TD>
+						<TD>340.8770833333333</TD>
+						<TD>-17.083333333333332</TD>
+					</TR>
+					<TR>
+						<TD>2018yCat.1345....0G</TD>
+						<TD>90</TD>
+						<TD>0.0361</TD>
+						<TD>4</TD>
+						<TD>0.03</TD>
+						<TD>4</TD>
+						<TD>A</TD>
+						<TD>O</TD>
+						<TD>14</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4373052</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>0</TD>
+						<TD>11237005</TD>
+						<TD>-536870912</TD>
+						<TD>2018yCat.1345....0G</TD>
+						<TD>0.04</TD>
+						<TD>4</TD>
+						<TD>4</TD>
+						<TD>A</TD>
+						<TD>0.3345</TD>
+						<TD>2018yCat.1345....0G</TD>
+						<TD>90</TD>
+						<TD>0.088</TD>
+						<TD>3</TD>
+						<TD>0.064</TD>
+						<TD>3</TD>
+						<TD>A</TD>
+						<TD>-4.255</TD>
+						<TD>3</TD>
+						<TD>1.293</TD>
+						<TD>3</TD>
+						<TD>14</TD>
+						<TD>2018yCat.1345....0G</TD>
+						<TD>2.51</TD>
+						<TD>2</TD>
+						<TD>s</TD>
+						<TD>C</TD>
+						<TD>-82.99</TD>
+						<TD>2</TD>
+						<TD>-2.767865372128586E-4</TD>
+						<TD></TD>
+						<TD>v</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2018-06-28</TD>
+						<TD></TD>
+						<TD>UCAC4 365-190434</TD>
+						<TD>*</TD>
+						<TD>340.9859997430851</TD>
+						<TD>-17.0655214939938</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>
