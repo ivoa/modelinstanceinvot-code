@@ -1,4 +1,11 @@
 '''
+Class on charge of converting the json version of the mapping built by xml2json in a dictionary
+where all mapping keywords (INSTANCE, ATTRIBIUTE,COLLECTION, TABLE_TEMPLATE) are replaced 
+with their identifiers (dmrole or tableref)
+The model cardinalities are also restored. 
+For instance xml2json constructs instances as attribute arrays.
+These arrays are replaced with objects in which all attributes are referenced by a key matching their roles.
+
 Created on 26 mars 2020
 
 @author: laurentmichel
@@ -8,7 +15,6 @@ from copy import deepcopy
 from client.inst_builder import logger
 from utils.dict_utils import DictUtils
 from client.translator.json_tools import JsonTools
-
 
 class JsonMappingBuilder():
     '''
@@ -26,8 +32,18 @@ class JsonMappingBuilder():
         else:
             self.json = json_dict
             self.json_path = None
+        
+        # Buffer of the changes to be apply
+        # { node: parent node of the node to be changed
+        #   newcontent: New content of the node to be changed
+        # }
+        self.change_buffer = None
     
     def revert_templates(self):  
+        """
+        Groups all individual TABLE_MAPPING blocks in one dictionary in which 
+        each TABLE_MAPPING is references by its @tableref.
+        """
         logger.info("reverting templates - {TABLE_MAPPING:[{ref_table ...} ] -> 'ref_table':{...}")
         
         self.revert_elements("TABLE_MAPPING")
@@ -45,58 +61,82 @@ class JsonMappingBuilder():
         
         root_element["TABLE_MAPPING"] = templates
 
-    def revert_elements(self, name, dmrole=None, dmtype=None):
+    def revert_elements(self, name):
+        """
+        Revert all elements attached to the key "name" in the 'MODEL_INSTANCE' block
+        Reverting means replacing "name :{identifier:{}}" with "identifier: {}"
+        identifier can be a @tableref, a @dmrole, a @name or an @ID
+        :param name: name of the element to revert
+        :type name: string
+        """
         logger.info("reverting elements %s - ('%s':{role ...} -> 'role':{})", name, name)
         root_element = self.json['MODEL_INSTANCE']
+
         while True:
-            self.retour = None
-            self._revert_subelement(root_element, name, dmrole, dmtype)
-            if self.retour is not None:
-                self.retour["node"].pop(name)
-                for k, v in self.retour["newcontent"].items():
-                    self.retour["node"][k] = v
+            self.change_buffer = None
+
+            self._revert_subelement(root_element, name)
+            if self.change_buffer is not None:
+                self.change_buffer["node"].pop(name)
+                for k, v in self.change_buffer["newcontent"].items():
+                    self.change_buffer["node"][k] = v
             else:
                 break
             
     def revert_compositions(self, name, dmrole=None, dmtype=None):
+        """
+        Revert all elements attached to the key "name" in the 'MODEL_INSTANCE' block
+        Reverting means in this case replacing "name :{identifier:{}}" with "identifier: []"
+        identifier can be a @tableref, a @dmrole, a @name or an @ID
+        :param name: name of the element to revert
+        :type name: string
+        """
         logger.info("reverting compositions %s - ('%s':[{role ...} ...] -> 'role':[...])", name, name)
 
         root_element = self.json['MODEL_INSTANCE']
         while True:
-            self.retour = None
-            self._revert_composition(root_element, name, dmrole, dmtype)
-            if self.retour is not None:
-                self.retour["node"].pop(name)
+            self.change_buffer = None
+            self._revert_composition(root_element, name)
+            if self.change_buffer is not None:
+                self.change_buffer["node"].pop(name)
 
-                for ele in self.retour["newcontent"]:
+                for ele in self.change_buffer["newcontent"]:
                     for k, v in ele.items():
-                        self.retour["node"][k] = JsonTools.remove_key(v, "INSTANCE")
+                        self.change_buffer["node"][k] = JsonTools.remove_key(v, "INSTANCE")
             else:
                 break
                        
-    def _revert_subelement(self, root_element, name, dmrole, dmtype):
+    def _revert_subelement(self, root_element, name):
+        """
+        Look for the first value attached to the key "name" in "root_element"
+        Revert that value and store in self.change_buffer
+        Reverting an element consist in replacing the key (name) 
+        with the identifier (dmrole, dmref or ...) found in it (see unit tests)
+        Do only one change at the time. To process a complete dict, the function must be called until no change is found.
+        The orginal node stored in self.change_buffer is a pointer on the self.json node. 
+        Any change in one is propagated to the other
+        :param root_element: dict node to be analysed 
+        :type root_element: dict or list
+        :param name: key of the element to be reverted
+        :params name: string
+        """
+        
         if isinstance(root_element, list):
+            ele_reverted = False
             for idx, _ in enumerate(root_element):
-                if self.retour is None:
-                    self._revert_subelement(root_element[idx], name, dmrole, dmtype)
+                #
+                # Only process the first element of a list
+                # This is due to the fact the function only achieve one change at the time
+                # TODO This may generate issues in some cases.
+                if ele_reverted is False:
+                    ele_reverted = True
+                    self._revert_subelement(root_element[idx], name)
+                else:
+                    logger.info("only one instance of %s can be reverted in a list (others are ignored)", name)
         elif isinstance(root_element, dict):
             for k, v in root_element.items():
                 if k == name:
                     if isinstance(v, list):
-                        # print(DictUtils.get_pretty_json(v))
-                        '''
-                        newcontent = {}
-                        ele_array = []
-                        for ele in v:
-                            new_key = self._get_key_for_element(ele)
-
-                            new_ele  = deepcopy(ele)
-                            self._drop_role_if_needed(new_ele)
-                            self._add_value_if_needed(new_ele)
-                            ele_array.append(new_ele)
-                            
-                        newcontent[new_key] = deepcopy(ele_array)
-                        '''
                         # if we got an array of objects with all the same role
                         # we have a composition of instances. In that case that
                         # role is given the composition object and to object array 
@@ -114,43 +154,62 @@ class JsonMappingBuilder():
                             newcontent = {}
                             for ele in v:
                                 new_key = self._get_key_for_element(ele)
+                                logger.info("find an object of %s with identifier_att=%s", name, former_key)
                                 new_ele = deepcopy(ele)
                                 self._drop_role_if_needed(new_ele)
                                 self._add_value_if_needed(new_ele)                            
                                 newcontent[new_key] = new_ele
                         else:
-                            logger.info("find a composition of %s with the role=%s", name, former_key)
+                            logger.info("find a collection of %s with identifier_att=%s", name, former_key)
                             newcontent = {}
                             new_array = []
                             for ele in v:
                                 new_ele = deepcopy(ele)
-                                # self._drop_role_if_needed(new_ele)
                                 self._add_value_if_needed(new_ele)    
                                 new_array.append(new_ele)
                             newcontent[former_key] = new_array
                         
-                        self.retour = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
                         newcontent = {}
-                        new_key = self._get_key_for_element(v)
+                        new_key = self._get_key_for_element(v)                                
+                        logger.info("find an %s object with identifier_att=%s", name, new_key)
+
                         newcontent[new_key] = deepcopy(v)
                         self._add_value_if_needed(newcontent[new_key])
                         self._drop_role_if_needed(newcontent[new_key])
-                        self.retour = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
 
-                if self.retour is None:
-                    self._revert_subelement(v, name, dmrole, dmtype)
+                if self.change_buffer is None:
+                    self._revert_subelement(v, name)
+
                     
-    def _revert_composition(self, root_element, name, dmrole, dmtype):
+    def _revert_composition(self, root_element, name):
+        """
+        Look for the first value attached to the key "name" in "root_element"
+        Revert that value and store in self.change_buffer
+        Reverting an element consist in replacing the key (name) 
+        with the identifier (dmrole, dmref or ...) found in it (see unit tests)
+        The new content is always an []
+        Do only one change at the time. To process a complete dict, the function must be called until no change is found.
+        The orginal node stored in self.change_buffer is a pointer on the self.json node. 
+        Any change in one is propagated to the other
+        :param root_element: dict node to be analysed 
+        :type root_element: dict or list
+        :param name: key of the element to be reverted
+        :params name: string
+        """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
-                if self.retour is None:
-                    self._revert_composition(root_element[idx], name, dmrole, dmtype)
+                if self.change_buffer is None:
+                    self._revert_composition(root_element[idx], name)
         elif isinstance(root_element, dict):
             for k, v in root_element.items():
                 if k == name:
 
                     if isinstance(v, list):
+                        print(v)
+                        print("2")
                         newcontent = []
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
@@ -161,23 +220,27 @@ class JsonMappingBuilder():
                             else :
                                 # print("Append 1 empty" )
                                 newcontent.append({new_key: []})
-                        self.retour = {'node': root_element, "newcontent": newcontent}
+                        logger.info("find a collection %s with identifier_att=%s", name, new_key)
+
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
+                        print(v)
+                        print("3")
 
                         newcontent = []
                         ele_cp = deepcopy(v)
                         new_key = self._get_key_for_element(ele_cp)
                         self._drop_role_if_needed(ele_cp)
-
+                        logger.info("find an %s object with identifier_att=%s", name, new_key)
                         if ele_cp:
                             newcontent.append({new_key: [ele_cp]})
                         else :
                             newcontent.append({new_key: []})
 
-                        self.retour = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
 
-                if self.retour is None:
-                    self._revert_composition(v, name, dmrole, dmtype)
+                if self.change_buffer is None:
+                    self._revert_composition(v, name)
                     
     def _add_value_if_needed(self, element):
         keys = element.keys()
