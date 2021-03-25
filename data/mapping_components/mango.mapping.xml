@@ -1,14 +1,35 @@
-<MODEL_INSTANCE name="MANGO" syntax="ModelInstanceInVot" >
+    <!-- Here starts the mapping block This bloc maps all data contained in the VOTable on the MANGO model. The ModelInstanceInVot syntax 
+        is detailed here https://github.com/ivoa-std/modelinstanceinvot with a lot of snippet here https://github.com/ivoa/modelinstanceinvot-code 
+     -->
+
+<MODEL_INSTANCE name="Mango" syntax="ModelInstanceInVot"
+        uri="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml">
+    <!-- 
+      The GLOBALS block contains all objects with a scope covering all data.
+      This is typically the case for the coordinate Systems 
+      -->
 	<GLOBALS />
+    <!-- 
+      This block maps the data of the table identified as "Results" 
+      -->   
 	<TABLE_MAPPING tableref='Results'>
+	   <!-- 
+        The table contain a set of Mango instances, this is why we have COLLECTION at the top level
+        -->	
 		<COLLECTION dmrole="root">
 			<TABLE_ROW_TEMPLATE>
 				<INSTANCE dmrole="root" dmtype="mango:MangoObject">
+                    <!--
+                      Collection of the complex data attached to the source
+                      -->                   
 					<ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string"
 						ref="@@@@@@" />
-					<COLLECTION size="-1"
-						dmrole="mango:MangoObject.associatedData" />
-					<COLLECTION size="-1" dmrole="mango:MangoObject.parameters" />
+					<COLLECTION dmrole="mango:MangoObject.associatedData" />
+					<!--
+                      Collection of the parameters attached to the source
+                      Each child INSTANCE maps one parameter
+                      -->					
+					<COLLECTION dmrole="mango:MangoObject.parameters" />
 				</INSTANCE>
 			</TABLE_ROW_TEMPLATE>
 		</COLLECTION>

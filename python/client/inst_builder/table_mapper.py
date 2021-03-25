@@ -50,7 +50,9 @@ class TableMapper(object):
         else:
             self.json = json_inst_dict
             self.json_path = None
-        
+            
+        # mapping subset corresponding the  TABLE_MAPPING  
+        self.table_json = self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name]
         # array block reference 
         self.array = None
         # key = role of the instance contained TABLE_ROW_TEMPLATE value = TableIterator
@@ -69,17 +71,17 @@ class TableMapper(object):
         The dmrole of the collection enclosed in each virtual collection is the concatenation 
         of the original role with the group value. This is requested to avoid duplicated keys in the table iterators
         """
-        if "GROUPBY" in self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name].keys():
-            gbkey = self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name]["GROUPBY"]["@ref"]
+        if "GROUPBY" in self.table_json.keys():
+            gbkey = self.table_json["GROUPBY"]["@ref"]
             groupby_processor = GroupByProcessor(self.table_name,
                                                  gbkey,
-                                                 self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name],
+                                                 self.table_json,
                                                  self.table)
             ungrouped_mapping_block = groupby_processor.build_group_mapping()
             for key in ungrouped_mapping_block.keys():
                 logger.info("add a virtual collection with dmrole=%s", key)
-                self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name][key] = ungrouped_mapping_block[key]
-            self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name].pop("GROUPBY")
+                self.table_json[key] = ungrouped_mapping_block[key]
+            self.table_json.pop("GROUPBY")
         
     def _set_header_values(self, root_element):
         """
@@ -125,7 +127,12 @@ class TableMapper(object):
                         else:
                             iterator_key = ro
                             logger.info("Set table iterator for object with role=%s", ro)
-                            self.table_iterators[ro] = TableIterator(
+                            ro_key = ro
+                            cpt = 1;
+                            while ro_key in self.table_iterators:
+                                ro_key = ro + "_" + str(cpt) 
+                                cpt += 1
+                            self.table_iterators[ro_key] = TableIterator(
                                 iterator_key,
                                 self.parsed_table.to_table(),
                                 self.array[ro],
@@ -212,7 +219,7 @@ class TableMapper(object):
     def _set_value(self, element, role=None, parent_role=None):
         """
         Create a column mapping entry for the element if it is a @ref
-        both role an parent_role are just labels used make more explicit 
+        both role an parent_role are just labels used make to more explicit 
         the string representation of the columns mapping
         """
         keys = element.keys()
@@ -293,9 +300,9 @@ class TableMapper(object):
             logger.info("No data table")
             return {}
 
-    def resolve_refs_and_values(self, resolve_refs=False):
-        root_element = self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name]
-        if resolve_refs is True:
+    def resolve_refs_and_values(self, resolve_dmrefs=False):
+        root_element = self.table_json
+        if resolve_dmrefs is True:
             logger.info("Replace object references with referenced object copies")
             self.resolve_object_references()
         logger.info("Resolve references to PARAMS")
@@ -323,14 +330,17 @@ class TableMapper(object):
             logger.info("No data table")
             return {}
         
-    def get_full_instance(self, resolve_refs=False):
-        if resolve_refs is True:
+    def get_datatable_mapping(self):
+        return DictUtils.find_item_by_key(self.table_json, "TABLE_ROW_TEMPLATE")
+        
+    def get_full_instance(self, resolve_dmrefs=False):
+        if resolve_dmrefs is True:
             logger.info("Replace object references with referenced object copies")
             self.resolve_object_references()
-        retour = deepcopy(self.json['MODEL_INSTANCE']['TABLE_MAPPING'][self.table_name])
+        retour = deepcopy(self.table_json[self.table_name])
 
         json_block_extractor = JsonBlockExtractor(retour)
-        json_block_extractor.search_array_container()
+        json_block_extractor.search_table_row_template_container()
         if len(json_block_extractor.searched_elements) > 0 :
             json_block_extractor.searched_elements[0][0] = {}
             cpt = 0

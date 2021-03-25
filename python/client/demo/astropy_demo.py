@@ -24,7 +24,7 @@ if __name__ == '__main__':
                                 "4xmm_detections.annot.xml"
                                 )
     vodml_instance = VodmlInstance(votable_path)
-    vodml_instance.populate_templates(resolve_refs=True)
+    vodml_instance.populate_templates(resolve_dmrefs=True)
     vodml_instance.connect_join_iterators()
     table_row_instances = vodml_instance.get_root_element("mango:MangoObject")
 

@@ -33,7 +33,7 @@ class InstanceFromVotable:
         '''
         logger.info("extract vodml block from %s", self.votable_path)
         with open(self.votable_path) as xml_file:
-            self.vodml_block = re.search(r'<MODEL_INSTANCE name="[a-zA-Z]*" syntax="ModelInstanceInVot"[ ]*>((.|\n)*?)</MODEL_INSTANCE>', xml_file.read()).group() 
+            self.vodml_block = re.search(r'<MODEL_INSTANCE name="[a-zA-Z]*" syntax="ModelInstanceInVot"[^>]*>((.|\n)*?)</MODEL_INSTANCE>', xml_file.read()).group() 
     
         if self.vodml_block is None :
             raise Exception("No vodml block found")
@@ -74,7 +74,7 @@ class InstanceFromVotable:
         logger.info("JSON MODEL_INSTANCE block built")
         
     """
-    def _populate_instance(self, resolve_refs=False):
+    def _populate_instance(self, resolve_dmrefs=False):
         '''
         Set the dict with the real values
         :param resolve_refs: Flag for resolving the cross-reference in the mapping. 
@@ -84,12 +84,12 @@ class InstanceFromVotable:
         '''
         self._table_mapper = TableMapper(self.votable_path
                                   , json_inst_dict=self.json_vodml_block)
-        self._table_mapper.set_element_values(resolve_refs=resolve_refs)
+        self._table_mapper.set_element_values(resolve_dmrefs=resolve_refs)
         self._table_mapper.set_array_values()
         self._table_mapper.map_columns()
         logger.info("MODEL_INSTANCE instance created")
 
-    def build_instance(self, resolve_refs=False):
+    def build_instance(self, resolve_dmrefs=False):
         '''
          This is the public class that must be invoked from outside
          It does the checking and build the model instance that is hosted by 
@@ -107,7 +107,7 @@ class InstanceFromVotable:
         self._extract_vodml_block()
         self._validate_vodml_block()
         self._build_instance()
-        self._populate_instance(resolve_refs=resolve_refs)
+        self._populate_instance(resolve_dmrefs=resolve_refs)
         return self._table_mapper
     """
     

@@ -33,7 +33,7 @@ class TestInstanceFullFeature(unittest.TestCase):
         self.maxDiff = None
         self.table_mapper.resolve_refs_and_values()
         self.table_mapper.map_columns()
-        full_dict = self.table_mapper.get_full_instance(resolve_refs=True)
+        full_dict = self.table_mapper.get_full_instance(resolve_dmrefs=True)
         # print(DictUtils.get_pretty_json(full_dict))
         # print( DictUtils.read_dict_from_file(json_ref_path))
         self.assertDictEqual(full_dict, DictUtils.read_dict_from_file(self.json_ref_path), "")        

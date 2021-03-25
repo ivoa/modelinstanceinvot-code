@@ -152,10 +152,10 @@ Execution Reports
       <VALUES null="NaN" />
     </FIELD>
     <FIELD name="GLON" ucd="pos.galactic.lon" datatype="double" width="12" precision="E5" unit="deg"><!-- ucd="POS_GAL_LON" -->
-      <DESCRIPTION>[-90/90] Source position, Galactic latitude (equinox J2000, epoch J2000) (gal_b)</DESCRIPTION>
+      <DESCRIPTION>[0/360] Source position, Galactic longitude (gal_l)</DESCRIPTION>
     </FIELD>
     <FIELD name="GLAT" ucd="pos.galactic.lat" datatype="double" width="12" precision="E5" unit="deg"><!-- ucd="POS_GAL_LAT" -->
-      <DESCRIPTION>[0/360] Source position, Galactic longitude (gal_l)</DESCRIPTION>
+      <DESCRIPTION>[-90/90] Source position, Galactic latitude (gal_b)</DESCRIPTION>
     </FIELD>
     <FIELD name="fe" ucd="meta.code" datatype="unsignedByte" width="1"><!-- ucd="CODE_MISC" -->
       <DESCRIPTION>[0/1] Extension flag (extent_flag) (1)</DESCRIPTION>

@@ -218,3 +218,38 @@ class DictUtils():
         for key in dictionnary.keys():
             retour[prefix + "_" + key] = dictionnary[key]
         return retour
+
+    @staticmethod
+    def find_item_by_key(dictionnary, key, first=False):
+        """
+        Look for the first dictionary item attached to key
+        :param dictionary: dictionary to be explored
+        :type dictionary: {}
+        :param key: searched key
+        :type key: string
+        """
+        result = []
+        DictUtils._find_item_by_key(dictionnary, key,result)
+        return result
+
+    @staticmethod
+    def _find_item_by_key(dictionnary, key, result):
+        """
+        Look for the first dictionary item attached to key
+        :param dictionary: dictionary to be explored
+        :type dictionary: {}
+        :param key: searched key
+        :type key: string
+        """
+        if len(result) > 0:
+            return
+        if isinstance(dictionnary, dict):
+            if key in dictionnary:
+                print("aaaaaaa")
+                result.append(dictionnary[key])
+            
+            for _, sval in dictionnary.items():
+                DictUtils._find_item_by_key(sval, key, result)
+        elif isinstance(dictionnary,list):
+                for list_item in dictionnary:
+                    DictUtils._find_item_by_key(list_item, key, result)

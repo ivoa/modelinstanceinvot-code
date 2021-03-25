@@ -13,7 +13,7 @@ if file_path not in sys.path:
 
 from utils.dict_utils import DictUtils
 from client.inst_builder.vodml_instance import VodmlInstance
-from client.parser.instance_browser import InstanceBrowser 
+from client.parser.mango_browser import MangoBrowser 
 
 from client.demo import data_dir
 
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     base_path = os.path.dirname(os.path.realpath(__file__)) 
     votable_path = os.path.join(data_dir,
                                 "annotated_data",
-                                "gavot_ts.annot.xml"
+                                "gavo_ts.annot.xml"
                                 )
     vodml_instance = VodmlInstance(votable_path)
     vodml_instance.populate_templates()

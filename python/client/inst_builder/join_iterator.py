@@ -72,7 +72,7 @@ class JoinIterator(object):
                     }
                 }
             )
-        self.table_mapper.resolve_refs_and_values(resolve_refs=False)
+        self.table_mapper.resolve_refs_and_values(resolve_dmrefs=False)
         self.table_mapper.map_columns()
         for _, table_iterator in self.table_mapper.table_iterators.items():
             self.row_filter = table_iterator.row_filter

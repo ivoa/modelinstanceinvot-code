@@ -3,15 +3,13 @@ Created on 1 avr. 2020
 
 @author: laurentmichel
 '''
-from utils.dict_utils import DictUtils
-
 
 class ColumnMapping():
     '''
     This class manages the kind between the table columns and the mapping element (ARRAY---> ATTRIBUTE)  
     The column reference entries must be set (self.add_entry) before to build the column dictionary (column_ids)
     The latest is created at the same time the reference are resolved (self._map_columns)
-    Watchout: The case where more the 1 maping element point on the same colums hasn't been tested,
+    Watchout: The case where more the 1 mapping element point on the same column hasn't been tested,
     '''
 
     def __init__(self):
@@ -19,7 +17,7 @@ class ColumnMapping():
         Constructor
         '''
         # Dictionary of the columns (or fields) referenced by the mapping
-        # key: {parent_role, role, index, field} 
+        # key: {parent_role, role, index (= col number), field (= col id)} 
         # This attribute contains the mapping
         self.column_refs = {}
         # Dictionary of the VOTable fields 

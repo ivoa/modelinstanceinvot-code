@@ -130,7 +130,7 @@
 		{
 			"measure": "HardnessRatio",
 			"description": "Hardness Ratio in Energy band 1 and 2 (cameras merged)",
-			"ucd": "phot.flux",
+			"ucd": "phot.flux;arith.ratio",
 			"semantic": "#hardness_ration.computed",
 			"reductionStatus": "computed",
 			"frame": {
@@ -148,7 +148,7 @@
 		{
 			"measure": "HardnessRatio",
 			"description": "Hardness Ratio in Energy band 2 and 3 (cameras merged)",
-			"ucd": "phot.flux",
+			"ucd": "phot.flux;arith.ratio",
 			"semantic": "#hardness_ration.computed",
 			"reductionStatus": "computed",
 			"frame": {
@@ -166,7 +166,7 @@
 		{
 			"measure": "HardnessRatio",
 			"description": "Hardness Ratio in Energy band 3 and 4 (cameras merged)",
-			"ucd": "phot.flux",
+			"ucd": "phot.flux;arith.ratio",
 			"semantic": "#hardness_ration.computed",
 			"reductionStatus": "computed",
 			"frame": {
@@ -184,7 +184,7 @@
 		{
 			"measure": "HardnessRatio",
 			"description": "Hardness Ratio in Energy band 4 and 5 (cameras merged)",
-			"ucd": "phot.flux",
+			"ucd": "phot.flux;arith.ratio",
 			"semantic": "#hardness_ration.computed",
 			"reductionStatus": "computed",
 			"frame": {
@@ -203,11 +203,11 @@
 		{
 			"measure": "GenericMeasure",
 			"ucd": "time.duration;obs.exposure",
-			"description": "PN exposure time in Energy band 1 0.2-0.5KeV",
+			"description": "The ontime value, given in seconds, is the total good exposure time",
 			"semantic": "#observation.duration",
 			"reductionStatus": "calibrated",
 			"coordinate": {
-				"value": "@_pn_1_exp_334",
+				"value": "@_ep_ontime_385",
 				"unit": "sec"
 			}
 		},

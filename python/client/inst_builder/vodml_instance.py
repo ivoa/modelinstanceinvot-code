@@ -9,12 +9,11 @@ from client.translator.instance_from_votable import InstanceFromVotable
 from client.translator.json_mapping_builder import JsonMappingBuilder
 from client.inst_builder.table_mapper import TableMapper
 from client.inst_builder.json_block_extractor import JsonBlockExtractor
-from utils.dict_utils import DictUtils
-
 
 class VodmlInstance(object):
     '''
-    classdocs
+    This class manages the transformation of a VOTable mapping blocks into a 
+    model instance serialized in a Python {}
     '''
 
     def __init__(self, votable_path):
@@ -36,6 +35,9 @@ class VodmlInstance(object):
         self.build_table_mapper_map()
         
     def build_json_view(self):
+        """
+        Convert the XML mapping block into a dictionary (XML2json transform)
+        """
         logger.info("Extracting the MODEL_INSTANCE block")
         instanceFromVotable = InstanceFromVotable(self.votable_path)
         instanceFromVotable._extract_vodml_block()
@@ -45,6 +47,10 @@ class VodmlInstance(object):
         self.json_view = instanceFromVotable.json_block     
 
     def build_json_mapping(self):
+        """
+        Replace in the  XML2json the elements related to the model (COLLECTION, INSTANCE, ATTRIBUTE) with their roles
+        The other element, the parser directives (TABLE_ROW_TEMPLATE...), are kept in place
+        """
         logger.info("Formating the JSON view")
         builder = JsonMappingBuilder(json_dict=self.json_view)
         builder.revert_compositions("COLLECTION")
@@ -54,6 +60,11 @@ class VodmlInstance(object):
         self.json_view = builder.json
 
     def build_table_mapper_map(self):
+        """
+        Build one TableMapper for each mapped table (TABLE_MAPPING) and store them 
+        in a map using the table ID (or name if no ID) as keys.
+        TODO map the first table by default
+        """
         logger.info("Looking for tables matching TABLE_MAPPING ")
         votable = parse(self.votable_path)
         for template_key in self.json_view["MODEL_INSTANCE"]["TABLE_MAPPING"].keys():
@@ -75,7 +86,7 @@ class VodmlInstance(object):
                         parsed_table = table
                         break
             if name == None:
-                raise Exception("Cannot find table with name or ID = " + name)
+                raise Exception("Cannot find table with name or ID equals to None")
             else:
                 logger.info("Add TableMapper for table %s", name)
                 self.table_mappers[template_key] = TableMapper(
@@ -84,13 +95,21 @@ class VodmlInstance(object):
                     parsed_table=parsed_table,
                     json_inst_dict=self.json_view)
 
-    def populate_templates(self, resolve_refs=False):
+    def populate_templates(self, resolve_dmrefs=False):
+        """
+        resolve all @ref with values read in the VOTable
+        if resolve_dmrefs is true, the INSTANCE references are replaces with a copies of the actual objects
+        """
         for k, v in self.table_mappers.items():
             logger.info("populate template %s", k)
-            v.resolve_refs_and_values(resolve_refs=resolve_refs)
+            v.resolve_refs_and_values(resolve_dmrefs=resolve_dmrefs)
             v.map_columns()        
  
     def connect_join_iterators(self):
+        """
+        Connect the table iterators located in the mapping blocks (TABLE_RAW_TEMPLATE) 
+        with the VOTable parser
+        """
         logger.info("connect join iterators")
         parse_tables = {}
         for template, table_mapper in self.table_mappers.items():
@@ -102,6 +121,18 @@ class VodmlInstance(object):
                 join_iterator.connect_votable(parse_tables[target])
 
     def get_root_element(self, root_class):
+        """
+        Look for the table mapper (TABLE_MAPPING) having one child matching root_class
+        The root element is selected accordiing one of these criteria
+        - having no role attribute (should never occur actually)
+        - having an empty dmrole
+        - having dmrole = root
+        
+        :param root_class: dmtype of the root class
+        :type root_class: string
+        :return: the table mapper of the table containing the root element (or None)
+        :rtype: TableMapper instance
+        """
         for template, table_mapper in self.table_mappers.items():
             logger.info("Looking for %s instances in template %s", root_class, template)
             json_block_extract = JsonBlockExtractor(table_mapper.json)

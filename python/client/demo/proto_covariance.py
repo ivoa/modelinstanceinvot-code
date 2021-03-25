@@ -13,7 +13,7 @@ if file_path not in sys.path:
 
 from utils.dict_utils import DictUtils
 from client.inst_builder.vodml_instance import VodmlInstance
-from client.parser.instance_browser import InstanceBrowser 
+from client.parser.mango_browser import MangoBrowser 
 
 from client.demo import data_dir
 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
         else:
             break
 
-    instance_browser = InstanceBrowser(inst)
+    instance_browser = MangoBrowser(inst)
     print("Source identifier" + DictUtils.get_pretty_json(instance_browser.get_identifier()))
     print(DictUtils.get_pretty_json(instance_browser.get_parameter_list()))
     

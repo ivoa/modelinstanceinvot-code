@@ -24,7 +24,7 @@ class TestInstance(unittest.TestCase):
         table_mapper = TableMapper("Results"
                              , votable_path
                              , json_inst_dict=DictUtils.read_dict_from_file(json_ref_path))
-        table_mapper.resolve_refs_and_values(resolve_refs=True)
+        table_mapper.resolve_refs_and_values(resolve_dmrefs=True)
 
         # print(DictUtils.get_pretty_json(table_mapper.json["MODEL_INSTANCE"]["TABLE_MAPPING"]["my:other.role"]))
         self.assertDictEqual(table_mapper.json["MODEL_INSTANCE"]["TABLE_MAPPING"]["Results"]["my:other.role"]

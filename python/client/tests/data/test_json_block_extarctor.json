@@ -1,0 +1,225 @@
+{
+  "MODEL_INSTANCE": {
+    "@name": "MANGO",
+    "@syntax": "ModelInstanceInVot",
+    "GLOBALS": {
+      "INSTANCE": {
+        "@ID": "SpaceFrame_ICRS",
+        "@dmtype": "coords:SpaceFrame",
+        "ATTRIBUTE": [
+          {
+            "@dmrole": "coords:SpaceFrame.spaceRefFrame",
+            "@dmtype": "ivoa:string",
+            "@value": "ICRS"
+          },
+          {
+            "@dmrole": "coords:SpaceFrame.equinox",
+            "@dmtype": "coords:Epoch",
+            "@value": "NoSet"
+          }
+        ],
+        "INSTANCE": {
+          "@dmrole": "coords:SpaceFrame.refPosition",
+          "@dmtype": "coords:StdRefLocation",
+          "ATTRIBUTE": {
+            "@dmrole": "coords:StdRefLocation.position",
+            "@dmtype": "ivoa:string",
+            "@value": "NoSet"
+          }
+        }
+      }
+    },
+    "TABLE_MAPPING": [
+      {
+        "@tableref": "Results",
+        "COLLECTION": {
+          "@dmrole": "root",
+          "TABLE_ROW_TEMPLATE": {
+            "INSTANCE": {
+              "@dmrole": "root",
+              "@dmtype": "mango:MangoObject",
+              "ATTRIBUTE": {
+                "@dmrole": "mango:MangoObject.identifier",
+                "@dmtype": "ivoa:string",
+                "@ref": "namesaada"
+              },
+              "COLLECTION": [
+                {
+                  "@dmrole": "mango:MangoObject.associatedData",
+                  "@size": "-1",
+                  "JOIN": {
+                    "@foreign": "oidsaada",
+                    "@primary": "oidsaada",
+                    "@tableref": "Spectra",
+                    "INSTANCE": {
+                      "@dmrole": "mango:MangoObject.associatedData",
+                      "@dmtype": "mango:WebEndpoint",
+                      "ATTRIBUTE": [
+                        {
+                          "@dmrole": "mango:WebEndpoint.semantic",
+                          "@dmtype": "ivoa:string",
+                          "@value": "#spectrum.raw"
+                        },
+                        {
+                          "@dmrole": "mango:Parameter.description",
+                          "@dmtype": "ivoa:string",
+                          "@value": "Raw Spectrum"
+                        },
+                        {
+                          "@dmrole": "mango:Parameter.contentType",
+                          "@dmtype": "ivoa:string",
+                          "@ref": "product_type"
+                        },
+                        {
+                          "@dmrole": "mango:Parameter.uri",
+                          "@dmtype": "ivoa:string",
+                          "@ref": "data_access"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "@dmrole": "mango:MangoObject.parameters",
+                  "@size": "-1",
+                  "INSTANCE": {
+                    "@dmrole": "mango:MangoObject.parameters",
+                    "@dmtype": "mango:Parameter",
+                    "ATTRIBUTE": [
+                      {
+                        "@dmrole": "mango:Parameter.semantic",
+                        "@dmtype": "ivoa:string",
+                        "@value": "#postion.corrected"
+                      },
+                      {
+                        "@dmrole": "mango:Parameter.ucd",
+                        "@dmtype": "ivoa:string",
+                        "@value": "pos"
+                      },
+                      {
+                        "@dmrole": "mango:Parameter.description",
+                        "@dmtype": "ivoa:string",
+                        "@value": "Corrected position"
+                      },
+                      {
+                        "@dmrole": "mango:Parameter.reductionStatus",
+                        "@dmtype": "ivoa:string",
+                        "@value": "Corrected"
+                      }
+                    ],
+                    "INSTANCE": {
+                      "@dmrole": "mango:Parameter.measure",
+                      "@dmtype": "mango:stcextend.LonLatSkyPosition",
+                      "INSTANCE": [
+                        {
+                          "@dmrole": "mango:stcextend.LonLatSkyPosition.coord",
+                          "@dmtype": "mango:stcextend.LonLatPoint",
+                          "ATTRIBUTE": [
+                            {
+                              "@dmrole": "mango:stcextend.LonLatPoint.longitude",
+                              "@dmtype": "ivoa:real",
+                              "@ref": "pos_ra_csa"
+                            },
+                            {
+                              "@dmrole": "mango:stcextend.LonLatPoint.latitude",
+                              "@dmtype": "ivoa:real",
+                              "@ref": "pos_dec_csa"
+                            }
+                          ],
+                          "INSTANCE": {
+                            "@dmref": "SpaceFrame_ICRS",
+                            "@dmrole": "coords:Coordinate.coordSys"
+                          }
+                        },
+                        {
+                          "@dmrole": "meas:Measure.error",
+                          "@dmtype": "meas:Error",
+                          "INSTANCE": [
+                            {
+                              "@dmrole": "meas:Error.statError",
+                              "@dmtype": "meas:Symmetrical",
+                              "INSTANCE": {
+                                "@dmrole": "meas:Symmetrical.radius",
+                                "@dmtype": "ivoa:RealQuantity",
+                                "ATTRIBUTE": [
+                                  {
+                                    "@dmrole": "ivoa:RealQuantity.value",
+                                    "@dmtype": "ivoa:real",
+                                    "@value": "0"
+                                  },
+                                  {
+                                    "@dmrole": "ivoa:Quantity.unit",
+                                    "@dmtype": "ivoa:Unit",
+                                    "@value": "NotSet"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "@dmrole": "meas:Error.sysError",
+                              "@dmtype": "meas:Symmetrical",
+                              "INSTANCE": {
+                                "@dmrole": "meas:Symmetrical.radius",
+                                "@dmtype": "ivoa:RealQuantity",
+                                "ATTRIBUTE": [
+                                  {
+                                    "@dmrole": "ivoa:RealQuantity.value",
+                                    "@dmtype": "ivoa:real",
+                                    "@value": "0"
+                                  },
+                                  {
+                                    "@dmrole": "ivoa:Quantity.unit",
+                                    "@dmtype": "ivoa:Unit",
+                                    "@value": "NotSet"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "@tableref": "Spectra",
+        "COLLECTION": {
+          "@dmrole": "root",
+          "TABLE_ROW_TEMPLATE": {
+            "INSTANCE": {
+              "@dmrole": "root",
+              "@dmtype": "mango:WebEndpointXXX",
+              "ATTRIBUTE": [
+                {
+                  "@dmrole": "mango:WebEndpoint.semantic",
+                  "@dmtype": "ivoa:string",
+                  "@value": "#spectrum.raw"
+                },
+                {
+                  "@dmrole": "mango:Parameter.description",
+                  "@dmtype": "ivoa:string",
+                  "@value": "Raw Spectrum"
+                },
+                {
+                  "@dmrole": "mango:Parameter.contentType",
+                  "@dmtype": "ivoa:string",
+                  "@ref": "product_type"
+                },
+                {
+                  "@dmrole": "mango:Parameter.uri",
+                  "@dmtype": "ivoa:string",
+                  "@ref": "data_access"
+                }
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

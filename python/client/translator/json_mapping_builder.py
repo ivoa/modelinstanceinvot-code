@@ -122,14 +122,12 @@ class JsonMappingBuilder():
         """
         
         if isinstance(root_element, list):
-            ele_reverted = False
             for idx, _ in enumerate(root_element):
                 #
                 # Only process the first element of a list
                 # This is due to the fact the function only achieve one change at the time
-                # TODO This may generate issues in some cases.
-                if ele_reverted is False:
-                    ele_reverted = True
+                # The others will be reverted at the next pass.
+                if self.change_buffer is None:
                     self._revert_subelement(root_element[idx], name)
                 else:
                     logger.info("only one instance of %s can be reverted in a list (others are ignored)", name)
@@ -156,7 +154,7 @@ class JsonMappingBuilder():
                                 new_key = self._get_key_for_element(ele)
                                 logger.info("find an object of %s with identifier_att=%s", name, former_key)
                                 new_ele = deepcopy(ele)
-                                self._drop_role_if_needed(new_ele)
+                                self._drop_role_and_size(new_ele)
                                 self._add_value_if_needed(new_ele)                            
                                 newcontent[new_key] = new_ele
                         else:
@@ -177,7 +175,7 @@ class JsonMappingBuilder():
 
                         newcontent[new_key] = deepcopy(v)
                         self._add_value_if_needed(newcontent[new_key])
-                        self._drop_role_if_needed(newcontent[new_key])
+                        self._drop_role_and_size(newcontent[new_key])
                         self.change_buffer = {'node': root_element, "newcontent": newcontent}
 
                 if self.change_buffer is None:
@@ -208,13 +206,11 @@ class JsonMappingBuilder():
                 if k == name:
 
                     if isinstance(v, list):
-                        print(v)
-                        print("2")
                         newcontent = []
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
                             ele_cp = deepcopy(ele)
-                            self._drop_role_if_needed(ele_cp)
+                            self._drop_role_and_size(ele_cp)
                             if ele_cp:
                                 newcontent.append({new_key: [ele_cp]})
                             else :
@@ -224,13 +220,11 @@ class JsonMappingBuilder():
 
                         self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
-                        print(v)
-                        print("3")
 
                         newcontent = []
                         ele_cp = deepcopy(v)
                         new_key = self._get_key_for_element(ele_cp)
-                        self._drop_role_if_needed(ele_cp)
+                        self._drop_role_and_size(ele_cp)
                         logger.info("find an %s object with identifier_att=%s", name, new_key)
                         if ele_cp:
                             newcontent.append({new_key: [ele_cp]})
@@ -243,20 +237,40 @@ class JsonMappingBuilder():
                     self._revert_composition(v, name)
                     
     def _add_value_if_needed(self, element):
+        """
+        Add a @value attribute  to an ATTRIBUTE element that has a @dmtype and a @ref.
+        This attribute, not mandatory, facilitates the job of the instance builder
+        element["@value"] = "" is used later to identify columns mapped on a model element
+        :param element: ATTRIBUTE element 
+        :type element: dict
+        """
         keys = element.keys()
         if  "@dmtype" in keys and "@ref" in keys and "@value" not in keys:
             element["@value"] = ""
     
-    def _drop_role_if_needed(self, element):
+    def _drop_role_and_size(self, element):
+        """
+        Drop both @dmrole and @size from element.
+        - @dmrole is dropped as attribute because it is used as dict key
+        - @size is dropped because it is useless and even misleading
+        TODO: removing @size from the mapping schema.
+        :param element: element to be cleaned
+        :type element: dict
+        """
         keys = element.keys()
         if  "@dmrole" in keys :
             element.pop("@dmrole")   
         if  "@size" in keys :
             element.pop("@size")   
                             
-    def _get_key_for_element(self, element, default_key=None):
-        if default_key is not None:
-            return default_key
+    def _get_key_for_element(self, element):
+        """
+        Search for an element attribute that can be used as a JSON key identifying that element
+        The attributes that can be used as keys depends on the context. 
+        We suppose that this method is invoked in a proper context (INSTANCE, TABLE_TEMPLATE)
+        :param element: element to be identified by the searched key
+        :type element: dict
+        """
         new_key = ''
         if "@dmrole" in element.keys():
             new_key = element["@dmrole"]

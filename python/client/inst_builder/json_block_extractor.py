@@ -8,17 +8,22 @@ from client.inst_builder.att_utils import AttUtils
 
 class JsonBlockExtractor(object):
     '''
-    classdocs
+    Search utilities blocks in dicts  resulting from the xml2dict conversion of the mapping block
     '''
 
     def __init__(self, json_block):
         '''
         Constructor
+        :param json_block: Dict resulting from the xml2dict conversion of the mapping block
+        :param type: {}
         '''
-        self.searched_elements = []
         self.json_block = json_block
+
+        # Buffer storing the search results
+        # Result cannot be returned direclty because search functions are recursives
+        self.searched_elements = []
         
-    def search_array_container(self):
+    def search_table_row_template_container(self):
         self._search_array_container("TABLE_ROW_TEMPLATE", self.json_block)
         return self.searched_elements
         
@@ -40,21 +45,32 @@ class JsonBlockExtractor(object):
         
     def _search_array_container(self, element_name, root_element):
         """
+        Recursive search in root_element of all list that have at least 
+        one item named (dict key) element_name
+        The list contents are packed in self.searched_elements.
+        By construction self.searched_elements is a [[]]
+        See unittest 
+        :param element_name: name of the searched element 
+        :type element_name: string
+        :param   root_element: element to be explored
+        :type root_element : {} or [] 
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
-                item = self.root_element[idx]
-                if self.retour is None:
-                    if isinstance(item, dict) and element_name in item.keys():
-                        self.searched_elements.append(root_element)
-                    self._search_array_container(element_name, item)
+                item = root_element[idx]
+                if isinstance(item, dict) and element_name in item.keys():
+                    self.searched_elements.append(root_element)
+                self._search_array_container(element_name, item)
         elif isinstance(root_element, dict):
             for _, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
                         if isinstance(ele, dict) and element_name in ele.keys():
                             self.searched_elements.append(v)
-                            return v
+                            # if one matching element is found in a array, the whole
+                            # array content will be stored.
+                            # if we parse the others items, we might have result duplication
+                            break
                         self._search_array_container(element_name, ele)
                 elif isinstance(v, dict):  
                     self._search_array_container(element_name, v)
@@ -62,6 +78,7 @@ class JsonBlockExtractor(object):
     def _search_subelement_by_role(self, root_element, searched_role):
         """
         Store in self.searched_elements all elements with @dmrole=searched_role
+        Recursive search
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
@@ -80,6 +97,7 @@ class JsonBlockExtractor(object):
     def _search_subelement_by_id(self, root_element, searched_id):
         """
         Store in self.searched_ids all elements with @ID=searched_id
+        Recursive search
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
@@ -104,6 +122,7 @@ class JsonBlockExtractor(object):
     def _search_subelement_by_type(self, root_element, searched_type):
         """
         Store in self.searched_types all elements with @dmtype=searched_type
+        Recursive search
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):

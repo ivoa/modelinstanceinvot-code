@@ -128,12 +128,12 @@
 										dmtype="meas:Ellipse">
 										<COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
 											<SC_REALQUANTITY
-												dmrole="meas:Ellipse.semiAxis" ref="e_RA_ICRS" unkit="mas" />
+												dmrole="meas:Ellipse.semiAxis" ref="e_RA_ICRS" unit="mas" />
 											<SC_REALQUANTITY
-												dmrole="meas:Ellipse.semiAxis" ref="e_DE_ICRS" unkit="mas" />
+												dmrole="meas:Ellipse.semiAxis" ref="e_DE_ICRS" unit="mas" />
 										</COLLECTION>
 										<SC_REALQUANTITY
-											dmrole="meas:Ellipse.posAngle" val="0.0" unkit="deg" />
+											dmrole="meas:Ellipse.posAngle" val="0.0" unit="deg" />
 									</INSTANCE>
 								</INSTANCE>
 							</INSTANCE>
@@ -151,13 +151,13 @@
 										dmtype="coords:PhysicalCoordinate">
 										<SC_REALQUANTITY
 											dmrole="coords:PhysicalCoordinate.cval" ref="pmRA"
-											unkit="mas/y" />
+											unit="mas/y" />
 									</INSTANCE>
 									<INSTANCE dmrole="meas:ProperMotion.lat"
 										dmtype="coords:PhysicalCoordinate">
 										<SC_REALQUANTITY
 											dmrole="coords:PhysicalCoordinate.cval" ref="pmDE"
-											unkit="mas/y" />
+											unit="mas/y" />
 									</INSTANCE>
 									<INSTANCE dmrole="meas:Measure.error"
 										dmtype="meas:Error">
@@ -166,12 +166,12 @@
 											<COLLECTION size="2"
 												dmrole="meas:Ellipse.semiAxis">
 												<SC_REALQUANTITY
-													dmrole="meas:Ellipse.semiAxis" ref="e_pmRA" unkit="mas/y" />
+													dmrole="meas:Ellipse.semiAxis" ref="e_pmRA" unit="mas/y" />
 												<SC_REALQUANTITY
-													dmrole="meas:Ellipse.semiAxis" ref="e_pmDE" unkit="mas/y" />
+													dmrole="meas:Ellipse.semiAxis" ref="e_pmDE" unit="mas/y" />
 											</COLLECTION>
 											<SC_REALQUANTITY
-												dmrole="meas:Ellipse.posAngle" value="0.0" unkit="deg" />
+												dmrole="meas:Ellipse.posAngle" value="0.0" unit="deg" />
 										</INSTANCE>
 									</INSTANCE>
 								</INSTANCE>
@@ -199,7 +199,7 @@
 										<INSTANCE dmrole="meas:Error.statError"
 											dmtype="meas:Symmetrical">
 											<SC_REALQUANTITY
-												dmrole="meas:Symmetrical.radius" ref="e_Gmag" unkit="mag" />
+												dmrole="meas:Symmetrical.radius" ref="e_Gmag" unit="mag" />
 										</INSTANCE>
 									</INSTANCE>
 								</INSTANCE>
@@ -227,7 +227,7 @@
 										<INSTANCE dmrole="meas:Error.statError"
 											dmtype="meas:Symmetrical">
 											<SC_REALQUANTITY
-												dmrole="meas:Symmetrical.radius" ref="e_BPmag" unkit="mag" />
+												dmrole="meas:Symmetrical.radius" ref="e_BPmag" unit="mag" />
 										</INSTANCE>
 									</INSTANCE>
 								</INSTANCE>
@@ -255,7 +255,7 @@
 										<INSTANCE dmrole="meas:Error.statError"
 											dmtype="meas:Symmetrical">
 											<SC_REALQUANTITY
-												dmrole="meas:Symmetrical.radius" ref="e_RPmag" unkit="mag" />
+												dmrole="meas:Symmetrical.radius" ref="e_RPmag" unit="mag" />
 										</INSTANCE>
 									</INSTANCE>
 								</INSTANCE>
@@ -273,13 +273,13 @@
 									<INSTANCE dmrole="meas:GenericMeasure.coord"
 										dmtype="coords:PhysicalCoordinate">
 										<SC_REALQUANTITY
-											dmrole="coords:PhysicalCoordinate.cval" ref="Plx" unkit="mas" />
+											dmrole="coords:PhysicalCoordinate.cval" ref="Plx" unit="mas" />
 										<INSTANCE dmrole="meas:Measure.error"
 											dmtype="meas:Error">
 											<INSTANCE dmrole="meas:Error.statError"
 												dmtype="meas:Symmetrical">
 												<SC_REALQUANTITY
-													dmrole="meas:Symmetrical.radius" ref="e_Plx" unkit="mas" />
+													dmrole="meas:Symmetrical.radius" ref="e_Plx" unit="mas" />
 											</INSTANCE>
 										</INSTANCE>
 									</INSTANCE>
