@@ -39,7 +39,9 @@
               <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos.eq;meta.main"/>
               <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="position"/>
               <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
-              <INSTANCE dmrole="mango:Parameter.measure" dmtype="coords:Point">
+              
+              <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:Position">
+              <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:Point">
                 <INSTANCE dmrole="coords:Point.axis1" dmtype="ivoa:RealQuantity">
                   <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="RAJ2000"/>
                   <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
@@ -48,8 +50,10 @@
                   <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="DEJ2000"/>
                   <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
                 </INSTANCE>
-                <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRSSpherical"/>
+                <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceSys_ICRS_Spherical"/>
               </INSTANCE>
+              </INSTANCE>
+              
               <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
                 <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Ellipse">
                   <COLLECTION size="2" dmrole="meas:Ellipse.semiAxis">
