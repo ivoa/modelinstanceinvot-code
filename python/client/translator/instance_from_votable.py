@@ -17,14 +17,17 @@ class InstanceFromVotable:
     names are replaced with attribute values
     '''
 
-    def __init__(self, votable_path):
+    def __init__(self, votable_path, exit_validation=True):
         '''
         Constructor
         :param votable_path: VOTAble path
         :type votable: string
         '''
+        
+        self.exit_validation = exit_validation
         self.votable_path = votable_path
         self.vodml_block = None
+        self.json_block = None
 
     def _extract_vodml_block(self):
         '''
@@ -33,7 +36,8 @@ class InstanceFromVotable:
         '''
         logger.info("extract vodml block from %s", self.votable_path)
         with open(self.votable_path) as xml_file:
-            self.vodml_block = re.search(r'<MODEL_INSTANCE name="[a-zA-Z]*" syntax="ModelInstanceInVot"[^>]*>((.|\n)*?)</MODEL_INSTANCE>', xml_file.read()).group() 
+            content = xml_file.read()
+            self.vodml_block = re.search(r'<MODEL_INSTANCE name="[a-zA-Z]*" syntax="ModelInstanceInVot"[^>]*>((.|\n)*)</MODEL_INSTANCE>', content, re.MULTILINE).group() 
     
         if self.vodml_block is None :
             raise Exception("No vodml block found")
@@ -46,12 +50,13 @@ class InstanceFromVotable:
         '''
         validator = Validator(os.path.join(schema_dir
                                    , "model-instance-in-vot.xsd"))
-        if validator.validate_string(self.vodml_block, verbose=True) is True:
+        if validator.validate_string(self.vodml_block, verbose=True) is True or self.exit_validation is False:
             logger.info("MODEL_INSTANCE block is valid")
-            self.json_block = xmltodict.parse(self.vodml_block)            
+            self.json_block = xmltodict.parse(self.vodml_block)    
         else:
             logger.error("MODEL_INSTANCE block is not valid")
-            raise Exception("MODEL_INSTANCE block is not valid")
+            if self.exit_validation is True:
+                raise Exception("MODEL_INSTANCE block is not valid")
         
     def _build_instance(self):
         '''

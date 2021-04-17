@@ -16,7 +16,7 @@ class VodmlInstance(object):
     model instance serialized in a Python {}
     '''
 
-    def __init__(self, votable_path):
+    def __init__(self, votable_path, exit_validation=True):
         #
         # One table_mapper per TABLE_MAPPING
         # table ID or name taken as keys
@@ -28,18 +28,19 @@ class VodmlInstance(object):
         #
         self.json_view = {}       
         # Convert the XML mapping block in a dictionary
-        self.build_json_view()
+        self.build_json_view(exit_validation=exit_validation)
         # Make the dictionary  compliant with JSON mapping syntax
         self.build_json_mapping()
         # Build the table_mapper
         self.build_table_mapper_map()
         
-    def build_json_view(self):
+      
+    def build_json_view(self, exit_validation=True):
         """
         Convert the XML mapping block into a dictionary (XML2json transform)
         """
         logger.info("Extracting the MODEL_INSTANCE block")
-        instanceFromVotable = InstanceFromVotable(self.votable_path)
+        instanceFromVotable = InstanceFromVotable(self.votable_path, exit_validation=exit_validation)
         instanceFromVotable._extract_vodml_block()
         logger.info("Validating the MODEL_INSTANCE block")
         instanceFromVotable._validate_vodml_block()

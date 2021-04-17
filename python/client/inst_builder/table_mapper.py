@@ -82,6 +82,10 @@ class TableMapper(object):
                 logger.info("add a virtual collection with dmrole=%s", key)
                 self.table_json[key] = ungrouped_mapping_block[key]
             self.table_json.pop("GROUPBY")
+            #print(DictUtils.get_pretty_json(self.table_json))
+            #import sys
+            #sys.exit(1)
+
         
     def _set_header_values(self, root_element):
         """
@@ -162,15 +166,21 @@ class TableMapper(object):
                     # self._set_value(v)
                     self._set_array_iterators(v)
 
-    def _set_array_subelement_values(self, array_element, parent_role=None):
+    def _set_array_subelement_values(self, array_element, parent_role=None, parent_type=None):
         """
         Recursive function
         Takes all @ref of the array_element content and map them the table columns
         """
         if isinstance(array_element, list):
-            for idx, _ in enumerate(array_element):
+            for idx, idv in enumerate(array_element):
                 if self.retour is None:
-                    self._set_array_subelement_values(array_element[idx])
+                    prole = ""
+                    ptype = ""
+                    if "@dmrole" in idv:
+                        prole = idv["@dmrole"]
+                    if "@dmtype" in idv:
+                        ptype = idv["@dmtype"]
+                    self._set_array_subelement_values(array_element[idx], parent_role=prole, parent_type=ptype)
         elif isinstance(array_element, dict):
             for k, v in array_element.items():
                 # Join content refers to others tables, 
@@ -179,10 +189,23 @@ class TableMapper(object):
                     return
                 if isinstance(v, list):
                     for ele in v:
-                        self._set_array_subelement_values(ele)
+                        prole = ""
+                        ptype = ""
+                        if "@dmrole" in ele:
+                            prole = ele["@dmrole"]
+                        if "@dmtype" in ele:
+                            ptype = ele["@dmtype"]
+                        if ptype.startswith("ivoa:"):
+                            ptype = parent_type
+                        self._set_array_subelement_values(ele, parent_role=prole, parent_type=ptype)
                 elif isinstance(v, dict): 
-                    self._set_value(v, role=k, parent_role=parent_role)
-                    self._set_array_subelement_values(v, parent_role=k)
+                    ptype = ""
+                    if "@dmtype" in v:
+                        ptype = v["@dmtype"]
+                    if ptype.startswith("ivoa:"):
+                        ptype = parent_type
+                    self._set_value(v, role=k, parent_role=parent_role, parent_type=ptype)
+                    self._set_array_subelement_values(v, parent_role=k, parent_type=ptype)
                          
     def _get_object_references(self, root_element, replacement_list):
         """
@@ -216,7 +239,7 @@ class TableMapper(object):
                     self._get_object_references(v, replacement_list)
         return []            
     
-    def _set_value(self, element, role=None, parent_role=None):
+    def _set_value(self, element, role=None, parent_role=None, parent_type=None):
         """
         Create a column mapping entry for the element if it is a @ref
         both role an parent_role are just labels used make to more explicit 
@@ -227,7 +250,8 @@ class TableMapper(object):
             and "@value" in keys and element["@value"] == ""):  
             logger.info("Give role %s to the column %s "
                         , parent_role, element["@ref"])
-            self.column_mapping.add_entry(element["@ref"], role, parent_role)
+            self.column_mapping.add_entry(element["@ref"], role
+                                          , parent_role=parent_role , parent_type=parent_type)
             element["@value"] = "array coucou"
 
     def _resolve_header_value(self, element):
@@ -401,8 +425,13 @@ class TableMapper(object):
                 break
             else :
                 for replacement in replacement_list:
-                    instance = self.search_instance_by_id(replacement["dmref"], root)[0]
-                    replacement["node"][replacement["key"]] = deepcopy(instance)
+                    tempo = self.search_instance_by_id(replacement["dmref"], root)
+                    if len(tempo) == 0:
+                        logger.warning("Cannot resolve dm reference %s",replacement["dmref"] )
+                        return
+                    else:
+                        instance = self.search_instance_by_id(replacement["dmref"], root)[0]
+                        replacement["node"][replacement["key"]] = deepcopy(instance)
      
     def search_instance_by_id(self, searched_id, root_element=None):
         self.searched_ids = []

@@ -7,6 +7,7 @@ Utility generating virtual collection replacing the GROUPBY block
 '''
 from copy import deepcopy
 from client.inst_builder import logger
+from utils.dict_utils import DictUtils
 
 
 class GroupByProcessor(object):
@@ -69,18 +70,23 @@ class GroupByProcessor(object):
         the original role with the group key
         The group key is used as filter value each collection
         It converted in str because Numpy values are not JSON serialisable
+        The filter is propagated to the enclosed TABLE_ROW_TEMPLATE
+        TODO only the 1st TABLE_ROW_TEMPLATE because DictUtils.find_item_by_key returns after one match
         """
-        return [
-                { 
+        row_filter = {
+            "@ref": self.gouping_col,
+            "@value": str(group_key)
+            }
+        retour = { 
                     "TABLE_ROW_TEMPLATE": {
-                        "FILTER": {
-                            "@ref": self.gouping_col,
-                            "@value": str(group_key)
-                        },
+                        "FILTER": row_filter,
                         (self.content_role + "_" + str(group_key)): deepcopy(
                             self.table_template["GROUPBY"][self.content_role]
                             )
                     }
-                }
-            ]
+                }            
+        trws = DictUtils.find_item_by_key(retour["TABLE_ROW_TEMPLATE"], "TABLE_ROW_TEMPLATE")
+        for trw in trws:
+            trw["FILTER"] = row_filter
+        return [ retour ]
         

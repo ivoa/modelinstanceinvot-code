@@ -92,7 +92,7 @@ class JsonMappingBuilder():
         :type name: string
         """
         logger.info("reverting compositions %s - ('%s':[{role ...} ...] -> 'role':[...])", name, name)
-
+        
         root_element = self.json['MODEL_INSTANCE']
         while True:
             self.change_buffer = None

@@ -5,6 +5,7 @@ Created on 6 avr. 2020
 '''
 from astropy.coordinates import Galactic, ICRS, FK5, FK4, EarthLocation
 from astropy.time import Time
+from pandas.core.base import NoNewAttributesMixin
 
 
 class AstropyWrapper(object):
@@ -61,11 +62,12 @@ class AstropyWrapper(object):
             ref_scale = self.table_mapper.search_instance_by_role(
                 "coords:StdRefLocation.position",
                 root_element=ref_position_block)[0]['@value'].upper()  
-                
-            ref_location_block = frame_instance["coords:TimeFrame.refLocation"]
-            ref_location = self.table_mapper.search_instance_by_role(
-                "coords:StdRefLocation.position",
-                root_element=ref_location_block)[0]['@value'].upper() 
+            ref_location = None
+            if  "coords:TimeFrame.refLocation" in frame_instance:
+                ref_location_block = frame_instance["coords:TimeFrame.refLocation"]
+                ref_location = self.table_mapper.search_instance_by_role(
+                    "coords:StdRefLocation.position",
+                    root_element=ref_location_block)[0]['@value'].upper() 
                  
             if ref_scale == "BARYCENTER":
                 ref_scale = "tcb"   

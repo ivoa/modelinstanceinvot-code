@@ -3,6 +3,7 @@ Created on 1 avr. 2020
 
 @author: laurentmichel
 '''
+from collections import OrderedDict
 
 class ColumnMapping():
     '''
@@ -19,7 +20,7 @@ class ColumnMapping():
         # Dictionary of the columns (or fields) referenced by the mapping
         # key: {parent_role, role, index (= col number), field (= col id)} 
         # This attribute contains the mapping
-        self.column_refs = {}
+        self.column_refs = OrderedDict()
         # Dictionary of the VOTable fields 
         # key: {name, ref, id}
         #   key is then field position (starting from 0)
@@ -28,7 +29,7 @@ class ColumnMapping():
         #   (@ref attribute) that uses the column
         # This attribute is just used facilitate the mapping setup and to 
         # keep a convenient representation of the table fields 
-        self.column_ids = {}
+        self.column_ids = OrderedDict()
        
     def __repr__(self):
         """
@@ -38,7 +39,7 @@ class ColumnMapping():
             self.column_refs,
             self.column_ids)
     
-    def add_entry(self, key, role, parent_role=None):
+    def add_entry(self, key, role, parent_role=None, parent_type=None):
         """
         Add an entry to the dictionary of the referenced columns
         The new is created without reference to the VOtable fields
@@ -51,13 +52,18 @@ class ColumnMapping():
         :param parent_role: Role of the parent instance of the attribute 
                             referring to the columns (@dmrole attribute)
         :type parent_role: string
+        :param parent_type: Type of the parent instance of the attribute 
+                            referring to the columns (@dmtype attribute)
+        :type parent_type: string
         """
         if key not in self.column_refs.keys():
             self.column_refs[key] = {
                 "parent_role": parent_role,
+                "parent_type": parent_type,
                 "role": role,
                 "index": None,
-                "field": None
+                "field": None,
+                "ucd": None
                 }
       
     def _map_columns(self, votable):
@@ -86,16 +92,17 @@ class ColumnMapping():
                 "name": field.name,
                 "ref": field.ref,
                 "id": field.ID,
+                "ucd": field.ucd
                 }
             if field.ID in keys :
-                self.set_value(field.ID, indx, field)
+                self.set_value(field.ID, indx, field, field.ucd)
             elif field.ref in keys :
-                self.set_value(field.ref, indx, field)
+                self.set_value(field.ref, indx, field, field.ucd)
             elif field.name in keys:
-                self.set_value(field.name, indx, field)
+                self.set_value(field.name, indx, field, field.ucd)
             indx += 1
         
-    def set_value(self, key, index, field_or_param):
+    def set_value(self, key, index, field_or_param, ucd):
         """
         Connect the column reference identified by 'key' with the FIELD or the PARAMS
         pointed by "field_or_param"
@@ -105,11 +112,14 @@ class ColumnMapping():
         :type index: integer
         :param field_or_param:
         :type field_or_param: astropy.votable field or param
+        :param ucd:
+        :type ucd: string
         """
         # for the record: does nothing if the entry already exists
         self.add_entry(key, None)
         self.column_refs[key]["index"] = index
         self.column_refs[key]["field"] = field_or_param
+        self.column_refs[key]["ucd"] = ucd
 
     def get_col_index_by_name(self, name):        
         """
@@ -132,7 +142,20 @@ class ColumnMapping():
         :return: the index of the column reference (column_refs[key]) identified by "key"
         :rtype : integer
         """
-        return self.column_refs[key]["index"]    
+        return self.column_refs[key]["index"]  
+    
+    def get_mapping_index(self, key):
+        """
+        :return: the index of the mapped column identified by "key"
+        :rtype : integer
+        """
+        cpt = 0;
+        for cr_key, _ in self.column_refs.items():
+            if cr_key == key:
+                return cpt
+            cpt += 1
+        return None
+  
     
     def get_field_or_param(self, key):
         """
@@ -173,7 +196,12 @@ class ColumnMapping():
         """
         retour = []
         for key, v in self.column_refs.items():
-            retour.append("{}({}) [col#{} {}]". format(v["parent_role"], v["role"], v["index"], key))
+            if v["role"].startswith("ivoa:") is True:
+                str_role = ""
+            else :
+                str_role = "->{}".format(v["role"])
+
+            retour.append("{} ({}{}) [col#{} {} ({})]". format(v["parent_type"], v["parent_role"], str_role, v["index"], key, v["ucd"]))
         return retour
     
     def keys(self):
@@ -182,3 +210,16 @@ class ColumnMapping():
         :rtype: list of strings
         """
         return list(self.column_refs.keys())
+    
+    def get_index_from_field(self, field):
+        """
+        Returns the rank of the FIELD having either id or name == field
+        :param field: name or ID of the searched field
+        :tyhpe field: string
+        :return : column index of the searches field
+        :rtype: int
+        """
+        for index, column_id in self.column_ids.items():
+            if column_id["id"] == field or column_id["name"] == field:
+                return index
+        return None

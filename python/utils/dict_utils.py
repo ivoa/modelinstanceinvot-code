@@ -160,6 +160,13 @@ class DictUtils():
                           indent=2,
                           sort_keys=True,
                           cls=MyEncoder)
+        
+    @staticmethod
+    def print_pretty_json(dictionnary):
+        """
+        :return: Print out pretty string representation of the dictionary
+        """
+        print(DictUtils.get_pretty_json(dictionnary))
 
     @staticmethod
     def get_permanent_string(text):
@@ -245,7 +252,6 @@ class DictUtils():
             return
         if isinstance(dictionnary, dict):
             if key in dictionnary:
-                print("aaaaaaa")
                 result.append(dictionnary[key])
             
             for _, sval in dictionnary.items():

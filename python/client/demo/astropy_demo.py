@@ -39,8 +39,6 @@ if __name__ == '__main__':
     
     while True:
         inst = table_row_instances._get_next_row_instance()
-        if inst != None:
-            print(DictUtils.get_pretty_json(inst))
         break   
 
     wrapper = AstropyWrapper(vodml_instance, mapper_name)
