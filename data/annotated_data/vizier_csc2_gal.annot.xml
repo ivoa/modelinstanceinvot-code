@@ -37,21 +37,7 @@
                   <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="DEICRS"/>
                   <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS"/>
                 </INSTANCE>
-                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
-                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
-                    </INSTANCE>
-                  </INSTANCE>
-                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
-                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
-                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
-                    </INSTANCE>
-                  </INSTANCE>
-                </INSTANCE>
-              </INSTANCE>
+               </INSTANCE>
             </INSTANCE>
             <INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
               <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position"/>
@@ -63,20 +49,6 @@
                   <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="GLON"/>
                   <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="GLAT"/>
                   <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_Galactic"/>
-                </INSTANCE>
-                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
-                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
-                    </INSTANCE>
-                  </INSTANCE>
-                  <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
-                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
-                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
-                    </INSTANCE>
-                  </INSTANCE>
                 </INSTANCE>
               </INSTANCE>
             </INSTANCE>

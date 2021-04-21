@@ -39,7 +39,7 @@ class AttUtils(object):
         <INSTANCE dmref=xxx/>
         """
         if(isinstance(element, dict) and 
-            "@dmref" in element.keys() and 
-            "@dmtype" not in element.keys()):
+            "@dmref" in element.keys() ):
+            #"@dmtype" not in element.keys()):
             return True
         return False

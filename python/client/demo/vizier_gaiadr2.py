@@ -7,6 +7,8 @@ Created on 31 mars 2020
 '''
 
 import os, sys
+from client.parser.mango_browser import MangoBrowser
+
 file_path = os.path.dirname(os.path.realpath(__file__)) + "/../../"
 if file_path not in sys.path:
     sys.path.append(file_path)
@@ -22,6 +24,21 @@ if __name__ == '__main__':
                                 "annotated_data",
                                 "vizier_gaiadr2.annot.xml"
                                 )
+    mango_browser = MangoBrowser(votable_path) 
+    
+    mango_parameters = mango_browser.get_parameters()
+    print("======== Parameters ")
+    DictUtils.print_pretty_json(mango_parameters)
+    
+    associated_data = mango_browser.get_associated_data()
+    print("======== Associated data ")
+    DictUtils.print_pretty_json(associated_data)
+    
+    print("======== 1st row data ")
+    mango_data = mango_browser.get_data()
+    DictUtils.print_pretty_json(mango_data)
+
+    sys.exit()
     vodml_instance = VodmlInstance(votable_path)
     vodml_instance.populate_templates()
     vodml_instance.connect_join_iterators()

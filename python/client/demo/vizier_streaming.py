@@ -34,22 +34,34 @@ if __name__ == '__main__':
     print(">>>>>> Got it " )
     content = content.replace('mango:Source', 'mango:MangoObject')
     content = content.replace('mango:MangoObject.Parameter.measure', 'mango:Parameter.measure')
-    # associated parameters
+    content = content.replace('dmrole="coords.SpaceFrame"' ,  'dmtype="coords.SpaceFrame"')
+    content = content.replace('"ango:WebEndPpoint"', '"mango:WebEndPpoint"')
     content = content.replace('meas:Measure', 'mango:Parameter.measure')
-    #content = content.replace('"J2000" dmrole="">', '"J2000" dmtype="coords.SpaceFrame">')
-    #content = re.sub(r"(?s)<INFO>.*?</INFO>", r"", content, re.MULTILINE)
-
-    #content = content.replace("<INFO>", "")
-    #ßcontent = content.replace("</INFO>", "")
-    #content = content.replace("The MODEL_INSTANCE section of this document is a VizieR prototype using MangoDM -", "")
-    #content = content.replace("The relevance of metadata exposed as well as the current serialization is not guaranteed.", "")
-    #
+    content = content.replace('WebEndPpoint', 'WebEndpoint')
+    content = content.replace('ContentType', 'contentType')
+    content = content.replace("mango:WebEndpoint.url", "mango:WebEndpoint.uri")
+ 
     tempfile = open(tf.name, 'w')
     tempfile.write(content)
     tempfile.close()
 
     print ("=== VOTable saved in {}".format(tf.name))
     
+    mango_browser = MangoBrowser(tf.name) 
+    
+    mango_parameters = mango_browser.get_parameters()
+    print("======== Parameters ")
+    DictUtils.print_pretty_json(mango_parameters)
+    
+    associated_data = mango_browser.get_associated_data()
+    print("======== Associated data ")
+    DictUtils.print_pretty_json(associated_data)
+    
+    print("======== 1st row data ")
+    mango_data = mango_browser.get_data()
+    DictUtils.print_pretty_json(mango_data)
+
+    sys.exit()
     
     f = open(tf.name, "r")
     votable_path = tf.name

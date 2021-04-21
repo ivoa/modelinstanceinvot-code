@@ -34,5 +34,8 @@ if __name__ == '__main__':
     
     proper_motions = mango_browser.get_data(measure_type="meas:Position")
     print(DictUtils.get_pretty_json(proper_motions))
+    
+    proper_motions = mango_browser.get_data()
+    print(DictUtils.get_pretty_json(proper_motions))
 
 

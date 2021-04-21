@@ -72,7 +72,7 @@
                   <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="DE_ICRS"/>
                   <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg"/>
                 </INSTANCE>
-                <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRSSpherical"/>
+                <INSTANCE dmrole="coords:Coordinate.coordSys" dmref="SpaceSys_ICRS_Spherical"/>
               </INSTANCE>
               <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
                 <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Ellipse">

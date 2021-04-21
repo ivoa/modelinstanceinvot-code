@@ -68,7 +68,7 @@
 									<INSTANCE dmref="_rv_quality" dmrole="mango:Parameter.associatedParameters" />
 								</COLLECTION>
 							</INSTANCE>
-							<INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+							<INSTANCE ID="_plate_number" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
 								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#Number.of.plates" />
 								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.number" />
 								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string"
@@ -91,7 +91,7 @@
 									</INSTANCE>
 								</INSTANCE>
 							</INSTANCE>
-							<INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+							<INSTANCE ID="_observatory" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
 								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#observatory" />
 								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.ref;pos.frame " />
 								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string"
@@ -114,7 +114,7 @@
 									</INSTANCE>
 								</INSTANCE>
 							</INSTANCE>
-							<INSTANCE dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+							<INSTANCE ID="_rv_quality" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
 								<ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#quality_flag" />
 								<ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.code.qual" />
 								<ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value=" Quality of radial velocity " />

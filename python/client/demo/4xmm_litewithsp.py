@@ -7,12 +7,13 @@ Created on 31 mars 2020
 '''
 
 import os, sys
+from client.parser.mango_browser import MangoBrowser
+
 file_path = os.path.dirname(os.path.realpath(__file__)) + "/../../"
 if file_path not in sys.path:
     sys.path.append(file_path)
 
 from utils.dict_utils import DictUtils
-from client.inst_builder.vodml_instance import VodmlInstance
 
 from client.demo import data_dir
 
@@ -22,20 +23,18 @@ if __name__ == '__main__':
                                 "annotated_data",
                                 "4xmm_litewithsp.annot.xml"
                                 )
-    vodml_instance = VodmlInstance(votable_path)
-    vodml_instance.populate_templates(resolve_dmrefs=True)
-    vodml_instance.connect_join_iterators()
-
-    instance = vodml_instance.get_root_element("mango:MangoObject")
-    if instance is None:
-        raise Exception("No root element found")
-
-    print("=== First row: instance mode")
-    while True:
-        inst = instance._get_next_row_instance()
-        if inst != None:
-            print(DictUtils.get_pretty_json(inst))
-            break
-        else:
-            break
+    
+    mango_browser = MangoBrowser(votable_path) 
+    
+    mango_parameters = mango_browser.get_parameters()
+    print("======== Parameters ")
+    DictUtils.print_pretty_json(mango_parameters)
+    
+    associated_data = mango_browser.get_associated_data()
+    print("======== Associated data ")
+    DictUtils.print_pretty_json(associated_data)
+    
+    print("======== 1st row data ")
+    mango_data = mango_browser.get_data()
+    DictUtils.print_pretty_json(mango_data)
     

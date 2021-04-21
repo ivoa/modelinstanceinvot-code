@@ -3,7 +3,7 @@ Created on 31 mars 2020
 
 @author: laurentmichel
 '''
-import json
+import json, re
 from astropy.io.votable import parse_single_table  
 from client.inst_builder.column_mapping import ColumnMapping
 from client.inst_builder.table_iterator import TableIterator
@@ -224,9 +224,19 @@ class TableMapper(object):
         elif isinstance(root_element, dict):
             if AttUtils.is_object_ref(root_element):
                 pass
+                
             for k , v in root_element.items():
                 if isinstance(v, list):
+                    cpt=0
                     for ele in v:
+                        # if the array item is a rank is encoded in the key
+                        if AttUtils.is_object_ref(ele):
+                            replacement_list.append(
+                            {"node": v,
+                             "key": "#" + str(cpt) + " " + k,
+                             "dmref": ele["@dmref"]}
+                            )
+                        cpt += 1
                         self._get_object_references(ele, replacement_list)
                 elif isinstance(v, dict):  
                     if AttUtils.is_object_ref(v):
@@ -234,10 +244,10 @@ class TableMapper(object):
                             {"node": root_element,
                              "key": k,
                              "dmref": v["@dmref"]})
-                        return replacement_list
+                        #return replacement_list
                         # self.searched_types.append(v)
                     self._get_object_references(v, replacement_list)
-        return []            
+        #return []            
     
     def _set_value(self, element, role=None, parent_role=None, parent_type=None):
         """
@@ -421,6 +431,7 @@ class TableMapper(object):
             replacement_list = []  
 
             self._get_object_references(root, replacement_list)
+
             if len(replacement_list) == 0:
                 break
             else :
@@ -431,7 +442,12 @@ class TableMapper(object):
                         return
                     else:
                         instance = self.search_instance_by_id(replacement["dmref"], root)[0]
-                        replacement["node"][replacement["key"]] = deepcopy(instance)
+                        # ref instance is an array element: decode the rank
+                        if replacement["key"].startswith("#"):
+                            col_num = int(re.search(r'^#([\d]+).*$', replacement["key"]).group(1))
+                            replacement["node"][col_num] = deepcopy(instance)
+                        else:
+                            replacement["node"][replacement["key"]] = deepcopy(instance)
      
     def search_instance_by_id(self, searched_id, root_element=None):
         self.searched_ids = []
