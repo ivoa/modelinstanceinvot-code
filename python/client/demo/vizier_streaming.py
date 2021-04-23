@@ -58,7 +58,7 @@ if __name__ == '__main__':
     DictUtils.print_pretty_json(associated_data)
     
     print("======== 1st row data ")
-    mango_data = mango_browser.get_data()
+    mango_data = mango_browser.get_data_columns()
     DictUtils.print_pretty_json(mango_data)
 
     sys.exit()

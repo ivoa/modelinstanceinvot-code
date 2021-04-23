@@ -43,9 +43,18 @@ if __name__ == '__main__':
     mango_data = mango_browser.get_data(measure_type="mango:stcextend.LonLatSkyPosition")
     DictUtils.print_pretty_json(mango_data)
     
-    print("======== space coord sys ")
+    print("======== Space frame ")
     space_coosys = mango_browser.get_param_coordsys("#1 pos")
     DictUtils.print_pretty_json(space_coosys)
+    print("======== Astropy space frame ")
+    print(mango_browser.get_astropy_space_frame("#1 pos"))
+
+    print("======== Time frame ")
+    time_coosys = mango_browser.get_param_coordsys("#12 time;obs.start")
+    DictUtils.print_pretty_json(time_coosys)
+    print("======== Astropy time frame ")
+    print(mango_browser.get_astropy_time_frame("#12 time;obs.start"))
+
 
     sys.exit()
 

@@ -6,6 +6,8 @@ Created on Jan 22, 2021
 from utils.dict_utils import DictUtils
 from client.inst_builder.vodml_instance import VodmlInstance
 from client.parser import logger
+from astropy.coordinates import Galactic, ICRS, FK5, FK4, EarthLocation
+from astropy.time import Time
 
 class MangoBrowser(object):
     '''
@@ -44,7 +46,9 @@ class MangoBrowser(object):
             else :
                 self.table_mapper = None
                 
-
+    """
+    Public API
+    """
     def get_parameters(self, pretty_print=False):
         """
         Return all the mapped measures as a dict
@@ -87,7 +91,7 @@ class MangoBrowser(object):
         return retour
     
 
-    def get_data(self, ucd=None, measure_type=None):   
+    def get_data(self, ucd=None, measure_type=None, limit=-1):   
         """
         Return a data description of the current data row.
         data descrption {head, selected_index, data}
@@ -114,7 +118,47 @@ class MangoBrowser(object):
                 row.append(inst[ind])
             cpt += 1
             retour["data"].append(row)
-            break
+            if cpt == limit:
+                break
+
+        logger.info("%s rows read", cpt)
+        #retour.pop("selected_index")
+        return retour
+
+    def get_data_columns(self, ucd=None, measure_type=None, limit=-1):   
+        """
+        Return a data description of the current data row.
+        data descrption {head, selected_index, data}
+        - head: descriptor for each read column. 
+                Contains the keys of the parameter descriptor returned by get_parameters
+        - selected_index; Number of the read column ordered as for the head
+        - data: read values ordered as for the head: one array per columm
+        TODO so far we keep stuck to the first row
+        """     
+        retour = self._set_data_header(ucd, measure_type)
+        if len(retour["selected_index"]) == 0:
+            logger.error("No matching parameter found (ucd=%s, measure_type=%s", ucd, measure_type)
+            return retour
+        
+        data = []
+        retour["data"] = data
+        for _ in range(len(retour["selected_index"])):
+            data.append([])
+
+        cpt = 0   
+        # TO DO so far we keep stuck to the first row
+        self.table_mapper.rewind()
+        while True:
+            inst = self.table_mapper._get_next_flatten_row()
+            if inst is None:
+                break
+            data_rank = 0
+            for ind in retour["selected_index"]:
+                data[data_rank].append(inst[ind])
+                data_rank +=  1
+            cpt += 1
+            if cpt == limit:
+                break
 
         logger.info("%s rows read", cpt)
         #retour.pop("selected_index")
@@ -171,6 +215,83 @@ class MangoBrowser(object):
 
         return parameter[parameter["coosys_type"]]
     
+    """
+    ASTROPY Connection
+    """
+    def get_astropy_space_frame(self, param_key):
+        """
+        return the astropy space frame for the parameter referenced by param_key 
+        if it is a position
+        """
+        coord_sys = self.get_param_coordsys(param_key)
+        if not coord_sys:
+            return None
+        if coord_sys["@dmtype"] != "coords:SpaceFrame":
+            logger.info("parameter %s has no space frame", param_key)
+        
+        ref_frame = None    
+        if "coords:SpaceFrame.spaceRefFrame"in  coord_sys:
+                ref_frame = coord_sys["coords:SpaceFrame.spaceRefFrame"]["@value"] 
+                                       
+        ref_equinox = None    
+        if "coords:SpaceFrame.equinox"in  coord_sys:
+                ref_equinox = coord_sys["coords:SpaceFrame.equinox"]["@value"]    
+                
+                                    
+        if ref_frame == "Galactic":
+            retour = Galactic()
+        elif ref_frame == "ICRS":
+            retour = ICRS()
+        else :                     
+            if ref_frame == "FK4":
+                if not ref_equinox :
+                    retour = FK4()
+                else:
+                    retour = FK4(equinox=ref_equinox)
+
+            elif ref_frame == "FK5":
+                if not ref_equinox :
+                    retour = FK5()
+                else:
+                    retour = FK5(equinox=ref_equinox)
+            else:
+                raise Exception ("unsupported frame: " + ref_frame)    
+        return retour   
+
+    def get_astropy_time_frame(self, param_key):
+        """
+        return the astropy time frame for the parameter referenced by param_key 
+        if it is a time
+        TODO: must be refined after the data sample annotations have been validated
+        """
+        coord_sys = self.get_param_coordsys(param_key)
+        if not coord_sys:
+            return None
+        if coord_sys["@dmtype"] != "coords:TimeFrame":
+            logger.info("parameter %s has no space frame", param_key)
+        
+        ref_location = None    
+        if "coords:TimeFrame.refPosition"in  coord_sys:
+                ref_pos_clock = coord_sys["coords:TimeFrame.refPosition"]
+                if "coords:StdRefLocation.position" in ref_pos_clock : 
+                    ref_location = ref_pos_clock[ "coords:StdRefLocation.position"]["@value"]
+                
+        time_scale = None    
+        if "coords:TimeFrame.timescale" in  coord_sys:
+                time_scale = coord_sys["coords:TimeFrame.timescale"]["@value"]    
+
+        if ref_location == "BARYCENTER":
+            time_scale = "tcb"   
+            ref_location = None
+        if ref_location == "GEOCENTRIC":
+            ref_location = EarthLocation.from_geocentric(0, 0, 0, 'm') 
+                                                                                                                        
+        astrotime = Time(50000., scale=time_scale, format='mjd', location=ref_location)    
+        return astrotime.scale, astrotime.location, astrotime.format       
+                 
+    """
+    Internal machinery
+    """
     def _set_data_header(self, ucd, measure_type):
         
         retour = {
@@ -194,7 +315,7 @@ class MangoBrowser(object):
                         ap_measure = associated_parameter[associated_parameter["measure_type"]]
                         prefix = self._get_semantic_header(value) + "->"
                         for ap_axes_key, ap_axe in ap_measure.items():
-                            self._get_measure_header(associated_parameter, ap_axe, ap_axes_key, retour, prefix=prefix)
+                            self._get_measure_header(associated_parameter, pkey, ap_axe, ap_axes_key, retour, prefix=prefix)
 
                 self._get_error_header(value, pkey, retour)      
  
