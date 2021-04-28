@@ -36,37 +36,9 @@ if __name__ == '__main__':
     DictUtils.print_pretty_json(associated_data)
     
     print("======== 1st row data ")
-    mango_data = mango_browser.get_data()
+    mango_data = mango_browser.get_data(limit=1)
     DictUtils.print_pretty_json(mango_data)
 
     sys.exit()
-    
-    vodml_instance = VodmlInstance(votable_path)
-    vodml_instance.populate_templates()
-    vodml_instance.connect_join_iterators()
 
-    instance = vodml_instance.get_root_element("mango:MangoObject")
-    if instance is None:
-        raise Exception("No root element found")
-    
-    print("=== Mapping of the columns")
-    print(instance.get_flatten_data_head())
-    # print(instance.get_data_subset_keys())
-    print("=== First row: flatten mode")
-    while True:
-        inst = instance._get_next_flatten_row()
-        if inst != None:
-            print(DictUtils.get_pretty_json(inst))
-            break
-        else:
-            break
-
-    print("=== Second row: instance mode")
-    while True:
-        inst = instance._get_next_row_instance()
-        if inst != None:
-            print(DictUtils.get_pretty_json(inst))
-            break
-        else:
-            break
     

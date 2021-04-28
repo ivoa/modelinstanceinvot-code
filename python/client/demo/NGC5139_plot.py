@@ -82,9 +82,9 @@ if __name__ == '__main__':
             mango_parameter = mango_parameters["#1 pos.eq"]
         if "#1 pos" in mango_parameters:
             mango_parameter = mango_parameters["#1 pos"]
+            
         mango_frame  = mango_parameter[mango_parameter["coosys_type"]]
-        
-        frame = mango_parameter[mango_parameter["coosys_type"]]["coords:SpaceFrame.spaceRefFrame"]["@value"].lower()
+        frame = mango_frame["coords:SpaceFrame.spaceRefFrame"]["@value"].lower()
     
         position_data = mango_browser.get_data(measure_type="mango:stcextend.LonLatSkyPosition")
     
