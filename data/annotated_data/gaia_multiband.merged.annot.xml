@@ -108,8 +108,8 @@
 				<REFERENCE dmrole="cube:DataProduct.dataset" dmref="_ds1" />
 				<COLLECTION dmrole="cube:SparseCube.data">
 					<JOIN tableref="Results" dmref="_cube1_data">
-						<FILTER ref="source_id" value="5813181197970338560" />
-						<FILTER ref="band" value="GP" />
+						<FILTER foreignkey="source_id" value="5813181197970338560" />
+						<FILTER foreignkey="band" value="GP" />
 					</JOIN>
 				</COLLECTION>
 				<EXTINSTANCES>_ts_data</EXTINSTANCES>
@@ -118,51 +118,51 @@
 
 		<TEMPLATES tableref="Results">
 			<INSTANCE dmtype="cube:NDPoint" ID="_cube1_data">
-				<!-- time -->
-				<INSTANCE dmrole="cube:NDPoint.observable" dmtype="cube:Observable">
-					<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="False" dmtype="ivoa:boolean" />
-					<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
-						<INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
-							<ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime" />
-							<REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys1" />
+				<COLLECTION dmrole="cube:NDPoint.observables">
+					<!-- time -->
+					<INSTANCE dmrole="" dmtype="cube:Observable">
+						<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="False" dmtype="ivoa:boolean" />
+						<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
+							<INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+								<ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime" />
+								<REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys1" />
+							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-				</INSTANCE>
-				<!-- magnitude -->
-				<INSTANCE dmrole="cube:NDPoint.observable" dmtype="cube:Observable">
-					<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="True" dmtype="ivoa:boolean" />
-					<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
-						<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-							<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:realQuantity" ref="_band" />
-							<!-- static reference on a child of the element with ID=_frames and with a 
-							     primary key matching the value of the field _band -->
-							<REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_frames">
-								<FOREIGNKEY ref="_band" />
-							</REFERENCE>
+					<!-- magnitude -->
+					<INSTANCE dmrole="" dmtype="cube:Observable">
+						<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="True" dmtype="ivoa:boolean" />
+						<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+							<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+								<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:realQuantity" ref="_band" />
+								<!-- static reference on a child of the element with ID=_frames and with a primary key matching the value of the field _band -->
+								<REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_frames">
+									<FOREIGNKEY ref="_band" />
+								</REFERENCE>
+							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-				</INSTANCE>
-				<!-- flux -->
-				<INSTANCE dmrole="cube:NDPoint.observable" dmtype="cube:Observable">
-					<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="True" dmtype="ivoa:boolean" />
-					<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
-						<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-							<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:realQuantity" ref="_flux" />
-							<!-- static reference on a child of the element with ID=_frames and with a 
-							      primary key matching the value of the field _band -->
-                            <REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_frames">
-                                <FOREIGNKEY ref="_band" />
-                            </REFERENCE>
-						</INSTANCE>
-						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-							<ATTRIBUTE dmrole="meas:Error.statError">
-								<INSTANCE dmtype="meas:Symmetrical">
-									<ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr" />
-								</INSTANCE>
-							</ATTRIBUTE>
+					<!-- flux -->
+					<INSTANCE dmrole="" dmtype="cube:Observable">
+						<ATTRIBUTE dmrole="cube:DataAxis.dependent" value="True" dmtype="ivoa:boolean" />
+						<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+							<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+								<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:realQuantity" ref="_flux" />
+								<!-- static reference on a child of the element with ID=_frames and with a primary key matching the value of the field _band -->
+								<REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_frames">
+									<FOREIGNKEY ref="_band" />
+								</REFERENCE>
+							</INSTANCE>
+							<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+								<ATTRIBUTE dmrole="meas:Error.statError">
+									<INSTANCE dmtype="meas:Symmetrical">
+										<ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr" />
+									</INSTANCE>
+								</ATTRIBUTE>
+							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-				</INSTANCE>
+				</COLLECTION>
 			</INSTANCE>
 		</TEMPLATES>
 	</VODML>
