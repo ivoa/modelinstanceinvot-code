@@ -6,7 +6,6 @@ Created on 6 avr. 2020
 from astropy.coordinates import Galactic, ICRS, FK5, FK4, EarthLocation
 from astropy.time import Time
 
-
 class AstropyWrapper(object):
     '''
     classdocs

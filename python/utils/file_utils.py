@@ -10,7 +10,7 @@ class FileUtils(object):
 
     @staticmethod
     def get_datadir():
-        return os.path.realpath(os.path.join(FileUtils.file_path, "../../", "data"))
+        return os.path.realpath(os.path.join(FileUtils.file_path, "../client/tests/", "data"))
     
     @staticmethod
     def get_projectdir():
