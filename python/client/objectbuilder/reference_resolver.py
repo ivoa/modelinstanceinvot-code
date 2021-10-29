@@ -9,6 +9,7 @@ from client import logger
 from client.objectbuilder.json_block_extractor import JsonBlockExtractor
 from client.objectbuilder.att_utils import AttUtils
 from client.translator.vocabulary import Att, Ele
+from utils.dict_utils import DictUtils
 from builtins import staticmethod
 class ReferenceResolver(object):
     '''
@@ -48,6 +49,7 @@ class ReferenceResolver(object):
                 col_num = int(re.search(r'^#([\d]+).*$', replacement["key"]).group(1))
                 replacement["node"][col_num] = deepcopy(instance)
             else:
+                DictUtils.print_pretty_json(replacement)
                 role = replacement["node"][replacement["key"]][Att.dmrole]
                 replacement["node"].pop(replacement["key"]) 
                 replacement["node"][role] = deepcopy(instance) 
@@ -74,7 +76,8 @@ class ReferenceResolver(object):
                     cpt=0
                     for ele in v:
                         # if the array item is a rank is encoded in the key
-                        if AttUtils.is_object_ref(ele):
+                        if k == Ele.REFERENCE and  AttUtils.is_object_ref(ele):
+                            print("KKKKKKKKKKKK " + str(k) )
                             replacement_list.append(
                             {"node": v,
                              "key": "#" + str(cpt) + " " + k,
@@ -83,7 +86,8 @@ class ReferenceResolver(object):
                         cpt += 1
                         ReferenceResolver._get_object_references(ele, replacement_list)
                 elif isinstance(v, dict):  
-                    if AttUtils.is_object_ref(v):
+                    if k == Ele.REFERENCE and  AttUtils.is_object_ref(v):
+                        print("KKKKKKKKKKKK " + str(k) )
                         replacement_list.append(
                             {"node": root_element,
                              "key": k,

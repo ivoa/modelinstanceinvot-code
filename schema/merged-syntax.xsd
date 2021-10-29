@@ -15,6 +15,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
            xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax"
            >
 
+    
   <!-- Required to validate mapping block within a VOTable (LM 08/2021)-->
   <xs:import namespace="http://www.ivoa.net/xml/VOTable/v1.3"
              schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3"/>
@@ -28,6 +29,13 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
         <xs:element name="TEMPLATES" type="dm-mapping:Templates" minOccurs="0" maxOccurs="unbounded" />
       </xs:sequence>
     </xs:complexType>
+    
+    <!-- Make sure ID is unique within the mapping block --> 
+    <xs:unique name="UniqueID">
+        <xs:selector xpath=".//*" /> 
+        <xs:field xpath="@ID" /> 
+    </xs:unique>    
+       
   </xs:element>
 
   <!-- Declaration of one used model -->
@@ -44,23 +52,31 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
       <xs:element name="INSTANCE" type="dm-mapping:Instance" minOccurs="0" maxOccurs="unbounded" />
       <xs:element name="COLLECTION" type="dm-mapping:Collection" minOccurs="0" maxOccurs="unbounded" />
     </xs:all>
+    <xs:assert test="count (dm-mapping:INSTANCE[@dmrole != '']) eq 0"/>
+    <xs:assert test="count (dm-mapping:COLLECTION[@dmrole != '']) eq 0"/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies  $child/@ID != '' "/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies ( every $grandchild in $child/dm-mapping:INSTANCE satisfies ( count($grandchild/dm-mapping:PRIMARY_KEY) gt 0 ) )"/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies ( every $grandchild in $child/dm-mapping:JOIN satisfies (count($grandchild/@dmref) or count($grandchild/@tableref)))"/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies count($child/dm-mapping:ATTRIBUTE) = 0"/>
   </xs:complexType>
 
   <!-- Mapping of the data contained in a particular table -->
   <xs:complexType name="Templates">
     <xs:sequence>
       <xs:element name="WHERE" type="dm-mapping:Where" minOccurs="0" maxOccurs="unbounded" /> 
-      <xs:element name="INSTANCE" type="dm-mapping:Instance" minOccurs="0" maxOccurs="unbounded" />
+      <xs:element name="INSTANCE" type="dm-mapping:Instance" minOccurs="1" maxOccurs="unbounded" />
     </xs:sequence>
     <xs:attribute type="xs:string" name="tableref" />
     <xs:assert test="if (@tableref) then (@tableref != '') else true()  " />
+    <xs:assert test="every $child in ./dm-mapping:INSTANCE satisfies  (not($child/@dmrole) or $child/@dmrole = '') "/>
+    
   </xs:complexType>
 
 
   <!-- Mapping of either a Datatype or an Objecttype -->
   <xs:complexType name="Instance">
     <xs:sequence>
-      <xs:choice maxOccurs="1">
+      <xs:choice maxOccurs="unbounded">
         <xs:element name="PRIMARY_KEY" type="dm-mapping:PrimaryKey" minOccurs="0" />
       </xs:choice> <!-- can this now be an xs:all -->
       <xs:choice maxOccurs="unbounded">
@@ -73,52 +89,78 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     <xs:attribute type="xs:string" name="dmrole" use="optional" /> 
     <xs:attribute type="xs:string" name="dmtype" use="required" /> 
     <xs:attribute type="xs:string" name="ID" />  
-    <xs:assert test="(not(./@ID) and  @dmrole != '') or @ID != ''  " />
+    <!-- xs:assert test="(not(./@ID) and  @dmrole != '') or @ID != ''  " /> -->
     <xs:assert test=" @dmtype != '' " />
     <xs:assert test="if (@ID) then ( @ID != '') else true()  " />
+    <xs:assert test="every $child in ./dm-mapping:INSTANCE satisfies  $child/@dmrole != '' "/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies  $child/@dmrole != '' "/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies not($child/@ID) or $child/@ID = '' "/>
+    <xs:assert test="every $child in ./dm-mapping:ATTRIBUTE satisfies  $child/@dmrole != '' "/>
+    <xs:assert test="every $child in ./dm-mapping:REFERENCE satisfies  $child/@dmrole != '' "/>    
   </xs:complexType>
+  
+  
 
   <!-- Atomic attribute -->
   <xs:complexType name="Attribute">
-    <xs:attribute type="xs:string" name="dmrole" use="required" />
+    <xs:attribute type="xs:string" name="dmrole" use="optional" />
     <xs:attribute type="xs:string" name="dmtype" use="required" />
     <xs:attribute type="xs:string" name="ref" />
     <xs:attribute type="xs:string" name="value" />
+    <xs:attribute type="xs:string" name="unit" />
+    <xs:attribute type="xs:string" name="arrayindex" />
+    <xs:assert test="if (./@arrayindex) then (./@ref) else true()" /> 
     <xs:assert test="(not(./@ref) and ./@value) or (not(./@value) and ./@ref) or (./@value and ./@ref)" /> 
     <xs:assert test="if (@ref) then (@ref != '') else true()  " />  
-    <xs:assert test="@dmrole != '' and @dmtype != ''  " />  
+    <xs:assert test="if (@arrayindex) then (@arrayindex >= '0') else true()  " />  
+    <xs:assert test="@dmtype != ''  " />  
   </xs:complexType>
 
   <!-- Data list mapping block -->
   <xs:complexType name="Collection"> 
-    <xs:all>
-      <xs:element name="REFERENCE" type="dm-mapping:Reference" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="INSTANCE" type="dm-mapping:Instance" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="ATTRIBUTE" type="dm-mapping:Attribute" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="COLLECTION" type="dm-mapping:Collection" minOccurs="0" maxOccurs="unbounded" />
-      <xs:element name="JOIN" type="dm-mapping:Join" minOccurs="0" maxOccurs="1" />
-    </xs:all>
-    <xs:attribute type="xs:string" name="dmrole" use="required" />
+    <xs:choice maxOccurs="unbounded">
+      <xs:element name="REFERENCE" type="dm-mapping:Reference" minOccurs="0"  />
+      <xs:element name="INSTANCE" type="dm-mapping:Instance" minOccurs="0"  />
+      <xs:element name="ATTRIBUTE" type="dm-mapping:Attribute" minOccurs="0"  />
+      <xs:element name="COLLECTION" type="dm-mapping:Collection" minOccurs="0"  />
+      <xs:element name="JOIN" type="dm-mapping:Join" minOccurs="0" />
+    </xs:choice>
+    <xs:attribute type="xs:string" name="dmrole" use="optional" />
     <xs:attribute type="xs:string" name="size" />  
     <xs:attribute type="xs:string" name="ID" />
-    <xs:assert test="./@dmrole" />
     <xs:assert test="if (@ID) then ( @ID != '') else true()  " />
-    <xs:assert test="not(@ID) and @dmrole != '' or  @ID != ''" />
-
-    <xs:assert test="((count(./JOIN) eq 1 and count(./INSTANCE) eq 0 and count(./COLLECTION) eq 0 and count(./REFERENCE) eq 0)  or count(./JOIN) eq 0)" />
+    <!-- LM ORIGINAL 
+    <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:REFERENCE) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:REFERENCE) = 0"/>
+    <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:INSTANCE) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:INSTANCE) = 0"/>
+    <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:JOIN) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:JOIN) = 0"/>
+    <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:COLLECTION) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:COLLECTION) = 0"/>
+    -->
+    <!-- collection of (attribute)||(reference)||(instance+join)||(collection) -->
+    <!--  - contains some redundancies, but will work if order of checks changes -->
+    <xs:assert test="count(dm-mapping:ATTRIBUTE) eq 0 or (count(dm-mapping:ATTRIBUTE) gt 0 and count(dm-mapping:REFERENCE) eq 0 and count(dm-mapping:INSTANCE) eq 0 and count(dm-mapping:JOIN) eq 0 and count(dm-mapping:COLLECTION) eq 0)"/>
+    <xs:assert test="count(dm-mapping:REFERENCE) eq 0 or (count(dm-mapping:REFERENCE) gt 0 and count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:INSTANCE) eq 0 and count(dm-mapping:JOIN) eq 0 and count(dm-mapping:COLLECTION) eq 0)"/>
+    <xs:assert test="count(dm-mapping:INSTANCE) eq 0 or (count(dm-mapping:INSTANCE) gt 0 and count(dm-mapping:ATTRIBUTE) eq 0  and count(dm-mapping:REFERENCE) eq 0 and count(dm-mapping:COLLECTION) eq 0)"/>
+    <xs:assert test="count(dm-mapping:JOIN) eq 0 or (count(dm-mapping:JOIN) gt 0 and count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:REFERENCE) eq 0 and count(dm-mapping:COLLECTION) eq 0)"/>
+    <xs:assert test="count(dm-mapping:COLLECTION) eq 0 or (count(dm-mapping:COLLECTION) gt 0 and count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:REFERENCE) eq 0 and count(dm-mapping:INSTANCE) eq 0 and count(dm-mapping:JOIN) eq 0)"/>
+    
+    <xs:assert test="count (dm-mapping:INSTANCE[@dmrole != '']) eq 0"/>
+    <xs:assert test="count (dm-mapping:ATTRIBUTE[@dmrole != '']) eq 0"/>
+    <xs:assert test="count (dm-mapping:COLLECTION[@dmrole != '']) eq 0"/>
+    <xs:assert test="count (dm-mapping:REFERENCE[@dmrole != '']) eq 0"/>
+        
   </xs:complexType>
 
   <xs:complexType name="Reference">
     <xs:sequence>
-      <xs:element name="FOREIGN_KEY" type="dm-mapping:ForeignKey" minOccurs="0" maxOccurs="1" />
+      <xs:element name="FOREIGN_KEY" type="dm-mapping:ForeignKey" minOccurs="0" maxOccurs="unbounded" />
     </xs:sequence>
-    <xs:attribute type="xs:string" name="dmrole" use="required" />
+    <xs:attribute type="xs:string" name="dmrole" use="optional" />
     <xs:attribute type="xs:string" name="tableref" />
     <xs:attribute type="xs:string" name="dmref" />
     <xs:assert test="if (./@tableref) then  @tableref != '' else true()" />
     <xs:assert test="if (./@dmref) then  @dmref != '' else true()" />
-    <xs:assert test="(./@dmref and not(./@tableref)) or (not(./@dmref) and ./@tableref)" />
-    <xs:assert test="((count(./FOREIGN_KEY) eq 1 and ./@tableref and not(./@dmref))  or (count(./FOREIGN_KEY) eq 0 and not(./@tableref) and ./@dmref))" />
+    <xs:assert test="(./@dmref and not(./@tableref)) or (not(./@dmref) and ./@tableref)" />    
+    <xs:assert test="((count(dm-mapping:FOREIGN_KEY) > 0 and ./@tableref and not(./@dmref))  or (count(./dm-mapping:FOREIGN_KEY) eq 0 and not(./@tableref) and ./@dmref))" />
   </xs:complexType>
 
   <!-- Join with another table One instance created for joined row of the secondary table -->
@@ -130,7 +172,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     <xs:attribute type="xs:string" name="dmref" />
     <xs:assert test="if (./@tableref) then  @tableref != '' else true()" />
     <xs:assert test="if (./@dmref) then  @dmref != '' else true()" />
-    <xs:assert test="(./@dmref and not(./@tableref)) or (not(./@dmref) and ./@tableref)" />
+    <xs:assert test="((./@tableref) and (./@dmref)) or not(./@tableref) or (count(dm-mapping:WHERE) > 0 and (./@tableref))" />
   </xs:complexType>
 
   <!-- Select table rows with value of the column @ref = @value -->
@@ -150,6 +192,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     <xs:assert test="./@ref  or ./@value " />
     <xs:assert test="@dmtype != '' " />
     <xs:assert test="if (./@ref) then  @ref != '' else true()" />
+    <xs:assert test="(./@value and not(./@ref)) or (not(./@value) and ./@ref)" />
   </xs:complexType>
 
   <xs:complexType name="ForeignKey">

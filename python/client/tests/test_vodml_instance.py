@@ -25,163 +25,20 @@ class Test(unittest.TestCase):
         vodml_instance.get_root_element("test.model")
         self.assertDictEqual(
             vodml_instance.json_view,
-            {
-                "@dmtype": "test.model",
-                "test.header": {
-                    "@dmtype": "test.Header",
-                    "test.frame": {
-                        "@ID": "SpaceFrame_ICRS",
-                        "@dmtype": "coords:SpaceFrame",
-                        "coords:SpaceFrame.equinox": {
-                            "@dmtype": "coords:Epoch",
-                            "@value": "NoSet",
-                        },
-                        "coords:SpaceFrame.refPosition": {
-                            "@dmtype": "coords:StdRefLocation",
-                            "coords:StdRefLocation.position": {
-                                "@dmtype": "ivoa:string",
-                                "@value": "NoSet",
-                            },
-                        },
-                        "coords:SpaceFrame.spaceRefFrame": {
-                            "@dmtype": "ivoa:string",
-                            "@value": "ICRS",
-                        },
-                    },
-                    "test.owner": {
-                        "@dmtype": "test.Owner",
-                        "test.owner.firstname": {
-                            "@dmtype": "string",
-                            "@value": "Laurent",
-                        },
-                        "test.owner.name": {"@dmtype": "string", "@value": "Michel"},
-                        "test.title": {
-                            "@dmtype": "string",
-                            "@ref": "_title",
-                            "@value": "",
-                        },
-                    },
-                    "test.points": [{"dm-mapping:JOIN": {"@tableref": "Results"}}],
-                },
-            },
-        )
+            DictUtils.read_dict_from_file( 
+                os.path.join(self.data_path, "./data/references/vodml_instance.1.json")
+                )
+            )
+ 
 
+
+        model_instance = vodml_instance.get_instance()
         self.assertDictEqual(
-            vodml_instance.get_instance(),
-            {
-                "@dmtype": "test.model",
-                "test.header": {
-                    "@dmtype": "test.Header",
-                    "test.frame": {
-                        "@ID": "SpaceFrame_ICRS",
-                        "@dmtype": "coords:SpaceFrame",
-                        "coords:SpaceFrame.equinox": {
-                            "@dmtype": "coords:Epoch",
-                            "@value": "NoSet",
-                        },
-                        "coords:SpaceFrame.refPosition": {
-                            "@dmtype": "coords:StdRefLocation",
-                            "coords:StdRefLocation.position": {
-                                "@dmtype": "ivoa:string",
-                                "@value": "NoSet",
-                            },
-                        },
-                        "coords:SpaceFrame.spaceRefFrame": {
-                            "@dmtype": "ivoa:string",
-                            "@value": "ICRS",
-                        },
-                    },
-                    "test.owner": {
-                        "@dmtype": "test.Owner",
-                        "test.owner.firstname": {
-                            "@dmtype": "string",
-                            "@value": "Laurent",
-                        },
-                        "test.owner.name": {"@dmtype": "string", "@value": "Michel"},
-                        "test.title": {
-                            "@dmtype": "string",
-                            "@ref": "_title",
-                            "@value": "",
-                        },
-                    },
-                    "test.points": [
-                        {"dm-mapping:JOIN": {"@tableref": "Results"}},
-                        {
-                            "@ID": "_point",
-                            "@dmtype": "Point",
-                            "test.detections": [
-                                {
-                                    "test:detection": {
-                                        "@dmtype": "test:Detection",
-                                        "test:detection.id": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_foreign_other",
-                                            "@value": 1,
-                                        },
-                                        "test:detection.num": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_num_148",
-                                            "@value": 11,
-                                        },
-                                    }
-                                },
-                                {
-                                    "test:detection": {
-                                        "@dmtype": "test:Detection",
-                                        "test:detection.id": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_foreign_other",
-                                            "@value": 1,
-                                        },
-                                        "test:detection.num": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_num_148",
-                                            "@value": 12,
-                                        },
-                                    }
-                                },
-                            ],
-                            "test.spectra": [
-                                {
-                                    "test:spectrum": {
-                                        "@dmtype": "test:Spectrum",
-                                        "test:spectrum.id": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_foreign_spectra",
-                                            "@value": 1,
-                                        },
-                                        "test:spectrum.num": {
-                                            "@dmtype": "ivoa:string",
-                                            "@ref": "_spc_148",
-                                            "@value": "Spectrum 11",
-                                        },
-                                    }
-                                },
-                                {
-                                    "test:spectrum": {
-                                        "@dmtype": "test:Spectrum",
-                                        "test:spectrum.id": {
-                                            "@dmtype": "ivoa:real",
-                                            "@ref": "_foreign_spectra",
-                                            "@value": 1,
-                                        },
-                                        "test:spectrum.num": {
-                                            "@dmtype": "ivoa:string",
-                                            "@ref": "_spc_148",
-                                            "@value": "Spectrum 12",
-                                        },
-                                    }
-                                },
-                            ],
-                            "test:detection.num": {
-                                "@dmtype": "ivoa:real",
-                                "@ref": "_poserr_148",
-                                "@value": 1,
-                            },
-                        },
-                    ],
-                },
-            },
+            model_instance,
+             DictUtils.read_dict_from_file( 
+                os.path.join(self.data_path, "./data/references/vodml_instance.2.json")
+                )
+
         )
 
 

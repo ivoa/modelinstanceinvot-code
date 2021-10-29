@@ -29,7 +29,6 @@
           }
         },
         {
-          "@dmrole": "root",
           "@dmtype": "test.model",
           "dm-mapping:INSTANCE": {
             "@dmrole": "test.header",
@@ -37,6 +36,7 @@
             "dm-mapping:COLLECTION": {
               "@dmrole": "test.points",
               "dm-mapping:JOIN": {
+                "@dmref": "_point",
                 "@tableref": "Results"
               }
             },
@@ -77,7 +77,6 @@
         "@tableref": "Results",
         "dm-mapping:INSTANCE": {
           "@ID": "_point",
-          "@dmrole": "primary:point",
           "@dmtype": "Point",
           "dm-mapping:ATTRIBUTE": {
             "@dmrole": "test:detection.num",
@@ -88,7 +87,6 @@
             {
               "@dmrole": "test.detections",
               "dm-mapping:INSTANCE": {
-                "@dmrole": "test:detection",
                 "@dmtype": "test:Detection",
                 "dm-mapping:ATTRIBUTE": [
                   {
@@ -114,7 +112,6 @@
             {
               "@dmrole": "test.spectra",
               "dm-mapping:INSTANCE": {
-                "@dmrole": "test:spectrum",
                 "@dmtype": "test:Spectrum",
                 "dm-mapping:ATTRIBUTE": [
                   {
@@ -143,7 +140,6 @@
       {
         "@tableref": "OtherResults",
         "dm-mapping:INSTANCE": {
-          "@dmrole": "test:detection",
           "@dmtype": "test:Detection",
           "dm-mapping:ATTRIBUTE": [
             {
@@ -162,7 +158,6 @@
       {
         "@tableref": "Spectra",
         "dm-mapping:INSTANCE": {
-          "@dmrole": "test:spectrum",
           "@dmtype": "test:Spectrum",
           "dm-mapping:ATTRIBUTE": [
             {

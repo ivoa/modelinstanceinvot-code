@@ -64,6 +64,9 @@ class VodmlInstance(object):
         builder.revert_collections()
         builder.revert_templates()
         builder.revert_elements(Ele.INSTANCE)
+        import sys
+        sys.exit(1)
+
         builder.revert_elements(Ele.ATTRIBUTE)
         self.json_view = builder.json
 

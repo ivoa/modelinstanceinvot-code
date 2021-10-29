@@ -1,0 +1,122 @@
+{
+  "@dmtype": "test.model",
+  "test.header": {
+    "@dmtype": "test.Header",
+    "test.frame": {
+      "@ID": "SpaceFrame_ICRS",
+      "@dmtype": "coords:SpaceFrame",
+      "coords:SpaceFrame.equinox": {
+        "@dmtype": "coords:Epoch",
+        "@value": "NoSet"
+      },
+      "coords:SpaceFrame.refPosition": {
+        "@dmtype": "coords:StdRefLocation",
+        "coords:StdRefLocation.position": {
+          "@dmtype": "ivoa:string",
+          "@value": "NoSet"
+        }
+      },
+      "coords:SpaceFrame.spaceRefFrame": {
+        "@dmtype": "ivoa:string",
+        "@value": "ICRS"
+      }
+    },
+    "test.owner": {
+      "@dmtype": "test.Owner",
+      "test.owner.firstname": {
+        "@dmtype": "string",
+        "@value": "Laurent"
+      },
+      "test.owner.name": {
+        "@dmtype": "string",
+        "@value": "Michel"
+      },
+      "test.title": {
+        "@dmtype": "string",
+        "@ref": "_title",
+        "@value": ""
+      }
+    },
+    "test.points": [
+      {
+        "dm-mapping:JOIN": {
+          "@dmref": "_point",
+          "@tableref": "Results"
+        }
+      },
+      {
+        "@ID": "_point",
+        "@dmtype": "Point",
+        "test.detections": [
+          {
+            "UNKNOWNKEY": {
+              "@dmtype": "test:Detection",
+              "test:detection.id": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_foreign_other",
+                "@value": 1
+              },
+              "test:detection.num": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_num_148",
+                "@value": 11
+              }
+            }
+          },
+          {
+            "UNKNOWNKEY": {
+              "@dmtype": "test:Detection",
+              "test:detection.id": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_foreign_other",
+                "@value": 1
+              },
+              "test:detection.num": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_num_148",
+                "@value": 12
+              }
+            }
+          }
+        ],
+        "test.spectra": [
+          {
+            "UNKNOWNKEY": {
+              "@dmtype": "test:Spectrum",
+              "test:spectrum.id": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_foreign_spectra",
+                "@value": 1
+              },
+              "test:spectrum.num": {
+                "@dmtype": "ivoa:string",
+                "@ref": "_spc_148",
+                "@value": "Spectrum 11"
+              }
+            }
+          },
+          {
+            "UNKNOWNKEY": {
+              "@dmtype": "test:Spectrum",
+              "test:spectrum.id": {
+                "@dmtype": "ivoa:real",
+                "@ref": "_foreign_spectra",
+                "@value": 1
+              },
+              "test:spectrum.num": {
+                "@dmtype": "ivoa:string",
+                "@ref": "_spc_148",
+                "@value": "Spectrum 12"
+              }
+            }
+          }
+        ],
+        "test:detection.num": {
+          "@dmtype": "ivoa:real",
+          "@ref": "_poserr_148",
+          "@value": 1
+        }
+      }
+    ]
+  }
+}

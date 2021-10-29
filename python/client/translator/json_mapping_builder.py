@@ -16,6 +16,7 @@ from client import logger
 from utils.dict_utils import DictUtils
 from utils.json_tools import JsonTools
 from client.translator.vocabulary import Att, Ele
+from rsa._version200 import newkeys
 class JsonMappingBuilder():
     '''
     classdocs
@@ -143,15 +144,19 @@ class JsonMappingBuilder():
                         is_array = True
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
+                            print("3 " + new_key + " " + str(ele))
                             if former_key == "":
                                 former_key = new_key
                             if former_key != new_key:
                                 is_array = False
                                 break 
+
                         if is_array is False:
                             newcontent = {}
                             for ele in v:
                                 new_key = self._get_key_for_element(ele)
+                                print("4 " + new_key + " " + str(ele))
+
                                 logger.info("find an object of %s with identifier_att=%s", name, former_key)
                                 new_ele = deepcopy(ele)
                                 self._drop_role_and_size(new_ele)
@@ -159,6 +164,8 @@ class JsonMappingBuilder():
                                 newcontent[new_key] = new_ele
                         else:
                             logger.info("find a collection of %s with identifier_att=%s", name, former_key)
+                            new_key = self._get_key_for_element(ele)
+
                             newcontent = {}
                             new_array = []
                             for ele in v:
@@ -166,12 +173,13 @@ class JsonMappingBuilder():
                                 self._add_value_if_needed(new_ele)    
                                 new_array.append(new_ele)
                             newcontent[former_key] = new_array
+                            DictUtils.print_pretty_json(new_array)
                         
                         self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
                         newcontent = {}
                         new_key = self._get_key_for_element(v)                                
-                        logger.info("find an %s object with identifier_att=%s", name, new_key)
+                        logger.info("XXfind an %s object with identifier_att=%s", name, new_key)
 
                         newcontent[new_key] = deepcopy(v)
                         self._add_value_if_needed(newcontent[new_key])
@@ -209,6 +217,7 @@ class JsonMappingBuilder():
                         newcontent = []
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
+                            print("1 " + new_key)
                             ele_cp = deepcopy(ele)
                             self._drop_role_and_size(ele_cp)
                             if ele_cp:
@@ -216,14 +225,15 @@ class JsonMappingBuilder():
                             else :
                                 # print("Append 1 empty" )
                                 newcontent.append({new_key: []})
-                        logger.info("find a collection %s with identifier_att=%s", name, new_key)
-
+                        logger.info("UYYfind a collection %s with identifier_att=%s", name, new_key)
                         self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
 
                         newcontent = []
                         ele_cp = deepcopy(v)
                         new_key = self._get_key_for_element(ele_cp)
+                        print("2 " + new_key)
+
                         self._drop_role_and_size(ele_cp)
                         logger.info("find an %s object with identifier_att=%s", name, new_key)
                         if ele_cp:
@@ -281,7 +291,9 @@ class JsonMappingBuilder():
         if new_key == '' and "NAME" in element.keys():
             new_key = element["NAME"]
         if new_key == '':
-            raise Exception("Cannot compute new key (from dmrole, tableref, ID or NAME) for element " + DictUtils.get_pretty_json(element))
+            new_key ="UNKNOWNKEY"
+
+            #aise Exception("Cannot compute new key (from dmrole, tableref, ID or NAME) for element " + DictUtils.get_pretty_json(element))
         return new_key
    
     def save_instance(self):     

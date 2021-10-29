@@ -18,6 +18,7 @@ class Test(unittest.TestCase):
                                         ,  exit_validation=False)
         mapping_to_json._extract_vodml_block()
         mapping_to_json._validate_vodml_block()
+        DictUtils.print_pretty_json(mapping_to_json.json_block)
         self.assertDictEqual(mapping_to_json.json_block
                              , DictUtils.read_dict_from_file(os.path.join(FileUtils.get_datadir()
                                                                           , "references/rich_instance_raw.json")))
