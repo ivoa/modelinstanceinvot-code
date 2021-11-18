@@ -19,6 +19,7 @@ class Ele(object):
     JOIN = namespace + "JOIN"
     REFERENCE = namespace + "REFERENCE"
     WHERE = namespace + "WHERE"
+    NOROLE = "NOROLE"
     
     
 class Att(object):
@@ -27,6 +28,7 @@ class Att(object):
     '''
     dmrole = "@dmrole"
     dmtype = "@dmtype"
+    dmid = "@dmid"
     name = "@name"
     value = "@value"
     dmref = "@dmref"

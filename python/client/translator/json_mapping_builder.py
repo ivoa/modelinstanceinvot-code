@@ -16,7 +16,7 @@ from client import logger
 from utils.dict_utils import DictUtils
 from utils.json_tools import JsonTools
 from client.translator.vocabulary import Att, Ele
-from rsa._version200 import newkeys
+
 class JsonMappingBuilder():
     '''
     classdocs
@@ -83,6 +83,27 @@ class JsonMappingBuilder():
                     self.change_buffer["node"][k] = v
             else:
                 break
+    def proto_revert_elements(self, name):
+        """
+        Revert all elements attached to the key "name" in the 'VODML' block
+        Reverting means replacing "name :{identifier:{}}" with "identifier: {}"
+        identifier can be a @tableref, a @dmrole, a @name or an @ID
+        :param name: name of the element to revert
+        :type name: string
+        """
+        logger.info("reverting elements %s - ('%s':{role ...} -> 'role':{})", name, name)
+        root_element = self.json
+
+        while True:
+            self.change_buffer = None
+
+            self._revert_subelement(root_element, name)
+            if self.change_buffer is not None:
+                self.change_buffer["node"].pop(name)
+                for k, v in self.change_buffer["newcontent"].items():
+                    self.change_buffer["node"][k] = v
+            else:
+                break
             
     def revert_collections(self):
         """
@@ -95,6 +116,28 @@ class JsonMappingBuilder():
         logger.info("reverting  %s - ('%s':[{role ...} ...] -> 'role':[...])", Ele.COLLECTION, Ele.COLLECTION)
         
         root_element = self.json[Ele.VODML]
+        while True:
+            self.change_buffer = None
+            self._revert_collection(root_element, Ele.COLLECTION)
+            if self.change_buffer is not None:
+                self.change_buffer["node"].pop(Ele.COLLECTION)
+                for ele in self.change_buffer["newcontent"]:
+                    for k, v in ele.items():
+                        #self.change_buffer["node"][k] = JsonTools.remove_key(v, Ele.INSTANCE)
+                        self.change_buffer["node"][k] = v
+            else:
+                break
+    def proto_revert_collections(self):
+        """
+        Revert all elements attached to the key "name" in the 'MODEL_INSTANCE' block
+        Reverting means in this case replacing "name :{identifier:{}}" with "identifier: []"
+        identifier can be a @tableref, a @dmrole, a @name or an @ID
+        :param name: name of the element to revert
+        :type name: string
+        """
+        logger.info("reverting  %s - ('%s':[{role ...} ...] -> 'role':[...])", Ele.COLLECTION, Ele.COLLECTION)
+        
+        root_element = self.json
         while True:
             self.change_buffer = None
             self._revert_collection(root_element, Ele.COLLECTION)
@@ -225,7 +268,7 @@ class JsonMappingBuilder():
                             else :
                                 # print("Append 1 empty" )
                                 newcontent.append({new_key: []})
-                        logger.info("UYYfind a collection %s with identifier_att=%s", name, new_key)
+                        logger.info("find a collection %s with identifier_att=%s", name, new_key)
                         self.change_buffer = {'node': root_element, "newcontent": newcontent}
                     elif isinstance(v, dict):  
 
@@ -291,7 +334,7 @@ class JsonMappingBuilder():
         if new_key == '' and "NAME" in element.keys():
             new_key = element["NAME"]
         if new_key == '':
-            new_key ="UNKNOWNKEY"
+            new_key =Ele.NOROLE
 
             #aise Exception("Cannot compute new key (from dmrole, tableref, ID or NAME) for element " + DictUtils.get_pretty_json(element))
         return new_key

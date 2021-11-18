@@ -1,0 +1,33 @@
+[{
+  "_foreign_spectra": {
+    "field": "<FIELD ID=\"_foreign_spectra\" datatype=\"long\" name=\"cle\" ucd=\"meta.id;meta.main\"/>",
+    "index": 1,
+    "parent_role": "NOROLE",
+    "parent_type": "test:Spectrum",
+    "role": "test:spectrum.id",
+    "ucd": "meta.id;meta.main"
+  },
+  "_spc_148": {
+    "field": "<FIELD ID=\"_spc_148\" arraysize=\"*\" datatype=\"char\" name=\"oidsaada\" ucd=\"meta.id;meta.main\"/>",
+    "index": 0,
+    "parent_role": "NOROLE",
+    "parent_type": "test:Spectrum",
+    "role": "test:spectrum.num",
+    "ucd": "meta.id;meta.main"
+  }
+},
+{
+  "0": {
+    "id": "_spc_148",
+    "name": "oidsaada",
+    "ref": null,
+    "ucd": "meta.id;meta.main"
+  },
+  "1": {
+    "id": "_foreign_spectra",
+    "name": "cle",
+    "ref": null,
+    "ucd": "meta.id;meta.main"
+  }
+}
+]

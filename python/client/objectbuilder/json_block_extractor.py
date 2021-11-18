@@ -5,6 +5,10 @@ Created on Jul 6, 2020
 '''
 from client.translator.vocabulary import Ele, Att
 from client.objectbuilder.att_utils import AttUtils
+from client.translator.json_mapping_builder import JsonMappingBuilder
+from utils.dict_utils import DictUtils
+from abc import abstractstaticmethod
+from google.protobuf.internal.python_message import _AddStaticMethods
 
 
 class JsonBlockExtractor(object):
@@ -32,22 +36,35 @@ class JsonBlockExtractor(object):
         self._search_array_container(key, self.json_block)
         return self.searched_elements
         
-    def search_join_container(self):
-        self._search_array_container(Ele.JOIN, self.json_block)
-        return self.searched_elements
+    @staticmethod    
+    def search_join_container(json_block):
+        searched_elements = {}
+        JsonBlockExtractor._proto_search_joins(json_block, searched_elements)
+        return searched_elements
 
     def search_subelement_by_role(self, searched_role):
         self._search_subelement_by_role(self.json_block, searched_role)
         return self.searched_elements
         
-    def search_subelement_by_id(self, searched_id):
-        self._search_subelement_by_id(self.json_block, searched_id)
-        return self.searched_elements
+    @staticmethod    
+    def search_subelement_by_id(json_block, searched_id):
+        searched_elements = []
+        JsonBlockExtractor._search_subelement_by_id(json_block, searched_id, searched_elements)
+        return searched_elements
     
-    def search_subelement_by_type(self, searched_type):
-        self._search_subelement_by_type(self.json_block, searched_type)
-        return self.searched_elements
-        
+    @staticmethod    
+    def search_subelement_by_type(json_block, searched_type):
+        searched_elements = []
+        JsonBlockExtractor._search_subelement_by_type(json_block, searched_type, searched_elements)
+        return searched_elements
+    
+    @staticmethod    
+    def revert_model_element(json_block):
+        json_mapping_builder = JsonMappingBuilder(json_dict=json_block)
+        json_mapping_builder.proto_revert_collections()
+        json_mapping_builder.proto_revert_elements(Ele.INSTANCE)
+        json_mapping_builder.proto_revert_elements(Ele.ATTRIBUTE)
+ 
     def _search_array_container(self, element_name, root_element):
         """
         Recursive search in root_element of all list that have at least 
@@ -79,6 +96,37 @@ class JsonBlockExtractor(object):
                         self._search_array_container(element_name, ele)
                 elif isinstance(v, dict):  
                     self._search_array_container(element_name, v)
+                    
+    @staticmethod
+    def _proto_search_joins(root_element, searched_elements):
+        """
+        search for     "test.points": [
+        {
+          "dm-mapping:JOIN": {
+            "@dmref": "_point",
+            "@tableref": "Results"
+          }
+        }
+      ]
+
+        :param   root_element: element to be explored
+        :type root_element : {} or [] 
+        """
+        if isinstance(root_element, list):
+            for item in root_element:
+                JsonBlockExtractor._proto_search_joins(item, searched_elements)
+        elif isinstance(root_element, dict):
+            for key, value in root_element.items():
+                if key.startswith("@") is True:
+                    continue
+                if isinstance(value, list):
+                    for item in value:
+                        if isinstance(item, dict) and Ele.JOIN in item.keys():
+                            retour = {}
+                            retour[key]=item
+                            searched_elements[key]=item
+
+                JsonBlockExtractor._proto_search_joins(value, searched_elements)
 
 
     def _search_array_container_2(self, element_name, root_element):
@@ -126,52 +174,57 @@ class JsonBlockExtractor(object):
                 elif isinstance(v, dict):  
                     self._search_subelement_by_role(v, searched_role)
 
-    def _search_subelement_by_id(self, root_element, searched_id):
+    @staticmethod
+    def _search_subelement_by_id(root_element, searched_id, searched_elements):
         """
         Store in self.searched_ids all elements with @ID=searched_id
         Recursive search
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
-                if self.retour is None:
-                    if self._id_matches(root_element[idx], searched_id):
-                        self.searched_elements.append(root_element[idx])
-                    self._search_subelement_by_id(root_element[idx], searched_id)
+                if AttUtils.id_matches(root_element[idx], searched_id):
+                    searched_elements.append(root_element[idx])
+                JsonBlockExtractor._search_subelement_by_id(root_element[idx], searched_id, searched_elements)
         elif isinstance(root_element, dict):
             if AttUtils.id_matches(root_element, searched_id):
-                self.searched_elements.append(root_element) 
+                searched_elements.append(root_element) 
             for _, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
                         if AttUtils.id_matches(ele, searched_id):
-                            self.searched_elements.append(ele)
-                        self._search_subelement_by_id(ele, searched_id)
+                            pass
+                            #searched_elements.append(ele)
+                        JsonBlockExtractor._search_subelement_by_id(ele, searched_id, searched_elements)
                 elif isinstance(v, dict):  
                     if AttUtils.id_matches(v, searched_id):
-                        self.searched_elements.append(v)
-                    self._search_subelement_by_id(v, searched_id)
+                        pass
+                        #searched_elements.append(v)
+                    JsonBlockExtractor._search_subelement_by_id(v, searched_id, searched_elements)
 
-    def _search_subelement_by_type(self, root_element, searched_type):
+    @staticmethod
+    def _search_subelement_by_type(root_element, searched_type, searched_elements):
         """
         Store in self.searched_types all elements with @dmtype=searched_type
         Recursive search
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
-                if self.retour is None:
-                    if self._type_matches(root_element[idx], searched_type):
-                        self.searched_elements.append(root_element[idx])
-                    self._search_subelement_by_type(root_element[idx], searched_type)
+                if AttUtils.type_matches(root_element[idx], searched_type):
+                    searched_elements.append(root_element[idx])
+                JsonBlockExtractor._search_subelement_by_type(root_element[idx], searched_type, searched_elements)
         elif isinstance(root_element, dict):
             if AttUtils.type_matches(root_element, searched_type):
-                self.searched_elements.append(root_element) 
+                searched_elements.append(root_element) 
             for _, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
                         if AttUtils.type_matches(ele, searched_type):
-                            self.searched_elements.append(ele)
-                        self._search_subelement_by_type(ele, searched_type)
+                            pass
+                            #self.searched_elements.append(ele)
+                        JsonBlockExtractor._search_subelement_by_type(ele, searched_type, searched_elements)
+
                 elif isinstance(v, dict):  
                     if AttUtils.type_matches(v, searched_type):
-                        self.searched_elements.append(v)
-                    self._search_subelement_by_type(v, searched_type)
+                        pass
+                        #self.searched_elements.append(v)
+                    JsonBlockExtractor._search_subelement_by_type(v, searched_type, searched_elements)

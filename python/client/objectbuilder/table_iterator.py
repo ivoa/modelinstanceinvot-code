@@ -75,11 +75,13 @@ class TableIterator(object):
                     if (self.row_filter is None or 
                         self.row_filter.row_match(row) == True):
                         self.last_row = row
+                        print("OK")
+                        print(row)
                         return row
                 else:
+
                     return None
-        except:  
-            # traceback.print_exc()    
+        except:
             return None
 
     def _rewind(self):
@@ -94,8 +96,12 @@ class TableIterator(object):
             return None
 
     def _get_next_flatten_row(self):
+        print("--+++++++++++")
         row = self._get_next_row()
+        print(" _get_next_flatten_row" )
+        print(row)
         if row is not None:
+            print("not none")
             retour = []
             indexes = self.column_mapping.get_indexes()
             for index in indexes:

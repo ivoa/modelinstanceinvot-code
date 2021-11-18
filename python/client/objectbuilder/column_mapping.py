@@ -4,7 +4,11 @@ Created on 1 avr. 2020
 @author: laurentmichel
 '''
 from collections import OrderedDict
-
+from utils.json_tools import JsonTools
+from client.translator.vocabulary import Ele,Att
+from client.translator import logger
+from utils.dict_utils import DictUtils
+from client.objectbuilder.votable_pointer import VOTablePointer
 class ColumnMapping():
     '''
     This class manages the kind between the table columns and the mapping element (ARRAY---> ATTRIBUTE)  
@@ -13,10 +17,12 @@ class ColumnMapping():
     Watchout: The case where more the 1 mapping element point on the same column hasn't been tested,
     '''
 
-    def __init__(self):
+    def __init__(self, json_block):
         '''
         Constructor
         '''
+        
+        self.json_block = json_block
         # Dictionary of the columns (or fields) referenced by the mapping
         # key: {parent_role, role, index (= col number), field (= col id)} 
         # This attribute contains the mapping
@@ -30,7 +36,70 @@ class ColumnMapping():
         # This attribute is just used facilitate the mapping setup and to 
         # keep a convenient representation of the table fields 
         self.column_ids = OrderedDict()
+        self._set_array_subelement_values(self.json_block)
+        self.table_name = None
+        for key, value in self.json_block.items():
+            if key == Att.tableref:
+                self.table_name = value
+            break
        
+            
+
+    def _set_array_subelement_values(self, array_element, parent_role=None, parent_type=None):
+        """
+        """
+        if isinstance(array_element, list):
+
+            if JsonTools.is_join(array_element) is False:
+                for idx, idv in enumerate(array_element):
+                    prole = ""
+                    ptype = ""
+                    if Att.dmrole in idv:
+                        prole = idv[Att.dmrole]
+                    if Att.dmtype in idv:
+                        ptype = idv[Att.dmtype]
+                    self._set_array_subelement_values(array_element[idx], parent_role=prole, parent_type=ptype)
+        elif isinstance(array_element, dict):
+            for k, v in array_element.items():
+                if isinstance(v, list) :
+                    if JsonTools.is_join(v) is False:
+                        for ele in v:
+                            prole = ""
+                            ptype = ""
+                            if Att.dmrole in ele:
+                                prole = ele[Att.dmrole]
+                            if Att.dmtype in ele:
+                                ptype = ele[Att.dmtype]
+                            if ptype.startswith("ivoa:"):
+                                ptype = parent_type
+                            self._set_array_subelement_values(ele, parent_role=prole, parent_type=ptype)
+                elif isinstance(v, dict): 
+                    ptype = ""
+                    if Att.dmtype in v:
+                        ptype = v[Att.dmtype]
+                    if ptype.startswith("ivoa:"):
+                        ptype = parent_type
+                    for key in v.keys():
+                        if key != Ele.JOIN:
+                            self._set_value(v, role=k, parent_role=parent_role, parent_type=ptype)
+                            self._set_array_subelement_values(v, parent_role=k, parent_type=ptype)
+   
+    
+    def _set_value(self, element, role=None, parent_role=None, parent_type=None):
+        """
+        Create a column mapping entry for the element if it is a @ref
+        both role an parent_role are just labels used make to more explicit 
+        the string representation of the columns mapping
+        """
+        keys = element.keys()
+        if (Att.dmtype in keys and "@ref" in keys 
+            and "@value" in keys and element["@value"] == ""):  
+            logger.info("Give role %s to the column %s "
+                        , role, element["@ref"])
+            self.add_entry(element["@ref"]
+                                          , role
+                                          , parent_role=parent_role , parent_type=parent_type)
+            element["@value"] = "array coucou"
     def __repr__(self):
         """
         string representation
@@ -66,28 +135,31 @@ class ColumnMapping():
                 "ucd": None
                 }
       
-    def _map_columns(self, votable):
+    def _map_columns(self):
         """
         links column references with column ids.
         Links are set with both "index" and "field" attribute of column references objects
         TODO The case of un-mapped column reference must be clarified
         :param votable: Parsed votable.table
         :type votable: astropy.io.votable.table  
-        """        
+        """  
+        table =  VOTablePointer.get_table(self.table_name) 
+        
+
         keys = self.keys()
         # Look first for params possibly matching the column references 
         indx = -1
-        for param in  votable.params:
+        for param in  VOTablePointer.get_params():
             if param.ID in keys :
                 self.set_value(param.ID, indx, param, param.ucd)
             elif param.ref in keys :
                 self.set_value(param.ref, indx, param, param.ucd)
             elif param.name in keys :
                 self.set_value(param.name, indx, param, param.ucd)
-
+    
         indx = 0      
         # The we try we FIELD so that FIELD can override PARAMs links
-        for field in  votable.fields:
+        for field in  table.fields:
             self.column_ids[indx] = {
                 "name": field.name,
                 "ref": field.ref,
@@ -101,7 +173,7 @@ class ColumnMapping():
             elif field.name in keys:
                 self.set_value(field.name, indx, field, field.ucd)
             indx += 1
-        
+
     def set_value(self, key, index, field_or_param, ucd):
         """
         Connect the column reference identified by 'key' with the FIELD or the PARAMS
@@ -118,7 +190,7 @@ class ColumnMapping():
         # for the record: does nothing if the entry already exists
         self.add_entry(key, None)
         self.column_refs[key]["index"] = index
-        self.column_refs[key]["field"] = field_or_param
+        self.column_refs[key]["field"] = str(field_or_param)
         self.column_refs[key]["ucd"] = ucd
 
     def get_col_index_by_name(self, name):        

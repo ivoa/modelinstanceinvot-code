@@ -4,6 +4,8 @@ Created on Jul 6, 2020
 @author: laurentmichel
 '''
 
+from client.translator.vocabulary import Ele, Att
+
 
 class AttUtils(object):
     """
@@ -15,9 +17,10 @@ class AttUtils(object):
         """
         Returns True if element[@ID] matches id
         """
+
         if(isinstance(element, dict) and 
-            "@ID" in element.keys() and 
-            element["@ID"] == searched_id):
+            Att.dmid in element.keys() and 
+            element[Att.dmid] == searched_id):
             return True
         return False
     
@@ -27,8 +30,8 @@ class AttUtils(object):
         Returns True if element[@dmtype] matches searched_type
         """
         if(isinstance(element, dict) and 
-            "@dmtype" in element.keys() and 
-            element["@dmtype"] == searched_type):
+            Att.dmtype in element.keys() and 
+            element[Att.dmtype] == searched_type):
             return True
         return False
     
@@ -39,7 +42,7 @@ class AttUtils(object):
         <INSTANCE dmref=xxx/>
         """
         if(isinstance(element, dict) and 
-            "@dmref" in element.keys() ):
+            Att.dmref  in element.keys() ):
             #"@dmtype" not in element.keys()):
             return True
         return False

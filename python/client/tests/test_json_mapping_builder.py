@@ -561,6 +561,8 @@ class Test(unittest.TestCase):
         builder = JsonMappingBuilder(
             json_dict=DictUtils.read_dict_from_file(self.json_path)
         )
+        
+        
         builder.revert_collections()
         self.assertDictEqual(
             builder.json,

@@ -1,0 +1,18 @@
+{
+  "_foreign_spectra": {
+    "field": null,
+    "index": null,
+    "parent_role": "NOROLE",
+    "parent_type": "test:Spectrum",
+    "role": "test:spectrum.id",
+    "ucd": null
+  },
+  "_spc_148": {
+    "field": null,
+    "index": null,
+    "parent_role": "NOROLE",
+    "parent_type": "test:Spectrum",
+    "role": "test:spectrum.num",
+    "ucd": null
+  }
+}

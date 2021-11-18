@@ -13,16 +13,21 @@ from client.translator.vocabulary import Ele, Att
 class JoinIterator(object):
     """
     classdocs
-    """
+    """ 
     
-    def __init__(self, json_join_content):
-        self.foreign_table = json_join_content[Ele.JOIN][Att.tableref]
-        self.foreign_key = json_join_content[Ele.JOIN][Ele.WHERE][Att.foreignkey]
-        self.primary_key = json_join_content[Ele.JOIN][Ele.WHERE][Att.primarykey]
-        self.json_join_content = json_join_content
+    def __init__(self, join_statement, joined_data_mapping):
+        self.foreign_table = join_statement[Ele.JOIN][Att.tableref]
+        self.foreign_mapping_block = join_statement[Ele.JOIN][Att.dmref]
+        self.foreign_key = None
+        self.primary_key = None
+        if Ele.WHERE in join_statement[Ele.JOIN]:
+            self.foreign_key = join_statement[Ele.JOIN][Ele.WHERE][Att.foreignkey]
+            self.primary_key = join_statement[Ele.JOIN][Ele.WHERE][Att.primarykey]
+        self.join_statement = join_statement
         self.table_mapper = None
         self.parsed_table = None
         self.row_filter = None
+        self.joined_data_mapping = joined_data_mapping
 
     def __repr__(self):
         return "Join iterator f_table={} p_key={}, f_key={}".format(
@@ -35,7 +40,7 @@ class JoinIterator(object):
         self.parsed_table = parsed_table
         ack = None
         acv = None
-        for key, value in self.json_join_content.items():
+        for key, value in self.join_statement.items():
             if key.startswith("@") is False and key != Ele.JOIN:
                 ack = key
                 acv = value
@@ -56,7 +61,7 @@ class JoinIterator(object):
                             "@tableref": self.foreign_table,
                             "dm-mapping:WHERE": {
                                 "@primarykey": self.foreign_key,
-                                "@value": -1,
+                                "@primary_value": -1,
                             },
                             "root": {ack: acv},
                         }
@@ -71,15 +76,15 @@ class JoinIterator(object):
             break
 
     def set_foreignkey_value(self, value):
-        self.row_filter.value = value
+        self.row_filter.primary_value = value
         self.table_mapper.rewind()
 
     def get_subset_instance(self, key_value):
-        self.row_filter = RowFilter({"@ref": self.foreign_key, "@value": key_value})
+        self.row_filter = RowFilter({"@ref": self.foreign_key, "@primary_value": key_value})
         self.table_iterator = TableIterator(
             "join",
             self.table_votable,
-            self.json_join_content,
+            self.join_statement,
             self.column_mapping,
             self.row_filter,
         )

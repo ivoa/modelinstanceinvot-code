@@ -1,0 +1,34 @@
+{
+  "@dmtype": "test.model",
+  "test.header": {
+    "@dmtype": "test.Header",
+    "dm-mapping:REFERENCE": {
+      "@dmref": "SpaceFrame_ICRS",
+      "@dmrole": "test.frame"
+    },
+    "test.owner": {
+      "@dmtype": "test.Owner",
+      "test.owner.firstname": {
+        "@dmtype": "string",
+        "@value": "Laurent"
+      },
+      "test.owner.name": {
+        "@dmtype": "string",
+        "@value": "Michel"
+      },
+      "test.title": {
+        "@dmtype": "string",
+        "@ref": "_title",
+        "@value": ""
+      }
+    },
+    "test.points": [
+      {
+        "dm-mapping:JOIN": {
+          "@dmref": "_point",
+          "@tableref": "Results"
+        }
+      }
+    ]
+  }
+}

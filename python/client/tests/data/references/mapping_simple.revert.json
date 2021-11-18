@@ -1,0 +1,17 @@
+{
+        "@tableref": "Spectra",
+        "NOROLE": {
+          "@dmtype": "test:Spectrum",
+          "test:spectrum.id": {
+            "@dmtype": "ivoa:real",
+            "@ref": "_foreign_spectra",
+            "@value": ""
+          },
+          "test:spectrum.num": {
+            "@dmtype": "ivoa:stringl",
+            "@ref": "_spc_148",
+            "@value": ""
+          }
+        }
+        }
+        

@@ -56,13 +56,13 @@ class TableMapper(object):
         self.table_json = self.json[Ele.VODML][Ele.TEMPLATES][self.table_name]
         # array block reference 
         self.array = None
-        # key = role of the instance contained TABLE_ROW_TEMPLATE value = TableIterator
+        # key = role of the instance contained TABLE_ROW_TEMPLATE primary_value = TableIterator
         self.table_iterators = {}
         self.column_mapping = ColumnMapping()
-        # key = foreign table name value = TableIterator
+        # key = foreign table name primary_value = TableIterator
         self.join_iterators = {}
         self.join = None
-        # replace groupby with a suite of collection (one for each different key value
+        # replace groupby with a suite of collection (one for each different key primary_value
         
 
         
@@ -184,36 +184,36 @@ class TableMapper(object):
         """
         keys = element.keys()
         if (Att.dmtype in keys and "@ref" in keys 
-            and "@value" in keys and element["@value"] == ""):  
+            and "@primary_value" in keys and element["@primary_value"] == ""):  
             logger.info("Give role %s to the column %s "
                         , role, element["@ref"])
             self.column_mapping.add_entry(element["@ref"]
                                           , role
                                           , parent_role=parent_role , parent_type=parent_type)
-            element["@value"] = "array coucou"
+            element["@primary_value"] = "array coucou"
 
     def _resolve_header_value(self, element):
         """
-        Set the @value of element with the value of the <PARAM> having 
+        Set the @primary_value of element with the primary_value of the <PARAM> having 
         either a ID or a name matching @ref 
         """
         keys = element.keys()
         if ("@dmtype" in keys and "@ref" in keys 
-            and "@value" in keys and element["@value"] == ""):  
+            and "@primary_value" in keys and element["@primary_value"] == ""):  
             for param in  self.parsed_table.params:
                 if param.ID == element["@ref"]:
-                    logger.info("set element %s with value=%s of PARAM(ID=%s)"
-                                , str(element), param.value, element["@ref"])
-                    # element["@value"] = param.value.decode("utf-8") 
+                    logger.info("set element %s with primary_value=%s of PARAM(ID=%s)"
+                                , str(element), param.primary_value, element["@ref"])
+                    # element["@primary_value"] = param.primary_value.decode("utf-8") 
                     try:
-                        element["@value"] = param.value.decode("utf-8") 
+                        element["@primary_value"] = param.primary_value.decode("utf-8") 
                     except (UnicodeDecodeError, AttributeError):
-                        element["@value"] = param.value
+                        element["@primary_value"] = param.primary_value
 
                 elif param.name == element["@ref"] :
-                    logger.info("set element%s with value=%s of PARAM(name=%s)"
-                                , str(element), param.value, element["@ref"])
-                    element["@value"] = param.value.decode("utf-8") 
+                    logger.info("set element%s with primary_value=%s of PARAM(name=%s)"
+                                , str(element), param.primary_value, element["@ref"])
+                    element["@primary_value"] = param.primary_value.decode("utf-8") 
                    
     def _get_next_row_instance(self, data_subset=None):
         if len(self.table_iterators) > 0 :
@@ -255,6 +255,7 @@ class TableMapper(object):
         if len(self.table_iterators) > 0 :
             for key, value in self.table_iterators.items():
                 if data_subset is None or data_subset == key:
+                    print("aaaaaaa")
                     return value._get_next_flatten_row()
             raise Exception("cannot find data subset " + str(data_subset))
         else:

@@ -7,119 +7,30 @@ import os, unittest
 from astropy.io.votable import parse
 
 from client.objectbuilder.join_iterator import JoinIterator
-
+from utils.dict_utils import DictUtils
 
 class Test(unittest.TestCase):
-    def testJoinOperator(self):
+    
+    def test_simple(self):
         self.maxDiff = None
+        
+        join_statement = {
+        "dm-mapping:JOIN": {
+          "@dmref": "_point",
+          "@tableref": "Results"
+        }
+        }
+        
+                
+        joined_data_mapping = DictUtils.read_dict_from_file(self.json_path)
+        join_iterator = JoinIterator(join_statement, joined_data_mapping)
+
+
+
+
+    def setUp(self):
         self.data_path = os.path.dirname(os.path.realpath(__file__))
-        self.votable_path = os.path.join(self.data_path, "./data/rich_instance.xml")
-        votable = parse(self.votable_path)
-
-        for resource in votable.resources:
-            for table in resource.tables:
-                if table.name == "Spectra":
-                    parsed_table = table
-                    break
-
-        join_iterator = JoinIterator(
-            {
-                "dm-mapping:JOIN": {
-                    "@tableref": "Spectra",
-                    "dm-mapping:WHERE": {
-                        "@foreignkey": "_foreign_spectra",
-                        "@primarykey": "_poserr_148",
-                    },
-                },
-                "test:spectrum": {
-                    "@dmtype": "test:Spectrum",
-                    "test:spectrum.id": {
-                        "@dmtype": "ivoa:real",
-                        "@ref": "_foreign_spectra",
-                        "@value": "",
-                    },
-                    "test:spectrum.num": {
-                        "@dmtype": "ivoa:string",
-                        "@ref": "_spc_148",
-                        "@value": "",
-                    },
-                },
-            },
-        )
-
-        join_iterator.connect_votable(parsed_table)
-
-        self.assertDictEqual(
-            join_iterator.table_mapper.json,
-            {
-                "dm-mapping:VODML": {
-                    "dm-mapping:GLOBALS": {},
-                    "dm-mapping:TEMPLATES": {
-                        "Spectra": {
-                            "@tableref": "Spectra",
-                            "dm-mapping:WHERE": {
-                                "@primarykey": "_foreign_spectra",
-                                "@value": -1,
-                            },
-                            "root": {
-                                "test:spectrum": {
-                                    "@dmtype": "test:Spectrum",
-                                    "test:spectrum.id": {
-                                        "@dmtype": "ivoa:real",
-                                        "@ref": "_foreign_spectra",
-                                        "@value": "array coucou",
-                                    },
-                                    "test:spectrum.num": {
-                                        "@dmtype": "ivoa:string",
-                                        "@ref": "_spc_148",
-                                        "@value": "array coucou",
-                                    },
-                                }
-                            },
-                        }
-                    },
-                }
-            },
-        )
-        join_iterator.set_foreignkey_value(1)
-        self.assertDictEqual(
-            join_iterator.table_mapper._get_next_row_instance(),
-            {
-                "test:spectrum": {
-                    "@dmtype": "test:Spectrum",
-                    "test:spectrum.id": {
-                        "@dmtype": "ivoa:real",
-                        "@ref": "_foreign_spectra",
-                        "@value": 1,
-                    },
-                    "test:spectrum.num": {
-                        "@dmtype": "ivoa:string",
-                        "@ref": "_spc_148",
-                        "@value": "Spectrum 11",
-                    },
-                }
-            },
-        )
-
-        self.assertDictEqual(
-            join_iterator.table_mapper._get_next_row_instance(),
-            {
-                "test:spectrum": {
-                    "@dmtype": "test:Spectrum",
-                    "test:spectrum.id": {
-                        "@dmtype": "ivoa:real",
-                        "@ref": "_foreign_spectra",
-                        "@value": 1,
-                    },
-                    "test:spectrum.num": {
-                        "@dmtype": "ivoa:string",
-                        "@ref": "_spc_148",
-                        "@value": "Spectrum 12",
-                    },
-                }
-            },
-        )
-
+        self.json_path = os.path.join(self.data_path, "./data/references/join_statement.raw.json")
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']

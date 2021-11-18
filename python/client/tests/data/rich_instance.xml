@@ -10,7 +10,7 @@
 				<dm-mapping:MODEL name="test" />
 
 				<dm-mapping:GLOBALS>
-					<dm-mapping:INSTANCE ID="SpaceFrame_ICRS"
+					<dm-mapping:INSTANCE dmid="SpaceFrame_ICRS"
 						dmtype="coords:SpaceFrame">
 						<dm-mapping:INSTANCE
 							dmrole="coords:SpaceFrame.refPosition"
@@ -50,7 +50,7 @@
 				</dm-mapping:GLOBALS>
 
 				<dm-mapping:TEMPLATES tableref="Results">
-					<dm-mapping:INSTANCE ID="_point" dmtype="Point">
+					<dm-mapping:INSTANCE dmid="_point" dmtype="Point">
 						<dm-mapping:ATTRIBUTE
 							dmrole="test:detection.num" dmtype="ivoa:real" ref="_poserr_148" />
 						<dm-mapping:COLLECTION

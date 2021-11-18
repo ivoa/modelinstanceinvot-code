@@ -33,7 +33,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     <!-- Make sure ID is unique within the mapping block --> 
     <xs:unique name="UniqueID">
         <xs:selector xpath=".//*" /> 
-        <xs:field xpath="@ID" /> 
+        <xs:field xpath="@dmid" /> 
     </xs:unique>    
        
   </xs:element>
@@ -54,7 +54,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     </xs:all>
     <xs:assert test="count (dm-mapping:INSTANCE[@dmrole != '']) eq 0"/>
     <xs:assert test="count (dm-mapping:COLLECTION[@dmrole != '']) eq 0"/>
-    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies  $child/@ID != '' "/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies  $child/@dmid != '' "/>
     <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies ( every $grandchild in $child/dm-mapping:INSTANCE satisfies ( count($grandchild/dm-mapping:PRIMARY_KEY) gt 0 ) )"/>
     <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies ( every $grandchild in $child/dm-mapping:JOIN satisfies (count($grandchild/@dmref) or count($grandchild/@tableref)))"/>
     <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies count($child/dm-mapping:ATTRIBUTE) = 0"/>
@@ -88,13 +88,13 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     </xs:sequence>
     <xs:attribute type="xs:string" name="dmrole" use="optional" /> 
     <xs:attribute type="xs:string" name="dmtype" use="required" /> 
-    <xs:attribute type="xs:string" name="ID" />  
-    <!-- xs:assert test="(not(./@ID) and  @dmrole != '') or @ID != ''  " /> -->
+    <xs:attribute type="xs:string" name="dmid" />  
+    <!-- xs:assert test="(not(./@dmid) and  @dmrole != '') or @dmid != ''  " /> -->
     <xs:assert test=" @dmtype != '' " />
-    <xs:assert test="if (@ID) then ( @ID != '') else true()  " />
+    <xs:assert test="if (@dmid) then ( @dmid != '') else true()  " />
     <xs:assert test="every $child in ./dm-mapping:INSTANCE satisfies  $child/@dmrole != '' "/>
     <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies  $child/@dmrole != '' "/>
-    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies not($child/@ID) or $child/@ID = '' "/>
+    <xs:assert test="every $child in ./dm-mapping:COLLECTION satisfies not($child/@dmid) or $child/@dmid = '' "/>
     <xs:assert test="every $child in ./dm-mapping:ATTRIBUTE satisfies  $child/@dmrole != '' "/>
     <xs:assert test="every $child in ./dm-mapping:REFERENCE satisfies  $child/@dmrole != '' "/>    
   </xs:complexType>
@@ -128,7 +128,7 @@ LM 2021-08-25: add VOtable import, prefix prefixes with dm-mapping
     <xs:attribute type="xs:string" name="dmrole" use="optional" />
     <xs:attribute type="xs:string" name="size" />  
     <xs:attribute type="xs:string" name="ID" />
-    <xs:assert test="if (@ID) then ( @ID != '') else true()  " />
+    <xs:assert test="if (@dmid) then ( @dmid != '') else true()  " />
     <!-- LM ORIGINAL 
     <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:REFERENCE) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:REFERENCE) = 0"/>
     <xs:assert test="(count(dm-mapping:ATTRIBUTE) eq 0 and count(dm-mapping:INSTANCE) >= 0) or count(dm-mapping:ATTRIBUTE) > 0 and count(dm-mapping:INSTANCE) = 0"/>

@@ -49,7 +49,7 @@
         "@dmtype": "Point",
         "test.detections": [
           {
-            "UNKNOWNKEY": {
+            "NOROLE": {
               "@dmtype": "test:Detection",
               "test:detection.id": {
                 "@dmtype": "ivoa:real",
@@ -64,7 +64,7 @@
             }
           },
           {
-            "UNKNOWNKEY": {
+            "NOROLE": {
               "@dmtype": "test:Detection",
               "test:detection.id": {
                 "@dmtype": "ivoa:real",
@@ -81,7 +81,7 @@
         ],
         "test.spectra": [
           {
-            "UNKNOWNKEY": {
+            "NOROLE": {
               "@dmtype": "test:Spectrum",
               "test:spectrum.id": {
                 "@dmtype": "ivoa:real",
@@ -96,7 +96,7 @@
             }
           },
           {
-            "UNKNOWNKEY": {
+            "NOROLE": {
               "@dmtype": "test:Spectrum",
               "test:spectrum.id": {
                 "@dmtype": "ivoa:real",
