@@ -23,7 +23,7 @@ class Test(unittest.TestCase):
         
         json_block = DictUtils.read_dict_from_file(self.sample_path)
                 
-        templates_iterator = TemplatesIterator(json_block)
+        templates_iterator = TemplatesIterator("Results", json_block)
         templates_iterator._map_columns()
 
         self.assertDictEqual(templates_iterator._column_mapping.column_refs,
@@ -48,7 +48,26 @@ class Test(unittest.TestCase):
         templates_iterator.rewind()
         templates_iterator._setup_joins()
         self.assertListEqual(list(templates_iterator._joined_templates.keys()), ['OtherResults', 'Spectra'])
-        DictUtils.print_pretty_json(templates_iterator.get_next_flatten_row())
+        self.assertListEqual( templates_iterator.get_next_flatten_row(), [1])
+        self.assertDictEqual( templates_iterator.get_associated_data(), 
+                {
+                  "OtherResults": [
+                    [
+                      1, 11
+                    ],
+                    [
+                      1,  12
+                    ]
+                  ],
+                  "Spectra": [
+                    [
+                      1, "Spectrum 11"
+                    ],
+                    [
+                      1, "Spectrum 12"
+                    ]
+                  ]
+                })
         self.assertTrue(False)
         templates_iterator.rewind()
         self.assertListEqual(templates_iterator.get_next_flatten_row(), [1])

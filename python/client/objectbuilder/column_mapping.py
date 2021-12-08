@@ -36,12 +36,14 @@ class ColumnMapping():
         # This attribute is just used facilitate the mapping setup and to 
         # keep a convenient representation of the table fields 
         self.column_ids = OrderedDict()
+        self.all_column_ids = OrderedDict()
         self._set_array_subelement_values(self.json_block)
         self.table_name = None
         for key, value in self.json_block.items():
             if key == Att.tableref:
                 self.table_name = value
-            break
+                logger.debug("map table %s", self.table_name )
+                break
        
             
 
@@ -92,7 +94,7 @@ class ColumnMapping():
         the string representation of the columns mapping
         """
         keys = element.keys()
-        if (Att.dmtype in keys and "@ref" in keys 
+        if ("@dmtype" in keys and "@ref" in keys 
             and "@value" in keys and element["@value"] == ""):  
             logger.info("Give role %s to the column %s "
                         , role, element["@ref"])
@@ -164,7 +166,8 @@ class ColumnMapping():
                 "name": field.name,
                 "ref": field.ref,
                 "id": field.ID,
-                "ucd": field.ucd
+                "ucd": field.ucd,
+                "index": indx
                 }
             if field.ID in keys :
                 self.set_value(field.ID, indx, field, field.ucd)
@@ -174,6 +177,7 @@ class ColumnMapping():
                 self.set_value(field.name, indx, field, field.ucd)
             indx += 1
 
+        
     def set_value(self, key, index, field_or_param, ucd):
         """
         Connect the column reference identified by 'key' with the FIELD or the PARAMS

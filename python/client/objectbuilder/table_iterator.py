@@ -67,7 +67,9 @@ class TableIterator(object):
         if self.iter == None:
             self.iter = iter(self.data_table)
             if self.row_filter is not None:
-                self.row_filter.map_col_number(self.column_mapping)
+                pass
+                #print(self.row_filter)
+                #self.row_filter.map_col_number(self.column_mapping)
         try:
             while True:
                 row = next(self.iter)
@@ -75,8 +77,6 @@ class TableIterator(object):
                     if (self.row_filter is None or 
                         self.row_filter.row_match(row) == True):
                         self.last_row = row
-                        print("OK")
-                        print(row)
                         return row
                 else:
 
@@ -96,12 +96,8 @@ class TableIterator(object):
             return None
 
     def _get_next_flatten_row(self):
-        print("--+++++++++++")
         row = self._get_next_row()
-        print(" _get_next_flatten_row" )
-        print(row)
         if row is not None:
-            print("not none")
             retour = []
             indexes = self.column_mapping.get_indexes()
             for index in indexes:

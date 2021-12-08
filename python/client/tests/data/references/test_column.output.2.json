@@ -21,12 +21,14 @@
     "id": "_spc_148",
     "name": "oidsaada",
     "ref": null,
+    "index": 0,
     "ucd": "meta.id;meta.main"
   },
   "1": {
     "id": "_foreign_spectra",
     "name": "cle",
     "ref": null,
+    "index": 1,
     "ucd": "meta.id;meta.main"
   }
 }

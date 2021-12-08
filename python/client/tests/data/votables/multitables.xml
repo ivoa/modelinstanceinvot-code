@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.3">
+
+	<RESOURCE type="results">
+
+        <TABLE name="Sources">
+            <FIELD ID="_id" name="id" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_ra" name="ra" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_dec" name="dec" datatype="char"
+                arraysize='*' />
+            <DATA>
+                <TABLEDATA>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>source1_ra</TD>
+                        <TD>source1_dec</TD>
+                    </TR>
+                    <TR>
+                        <TD>source2</TD>
+                        <TD>source2_ra</TD>
+                        <TD>source2_dec</TD>
+                    </TR>
+                </TABLEDATA>
+            </DATA>
+        </TABLE>
+        
+        <TABLE name="Detections">
+            <FIELD ID="_id" name="id" datatype="char"
+                arraysize='*' />
+           <FIELD ID="_sourceid" name="id" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_ra" name="ra" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_dec" name="dec" datatype="char"
+                arraysize='*' />
+            <DATA>
+                <TABLEDATA>
+                    <TR>
+                        <TD>detection11</TD>
+                        <TD>source1</TD>
+                        <TD>detection11_ra</TD>
+                        <TD>detection11_dec</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection12</TD>
+                        <TD>source1</TD>
+                        <TD>detection12_ra</TD>
+                        <TD>detection12_dec</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection21</TD>
+                        <TD>source2</TD>
+                        <TD>detection21_ra</TD>
+                        <TD>detection21_dec</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection22</TD>
+                        <TD>source2</TD>
+                        <TD>detection22_ra</TD>
+                        <TD>detection22_dec</TD>
+                    </TR>
+                </TABLEDATA>
+            </DATA>
+        </TABLE>
+        
+        <TABLE name="Photometry">
+            <FIELD ID="_sourceid" name="id" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_filter" name="filter" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_flux" name="flux" datatype="char"
+                arraysize='*' />
+            <DATA>
+                <TABLEDATA>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>filter1</TD>
+                        <TD>flux111</TD>
+                    </TR>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>filter1</TD>
+                        <TD>flux112</TD>
+                    </TR>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>filter2</TD>
+                        <TD>flux121</TD>
+                    </TR>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>filter2</TD>
+                        <TD>flux122</TD>
+                    </TR>
+                    <TR>
+                        <TD>source2</TD>
+                        <TD>filter1</TD>
+                        <TD>flux211</TD>
+                    </TR>
+                    <TR>
+                        <TD>source2</TD>
+                        <TD>filter1</TD>
+                        <TD>flux212</TD>
+                    </TR>
+                    <TR>
+                        <TD>source2</TD>
+                        <TD>filter2</TD>
+                        <TD>flux221</TD>
+                    </TR>
+                    <TR>
+                        <TD>source1</TD>
+                        <TD>filter2</TD>
+                        <TD>flux222</TD>
+                    </TR>                  
+                  </TABLEDATA>
+            </DATA>
+        </TABLE>
+        
+        
+       <TABLE name="Spectra">
+            <FIELD ID="_detectionid" name="id" datatype="char"
+                arraysize='*' />
+            <FIELD ID="_spectrum" name="spectrum" datatype="char"
+                arraysize='*' />
+            <DATA>
+                <TABLEDATA>
+                    <TR>
+                        <TD>detection11</TD>
+                        <TD>spectrum111</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection11</TD>
+                        <TD>spectrum112</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection12</TD>
+                        <TD>spectrum121</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection12</TD>
+                        <TD>spectrum122</TD>
+                    </TR>
+                    
+                    <TR>
+                        <TD>detection21</TD>
+                        <TD>spectrum211</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection21</TD>
+                        <TD>spectrum212</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection22</TD>
+                        <TD>spectrum221</TD>
+                    </TR>
+                    <TR>
+                        <TD>detection22</TD>
+                        <TD>spectrum222</TD>
+                    </TR>
+         
+                  </TABLEDATA>
+            </DATA>
+        </TABLE>
+        
+        
+	
+	</RESOURCE>
+</VOTABLE>

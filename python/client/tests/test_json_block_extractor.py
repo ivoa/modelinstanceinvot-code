@@ -47,7 +47,7 @@ class Test(unittest.TestCase):
                              )
 
         JsonBlockExtractor.revert_model_element(json)
-        DictUtils.print_pretty_json(json)
+        #DictUtils.print_pretty_json(json)
         self.assertDictEqual(json
                              ,DictUtils.read_dict_from_file(os.path.join(self.data_path
                                                        , "./data/references/extractor_by_id.revert.json"))
@@ -59,20 +59,25 @@ class Test(unittest.TestCase):
         self.json_view =DictUtils.read_dict_from_file(self.json_path)
         
         json = JsonBlockExtractor.search_subelement_by_type(self.json_view, "test.model")
+        
         JsonBlockExtractor.revert_model_element(json)
-
         json = JsonBlockExtractor.search_join_container(json)
-         
-        self.assertDictEqual(json
-                             ,DictUtils.read_dict_from_file(os.path.join(self.data_path
-                                                       , "./data/references/extractor_join.raw.json"))
-                             )
+        self.assertDictEqual(json,
+                {
+                  "test.points": {
+                    "dm-mapping:JOIN": {
+                      "@dmref": "_point",
+                      "@tableref": "Results"
+                    }
+                  }
+                }                             
+                )
 
 
 
     def setUp(self):
         self.data_path = os.path.dirname(os.path.realpath(__file__))
-        self.json_path = os.path.join(self.data_path, "./data/references/rich_instance_raw.json")
+        self.json_path = os.path.join(self.data_path, "./data/references/test_json_block_extractor.input.1.json")
         self.json_view =DictUtils.read_dict_from_file(self.json_path)
 
 if __name__ == "__main__":
