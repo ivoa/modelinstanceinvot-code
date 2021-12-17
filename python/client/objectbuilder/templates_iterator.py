@@ -13,6 +13,7 @@ from utils.dict_utils import DictUtils
 from client.objectbuilder.row_filter import RowFilter
 from client.objectbuilder import row_filter
 from astropy.table._column_mixins import sys
+from client.objectbuilder.json_block_extractor import JsonBlockExtractor
 
 
 class TemplatesIterator(object):
@@ -25,7 +26,7 @@ class TemplatesIterator(object):
         '''
         Constructor
         '''
-        self._json_block = json_block        
+        self._xml_block = json_block        
         self._column_mapping = None
         self._table_iterator = None
         self._joined_templates = {}
@@ -33,14 +34,14 @@ class TemplatesIterator(object):
         self.tableref = tableref
         self.last_row = None
         logger.info("Create iterator on templates %s", self.tableref)
-        
+ 
     def _map_columns(self):
-        self._column_mapping = ColumnMapping(self._json_block)
+        self._column_mapping = ColumnMapping(self._xml_block)
         self._column_mapping._map_columns()
         self._table_iterator = TableIterator(
             "iterator_key",
             VOTablePointer.get_table(self._column_mapping.table_name).to_table(),
-            self._json_block,
+            self._xml_block,
             self._column_mapping,
             row_filter=self._row_filter,
         )
@@ -48,23 +49,26 @@ class TemplatesIterator(object):
     def _setup_joins(self):
         """
         """
-        self._look_for_join(self._json_block)
+        self._look_for_join(self._xml_block)
         
     def _look_for_join(self, array_element):
         if isinstance(array_element, list):
 
             if JsonTools.is_join(array_element) is True:
-                self._add_join(array_element)
+                # should never pass here 
+                # TODO to be checked
+                self._add_join(array_element, "arraY")
         elif isinstance(array_element, dict):
-            for _, v in array_element.items():
+            for k, v in array_element.items():
                 if isinstance(v, list) :
                     if JsonTools.is_join(v) is True:
-                        self._add_join(v)
+                        print("k " + k)
+                        self._add_join(v, k)
 
                 elif isinstance(v, dict): 
                     self._look_for_join(v)
                     
-    def _add_join(self, json_block):
+    def _add_join(self, json_block, collection_role):
         join_block = {}
         foreign_column_id = None
         primary_column_id = None
@@ -81,15 +85,16 @@ class TemplatesIterator(object):
         templates_iterator._map_columns()
         row_filter.set_filtered_column_number(templates_iterator._column_mapping.get_col_index_by_name(foreign_column_id))
         row_filter.set_filtering_column_number(self._column_mapping.get_col_index_by_name(primary_column_id))
-        self._joined_templates[tableref] = templates_iterator
-        logger.info("Iterator on joined table %s added", tableref)
+        #self._joined_templates[tableref] = templates_iterator
+        self._joined_templates[collection_role] = templates_iterator
+        logger.info("Iterator on joined table %s with role %s added", tableref, collection_role)
 
             
             
     def rewind(self):
         self._table_iterator._rewind()
         for _, v in self._joined_templates.items():
-            v._rewind()
+            v.rewind()
 
         
     def get_next_row(self):
@@ -121,7 +126,25 @@ class TemplatesIterator(object):
         return self.last_row
     
     def get_next_row_instance(self):
-        return self._table_iterator._get_next_row_instance()
+        retour =  self._table_iterator._get_next_row_instance()
+        if retour is None:
+            return None 
+        self.last_row = retour["row"]
+        instance = retour["instance"]
+        for k, v in self._joined_templates.items():
+            hook = JsonBlockExtractor.search_object_container(instance, k)[0]
+            hook[k] = []
+            v._table_iterator.row_filter.set_filtering_value(self.last_row[v._table_iterator.row_filter.filtering_column_number])
+            v.rewind()
+
+            while True:
+                joined_row = v.get_next_row_instance()
+                if joined_row != None:
+                    hook[k].append(joined_row)
+                else :
+                    break;
+
+        return instance
     
     def get_flatten_data_head(self):
         return self._table_iterator._get_flatten_data_head()

@@ -6,6 +6,7 @@ Created on 1 avr. 2020
 from copy import deepcopy
 from utils.json_tools import JsonTools
 from client.translator.vocabulary import Att, Ele
+from utils.dict_utils import DictUtils
 class TableIterator(object):
     '''
     classdocs
@@ -90,8 +91,10 @@ class TableIterator(object):
     def _get_next_row_instance(self):
         row = self._get_next_row()
         if row is not None:
-            self._get_row_subelement(self.array_mapping_block, row) 
-            return deepcopy(self.array_mapping_block)
+            # copy to mqke sure we won't alter the mapping block
+            retour = deepcopy(self.array_mapping_block)
+            self._get_row_subelement(retour, row) 
+            return {"instance": retour, "row": row}
         else:
             return None
 

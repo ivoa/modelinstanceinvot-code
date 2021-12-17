@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+   File:  GAIA Multi-band Time Series
+   
+   Original file submitted as a use-case example for validating/testing the 
+   models and annotation syntax at the DM Workshop 2021.
+      * https://github.com/ivoa/dm-usecases/blob/main/usecases/time-series/raw_data/gaia_multiband.xml
+
+   This file annotates that file according to the merged syntax proposal
+   which resulted from the workshop effort.
+      - migrated by hand from the VODML-Mapping syntax example.
+
+   Notable Features:
+    + uses ORM mechanism to select the appropriate coordinate system for each Observable.
+    + uses JOIN to pull filtered set of records from the table to form the time series data.
+
+-->
+<VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <RESOURCE type="meta">
+      <dm-mapping:VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax" >
+          <dm-mapping:MODEL name="mango"  url="file:/Users/sao/Documents/IVOA/GitHub/ivoa-dm-examples/tmp/Mango-v1.0.vo-dml.xml" />
+          <dm-mapping:MODEL name="cube"   url="https://volute.g-vo.org/svn/trunk/projects/dm/Cube/vo-dml/Cube-1.0.vo-dml.xml" />
+          <dm-mapping:MODEL name="ds"     url="https://volute.g-vo.org/svn/trunk/projects/dm/DatasetMetadata/vo-dml/DatasetMetadata-1.0.vo-dml.xml" />
+          <dm-mapping:MODEL name="meas"   url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
+          <dm-mapping:MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
+          <dm-mapping:MODEL name="ivoa"   url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
+          <dm-mapping:GLOBALS>
+            <dm-mapping:COLLECTION dmid="_CoordinateSystems" dmrole="" >
+              <dm-mapping:INSTANCE dmid="_timesys" dmrole="" dmtype="coords:TimeSys">
+                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="TCB"/>
+                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:TimeFrame">
+                  <dm-mapping:ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB" />
+                  <dm-mapping:INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
+                    <dm-mapping:ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER"/>
+                  </dm-mapping:INSTANCE>
+                </dm-mapping:INSTANCE>
+              </dm-mapping:INSTANCE>
+              <dm-mapping:INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
+                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
+                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+                  <dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+                  <dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="J2015.5"/>
+                </dm-mapping:INSTANCE>
+              </dm-mapping:INSTANCE>
+              <dm-mapping:INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys">
+                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="G"/>
+                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="2.49524e-9"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="6246.77"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom" />
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="4578.32"/>
+                </dm-mapping:INSTANCE>
+              </dm-mapping:INSTANCE>
+              <dm-mapping:INSTANCE dmid="_photsys_RP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
+                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="RP"/>
+                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Grp"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="1.29363e-9"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="7740.87"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2943.72"/>
+                </dm-mapping:INSTANCE>
+              </dm-mapping:INSTANCE>
+              <dm-mapping:INSTANCE dmid="_photsys_BP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
+                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="BP"/>
+                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="4.03528e-9"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="5278.58"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
+                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2279.45"/>
+                </dm-mapping:INSTANCE>
+              </dm-mapping:INSTANCE>
+            </dm-mapping:COLLECTION>
+            <dm-mapping:COLLECTION dmid="_Datasets" dmrole="">
+              <dm-mapping:INSTANCE dmid="_ds1" dmrole="" dmtype="ds:experiment.ObsDataset">
+               <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560"/>
+                <dm-mapping:ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductType" dmtype="ds:dataset.DataProductType" value="TIMESERIES"/>
+                <dm-mapping:ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductSubtype" dmtype="ivoa:string" value="GAIA Time Series"/>
+                <dm-mapping:ATTRIBUTE dmrole="ds:experiment.ObsDataset.calibLevel" dmtype="ivoa:integer" value="1"/>
+                <dm-mapping:REFERENCE dmrole="ds:experiment.ObsDataset.target" dmref="_tg1"/>
+              </dm-mapping:INSTANCE>
+            </dm-mapping:COLLECTION>
+            <dm-mapping:INSTANCE dmid="_tg1" dmrole="" dmtype="ds:experiment.Target">
+              <dm-mapping:ATTRIBUTE dmrole="ds:experiment.BaseTarget.name" dmtype="ivoa:string" value="5813181197970338560"/>
+            </dm-mapping:INSTANCE>
+          </dm-mapping:GLOBALS>
+          
+          <dm-mapping:TEMPLATES tableref="_PKTable">
+          </dm-mapping:TEMPLATES>
+          
+          <dm-mapping:TEMPLATES tableref="Results">
+          </dm-mapping:TEMPLATES>
+      </dm-mapping:VODML>
+    </RESOURCE>
+    <TABLE ID="_PKTable">
+        <FIELD ID="_pksrcid" datatype="char" arraysize="*" name="pksrcid">
+          <DESCRIPTION>Source ID</DESCRIPTION>
+        </FIELD>
+        <FIELD ID="_pkband" name="pkband" datatype="char" arraysize="*">
+          <DESCRIPTION>Photometric Band</DESCRIPTION>
+        </FIELD>
+        <DATA>
+          <TABLEDATA>
+            <TR>
+              <TD>5813181197970338560</TD>
+              <TD>G</TD>
+            </TR>
+            <TR>
+              <TD>5813181197970338560</TD>
+              <TD>BP</TD>
+            </TR>
+            <TR>
+              <TD>5813181197970338560</TD>
+              <TD>RP</TD>
+            </TR>
+           </TABLEDATA>
+        </DATA>
+    </TABLE>
+<TABLE ID="Results"/>
+
+</RESOURCE>
+</VOTABLE>

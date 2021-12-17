@@ -7,16 +7,26 @@
 			{
 				"NOROLE": {
 					"@dmtype": "test:Detection",
-					"test:detection.id": {
-						"@dmtype": "ivoa:real",
-						"@ref": "_foreign_other",
+                    "test:detection.id": {
+                        "@dmtype": "ivoa:string",
+                        "@ref": "_id",
+                        "@value": ""
+                    },
+                    "test:detection.sourceid": {
+                        "@dmtype": "ivoa:string",
+                        "@ref": "_sourceid",
+                        "@value": ""
+                    },
+					"test:detection.ra": {
+						"@dmtype": "ivoa:string",
+						"@ref": "_ra",
 						"@value": ""
 					},
-					"test:detection.num": {
-						"@dmtype": "ivoa:real",
-						"@ref": "_num_148",
-						"@value": ""
-					}
+                    "test:detection.dec": {
+                        "@dmtype": "ivoa:string",
+                        "@ref": "_dec",
+                        "@value": ""
+                    }
 				},
 				"dm-mapping:JOIN": {
 					"@tableref": "Detections",

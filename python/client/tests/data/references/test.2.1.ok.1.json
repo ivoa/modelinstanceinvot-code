@@ -1,0 +1,240 @@
+{
+	"dm-mapping:COLLECTION": [
+		{
+			"@dmid": "_CoordinateSystems",
+			"@dmrole": "",
+			"dm-mapping:INSTANCE": [
+				{
+					"@dmid": "_timesys",
+					"@dmrole": "",
+					"@dmtype": "coords:TimeSys",
+					"dm-mapping:PRIMARY_KEY": {
+						"@dmtype": "ivoa:string",
+						"@value": "TCB"
+					},
+					"dm-mapping:INSTANCE": {
+						"@dmrole": "coords:PhysicalCoordSys.frame",
+						"@dmtype": "coords:TimeFrame",
+						"dm-mapping:ATTRIBUTE": {
+							"@dmrole": "coords:TimeFrame.timescale",
+							"@dmtype": "ivoa:string",
+							"@value": "TCB"
+						},
+						"dm-mapping:INSTANCE": {
+							"@dmrole": "coords:TimeFrame.refPosition",
+							"@dmtype": "coords:StdRefLocation",
+							"dm-mapping:ATTRIBUTE": {
+								"@dmrole": "coords:StdRefLocation.position",
+								"@dmtype": "ivoa:string",
+								"@value": "BARYCENTER"
+							}
+						}
+					}
+				},
+				{
+					"@dmid": "_spacesys1",
+					"@dmrole": "",
+					"@dmtype": "coords:SpaceSys",
+					"dm-mapping:PRIMARY_KEY": {
+						"@dmtype": "ivoa:string",
+						"@value": "ICRS"
+					},
+					"dm-mapping:INSTANCE": {
+						"@dmrole": "coords:PhysicalCoordSys.frame",
+						"@dmtype": "coords:SpaceFrame",
+						"dm-mapping:ATTRIBUTE": [
+							{
+								"@dmrole": "coords:SpaceFrame.spaceRefFrame",
+								"@dmtype": "ivoa:string",
+								"@value": "ICRS"
+							},
+							{
+								"@dmrole": "coords:SpaceFrame.equinox",
+								"@dmtype": "coords:Epoch",
+								"@value": "J2015.5"
+							}
+						]
+					}
+				},
+				{
+					"@dmid": "_photsys_G",
+					"@dmtype": "mango:coordinates.PhotometryCoordSys",
+					"dm-mapping:PRIMARY_KEY": {
+						"@dmtype": "ivoa:string",
+						"@value": "G"
+					},
+					"dm-mapping:INSTANCE": {
+						"@dmrole": "coords:PhysicalCoordSys.frame",
+						"@dmtype": "mango:coordinates.PhotFilter",
+						"dm-mapping:ATTRIBUTE": [
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.name",
+								"@dmtype": "ivoa:string",
+								"@value": "GAIA/GAIA2r.G"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.zeroPointFlux",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "2.49524e-9"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.magnitudeSystem",
+								"@dmtype": "ivoa:string",
+								"@value": "Vega"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.effectiveWavelength",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "6246.77"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.unit",
+								"@dmtype": "ivoa:Unit",
+								"@value": "Angstrom"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.bandWidth",
+								"@dmtype": "ivoa:real",
+								"@value": "4578.32"
+							}
+						]
+					}
+				},
+				{
+					"@dmid": "_photsys_RP",
+					"@dmrole": "",
+					"@dmtype": "mango:coordinates.PhotometryCoordSys",
+					"dm-mapping:PRIMARY_KEY": {
+						"@dmtype": "ivoa:string",
+						"@value": "RP"
+					},
+					"dm-mapping:INSTANCE": {
+						"@dmrole": "coords:PhysicalCoordSys.frame",
+						"@dmtype": "mango:coordinates.PhotFilter",
+						"dm-mapping:ATTRIBUTE": [
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.name",
+								"@dmtype": "ivoa:string",
+								"@value": "GAIA/GAIA2r.Grp"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.zeroPointFlux",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "1.29363e-9"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.magnitudeSystem",
+								"@dmtype": "ivoa:string",
+								"@value": "Vega"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.effectiveWavelength",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "7740.87"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.unit",
+								"@dmtype": "ivoa:Unit",
+								"@value": "Angstrom"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.bandWidth",
+								"@dmtype": "ivoa:real",
+								"@value": "2943.72"
+							}
+						]
+					}
+				},
+				{
+					"@dmid": "_photsys_BP",
+					"@dmrole": "",
+					"@dmtype": "mango:coordinates.PhotometryCoordSys",
+					"dm-mapping:PRIMARY_KEY": {
+						"@dmtype": "ivoa:string",
+						"@value": "BP"
+					},
+					"dm-mapping:INSTANCE": {
+						"@dmrole": "coords:PhysicalCoordSys.frame",
+						"@dmtype": "mango:coordinates.PhotFilter",
+						"dm-mapping:ATTRIBUTE": [
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.name",
+								"@dmtype": "ivoa:string",
+								"@value": "GAIA/GAIA2r.Gbp"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.zeroPointFlux",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "4.03528e-9"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.magnitudeSystem",
+								"@dmtype": "ivoa:string",
+								"@value": "Vega"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.effectiveWavelength",
+								"@dmtype": "ivoa:RealQuantity",
+								"@value": "5278.58"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.unit",
+								"@dmtype": "ivoa:Unit",
+								"@value": "Angstrom"
+							},
+							{
+								"@dmrole": "mango:coordinates.PhotFilter.bandWidth",
+								"@dmtype": "ivoa:real",
+								"@value": "2279.45"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"@dmid": "_Datasets",
+			"@dmrole": "",
+			"dm-mapping:INSTANCE": {
+				"@dmid": "_ds1",
+				"@dmrole": "",
+				"@dmtype": "ds:experiment.ObsDataset",
+				"dm-mapping:PRIMARY_KEY": {
+					"@dmtype": "ivoa:string",
+					"@value": "5813181197970338560"
+				},
+				"dm-mapping:ATTRIBUTE": [
+					{
+						"@dmrole": "ds:dataset.Dataset.dataProductType",
+						"@dmtype": "ds:dataset.DataProductType",
+						"@value": "TIMESERIES"
+					},
+					{
+						"@dmrole": "ds:dataset.Dataset.dataProductSubtype",
+						"@dmtype": "ivoa:string",
+						"@value": "GAIA Time Series"
+					},
+					{
+						"@dmrole": "ds:experiment.ObsDataset.calibLevel",
+						"@dmtype": "ivoa:integer",
+						"@value": "1"
+					}
+				],
+				"dm-mapping:REFERENCE": {
+					"@dmrole": "ds:experiment.ObsDataset.target",
+					"@dmref": "_tg1"
+				}
+			}
+		}
+	],
+	"dm-mapping:INSTANCE": {
+		"@dmid": "_tg1",
+		"@dmrole": "",
+		"@dmtype": "ds:experiment.Target",
+		"dm-mapping:ATTRIBUTE": {
+			"@dmrole": "ds:experiment.BaseTarget.name",
+			"@dmtype": "ivoa:string",
+			"@value": "5813181197970338560"
+		}
+	}
+}

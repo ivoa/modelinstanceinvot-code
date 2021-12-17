@@ -97,8 +97,10 @@ class DictUtils():
         """
         try:
             logger.debug("Reading json from %s", filename)
+            from collections import OrderedDict
             with open(filename, 'r') as file:
-                return json.load(file)
+                retour = json.load(file, object_pairs_hook=OrderedDict)
+                return retour 
 
         except Exception as exception:
             if fatal is True:
@@ -156,9 +158,10 @@ class DictUtils():
         :return: A pretty string representation of the dictionary
         :rtype: Python Dict
         """
+        from collections import OrderedDict
         return json.dumps(dictionnary,
                           indent=2,
-                          sort_keys=True,
+                          #sort_keys=True,
                           cls=MyEncoder)
         
     @staticmethod

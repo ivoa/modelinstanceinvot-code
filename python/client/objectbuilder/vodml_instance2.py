@@ -39,11 +39,19 @@ class VodmlInstance2(object):
 
         
     def proto_get_head_block(self, head_dmtype):
+        JsonBlockExtractor.revert_model_element(self.json_view)
+        DictUtils.print_pretty_json(self.json_view)
         self.json_instance = JsonBlockExtractor.search_subelement_by_type(self.json_view, head_dmtype)
+        DictUtils.print_pretty_json(self.json_view)
+        JsonBlockExtractor.revert_model_element(self.json_view)
+        DictUtils.print_pretty_json(self.json_view)
+
         if self.json_instance is None or len(self.json_instance) == 0:
             raise KeyError("Object with  dmtype={} not found".format(head_dmtype))
         self.json_instance = self.json_instance[0]
-        
+        JsonBlockExtractor.revert_model_element(self.json_view)
+        DictUtils.print_pretty_json(self.json_view)
+
         JsonBlockExtractor.revert_model_element(self.json_instance)
         
         for key, value in JsonBlockExtractor.search_join_container(self.json_instance).items():
@@ -81,6 +89,7 @@ class VodmlInstance2(object):
         mapping_to_json._validate_vodml_block()
         logger.info("Extracting the raw JSON block")        
         self.json_view = mapping_to_json.json_block     
+        DictUtils.print_pretty_json(self.json_view)
 
     def build_json_mapping(self):
         """

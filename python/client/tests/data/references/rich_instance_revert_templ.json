@@ -4,7 +4,7 @@
     "dm-mapping:GLOBALS": {
       "dm-mapping:INSTANCE": [
         {
-          "@ID": "SpaceFrame_ICRS",
+          "@dmid": "SpaceFrame_ICRS",
           "@dmtype": "coords:SpaceFrame",
           "dm-mapping:ATTRIBUTE": [
             {
@@ -95,7 +95,7 @@
       "Results": {
         "@tableref": "Results",
         "dm-mapping:INSTANCE": {
-          "@ID": "_point",
+          "@dmid": "_point",
           "@dmtype": "Point",
           "dm-mapping:ATTRIBUTE": {
             "@dmrole": "test:detection.num",

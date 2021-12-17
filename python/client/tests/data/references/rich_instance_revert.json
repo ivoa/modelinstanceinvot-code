@@ -2,83 +2,70 @@
   "dm-mapping:VODML": {
     "@xmlns:dm-mapping": "http://www.ivoa.net/xml/merged-syntax",
     "dm-mapping:GLOBALS": {
-      "SpaceFrame_ICRS": {
-        "@ID": "SpaceFrame_ICRS",
-        "@dmtype": "coords:SpaceFrame",
-        "coords:SpaceFrame.equinox": {
-          "@dmtype": "coords:Epoch",
-          "@value": "NoSet"
-        },
-        "coords:SpaceFrame.refPosition": {
-          "@dmtype": "coords:StdRefLocation",
-          "coords:StdRefLocation.position": {
+      "NOROLE": [
+        {
+          "@dmid": "SpaceFrame_ICRS",
+          "@dmtype": "coords:SpaceFrame",
+          "coords:SpaceFrame.refPosition": {
+            "@dmtype": "coords:StdRefLocation",
+            "coords:StdRefLocation.position": {
+              "@dmtype": "ivoa:string",
+              "@value": "NoSet"
+            }
+          },
+          "coords:SpaceFrame.spaceRefFrame": {
             "@dmtype": "ivoa:string",
+            "@value": "ICRS"
+          },
+          "coords:SpaceFrame.equinox": {
+            "@dmtype": "coords:Epoch",
             "@value": "NoSet"
           }
         },
-        "coords:SpaceFrame.spaceRefFrame": {
-          "@dmtype": "ivoa:string",
-          "@value": "ICRS"
-        }
-      },
-      "root": {
-        "@dmtype": "test.model",
-        "test.header": {
-          "@dmtype": "test.Header",
-          "dm-mapping:REFERENCE": {
-            "@dmref": "SpaceFrame_ICRS",
-            "@dmrole": "test.frame"
-          },
-          "test.owner": {
-            "@dmtype": "test.Owner",
-            "test.owner.firstname": {
-              "@dmtype": "string",
-              "@value": "Laurent"
+        {
+          "@dmtype": "test.model",
+          "test.header": {
+            "@dmtype": "test.Header",
+            "dm-mapping:REFERENCE": {
+              "@dmref": "SpaceFrame_ICRS",
+              "@dmrole": "test.frame"
             },
-            "test.owner.name": {
-              "@dmtype": "string",
-              "@value": "Michel"
-            },
-            "test.title": {
-              "@dmtype": "string",
-              "@ref": "_title",
-              "@value": ""
-            }
-          },
-          "test.points": [
-            {
-              "dm-mapping:JOIN": {
-                "@tableref": "Results"
+            "test.points": [
+              {
+                "dm-mapping:JOIN": {
+                  "@dmref": "_point",
+                  "@tableref": "Results"
+                }
+              }
+            ],
+            "test.owner": {
+              "@dmtype": "test.Owner",
+              "test.owner.name": {
+                "@dmtype": "string",
+                "@value": "Michel"
+              },
+              "test.owner.firstname": {
+                "@dmtype": "string",
+                "@value": "Laurent"
+              },
+              "test.title": {
+                "@dmtype": "string",
+                "@ref": "_title",
+                "@value": ""
               }
             }
-          ]
+          }
         }
-      }
+      ]
     },
     "dm-mapping:MODEL": {
       "@name": "test"
     },
     "dm-mapping:TEMPLATES": {
-      "OtherResults": {
-        "@tableref": "OtherResults",
-        "test:detection": {
-          "@dmtype": "test:Detection",
-          "test:detection.id": {
-            "@dmtype": "ivoa:real",
-            "@ref": "_foreign_other",
-            "@value": ""
-          },
-          "test:detection.num": {
-            "@dmtype": "ivoa:real",
-            "@ref": "_num_148",
-            "@value": ""
-          }
-        }
-      },
       "Results": {
         "@tableref": "Results",
-        "primary:point": {
-          "@ID": "_point",
+        "NOROLE": {
+          "@dmid": "_point",
           "@dmtype": "Point",
           "test.detections": [
             {
@@ -89,16 +76,16 @@
                   "@primarykey": "_poserr_148"
                 }
               },
-              "test:detection": {
+              "NOROLE": {
                 "@dmtype": "test:Detection",
-                "test:detection.id": {
-                  "@dmtype": "ivoa:real",
-                  "@ref": "_foreign_other",
-                  "@value": ""
-                },
                 "test:detection.num": {
                   "@dmtype": "ivoa:real",
                   "@ref": "_num_148",
+                  "@value": ""
+                },
+                "test:detection.id": {
+                  "@dmtype": "ivoa:real",
+                  "@ref": "_foreign_other",
                   "@value": ""
                 }
               }
@@ -113,16 +100,16 @@
                   "@primarykey": "_poserr_148"
                 }
               },
-              "test:spectrum": {
+              "NOROLE": {
                 "@dmtype": "test:Spectrum",
-                "test:spectrum.id": {
-                  "@dmtype": "ivoa:real",
-                  "@ref": "_foreign_spectra",
-                  "@value": ""
-                },
                 "test:spectrum.num": {
                   "@dmtype": "ivoa:string",
                   "@ref": "_spc_148",
+                  "@value": ""
+                },
+                "test:spectrum.id": {
+                  "@dmtype": "ivoa:real",
+                  "@ref": "_foreign_spectra",
                   "@value": ""
                 }
               }
@@ -135,18 +122,34 @@
           }
         }
       },
-      "Spectra": {
-        "@tableref": "Spectra",
-        "test:spectrum": {
-          "@dmtype": "test:Spectrum",
-          "test:spectrum.id": {
+      "OtherResults": {
+        "@tableref": "OtherResults",
+        "NOROLE": {
+          "@dmtype": "test:Detection",
+          "test:detection.num": {
             "@dmtype": "ivoa:real",
-            "@ref": "_foreign_spectra",
+            "@ref": "_num_148",
             "@value": ""
           },
+          "test:detection.id": {
+            "@dmtype": "ivoa:real",
+            "@ref": "_foreign_other",
+            "@value": ""
+          }
+        }
+      },
+      "Spectra": {
+        "@tableref": "Spectra",
+        "NOROLE": {
+          "@dmtype": "test:Spectrum",
           "test:spectrum.num": {
             "@dmtype": "ivoa:stringl",
             "@ref": "_spc_148",
+            "@value": ""
+          },
+          "test:spectrum.id": {
+            "@dmtype": "ivoa:real",
+            "@ref": "_foreign_spectra",
             "@value": ""
           }
         }

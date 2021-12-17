@@ -13,6 +13,23 @@ from client.objectbuilder.json_block_extractor import JsonBlockExtractor
 
 class Test(unittest.TestCase):
 
+    def test_search_object_container(self):
+        self.maxDiff = None
+        self.json_view =DictUtils.read_dict_from_file(
+            os.path.join(self.data_path, "./data/mapping_blocks/test.1.2.simple_join.json"))
+
+        json = JsonBlockExtractor.search_object_container(self.json_view, "test.detections")
+        DictUtils.print_pretty_json(json)
+        self.assertEqual(len(json), 1)
+
+        json = json[0]
+        self.assertDictEqual(json
+                             ,DictUtils.read_dict_from_file(os.path.join(self.data_path
+                                                       , "./data/references/extractor_object_container.json"))
+                             )
+
+ 
+        
     def test_search_by_type(self):
         self.maxDiff = None
         self.json_view =DictUtils.read_dict_from_file(self.json_path)
@@ -47,7 +64,6 @@ class Test(unittest.TestCase):
                              )
 
         JsonBlockExtractor.revert_model_element(json)
-        #DictUtils.print_pretty_json(json)
         self.assertDictEqual(json
                              ,DictUtils.read_dict_from_file(os.path.join(self.data_path
                                                        , "./data/references/extractor_by_id.revert.json"))
