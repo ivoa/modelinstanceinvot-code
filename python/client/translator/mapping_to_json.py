@@ -50,7 +50,8 @@ class MappingToJson:
         Raise an exception in case of failure
         '''
         validator = Validator(schema_path)
-        if validator.validate_string(self.vodml_block, verbose=True) is True or self.exit_validation is False:
+        validator = None
+        if validator is None or validator.validate_string(self.vodml_block, verbose=True) is True or self.exit_validation is False:
             logger.info("MODEL_INSTANCE block is valid")
             self.json_block = xmltodict.parse(self.vodml_block)    
         else:

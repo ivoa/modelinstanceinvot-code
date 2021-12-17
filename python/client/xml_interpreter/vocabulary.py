@@ -1,7 +1,7 @@
 '''
 Created on 30 août 2021
 
-@author: michel
+author: michel
 '''
 
 class Ele(object):
@@ -26,20 +26,23 @@ class Att(object):
     '''
     classdocs
     '''
-    dmrole = "@dmrole"
-    dmtype = "@dmtype"
-    dmid = "@dmid"
-    name = "@name"
-    value = "@value"
-    dmref = "@dmref"
-    tableref = "@tableref"
-    ref = "@ref"
-    primarykey = "@primarykey"
-    foreignkey = "@foreignkey"
+    dmrole = "dmrole"
+    dmtype = "dmtype"
+    dmid = "dmid"
+    name = "name"
+    value = "value"
+    dmref = "dmref"
+    tableref = "tableref"
+    ref = "ref"
+    primarykey = "primarykey"
+    foreignkey = "foreignkey"
     
 def key_match(searched_key, key_set):
-    for key in key_set:
-        if key.startswith(searched_key) is True:
-            return key
+    if isinstance(key_set, list):
+        for key in key_set:
+            if key.startswith(searched_key) is True:
+                return key
+    else: 
+        return key_set.startswith(searched_key)
     return None
         

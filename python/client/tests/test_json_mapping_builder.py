@@ -574,7 +574,6 @@ class Test(unittest.TestCase):
         )
 
         builder.revert_templates()
-        DictUtils.print_pretty_json(builder.json)
         self.assertDictEqual(
             builder.json,
             DictUtils.read_dict_from_file(
@@ -584,7 +583,6 @@ class Test(unittest.TestCase):
             ),
         )
 
-        builder.revert
         builder.revert_elements("dm-mapping:INSTANCE")
         self.assertDictEqual(
             builder.json,
@@ -596,8 +594,6 @@ class Test(unittest.TestCase):
         )
 
         builder.revert_elements("dm-mapping:ATTRIBUTE")
-        DictUtils.print_pretty_json(builder.json)
-
         self.assertDictEqual(
             builder.json, DictUtils.read_dict_from_file(self.revert_json_path)
         )

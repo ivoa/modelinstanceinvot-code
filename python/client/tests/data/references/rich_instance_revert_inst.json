@@ -2,94 +2,79 @@
   "dm-mapping:VODML": {
     "@xmlns:dm-mapping": "http://www.ivoa.net/xml/merged-syntax",
     "dm-mapping:GLOBALS": {
-      "SpaceFrame_ICRS": {
-        "@ID": "SpaceFrame_ICRS",
-        "@dmtype": "coords:SpaceFrame",
-        "coords:SpaceFrame.refPosition": {
-          "@dmtype": "coords:StdRefLocation",
-          "dm-mapping:ATTRIBUTE": {
-            "@dmrole": "coords:StdRefLocation.position",
-            "@dmtype": "ivoa:string",
-            "@value": "NoSet"
+      "NOROLE": [
+        {
+          "@dmid": "SpaceFrame_ICRS",
+          "@dmtype": "coords:SpaceFrame",
+          "dm-mapping:ATTRIBUTE": [
+            {
+              "@dmrole": "coords:SpaceFrame.spaceRefFrame",
+              "@dmtype": "ivoa:string",
+              "@value": "ICRS"
+            },
+            {
+              "@dmrole": "coords:SpaceFrame.equinox",
+              "@dmtype": "coords:Epoch",
+              "@value": "NoSet"
+            }
+          ],
+          "coords:SpaceFrame.refPosition": {
+            "@dmtype": "coords:StdRefLocation",
+            "dm-mapping:ATTRIBUTE": {
+              "@dmrole": "coords:StdRefLocation.position",
+              "@dmtype": "ivoa:string",
+              "@value": "NoSet"
+            }
           }
         },
-        "dm-mapping:ATTRIBUTE": [
-          {
-            "@dmrole": "coords:SpaceFrame.spaceRefFrame",
-            "@dmtype": "ivoa:string",
-            "@value": "ICRS"
-          },
-          {
-            "@dmrole": "coords:SpaceFrame.equinox",
-            "@dmtype": "coords:Epoch",
-            "@value": "NoSet"
-          }
-        ]
-      },
-      "root": {
-        "@dmtype": "test.model",
-        "test.header": {
-          "@dmtype": "test.Header",
-          "dm-mapping:REFERENCE": {
-            "@dmref": "SpaceFrame_ICRS",
-            "@dmrole": "test.frame"
-          },
-          "test.owner": {
-            "@dmtype": "test.Owner",
-            "dm-mapping:ATTRIBUTE": [
+        {
+          "@dmtype": "test.model",
+          "test.header": {
+            "@dmtype": "test.Header",
+            "dm-mapping:REFERENCE": {
+              "@dmref": "SpaceFrame_ICRS",
+              "@dmrole": "test.frame"
+            },
+            "test.points": [
               {
-                "@dmrole": "test.owner.name",
-                "@dmtype": "string",
-                "@value": "Michel"
-              },
-              {
-                "@dmrole": "test.owner.firstname",
-                "@dmtype": "string",
-                "@value": "Laurent"
-              },
-              {
-                "@dmrole": "test.title",
-                "@dmtype": "string",
-                "@ref": "_title"
+                "dm-mapping:JOIN": {
+                  "@dmref": "_point",
+                  "@tableref": "Results"
+                }
               }
-            ]
-          },
-          "test.points": [
-            {
-              "dm-mapping:JOIN": {
-                "@tableref": "Results"
-              }
+            ],
+            "test.owner": {
+              "@dmtype": "test.Owner",
+              "dm-mapping:ATTRIBUTE": [
+                {
+                  "@dmrole": "test.owner.name",
+                  "@dmtype": "string",
+                  "@value": "Michel"
+                },
+                {
+                  "@dmrole": "test.owner.firstname",
+                  "@dmtype": "string",
+                  "@value": "Laurent"
+                },
+                {
+                  "@dmrole": "test.title",
+                  "@dmtype": "string",
+                  "@ref": "_title"
+                }
+              ]
             }
-          ]
+          }
         }
-      }
+      ]
     },
     "dm-mapping:MODEL": {
       "@name": "test"
     },
     "dm-mapping:TEMPLATES": {
-      "OtherResults": {
-        "@tableref": "OtherResults",
-        "test:detection": {
-          "@dmtype": "test:Detection",
-          "dm-mapping:ATTRIBUTE": [
-            {
-              "@dmrole": "test:detection.num",
-              "@dmtype": "ivoa:real",
-              "@ref": "_num_148"
-            },
-            {
-              "@dmrole": "test:detection.id",
-              "@dmtype": "ivoa:real",
-              "@ref": "_foreign_other"
-            }
-          ]
-        }
-      },
       "Results": {
         "@tableref": "Results",
-        "primary:point": {
-          "@ID": "_point",
+        "NOROLE": {
+          "@dmid": "_point",
           "@dmtype": "Point",
           "dm-mapping:ATTRIBUTE": {
             "@dmrole": "test:detection.num",
@@ -105,7 +90,7 @@
                   "@primarykey": "_poserr_148"
                 }
               },
-              "test:detection": {
+              "NOROLE": {
                 "@dmtype": "test:Detection",
                 "dm-mapping:ATTRIBUTE": [
                   {
@@ -131,7 +116,7 @@
                   "@primarykey": "_poserr_148"
                 }
               },
-              "test:spectrum": {
+              "NOROLE": {
                 "@dmtype": "test:Spectrum",
                 "dm-mapping:ATTRIBUTE": [
                   {
@@ -150,9 +135,27 @@
           ]
         }
       },
+      "OtherResults": {
+        "@tableref": "OtherResults",
+        "NOROLE": {
+          "@dmtype": "test:Detection",
+          "dm-mapping:ATTRIBUTE": [
+            {
+              "@dmrole": "test:detection.num",
+              "@dmtype": "ivoa:real",
+              "@ref": "_num_148"
+            },
+            {
+              "@dmrole": "test:detection.id",
+              "@dmtype": "ivoa:real",
+              "@ref": "_foreign_other"
+            }
+          ]
+        }
+      },
       "Spectra": {
         "@tableref": "Spectra",
-        "test:spectrum": {
+        "NOROLE": {
           "@dmtype": "test:Spectrum",
           "dm-mapping:ATTRIBUTE": [
             {

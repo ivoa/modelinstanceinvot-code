@@ -58,7 +58,7 @@ class TableMapper(object):
         self.array = None
         # key = role of the instance contained TABLE_ROW_TEMPLATE primary_value = TableIterator
         self.table_iterators = {}
-        self.column_mapping = ColumnMapping()
+        self.column_mapping = None
         # key = foreign table name primary_value = TableIterator
         self.join_iterators = {}
         self.join = None

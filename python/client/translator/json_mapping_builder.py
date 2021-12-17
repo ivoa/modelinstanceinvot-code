@@ -99,7 +99,7 @@ class JsonMappingBuilder():
 
             self._revert_subelement(root_element, name)
             if self.change_buffer is not None:
-                self.change_buffer["node"].pop(name)
+                self.change_buffer["node"].pop(self.change_buffer["key"])
                 for k, v in self.change_buffer["newcontent"].items():
                     self.change_buffer["node"][k] = v
             else:
@@ -115,10 +115,13 @@ class JsonMappingBuilder():
         """
         logger.info("reverting  %s - ('%s':[{role ...} ...] -> 'role':[...])", Ele.COLLECTION, Ele.COLLECTION)
         
-        root_element = self.json[Ele.VODML]
+        #root_element = self.json[Ele.VODML]
+        root_element = self.json
         while True:
             self.change_buffer = None
             self._revert_collection(root_element, Ele.COLLECTION)
+            if self.change_buffer is None:
+                break
             if self.change_buffer is not None:
                 self.change_buffer["node"].pop(Ele.COLLECTION)
                 for ele in self.change_buffer["newcontent"]:
@@ -141,14 +144,16 @@ class JsonMappingBuilder():
         while True:
             self.change_buffer = None
             self._revert_collection(root_element, Ele.COLLECTION)
-            if self.change_buffer is not None:
-                self.change_buffer["node"].pop(Ele.COLLECTION)
-                for ele in self.change_buffer["newcontent"]:
-                    for k, v in ele.items():
-                        #self.change_buffer["node"][k] = JsonTools.remove_key(v, Ele.INSTANCE)
-                        self.change_buffer["node"][k] = v
-            else:
+            if self.change_buffer is None:
                 break
+            """
+            if self.change_buffer is not None:
+                self.change_buffer["node"].pop(self.change_buffer["key"])
+                print("ADDD " + self.change_buffer["role"])
+                self.change_buffer["node"][self.change_buffer["role"]] = self.change_buffer
+             else:
+                break
+            """
                        
     def _revert_subelement(self, root_element, name):
         """
@@ -177,7 +182,7 @@ class JsonMappingBuilder():
                     logger.info("only one instance of %s can be reverted in a list (others are ignored)", name)
         elif isinstance(root_element, dict):
             for k, v in root_element.items():
-                if k == name:
+                if k.startswith(name):
                     if isinstance(v, list):
                         # if we got an array of objects with all the same role
                         # we have a composition of instances. In that case that
@@ -187,7 +192,6 @@ class JsonMappingBuilder():
                         is_array = True
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
-                            print("3 " + new_key + " " + str(ele))
                             if former_key == "":
                                 former_key = new_key
                             if former_key != new_key:
@@ -198,8 +202,6 @@ class JsonMappingBuilder():
                             newcontent = {}
                             for ele in v:
                                 new_key = self._get_key_for_element(ele)
-                                print("4 " + new_key + " " + str(ele))
-
                                 logger.info("find an object of %s with identifier_att=%s", name, former_key)
                                 new_ele = deepcopy(ele)
                                 self._drop_role_and_size(new_ele)
@@ -216,9 +218,8 @@ class JsonMappingBuilder():
                                 self._add_value_if_needed(new_ele)    
                                 new_array.append(new_ele)
                             newcontent[former_key] = new_array
-                            DictUtils.print_pretty_json(new_array)
                         
-                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent, "key": k}
                     elif isinstance(v, dict):  
                         newcontent = {}
                         new_key = self._get_key_for_element(v)                                
@@ -227,10 +228,10 @@ class JsonMappingBuilder():
                         newcontent[new_key] = deepcopy(v)
                         self._add_value_if_needed(newcontent[new_key])
                         self._drop_role_and_size(newcontent[new_key])
-                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent, "key": k}
 
-                if self.change_buffer is None:
-                    self._revert_subelement(v, name)
+        if self.change_buffer is None:
+            self._revert_subelement(v, name)
 
                     
     def _revert_collection(self, root_element, name):
@@ -248,19 +249,43 @@ class JsonMappingBuilder():
         :param name: key of the element to be reverted
         :params name: string
         """
+        print("============")
+        print(root_element)
+        #self.change_buffer = None
+
         if isinstance(root_element, list):
+            print("1")
             for idx, _ in enumerate(root_element):
                 if self.change_buffer is None:
                     self._revert_collection(root_element[idx], name)
         elif isinstance(root_element, dict):
+            print("2")
             for k, v in root_element.items():
-                if k == name:
+                print("keyy " + k)
+                if k.startswith(name):
+                    newcontent = {"JOIN":{}, "REFERENCE":{}, "MAPPING":[]}
+                    role= "NOROLE"
+                    for ckey, cvalue in v.items():
+                        if ckey == "@dmrole":
+                            role = cvalue
+                        elif ckey == "JOIN":
+                            newcontent["JOIN"] = cvalue
+                        elif ckey == "REFERENCE":
+                            newcontent["REFERENCE"] = cvalue
+                        else :
+                            newcontent["MAPPING"].append(cvalue)
+                            
+                    
+                    self.change_buffer = {'node': root_element, "newcontent": newcontent, "key":k, "role": role}
+                elif k.startswith("@") is False:
+                    print(v)
+                    self._revert_collection(v, name)
 
+                    """
                     if isinstance(v, list):
                         newcontent = []
                         for ele in v:
                             new_key = self._get_key_for_element(ele)
-                            print("1 " + new_key)
                             ele_cp = deepcopy(ele)
                             self._drop_role_and_size(ele_cp)
                             if ele_cp:
@@ -268,26 +293,26 @@ class JsonMappingBuilder():
                             else :
                                 # print("Append 1 empty" )
                                 newcontent.append({new_key: []})
-                        logger.info("find a collection %s with identifier_att=%s", name, new_key)
-                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
+                        logger.info("find a collection %s with identifier_att=%s", k, new_key)
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent, "key":k}
                     elif isinstance(v, dict):  
 
                         newcontent = []
                         ele_cp = deepcopy(v)
                         new_key = self._get_key_for_element(ele_cp)
-                        print("2 " + new_key)
 
                         self._drop_role_and_size(ele_cp)
-                        logger.info("find an %s object with identifier_att=%s", name, new_key)
+                        logger.info("find an %s object with identifier_att=%s", k, new_key)
                         if ele_cp:
                             newcontent.append({new_key: [ele_cp]})
                         else :
                             newcontent.append({new_key: []})
 
-                        self.change_buffer = {'node': root_element, "newcontent": newcontent}
+                        self.change_buffer = {'node': root_element, "newcontent": newcontent, "key":k}
+                    """
 
-                if self.change_buffer is None:
-                    self._revert_collection(v, name)
+                #if self.change_buffer is None:
+                #    self._revert_collection(v, name)
                     
     def _add_value_if_needed(self, element):
         """
