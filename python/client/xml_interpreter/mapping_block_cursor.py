@@ -65,8 +65,7 @@ class MappingBlockCursor(object):
             xpath = '//dm-mapping:' + tag            
             for ele in MappingBlockCursor._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
                 ele.tag = tag + '_' + str(cpt)
-                cpt += 1
-            
+                cpt += 1            
         
 
     @staticmethod    
@@ -150,7 +149,6 @@ class MappingBlockCursor(object):
             raise MappingException("More than one instance with primary key = {} found in in collection dmid {}".format(key_value, key_value))
         logger.debug("Instance with primary_key=%s found in collection dmid=%s", key_value, coll_dmid)
         return eset[0].getparent()
-
 
    
     @staticmethod    

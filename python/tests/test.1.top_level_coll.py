@@ -65,7 +65,6 @@ class TestMapppingBuilder(unittest.TestCase):
                                        os.path.join(self.data_path, "data/output/test.1.7.xml"))
         json_view = tlc.get_json_model_view()
         DictUtils.print_pretty_json(json_view)
-        self.assertTrue(False)
  
 
     def setUp(self):
