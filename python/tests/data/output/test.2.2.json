@@ -1,0 +1,109 @@
+{
+  "Results": [
+    {
+      "@dmid": "_ts_data",
+      "@dmrole": "",
+      "@dmtype": "cube:NDPoint",
+      "cube:NDPoint.observable": [
+        {
+          "@dmtype": "cube:Observable",
+          "ATTRIBUTE": {
+            "@dmrole": "cube:DataAxis.dependent",
+            "@dmtype": "ivoa:boolean",
+            "@value": "False"
+          },
+          "INSTANCE": {
+            "@dmrole": "cube:MeasurementAxis.measure",
+            "@dmtype": "meas:Time",
+            "INSTANCE": {
+              "@dmrole": "meas:Time.coord",
+              "@dmtype": "coords:MJD",
+              "ATTRIBUTE": {
+                "@dmrole": "coords:MJD.date",
+                "@dmtype": "ivoa:real",
+                "@ref": "_obstime",
+                "@index": "3",
+                "@value": "1705.9437360200984"
+              },
+              "REFERENCE_3": {
+                "@dmrole": "coords:Coordinate.coordSys",
+                "@dmref": "_timesys"
+              }
+            }
+          }
+        },
+        {
+          "@dmtype": "cube:Observable",
+          "ATTRIBUTE": {
+            "@dmrole": "cube:DataAxis.dependent",
+            "@dmtype": "ivoa:boolean",
+            "@value": "True"
+          },
+          "INSTANCE": {
+            "@dmrole": "cube:MeasurementAxis.measure",
+            "@dmtype": "meas:GenericMeasure",
+            "INSTANCE": {
+              "@dmrole": "meas:GenericMeasure.coord",
+              "@dmtype": "coords:PhysicalCoordinate",
+              "ATTRIBUTE": {
+                "@dmrole": "coords:PhysicalCoordinate.cval",
+                "@dmtype": "ivoa:RealQuantity",
+                "@ref": "_mag",
+                "@index": "4",
+                "@value": "15.216575"
+              },
+              "REFERENCE_4": {
+                "@dmrole": "coords:Coordinate.coordSys",
+                "@tableref": "_CoordinateSystems"
+              }
+            }
+          }
+        },
+        {
+          "@dmtype": "cube:Observable",
+          "ATTRIBUTE": {
+            "@dmrole": "cube:DataAxis.dependent",
+            "@dmtype": "ivoa:boolean",
+            "@value": "True"
+          },
+          "INSTANCE": {
+            "@dmrole": "cube:MeasurementAxis.measure",
+            "@dmtype": "meas:GenericMeasure",
+            "INSTANCE": [
+              {
+                "@dmrole": "meas:GenericMeasure.coord",
+                "@dmtype": "coords:PhysicalCoordinate",
+                "ATTRIBUTE": {
+                  "@dmrole": "coords:PhysicalCoordinate.cval",
+                  "@dmtype": "ivoa:RealQuantity",
+                  "@ref": "_flux",
+                  "@index": "5",
+                  "@value": "15442.456"
+                },
+                "REFERENCE_5": {
+                  "@dmrole": "coords:Coordinate.coordSys",
+                  "@tableref": "_CoordinateSystems"
+                }
+              },
+              {
+                "@dmrole": "meas:Measure.error",
+                "@dmtype": "meas:Error",
+                "INSTANCE": {
+                  "@dmrole": "meas:Error.statError",
+                  "@dmtype": "meas:Symmetrical",
+                  "ATTRIBUTE": {
+                    "@dmrole": "meas:Symmetrical.radius",
+                    "@dmtype": "ivoa:RealQuantity",
+                    "@ref": "_fluxerr",
+                    "@index": "6",
+                    "@value": "44.15126"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

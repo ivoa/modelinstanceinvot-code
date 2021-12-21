@@ -5,7 +5,7 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
                     <INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
                       <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime"/>
-                      <REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
+                      <REFERENCE_3 dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
                     </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
@@ -14,9 +14,9 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
-                      <REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <REFERENCE_4 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
-                      </REFERENCE>
+                      </REFERENCE_4>
                     </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
@@ -25,9 +25,9 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
-                      <REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <REFERENCE_5 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
-                      </REFERENCE>
+                      </REFERENCE_5>
                     </INSTANCE>
                     <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
                       <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">

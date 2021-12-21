@@ -70,25 +70,14 @@ class JsonBlockExtractor(object):
         JsonBlockExtractor._search_array_container(root_element, element_key, searched_elements)
         return searched_elements
 
-    
-    @staticmethod    
-    def revert_model_element(json_block):
-        json_mapping_builder = JsonMappingBuilder(json_dict=json_block)
-        json_mapping_builder.proto_revert_collections()
-        json_mapping_builder.proto_revert_elements(Ele.INSTANCE)
-        json_mapping_builder.proto_revert_elements(Ele.ATTRIBUTE)
-        return json_mapping_builder.json
- 
     @staticmethod    
     def _search_array_container(root_element, element_key, searched_elements):
         """
         """
-        print("=======>>>>>>>.")
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
                 item = root_element[idx]
                 if isinstance(item, dict) and key_match(element_key,item.keys()) is not None:
-                    print("ext 11")
                     searched_elements.append({"key": key_match(element_key,idx.keys()), 
                                               "content": item, "host": root_element})
                 JsonBlockExtractor._search_array_container(item, element_key, searched_elements)
@@ -96,9 +85,9 @@ class JsonBlockExtractor(object):
             for k, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
+
                         if isinstance(ele, dict) and key_match(element_key,ele.keys()) is not None:
                             matching_key = key_match(element_key,ele.keys())
-                            print("add " + matching_key)
                             searched_elements.append({"key": matching_key, 
                                                       "content": ele[matching_key], 
                                                       "host": ele})
@@ -112,17 +101,6 @@ class JsonBlockExtractor(object):
  
     @staticmethod
     def _search_object_container(root_element, element_key, searched_elements):
-        """
-        Recursive search in root_element of all objects that have at least 
-        one item named (element_key) element_name
-        The list contents are packed in self.searched_elements.
-        By construction self.searched_elements is a [{}]
-        See unittest 
-        :param element_key: key that should be in the searched object 
-        :type element_key: string
-        :param   root_element: element to be explored
-        :type root_element : {} or [] 
-        """
         if isinstance(root_element, list):
             for item in root_element:
                 if isinstance(item, dict):  
@@ -131,7 +109,6 @@ class JsonBlockExtractor(object):
         elif isinstance(root_element, dict):
             for k, v in root_element.items():
                 if isinstance(v, list):
-                    print("==> " + k + " " + str(len(v)))
                     for ele in v:
                         if isinstance(ele, dict):
                             JsonBlockExtractor._add_object_in_searched_elements(ele, element_key, searched_elements)
@@ -155,63 +132,7 @@ class JsonBlockExtractor(object):
                                               "content": value, 
                                               "host": instance})
 
-    @staticmethod
-    def _proto_search_joins(root_element, searched_elements):
-        """
-        search for     "test.points": [
-        {
-          "dm-mapping:JOIN": {
-            "@dmref": "_point",
-            "@tableref": "Results"
-          }
-        }
-      ]
 
-        :param   root_element: element to be explored
-        :type root_element : {} or [] 
-        """
-        if isinstance(root_element, list):
-            for item in root_element:
-                JsonBlockExtractor._proto_search_joins(item, searched_elements)
-        elif isinstance(root_element, dict):
-            for key, value in root_element.items():
-                if key.startswith("@") is True:
-                    continue
-                if isinstance(value, list):
-                    for item in value:
-                        if isinstance(item, dict) and Ele.JOIN in item.keys():
-                            retour = {}
-                            retour[key]=item
-                            searched_elements[key]=item
-
-                JsonBlockExtractor._proto_search_joins(value, searched_elements)
-
-
-    def _search_array_container_2(self, element_name, root_element):
-        """
-        TODO rename and comment
-        :param element_name: name of the searched element 
-        :type element_name: string
-        :param   root_element: element to be explored
-        :type root_element : {} or [] 
-        """
-        if isinstance(root_element, list):
-            for idx, _ in enumerate(root_element):
-                item = root_element[idx]
-                self._search_array_container_2(element_name, item)
-        elif isinstance(root_element, dict):
-            for k, v in root_element.items():
-                if isinstance(v, list):
-                    for ele in v:
-                        if isinstance(ele, dict) and element_name in ele.keys():
-                            self.searched_elements.append({"key": k, "node": root_element})
-                            # if one matching element is found in a array, the whole
-                            # array content will be stored.
-                            # if we parse the others items, we might have result duplication
-                            break
-                        self._search_array_container_2(element_name, ele)
-                elif isinstance(v, dict):  
-                    self._search_array_container_2(element_name, v)
  
     def _search_subelement_by_role(self, root_element, searched_role):
         """

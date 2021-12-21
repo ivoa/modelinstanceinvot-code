@@ -1,11 +1,11 @@
-<TEMPLATES xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax" tableref="Results">
+<TEMPLATES tableref="Results">
             <INSTANCE dmid="_ts_data" dmrole="" dmtype="cube:NDPoint">
               <COLLECTION dmrole="cube:NDPoint.observable">
                 <INSTANCE dmtype="cube:Observable">
                   <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="False"/>
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
                     <INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
-                      <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime"/>
+                      <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime" index="3"/>
                       <REFERENCE_3 dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
                     </INSTANCE>
                   </INSTANCE>
@@ -14,10 +14,9 @@
                   <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
+                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag" index="4"/>
                       <REFERENCE_4 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
-                        <FOREIGN_KEY ref="_band"/>
-                      </REFERENCE_4>
+                        </REFERENCE_4>
                     </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
@@ -25,14 +24,13 @@
                   <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
+                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux" index="5"/>
                       <REFERENCE_5 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
-                        <FOREIGN_KEY ref="_band"/>
-                      </REFERENCE_5>
+                        </REFERENCE_5>
                     </INSTANCE>
                     <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
                       <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                        <ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr"/>
+                        <ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr" index="6"/>
                       </INSTANCE>
                     </INSTANCE>
                   </INSTANCE>

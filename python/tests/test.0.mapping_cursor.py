@@ -40,6 +40,23 @@ class TestMapppingBuilder(unittest.TestCase):
         XmlUtils.assertXmltreeEqualsFile(MappingBlockCursor.get_globals_instance_by_dmid('_ts_data'),
                                          os.path.join(self.data_path, "data/output/test.0.3.xml"))
         
+        selection = MappingBlockCursor.get_instance_by_dmtype("coords")
+        self.assertEqual(len(selection["GLOBALS"]), 5)
+        for ele in selection["GLOBALS"]:
+            self.assertTrue(ele.get("dmtype").startswith("coords")
+                            , "dmtype " + ele.get("dmtype") + " does not match the coords pattern")
+            
+        self.assertEqual(len(selection["TEMPLATES"]["_PKTable"]), 0)
+        self.assertEqual(len(selection["TEMPLATES"]["Results"]), 3)
+        for tableref, table_sel in selection["TEMPLATES"].items():
+            for ele in table_sel:
+                self.assertTrue(ele.get("dmtype").startswith("coords")
+                            , "dmtype " + ele.get("dmtype") + " does not match the coords pattern")
+        
+        pksel = MappingBlockCursor.get_collection_item_by_primarykey("_Datasets", "5813181197970338560")
+        XmlUtils.assertXmltreeEqualsFile(pksel,
+                                         os.path.join(self.data_path, "data/output/test.0.4.xml"))
+
     def setUp(self):
         self.data_path = os.path.dirname(os.path.realpath(__file__))
 

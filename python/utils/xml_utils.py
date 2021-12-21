@@ -37,9 +37,11 @@ class XmlUtils(object):
         
     @staticmethod
     def assertXmltreeEqualsFile(xmltree1, xmltree2_file, message=""):
+        testcase = TestCase()
+        testcase.maxDiff = None
         dict1 = xmltodict.parse(etree.tostring(xmltree1))
         dict2 = xmltodict.parse(etree.tostring(XmlUtils.xmltree_from_file(xmltree2_file)))
-        TestCase().assertDictEqual(dict1, dict2, message)
+        testcase.assertDictEqual(dict1, dict2, message)
     
     
     

@@ -1,0 +1,61 @@
+[
+  {
+    "@dmid": "_ts_data",
+    "@dmrole": "",
+    "@dmtype": "cube:NDPoint",
+    "cube:NDPoint.observable": [
+      {
+        "@dmtype": "cube:Observable",
+        "cube:DataAxis.dependent": true,
+        "cube:MeasurementAxis.measure": {
+          "@dmtype": "meas:Time",
+          "meas:Time.coord": {
+            "@dmtype": "coords:MJD",
+            "REFERENCE_3": {
+              "@dmrole": "coords:Coordinate.coordSys",
+              "@dmref": "_timesys"
+            },
+            "coords:MJD.date": 1705.9437360200984
+          }
+        }
+      },
+      {
+        "@dmtype": "cube:Observable",
+        "cube:DataAxis.dependent": true,
+        "cube:MeasurementAxis.measure": {
+          "@dmtype": "meas:GenericMeasure",
+          "meas:GenericMeasure.coord": {
+            "@dmtype": "coords:PhysicalCoordinate",
+            "REFERENCE_4": {
+              "@dmrole": "coords:Coordinate.coordSys",
+              "@tableref": "_CoordinateSystems"
+            },
+            "coords:PhysicalCoordinate.cval": 15.216575
+          }
+        }
+      },
+      {
+        "@dmtype": "cube:Observable",
+        "cube:DataAxis.dependent": true,
+        "cube:MeasurementAxis.measure": {
+          "@dmtype": "meas:GenericMeasure",
+          "meas:GenericMeasure.coord": {
+            "@dmtype": "coords:PhysicalCoordinate",
+            "REFERENCE_5": {
+              "@dmrole": "coords:Coordinate.coordSys",
+              "@tableref": "_CoordinateSystems"
+            },
+            "coords:PhysicalCoordinate.cval": 15442.456
+          },
+          "meas:Measure.error": {
+            "@dmtype": "meas:Error",
+            "meas:Error.statError": {
+              "@dmtype": "meas:Symmetrical",
+              "meas:Symmetrical.radius": 44.15126
+            }
+          }
+        }
+      }
+    ]
+  }
+]

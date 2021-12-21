@@ -3,7 +3,7 @@ Created on 11 Dec 2021
 
 @author: laurentmichel
 '''
-from client.objectbuilder.mapping_exception import MappingException
+from client.xml_interpreter.mapping_exception import MappingException
 from client.xml_interpreter.vocabulary import Att, Ele
 from client.translator import logger
 import xmltodict, lxml
@@ -52,15 +52,20 @@ class MappingBlockCursor(object):
                 else:
                     raise MappingException("TEMPLATES without tableref must be unique")
                 
-        for tag in['INSTANCE', 'ATTRIBUTE', 'COLLECTION']:
+        for tag in['INSTANCE', 'ATTRIBUTE', 'COLLECTION', 'GLOBALS', 
+                   'TEMPLATES', 'PRIMARY_KEY', 
+                   'FOREIGN_KEY', 'WHERE', 'VODML']:
             xpath = './/dm-mapping:' + tag            
             for ele in MappingBlockCursor._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
                 ele.tag = tag 
                 
-        for tag in['GLOBALS', 'TEMPLATES', 'REFERENCE', 'JOIN', 'PRIMARY_KEY', 'FOREIGN_KEY', 'WHERE', 'VODML']:
+        # cannot be identified by role: make them uniques
+        cpt = 1
+        for tag in['REFERENCE', 'JOIN']:
             xpath = '//dm-mapping:' + tag            
             for ele in MappingBlockCursor._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
-                ele.tag = tag 
+                ele.tag = tag + '_' + str(cpt)
+                cpt += 1
             
         
 
@@ -118,12 +123,34 @@ class MappingBlockCursor(object):
         return None
     
     @staticmethod    
+    def get_instance_by_dmtype(dmtype_pattern):
+        retour = {"GLOBALS":[], "TEMPLATES":{}}
+        
+        eset =  MappingBlockCursor._globals_block.xpath(".//INSTANCE[contains(@dmtype,'" + dmtype_pattern + "')]")
+        retour["GLOBALS"] = eset
+
+        for tableref, block  in MappingBlockCursor._templates_blocks.items():
+            retour["TEMPLATES"][tableref] = block.xpath(".//INSTANCE[contains(@dmtype,'" + dmtype_pattern + "')]")
+        return retour
+    
+    @staticmethod    
     def get_globals_collection_dmids():
         retour = []
         eset =  MappingBlockCursor._globals_block.xpath("//COLLECTION[@dmid]")
         for ele in eset:
             retour.append(ele.get("dmid"))
         return retour
+    
+    @staticmethod    
+    def get_collection_item_by_primarykey(coll_dmid, key_value):
+        eset =  MappingBlockCursor._globals_block.xpath(".//COLLECTION[@dmid='" +coll_dmid + "']/INSTANCE/PRIMARY_KEY[@value='" + key_value + "']")
+        if len(eset) == 0:
+            raise MappingException("Instance with primary key = {} in collection dmid {} not found".format(key_value, key_value))
+        if len(eset) > 1:
+            raise MappingException("More than one instance with primary key = {} found in in collection dmid {}".format(key_value, key_value))
+        logger.debug("Instance with primary_key=%s found in collection dmid=%s", key_value, coll_dmid)
+        return eset[0].getparent()
+
 
    
     @staticmethod    
