@@ -93,7 +93,10 @@ class MappingBlockCursor(object):
     
     @staticmethod    
     def get_globals_collection(dmid):
-        return MappingBlockCursor._globals_block.xpath("//GLOBALS/COLLECTION")
+        eset =  MappingBlockCursor._globals_block.xpath("//GLOBALS/COLLECTION[@dmid='" + dmid + "']")
+        for ele in eset:
+            return ele
+        return None
 
     @staticmethod    
     def get_globals_instances():
@@ -117,6 +120,16 @@ class MappingBlockCursor(object):
     @staticmethod    
     def get_globals_instance_by_dmid(dmid):
         eset =  MappingBlockCursor._globals_block.xpath("//INSTANCE[@dmid='" + dmid + "']")
+        for ele in eset:
+            return ele
+        return None
+    
+    @staticmethod    
+    def get_templates_instance_by_dmid(tableref, dmid):
+        templates_block = MappingBlockCursor.get_templates_block(tableref)
+        if templates_block is None:
+            return None
+        eset =  templates_block.xpath(".//INSTANCE[@dmid='" + dmid + "']")
         for ele in eset:
             return ele
         return None
@@ -151,82 +164,4 @@ class MappingBlockCursor(object):
         return eset[0].getparent()
 
    
-    @staticmethod    
-    def get_json_block():
-        retour  = {"GLOBALS":[], 'TEMPLATES': {}}
-        json_block =  xmltodict.parse(lxml.etree.tostring(MappingBlockCursor._xml_block))
-        #DictUtils.print_pretty_json(json_block)
-        globals_block = json_block['VODML']['GLOBALS']
-
-        DictUtils.print_pretty_json(globals_block)
-
-        for key, value in globals_block.items():
-            value.pop("@dmrole")
-            if key.startswith('COLLECTION'):
-                retour["GLOBALS"].append([value])
-            elif key.startswith('INSTANCE'):
-                retour["GLOBALS"].append(value)
-            else:
-                raise MappingException("GLOBALS child must be either COLLECTION or GLOBALS ({} prohibited".format(key))
-            
-        DictUtils.print_pretty_json(retour["GLOBALS"])
-        import sys
-        sys.exit(1)
-           
-        globals_block = json_block['VODML']['TEMPLATES']
-        for item in globals_block:
-            table_ref = item[ "@tableref"]
-            retour["TEMPLATES"][table_ref] = {"WHERE":[], "ITEMS":[]}
-            item.pop("@tableref")
-            
-            for key, subitem in item.items():
-                if key == "WHERE":
-                    retour["TEMPLATES"][table_ref]["WHERE"].append(subitem)
-                elif key.startswith("INSTANCE"):
-                    retour["TEMPLATES"][table_ref]["ITEMS"].append(subitem)
-                    subitem.pop("@dmrole")
-                else:
-                    raise MappingException("TEMPLATES child must be either WHERE or INSTANCE ({} prohibited".format(key))
-
-        DictUtils.print_pretty_json(retour["GLOBALS"])
-
-        json_mapping_builder = JsonMappingBuilder(json_dict=retour)
-        revert_coll = JsonBlockExtractor.search_array_container(retour, "COLLECTION")
-        for item in revert_coll:
-            item["host"][item["content"]["@dmrole"]]  = {"ITEMS":[]} 
-            coll_mapping = item["host"][item["content"]["@dmrole"]]
-            for key, value in item["content"].items():
-                if key == "REFERENCE":
-                    coll_mapping["REFERENCE"] = value
-                elif key == "JOIN":
-                    coll_mapping["JOIN"] = value
-                elif key != '@dmrole':
-                    coll_mapping["ITEMS"].append(value)
-                    
-            item["host"].pop(item["key"])
-            
-
-        #json_mapping_builder.proto_revert_collections()
-        #json_mapping_builder.proto_revert_elements("INSTANCE")
-        print("==============")
-        #DictUtils.print_pretty_json(json_mapping_builder.json)
-
-        revert_obj = JsonBlockExtractor.search_object_container(retour, "ATTRIBUTE")        
-        for item in revert_obj:
-            item["host"][item["content"]["@dmrole"]]  = item["content"]
-            item["host"].pop(item["key"])
-            item["content"].pop('@dmrole', None)
-            
-            
-        DictUtils.print_pretty_json(json_mapping_builder.json)
-
-        #revert_coll = JsonBlockExtractor.search_object_container(retour, "INSTANCE")
-       
-        
-        return json_mapping_builder.json
-
-        
-
-    
-    
-    
+ 

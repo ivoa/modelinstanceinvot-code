@@ -1,0 +1,17 @@
+<TEMPLATES tableref="_PKTable">
+	<INSTANCE dmid="_TimeSeries" dmrole="" dmtype="cube:SparseCube">
+		<COLLECTION dmrole="cube:SparseCube.data">
+			<JOIN_6 dmref="_ts_data">
+			</JOIN_6>
+		</COLLECTION>
+		<INSTANCE dmid="_ds1" dmrole="cube:DataProduct.dataset" dmtype="ds:experiment.ObsDataset">
+			<PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560" />
+			<ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductType" dmtype="ds:dataset.DataProductType" value="TIMESERIES" />
+			<ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductSubtype" dmtype="ivoa:string" value="GAIA Time Series" />
+			<ATTRIBUTE dmrole="ds:experiment.ObsDataset.calibLevel" dmtype="ivoa:integer" value="1" />
+			<INSTANCE dmid="_tg1" dmrole="ds:experiment.ObsDataset.target" dmtype="ds:experiment.Target">
+				<ATTRIBUTE dmrole="ds:experiment.BaseTarget.name" dmtype="ivoa:string" value="5813181197970338560" />
+			</INSTANCE>
+		</INSTANCE>
+	</INSTANCE>
+</TEMPLATES>

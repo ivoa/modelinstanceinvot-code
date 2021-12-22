@@ -17,6 +17,8 @@ from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
 from client.xml_interpreter.table_iterator import TableIterator
 from client.xml_interpreter.json_block_extractor import JsonBlockExtractor
 from client.xml_interpreter.to_json_converter import ToJsonConverter
+from client.xml_interpreter.dynamic_reference import DynamicReference
+from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
 class TopLevelCollection(object):
     '''
     classdocs
@@ -98,12 +100,30 @@ class TopLevelCollection(object):
         return self.last_row
 
     def get_model_view(self):
-        for ele in self.top_templates.xpath("//ATTRIBUTE"):
+        templates_copy = deepcopy(self.top_templates)
+        StaticReferenceResolver.resolve(self.table_ref, templates_copy)
+        for ele in templates_copy.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
             if ref is not None:
                 index = ele.attrib["index"]
                 ele.attrib["value"] = str(self.last_row[int(index)])
-        return self.top_templates
+        for dref_tag, dref in self.references.items():
+            logger.info("resolve reference %s", dref_tag)
+            dyn_resolver = DynamicReference(dref_tag, self.table_ref, dref)
+            dyn_resolver._set_mode()
+            ref_target = dyn_resolver.get_target_instance(self.get_last_row())
+            ref_element = templates_copy.xpath("//" + dref_tag)[0]
+            ref_host = ref_element.getparent()
+            ref_target_copy = deepcopy(ref_target)
+            # Set the reference role to the copied instance
+            ref_target_copy.attrib["dmrole"] = ref_element.get('dmrole')
+            # Insert the referenced object
+            ref_host.append(ref_target_copy)
+            # Drop the reference
+            ref_host.remove(ref_element)
+
+            
+        return templates_copy
     
     def get_json_model_view(self):
         logger.debug("build json view")

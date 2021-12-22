@@ -14,7 +14,7 @@ class TestToJsonConverter(unittest.TestCase):
 
   
     def test_results(self):      
-        tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.1.xml"))
+        tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.2.xml"))
         tlc.connect_table('Results')
         tlc._squash_join_and_references()
         tlc._set_column_indices()

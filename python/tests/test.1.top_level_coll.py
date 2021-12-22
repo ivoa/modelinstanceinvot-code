@@ -14,8 +14,6 @@ class TestMapppingBuilder(unittest.TestCase):
 
     def test_PKTable(self):      
         self.maxDiff = None
-        mapping_block = XmlUtils.xmltree_from_file(
-            os.path.join(self.data_path, "data/input/test.1.xml"))  
         
         tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.1.xml"))
         XmlUtils.assertXmltreeEqualsFile(MappingBlockCursor.get_globals(),
@@ -48,8 +46,21 @@ class TestMapppingBuilder(unittest.TestCase):
                                        os.path.join(self.data_path, "data/output/test.1.4.xml"))
         XmlUtils.assertXmltreeEqualsFile(tlc.joins["JOIN_6"],
                                        os.path.join(self.data_path, "data/output/test.1.5.xml"))
+        model_view = tlc.get_model_view()
+        XmlUtils.assertXmltreeEqualsFile(model_view,
+                                       os.path.join(self.data_path, "data/output/test.1.8.xml"))
 
-  
+        json_view = tlc.get_json_model_view()
+        self.assertListEqual(
+            json_view,
+            DictUtils.read_dict_from_file(
+                os.path.join(
+                    self.data_path, "data/output/test.1.9.json"
+                )
+            ),
+        )
+
+
     def test_results(self):      
         tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.1.xml"))
         
@@ -61,10 +72,19 @@ class TestMapppingBuilder(unittest.TestCase):
         XmlUtils.assertXmltreeEqualsFile(tlc.top_templates,
                                        os.path.join(self.data_path, "data/output/test.1.6.xml"))
         tlc.get_next_row()
-        XmlUtils.assertXmltreeEqualsFile(tlc.get_model_view(),
+        model_view = tlc.get_model_view()    
+        XmlUtils.assertXmltreeEqualsFile(model_view,
                                        os.path.join(self.data_path, "data/output/test.1.7.xml"))
         json_view = tlc.get_json_model_view()
-        DictUtils.print_pretty_json(json_view)
+        self.assertListEqual(
+            json_view,
+            DictUtils.read_dict_from_file(
+                os.path.join(
+                    self.data_path, "data/output/test.1.8.json"
+                )
+            ),
+        )
+
  
 
     def setUp(self):

@@ -1,0 +1,77 @@
+{
+  "@dmid": "_ts_data",
+  "@dmrole": "",
+  "@dmtype": "cube:NDPoint",
+  "cube:NDPoint.observable": [
+    {
+      "@dmtype": "cube:Observable",
+      "cube:DataAxis.dependent": true,
+      "cube:MeasurementAxis.measure": {
+        "@dmtype": "meas:Time",
+        "meas:Time.coord": {
+          "@dmtype": "coords:MJD",
+          "coords:MJD.date": 1706.0177100217386,
+          "coords:Coordinate.coordSys": {
+            "@dmid": "_timesys",
+            "@dmtype": "coords:TimeSys",
+            "PRIMARY_KEY": {
+              "@dmtype": "ivoa:string",
+              "@value": "TCB"
+            },
+            "coords:PhysicalCoordSys.frame": {
+              "@dmtype": "coords:TimeFrame",
+              "coords:TimeFrame.timescale": "TCB",
+              "coords:TimeFrame.refPosition": {
+                "@dmtype": "coords:StdRefLocation",
+                "coords:StdRefLocation.position": "BARYCENTER"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "@dmtype": "cube:Observable",
+      "cube:DataAxis.dependent": true,
+      "cube:MeasurementAxis.measure": {
+        "@dmtype": "meas:GenericMeasure",
+        "meas:GenericMeasure.coord": {
+          "@dmtype": "coords:PhysicalCoordinate",
+          "REFERENCE_4": {
+            "@dmrole": "coords:Coordinate.coordSys",
+            "@tableref": "_CoordinateSystems",
+            "FOREIGN_KEY": {
+              "@ref": "_band"
+            }
+          },
+          "coords:PhysicalCoordinate.cval": 14.767337
+        }
+      }
+    },
+    {
+      "@dmtype": "cube:Observable",
+      "cube:DataAxis.dependent": true,
+      "cube:MeasurementAxis.measure": {
+        "@dmtype": "meas:GenericMeasure",
+        "meas:GenericMeasure.coord": {
+          "@dmtype": "coords:PhysicalCoordinate",
+          "REFERENCE_5": {
+            "@dmrole": "coords:Coordinate.coordSys",
+            "@tableref": "_CoordinateSystems",
+            "FOREIGN_KEY": {
+              "@ref": "_band"
+            }
+          },
+          "coords:PhysicalCoordinate.cval": 23356.707
+        },
+        "meas:Measure.error": {
+          "@dmtype": "meas:Error",
+          "meas:Error.statError": {
+            "@dmtype": "meas:Symmetrical",
+            "meas:Symmetrical.radius": 33.530354
+          }
+        }
+      }
+    }
+  ]
+}

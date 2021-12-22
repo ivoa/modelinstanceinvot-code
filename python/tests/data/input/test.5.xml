@@ -1,0 +1,61 @@
+<TEMPLATES tableref="Results">
+	<INSTANCE dmid="_ts_data" dmrole="" dmtype="cube:NDPoint">
+		<COLLECTION dmrole="cube:NDPoint.observable">
+			<INSTANCE dmtype="cube:Observable">
+				<ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="False" />
+				<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
+					<INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+						<ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime" index="3" value="1705.9437360200984" />
+						<INSTANCE dmid="_timesys" dmrole="coords:Coordinate.coordSys" dmtype="coords:TimeSys">
+							<PRIMARY_KEY dmtype="ivoa:string" value="TCB" />
+							<INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:TimeFrame">
+								<ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB" />
+								<INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
+									<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER" />
+								</INSTANCE>
+							</INSTANCE>
+						</INSTANCE>
+					</INSTANCE>
+				</INSTANCE>
+			</INSTANCE>
+			<INSTANCE dmtype="cube:Observable">
+				<ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True" />
+				<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+					<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+						<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag" index="4"
+							value="15.216575" />
+						<REFERENCE_4 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+						</REFERENCE_4>
+					</INSTANCE>
+				</INSTANCE>
+			</INSTANCE>
+			<INSTANCE dmtype="cube:Observable">
+				<ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True" />
+				<INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+					<INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+						<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux" index="5"
+							value="15442.456" />
+						<INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys" dmrole="coords:Coordinate.coordSys">
+							<PRIMARY_KEY dmtype="ivoa:string" value="G" />
+							<INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G" />
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="2.49524e-9" />
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega" />
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity"
+									value="6246.77" />
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom" />
+								<ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="4578.32" />
+							</INSTANCE>
+						</INSTANCE>
+					</INSTANCE>
+					<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+						<INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+							<ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr" index="6"
+								value="44.15126" />
+						</INSTANCE>
+					</INSTANCE>
+				</INSTANCE>
+			</INSTANCE>
+		</COLLECTION>
+	</INSTANCE>
+</TEMPLATES>

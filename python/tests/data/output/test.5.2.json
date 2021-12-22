@@ -1,0 +1,71 @@
+{
+  "Results": [
+    {
+      "@dmid": "_ts_data",
+      "@dmrole": "",
+      "@dmtype": "cube:NDPoint",
+      "cube:NDPoint.observable": [
+        {
+          "@dmtype": "cube:Observable",
+          "INSTANCE": {
+            "@dmrole": "cube:MeasurementAxis.measure",
+            "@dmtype": "meas:GenericMeasure",
+            "INSTANCE": {
+              "@dmrole": "meas:GenericMeasure.coord",
+              "@dmtype": "coords:PhysicalCoordinate",
+              "REFERENCE_4": {
+                "@dmrole": "coords:Coordinate.coordSys",
+                "@tableref": "_CoordinateSystems"
+              },
+              "coords:PhysicalCoordinate.cval": 15.216575
+            }
+          },
+          "cube:DataAxis.dependent": true
+        },
+        {
+          "@dmtype": "cube:Observable",
+          "INSTANCE": {
+            "@dmrole": "cube:MeasurementAxis.measure",
+            "@dmtype": "meas:GenericMeasure",
+            "INSTANCE": [
+              {
+                "@dmrole": "meas:GenericMeasure.coord",
+                "@dmtype": "coords:PhysicalCoordinate",
+                "INSTANCE": {
+                  "@dmid": "_photsys_G",
+                  "@dmtype": "mango:coordinates.PhotometryCoordSys",
+                  "@dmrole": "coords:Coordinate.coordSys",
+                  "PRIMARY_KEY": {
+                    "@dmtype": "ivoa:string",
+                    "@value": "G"
+                  },
+                  "INSTANCE": {
+                    "@dmrole": "coords:PhysicalCoordSys.frame",
+                    "@dmtype": "mango:coordinates.PhotFilter",
+                    "mango:coordinates.PhotFilter.name": "GAIA/GAIA2r.G",
+                    "mango:coordinates.PhotFilter.zeroPointFlux": 2.49524e-09,
+                    "mango:coordinates.PhotFilter.magnitudeSystem": "Vega",
+                    "mango:coordinates.PhotFilter.effectiveWavelength": 6246.77,
+                    "mango:coordinates.PhotFilter.unit": "Angstrom",
+                    "mango:coordinates.PhotFilter.bandWidth": 4578.32
+                  }
+                },
+                "coords:PhysicalCoordinate.cval": 15442.456
+              },
+              {
+                "@dmrole": "meas:Measure.error",
+                "@dmtype": "meas:Error",
+                "INSTANCE": {
+                  "@dmrole": "meas:Error.statError",
+                  "@dmtype": "meas:Symmetrical",
+                  "meas:Symmetrical.radius": 44.15126
+                }
+              }
+            ]
+          },
+          "cube:DataAxis.dependent": true
+        }
+      ]
+    }
+  ]
+}
