@@ -13,7 +13,11 @@ class TestToJsonConverter(unittest.TestCase):
  
 
   
-    def test_results(self):      
+    def test_results(self):  
+        '''
+        
+        '''
+        self.maxDiff = None    
         tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.2.xml"))
         tlc.connect_table('Results')
         tlc._squash_join_and_references()
@@ -22,15 +26,14 @@ class TestToJsonConverter(unittest.TestCase):
         tjc = ToJsonConverter(tlc.get_model_view())
         
         tjc._translate_xml()
+        DictUtils.print_pretty_json(tjc.json_instance)
         self.assertDictEqual(
             tjc.json_instance,
-            DictUtils.read_dict_from_file(
-                os.path.join(
+            DictUtils.read_dict_from_file(os.path.join(
                     self.data_path, "data/output/test.2.1.json"
                 )
             ),
         )
-
 
         tjc._revert_collections()
         self.assertDictEqual(

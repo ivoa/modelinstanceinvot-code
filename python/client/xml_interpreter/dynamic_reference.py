@@ -9,7 +9,6 @@ from client.xml_interpreter.votable_pointer import VOTablePointer
 from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
 from client.xml_interpreter.mapping_exception import MappingException
 from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
-from utils.xml_utils import XmlUtils
 
 class DynamicReference(object):
     '''

@@ -27,7 +27,6 @@ class TestMapppingBuilder(unittest.TestCase):
         self.assertEqual(dynamic_ref.fk_col, 0)
         
         row = tlc.get_next_row()    
-        XmlUtils.pretty_print(dynamic_ref.get_target_instance(row))
  
         XmlUtils.assertXmltreeEqualsFile(dynamic_ref.get_target_instance(row),
                                          os.path.join(self.data_path, "data/output/test.3.1.xml"))

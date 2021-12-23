@@ -9,11 +9,21 @@ from client.xml_interpreter.mapping_exception import MappingException
 
 class StaticReferenceResolver(object):
     '''
-    classdocs
+    Namespace for the  function processing the static REFERENCEs
     '''
 
     @staticmethod 
     def resolve(templates_ref, instance):
+        '''
+        Resolve all static REFERENCEs found in instance.
+        The referenced objects are first searched in GLOBALS and then
+        in the templates_ref table.
+        REFERENCE elements are replaced with the referenced objects set with the roles of the REFERENCEs
+        - A exception is risen if the reference cannot be resolved
+        - Works even if REFERENCE tags are numbered by the former processing
+        :param templates_ref: Identifier of the table where instance comes from
+        :param instance: etree Element
+        '''
         for ele in instance.xpath(".//*[starts-with(name(), 'REFERENCE_')]"):
             dmref = ele.get("dmref")
             if dmref == None:

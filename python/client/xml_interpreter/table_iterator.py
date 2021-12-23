@@ -1,36 +1,38 @@
 '''
-Created on 1 avr. 2020
+Created on 1 dec. 2021
 
 @author: laurentmichel
 '''
-from copy import deepcopy
-from utils.json_tools import JsonTools
-from client.translator.vocabulary import Att, Ele
-from utils.dict_utils import DictUtils
+
 class TableIterator(object):
     '''
-    classdocs
+    Simple wrapper iterating over table rows
     '''
 
     def __init__(self,
                  name,
                  data_table):
-        '''
+        """
         Constructor
-        '''
+        :param name: table name : not really used
+        :param data_table: Numpy table returned by astropy.votable
+        """
         self.name = name
         self.data_table = data_table
         self.last_row = None
         self.iter = None
+        # not used yet
         self.row_filter = None
 
     def _get_next_row(self):
+        '''
+        Returns the next Numpy row or None.
+        The end of table exception usually returned by Numpy is trapped 
+        '''
+        # The iterator is set at the first iteration
         if self.iter == None:
             self.iter = iter(self.data_table)
-            if self.row_filter is not None:
-                pass
-                #print(self.row_filter)
-                #self.row_filter.map_col_number(self.column_mapping)
+
         try:
             while True:
                 row = next(self.iter)
@@ -40,12 +42,14 @@ class TableIterator(object):
                         self.last_row = row
                         return row
                 else:
-
                     return None
         except:
             return None
 
     def _rewind(self):
+        """
+        Set the pointer on the table top, destroys the iterator actually
+        """
         self.iter = None
         
  

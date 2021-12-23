@@ -3,69 +3,62 @@ Created on Jul 6, 2020
 
 @author: laurentmichel
 '''
-from client.translator.vocabulary import Ele, Att, key_match
-from client.objectbuilder.att_utils import AttUtils
-from client.translator.json_mapping_builder import JsonMappingBuilder
-from utils.dict_utils import DictUtils
-from abc import abstractstaticmethod
-from google.protobuf.internal.python_message import _AddStaticMethods
-
-
+from client.xml_interpreter.vocabulary import key_match
+from client.xml_interpreter.att_utils import AttUtils
 class JsonBlockExtractor(object):
     '''
-    Search utilities blocks in dicts  resulting from the xml2dict conversion of the mapping block
-    '''
-
-    def __init__(self, json_block):
-        '''
-        Constructor
-        :param json_block: Dict resulting from the xml2dict conversion of the mapping block
-        :param type: {}
-        '''
-        self.json_block = json_block
-
-        # Buffer storing the search results
-        # Result cannot be returned direclty because search functions are recursives
-        self.searched_elements = []
-        
-    def search_table_row_template_container(self):
-        self._search_array_container("TABLE_ROW_TEMPLATE", self.json_block)
-        return self.searched_elements
-        
-    def search_elment_by_key(self, key):
-        self._search_array_container(key, self.json_block)
-        return self.searched_elements
-        
-    @staticmethod    
-    def search_join_container(json_block):
-        searched_elements = {}
-        JsonBlockExtractor._proto_search_joins(json_block, searched_elements)
-        return searched_elements
-
-    def search_subelement_by_role(self, searched_role):
-        self._search_subelement_by_role(self.json_block, searched_role)
-        return self.searched_elements
-        
-    @staticmethod    
-    def search_subelement_by_id(json_block, searched_id):
-        searched_elements = []
-        JsonBlockExtractor._search_subelement_by_id(json_block, searched_id, searched_elements)
-        return searched_elements
+    Block search utilities in dicts resulting from the xml2dict conversion of the mapping block
+    This class is just a name space for a set of functions (static method) independent to each other.
+    This private methods (starting with _) are not meant to be used out of the scope of that class. 
     
+    The search function are recursive
+    search_object_container and search_object_container return lists of dictionaries where 
+    all searched components are exposed in a convenient way.
+    example:  
+        we search for INSTANCE object in in the following sequence
+            INSTANCE:{role, type, ATTRIBUTE{role1, type1}, INSTANCE: {role2, type2}}
+        then we get the following result:
+            [
+             {key:INSTANCE, 
+              content: {role2, type2}, 
+              host:{role, type, ATTRIBUTE{role1, type1}, INSTANCE: {role2, type2}}
+             ]
+    This structure facilitates either the modification of the replacement of the searched objects directly into the tree.
+    
+    In some cases (JOIN, REFERENCE), the keys of the searched objects are not known due to a former processing (numbering appended), 
+    this is why the key identification are done by the key_match function
+    '''
+                                
     @staticmethod    
     def search_subelement_by_type(json_block, searched_type):
+        '''
+        Returns the list of all object haveing the searched type.
+        It is to noted that the returned list is flat, there is no information about the searched object contexts. 
+        :param json_block: Block where to search in 
+        :param searched_type: searched @dmtype
+        '''
         searched_elements = []
         JsonBlockExtractor._search_subelement_by_type(json_block, searched_type, searched_elements)
         return searched_elements
     
     @staticmethod    
     def search_object_container(root_element, element_key):
+        '''
+        Return a [{key, content, host}...] list with all objects ({...}) contained in root_element 
+        :param root_element: Block where to search in 
+        :param element_key: key of the searched object
+        '''
         searched_elements = []
         JsonBlockExtractor._search_object_container(root_element, element_key, searched_elements)
         return searched_elements
     
     @staticmethod    
     def search_array_container(root_element, element_key):
+        '''
+        Return a [{key, content, host}...] list with all lists ([...]) contained in root_element 
+        :param root_element: Block where to search in 
+        :param element_key: key of the searched object
+        '''
         searched_elements = []
         JsonBlockExtractor._search_array_container(root_element, element_key, searched_elements)
         return searched_elements
@@ -73,6 +66,7 @@ class JsonBlockExtractor(object):
     @staticmethod    
     def _search_array_container(root_element, element_key, searched_elements):
         """
+        Recursive function searching arrays
         """
         if isinstance(root_element, list):
             for idx, _ in enumerate(root_element):
@@ -82,7 +76,7 @@ class JsonBlockExtractor(object):
                                               "content": item, "host": root_element})
                 JsonBlockExtractor._search_array_container(item, element_key, searched_elements)
         elif isinstance(root_element, dict):
-            for k, v in root_element.items():
+            for _, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
 
@@ -101,13 +95,16 @@ class JsonBlockExtractor(object):
  
     @staticmethod
     def _search_object_container(root_element, element_key, searched_elements):
+        """
+        Recursive function searching objects
+        """
         if isinstance(root_element, list):
             for item in root_element:
                 if isinstance(item, dict):  
                     JsonBlockExtractor._add_object_in_searched_elements(item, element_key, searched_elements)
                 JsonBlockExtractor._search_object_container(item, element_key, searched_elements)
         elif isinstance(root_element, dict):
-            for k, v in root_element.items():
+            for _, v in root_element.items():
                 if isinstance(v, list):
                     for ele in v:
                         if isinstance(ele, dict):
@@ -123,14 +120,17 @@ class JsonBlockExtractor(object):
                    
     @staticmethod
     def _add_object_in_searched_elements(instance, element_key, searched_elements):
-            for key, value in instance.items():
-                if key.startswith('@') is True:
-                    continue
-                if key_match(element_key,[key]) is not None:
-                    matching_key = key_match(element_key,[key])
-                    searched_elements.append({"key": matching_key, 
-                                              "content": value, 
-                                              "host": instance})
+        """
+        build a response item {key, content, host}
+        """
+        for key, value in instance.items():
+            if key.startswith('@') is True:
+                continue
+            if key_match(element_key,[key]) is not None:
+                matching_key = key_match(element_key,[key])
+                searched_elements.append({"key": matching_key, 
+                                          "content": value, 
+                                          "host": instance})
 
 
  

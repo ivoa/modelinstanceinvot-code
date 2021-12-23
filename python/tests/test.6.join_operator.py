@@ -12,9 +12,7 @@ from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
 from client.xml_interpreter.votable_pointer import VOTablePointer
 from client.xml_interpreter.top_level_collection import TopLevelCollection
 
-from utils.dict_utils import DictUtils
-
-class TestTopJson(unittest.TestCase):
+class TestJoinOperator(unittest.TestCase):
 
     def test_subset(self):      
         self.maxDiff = None

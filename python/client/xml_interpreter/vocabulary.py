@@ -38,11 +38,12 @@ class Att(object):
     foreignkey = "foreignkey"
     
 def key_match(searched_key, key_set):
-    if isinstance(key_set, list):
+    if isinstance(key_set, str):
+        return key_set.startswith(searched_key)
+    else:
+        # May be a list or an odict_keys
         for key in key_set:
             if key.startswith(searched_key) is True:
                 return key
-    else: 
-        return key_set.startswith(searched_key)
     return None
         

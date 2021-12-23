@@ -21,6 +21,10 @@ class VOTablePointer(object):
         
     @staticmethod 
     def get_table(table_name):
+        '''
+        Returns the table matching table_name first by ID and the by name
+        :param table_name:
+        '''
         for resource in VOTablePointer.votable.resources:
             if resource.type == "results":
                 for table in resource.tables:
@@ -31,11 +35,18 @@ class VOTablePointer(object):
     
     @staticmethod 
     def get_params():
+        '''
+        returns the VOTable PARAMS
+        '''
         return VOTablePointer.votable.params
     
     
     @staticmethod 
     def get_id_index_mapping(table_name):
+        '''
+        build an index binding colum number with field id
+        :param table_name: name of the table
+        '''
         retour = {}
         table = VOTablePointer.get_table(table_name)   
         indx = 0     

@@ -59,7 +59,17 @@ class TestMapppingBuilder(unittest.TestCase):
                 )
             ),
         )
+        
+        DictUtils.print_pretty_json(tlc.get_json_model_component_by_type("ds:experiment.ObsDataset"))
 
+        self.assertListEqual(
+            tlc.get_json_model_component_by_type("ds:experiment.ObsDataset"),
+            DictUtils.read_dict_from_file(
+                os.path.join(
+                    self.data_path, "data/output/test.1.10.json"
+                )
+            ),
+        )
 
     def test_results(self):      
         tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.1.xml"))

@@ -1,0 +1,18 @@
+[
+  {
+    "@dmid": "_ds1",
+    "@dmtype": "ds:experiment.ObsDataset",
+    "PRIMARY_KEY": {
+      "@dmtype": "ivoa:string",
+      "@value": "5813181197970338560"
+    },
+    "ds:dataset.Dataset.dataProductType": "TIMESERIES",
+    "ds:dataset.Dataset.dataProductSubtype": "GAIA Time Series",
+    "ds:experiment.ObsDataset.calibLevel": 1,
+    "ds:experiment.ObsDataset.target": {
+      "@dmid": "_tg1",
+      "@dmtype": "ds:experiment.Target",
+      "ds:experiment.BaseTarget.name": "5813181197970338560"
+    }
+  }
+]

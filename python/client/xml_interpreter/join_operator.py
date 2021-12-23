@@ -11,8 +11,8 @@ from client.xml_interpreter.mapping_exception import MappingException
 from client.xml_interpreter.table_iterator import TableIterator
 from client import logger
 from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
-from client.xml_interpreter.dynamic_reference import DynamicReference
 from client.xml_interpreter.to_json_converter import ToJsonConverter
+
 class Where():
     def __init__(self, foreignkey, primarykey):
         self.foreignkey = foreignkey

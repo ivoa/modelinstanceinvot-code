@@ -130,6 +130,9 @@ class TopLevelCollection(object):
         tjc = ToJsonConverter(self.get_model_view())
         return tjc.get_json_instance()
         
+    def get_json_model_component_by_type(self, searched_type):
+        json_view = self.get_json_model_view()
+        return JsonBlockExtractor.search_subelement_by_type(json_view, searched_type)
     
     def get_mapped_models(self):
         pass

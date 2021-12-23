@@ -16,15 +16,23 @@ class TestTopJson(unittest.TestCase):
         mapping_block = XmlUtils.xmltree_from_file(
             os.path.join(self.data_path, "data/input/test.5.1.xml"))  
         
-        
         tjc = ToJsonConverter(mapping_block)
         tjc._translate_xml()
+        self.assertDictEqual(tjc.json_instance, 
+                             DictUtils.read_dict_from_file(
+                                 os.path.join(self.data_path, "data/output/test.5.5.json")))
         tjc._revert_collections()
-        self.assertDictEqual(tjc.json_instance, DictUtils.read_dict_from_file(os.path.join(self.data_path, "data/output/test.5.1.json")))
+        self.assertDictEqual(tjc.json_instance, 
+                             DictUtils.read_dict_from_file(
+                                 os.path.join(self.data_path, "data/output/test.5.1.json")))
         tjc._revert_attributes()
-        self.assertDictEqual(tjc.json_instance, DictUtils.read_dict_from_file(os.path.join(self.data_path, "data/output/test.5.2.json")))
+        self.assertDictEqual(tjc.json_instance, 
+                             DictUtils.read_dict_from_file(
+                                 os.path.join(self.data_path, "data/output/test.5.2.json")))
         tjc._revert_instances()
-        self.assertDictEqual(tjc.json_instance, DictUtils.read_dict_from_file(os.path.join(self.data_path, "data/output/test.5.3.json")))
+        self.assertDictEqual(tjc.json_instance, 
+                             DictUtils.read_dict_from_file(
+                                 os.path.join(self.data_path, "data/output/test.5.3.json")))
      
     def test_all(self):      
         self.maxDiff = None
