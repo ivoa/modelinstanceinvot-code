@@ -24,7 +24,7 @@ class TestMapppingBuilder(unittest.TestCase):
         XmlUtils.assertXmltreeEqualsFile(MappingBlockCursor.get_templates_block("Results"),
                                          os.path.join(self.data_path, "data/output/test.1.2.xml"))
         
-        tlc.connect_table('_PKTable')
+        tlc._connect_table('_PKTable')
         row = tlc.get_next_row()       
         self.assertEqual(row[0], '5813181197970338560')
         self.assertEqual(row[1], 'G')
@@ -74,7 +74,7 @@ class TestMapppingBuilder(unittest.TestCase):
     def test_results(self):      
         tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.1.xml"))
         
-        tlc.connect_table('Results')
+        tlc._connect_table('Results')
         
         tlc._squash_join_and_references()
 
