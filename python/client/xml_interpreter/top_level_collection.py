@@ -3,14 +3,10 @@ Created on 16 Dec 2021
 
 @author: laurentmichel
 '''
-import re
 import lxml
-import xmltodict
 from copy import deepcopy
-from numpy import  float64
 
 from client.xml_interpreter import logger
-from utils.xml_utils import XmlUtils
 from client.xml_interpreter.votable_pointer import VOTablePointer
 from client.xml_interpreter.mapping_exception import MappingException
 from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
@@ -19,6 +15,7 @@ from client.xml_interpreter.json_block_extractor import JsonBlockExtractor
 from client.xml_interpreter.to_json_converter import ToJsonConverter
 from client.xml_interpreter.dynamic_reference import DynamicReference
 from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
+
 class TopLevelCollection(object):
     '''
     classdocs
@@ -57,7 +54,7 @@ class TopLevelCollection(object):
 
         logger.info("VODML found")
 
-    def connect_table(self, tableref):
+    def _connect_table(self, tableref):
         self.table_ref = tableref
         self.top_table = VOTablePointer.get_table(tableref)
         if self.top_table is None:

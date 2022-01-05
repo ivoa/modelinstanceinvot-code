@@ -7,7 +7,8 @@ from astropy.io.votable import parse
 
 class VOTablePointer(object):
     '''
-    classdocs
+    TODO At the time of writing the class is static in order to be callable from any part of the code.
+    This feature should be made thread-safe in a public release
     '''
     votable_path = None
     votable = None
@@ -39,7 +40,6 @@ class VOTablePointer(object):
         returns the VOTable PARAMS
         '''
         return VOTablePointer.votable.params
-    
     
     @staticmethod 
     def get_id_index_mapping(table_name):

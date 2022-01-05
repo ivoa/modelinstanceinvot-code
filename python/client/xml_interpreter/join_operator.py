@@ -1,4 +1,7 @@
 '''
+Set of 2 classes operating the join operations.
+Retrieve ad format data that are joined with a particular primary row
+
 Created on 22 Dec 2021
 
 @author: laurentmichel
@@ -14,14 +17,24 @@ from client.xml_interpreter.static_reference_resolver import StaticReferenceReso
 from client.xml_interpreter.to_json_converter import ToJsonConverter
 
 class Where():
+    '''
+    Evaluator of foreign data against a primary key
+    '''
     def __init__(self, foreignkey, primarykey):
+        '''
+        :param foreignkey: identifier of the column used for the foreign key
+        :param primarykey: identifier of the column used for the primary key
+        '''
         self.foreignkey = foreignkey
+        # Number of foreign table used as foreign key
         self.foreign_col = None
         self.primarykey = primarykey
+        # Number of primary table used as primary key
         self.primary_col = None
     
     def __repr__(self):
-        return "(foreign: {}:{}  primary: {}:{})".format(self.primarykey, self.foreign_col, self.primarykey, self.primary_col)
+        return "(foreign: {}:{}  primary: {}:{})".format(
+            self.primarykey, self.foreign_col, self.primarykey, self.primary_col)
     
     def set_primary_col(self, primary_table_ref):
         index_map = VOTablePointer.get_id_index_mapping(primary_table_ref)
@@ -31,16 +44,21 @@ class Where():
         index_map = VOTablePointer.get_id_index_mapping(foreign_table_ref)
         self.foreign_col = index_map[self.foreignkey ]
         
-    def match(self, primary_key, foreign_row):
-        return (str(foreign_row[self.foreign_col]) == str(primary_key))
+    def match(self, primary_key_value, foreign_row):
+        '''
+        Returns True if the value of the foreign key read out of the foreign row matches primary_key_value
+        The comparisons are based on string representations of the evaluated values
+        :param primary_key: value of the primary key
+        :param foreign_row: Numpy data row of the joined table that must 
+               be checked against the primary key
+        '''
+        return (str(foreign_row[self.foreign_col]) == str(primary_key_value))
 
 
 class JoinOperator(object):
     '''
     classdocs
     '''
-
-
     def __init__(self, table_ref, xml_join_block):
         '''
         Constructor
