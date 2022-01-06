@@ -6,8 +6,12 @@ Created on Feb 26, 2021
 import unittest
 import os
 from utils.dict_utils import DictUtils
-from client.xml_interpreter.top_level_collection import TopLevelCollection
+from astropy.io.votable import parse
+
 from client.xml_interpreter.to_json_converter import ToJsonConverter
+from client.xml_interpreter.model_viewer import ModelViewer
+
+
 class TestToJsonConverter(unittest.TestCase):
 
  
@@ -18,15 +22,19 @@ class TestToJsonConverter(unittest.TestCase):
         
         '''
         self.maxDiff = None    
-        tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.2.xml"))
-        tlc.connect_table('Results')
-        tlc._squash_join_and_references()
-        tlc._set_column_indices()
-        tlc.get_next_row()
-        tjc = ToJsonConverter(tlc.get_model_view())
+        data_path = os.path.dirname(os.path.realpath(__file__))
+        votable = parse(os.path.join(data_path, "data/input/test.1.xml"))
+        
+        mviewer = None
+        for resource in votable.resources:
+            mviewer = ModelViewer(resource, votable_path=os.path.join(data_path, "data/input/test.1.xml"))
+            break;
+
+        mviewer.connect_table('Results')
+        mviewer.get_next_row()
+        tjc = ToJsonConverter(mviewer.get_model_view())
         
         tjc._translate_xml()
-        DictUtils.print_pretty_json(tjc.json_instance)
         self.assertDictEqual(
             tjc.json_instance,
             DictUtils.read_dict_from_file(os.path.join(
@@ -57,6 +65,7 @@ class TestToJsonConverter(unittest.TestCase):
         )
 
         tjc._revert_instances()
+
         self.assertDictEqual(
             tjc.json_instance,
             DictUtils.read_dict_from_file(
@@ -75,6 +84,7 @@ class TestToJsonConverter(unittest.TestCase):
             ),
         )
  
+
 
     def setUp(self):
         self.data_path = os.path.dirname(os.path.realpath(__file__))

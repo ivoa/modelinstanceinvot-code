@@ -4,8 +4,7 @@ Created on 22 Dec 2021
 @author: laurentmichel
 '''
 from copy import deepcopy
-from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
-from client.xml_interpreter.mapping_exception import MappingException
+from client.xml_interpreter.exceptions import MappingException
 
 class StaticReferenceResolver(object):
     '''
@@ -13,7 +12,7 @@ class StaticReferenceResolver(object):
     '''
 
     @staticmethod 
-    def resolve(templates_ref, instance):
+    def resolve(annotation_seeker, templates_ref, instance):
         '''
         Resolve all static REFERENCEs found in instance.
         The referenced objects are first searched in GLOBALS and then
@@ -28,18 +27,18 @@ class StaticReferenceResolver(object):
             dmref = ele.get("dmref")
             if dmref == None:
                 return
-            target = MappingBlockCursor.get_globals_instance_by_dmid(dmref)
+            target = annotation_seeker.get_globals_instance_by_dmid(dmref)
             found_in_global = True
             if target is None and templates_ref is not None:
-                target = MappingBlockCursor.get_templates_instance_by_dmid(templates_ref, dmref)
+                target = annotation_seeker.get_templates_instance_by_dmid(templates_ref, dmref)
                 found_in_global = False
             if target is None:
                 raise MappingException("Cannot resolve reference={}".format(dmref))
             # Resolve static references recursively
             if found_in_global is False:
-                StaticReferenceResolver.resolve(templates_ref, ele)
+                StaticReferenceResolver.resolve(annotation_seeker, templates_ref, ele)
             else:
-                StaticReferenceResolver.resolve(None, ele)
+                StaticReferenceResolver.resolve(annotation_seeker, None, ele)
             # Set the reference role to the copied instance
             target_copy = deepcopy(target)
             target_copy.attrib["dmrole"] = ele.get('dmrole')

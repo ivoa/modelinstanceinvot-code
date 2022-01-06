@@ -3,9 +3,10 @@ Created on 11 Dec 2021
 
 @author: laurentmichel
 '''
-from client.xml_interpreter.mapping_exception import MappingException
+from client.xml_interpreter.exceptions import MappingException
 from client.xml_interpreter.vocabulary import Att, Ele
 from client.translator import logger
+from utils.dict_utils import DictUtils
 
 
 class AnnotationSeeker(object):

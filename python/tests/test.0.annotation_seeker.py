@@ -6,7 +6,6 @@ Created on Feb 26, 2021
 import unittest
 import os
 from utils.xml_utils import XmlUtils
-from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
 from client.xml_interpreter.annotation_seeker import AnnotationSeeker
 from utils.dict_utils import DictUtils
 

@@ -42,6 +42,18 @@ class JsonBlockExtractor(object):
         return searched_elements
     
     @staticmethod    
+    def search_subelement_by_role(json_block, searched_role):
+        '''
+        Returns the list of all object haveing the searched type.
+        It is to noted that the returned list is flat, there is no information about the searched object contexts. 
+        :param json_block: Block where to search in 
+        :param searched_type: searched @dmtype
+        '''
+        searched_elements = []
+        JsonBlockExtractor._search_subelement_by_key(json_block, searched_role, searched_elements)
+        return searched_elements
+    
+    @staticmethod    
     def search_object_container(root_element, element_key):
         '''
         Return a [{key, content, host}...] list with all objects ({...}) contained in root_element 
@@ -152,6 +164,27 @@ class JsonBlockExtractor(object):
                         self._search_subelement_by_role(ele, searched_role)
                 elif isinstance(v, dict):  
                     self._search_subelement_by_role(v, searched_role)
+                    
+    @staticmethod
+    def _search_subelement_by_key(root_element, searched_key,  searched_elements):
+        """
+        Store in self.searched_elements all elements attached to the key searched_key
+        used for search by role
+        Recursive search
+        """
+        if isinstance(root_element, list):
+            for idx, _ in enumerate(root_element):
+                JsonBlockExtractor._search_subelement_by_key(root_element[idx], searched_key,  searched_elements)
+        elif isinstance(root_element, dict):
+            for k, v in root_element.items():
+                print(k + " " + searched_key)
+                if k == searched_key  :
+                    searched_elements.append(v)
+                if isinstance(v, list):
+                    for ele in v:
+                        JsonBlockExtractor._search_subelement_by_key(ele, searched_key,  searched_elements)
+                elif isinstance(v, dict):  
+                    JsonBlockExtractor._search_subelement_by_key(v, searched_key,  searched_elements)
 
     @staticmethod
     def _search_subelement_by_id(root_element, searched_id, searched_elements):

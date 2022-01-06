@@ -6,8 +6,8 @@ Created on Feb 26, 2021
 import unittest
 import os
 from utils.xml_utils import XmlUtils
-from utils.dict_utils import DictUtils
-from client.xml_interpreter.top_level_collection import TopLevelCollection
+from astropy.io.votable import parse
+from client.xml_interpreter.model_viewer import ModelViewer
 from client.xml_interpreter.dynamic_reference import DynamicReference
 
 class TestMapppingBuilder(unittest.TestCase):
@@ -15,25 +15,27 @@ class TestMapppingBuilder(unittest.TestCase):
     def test_PKTable(self):      
         self.maxDiff = None
         
-        tlc = TopLevelCollection(os.path.join(self.data_path, "data/input/test.3.xml"))        
-        tlc.connect_table('_PKTable')
-        tlc._squash_join_and_references()
+        data_path = os.path.dirname(os.path.realpath(__file__))
+        votable = parse(os.path.join(data_path, "data/input/test.1.xml"))
+        
+        mviewer = None
+        for resource in votable.resources:
+            mviewer = ModelViewer(resource, votable_path=os.path.join(data_path, "data/input/test.1.xml"))
+            break;
 
-        dynamic_ref = DynamicReference("REFERENCE_2", '_PKTable', tlc.references["REFERENCE_2"])
+        mviewer.connect_table('_PKTable')
+
+        dynamic_ref = DynamicReference(mviewer, "REFERENCE_2", '_PKTable', mviewer._references["REFERENCE_2"])
         dynamic_ref._set_mode()
         
         self.assertEqual(dynamic_ref.target_id, '_Datasets')
         self.assertEqual(dynamic_ref.fk_ref, '_pksrcid')
         self.assertEqual(dynamic_ref.fk_col, 0)
         
-        row = tlc.get_next_row()    
+        row = mviewer.get_next_row()    
  
         XmlUtils.assertXmltreeEqualsFile(dynamic_ref.get_target_instance(row),
                                          os.path.join(self.data_path, "data/output/test.3.1.xml"))
-
-        
-        
- 
  
 
     def setUp(self):

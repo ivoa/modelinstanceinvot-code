@@ -13,9 +13,24 @@
             "INSTANCE": {
               "@dmrole": "meas:Time.coord",
               "@dmtype": "coords:MJD",
-              "REFERENCE_3": {
+              "INSTANCE": {
+                "@dmid": "_timesys",
                 "@dmrole": "coords:Coordinate.coordSys",
-                "@dmref": "_timesys"
+                "@dmtype": "coords:TimeSys",
+                "PRIMARY_KEY": {
+                  "@dmtype": "ivoa:string",
+                  "@value": "TCB"
+                },
+                "INSTANCE": {
+                  "@dmrole": "coords:PhysicalCoordSys.frame",
+                  "@dmtype": "coords:TimeFrame",
+                  "INSTANCE": {
+                    "@dmrole": "coords:TimeFrame.refPosition",
+                    "@dmtype": "coords:StdRefLocation",
+                    "coords:StdRefLocation.position": "BARYCENTER"
+                  },
+                  "coords:TimeFrame.timescale": "TCB"
+                }
               },
               "coords:MJD.date": 1705.9437360200984
             }
@@ -48,9 +63,24 @@
               {
                 "@dmrole": "meas:GenericMeasure.coord",
                 "@dmtype": "coords:PhysicalCoordinate",
-                "REFERENCE_5": {
+                "INSTANCE": {
+                  "@dmid": "_photsys_G",
+                  "@dmtype": "mango:coordinates.PhotometryCoordSys",
                   "@dmrole": "coords:Coordinate.coordSys",
-                  "@tableref": "_CoordinateSystems"
+                  "PRIMARY_KEY": {
+                    "@dmtype": "ivoa:string",
+                    "@value": "G"
+                  },
+                  "INSTANCE": {
+                    "@dmrole": "coords:PhysicalCoordSys.frame",
+                    "@dmtype": "mango:coordinates.PhotFilter",
+                    "mango:coordinates.PhotFilter.name": "GAIA/GAIA2r.G",
+                    "mango:coordinates.PhotFilter.zeroPointFlux": 2.49524e-09,
+                    "mango:coordinates.PhotFilter.magnitudeSystem": "Vega",
+                    "mango:coordinates.PhotFilter.effectiveWavelength": 6246.77,
+                    "mango:coordinates.PhotFilter.unit": "Angstrom",
+                    "mango:coordinates.PhotFilter.bandWidth": 4578.32
+                  }
                 },
                 "coords:PhysicalCoordinate.cval": 15442.456
               },

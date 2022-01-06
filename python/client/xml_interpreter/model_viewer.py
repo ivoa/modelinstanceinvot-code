@@ -3,14 +3,19 @@ Created on 5 Jan 2022
 
 @author: laurentmichel
 '''
-import lxml
+from lxml import etree
 from copy import deepcopy
 from . import logger
 from .exceptions import *
-from .annotation_seeker import AnnotatioSeeker
+from .annotation_seeker import AnnotationSeeker
 from .resource_seeker import ResourceSeeker
 from .table_iterator import TableIterator
-
+from .static_reference_resolver import StaticReferenceResolver
+from .dynamic_reference import DynamicReference
+from .to_json_converter import ToJsonConverter
+from .json_block_extractor import JsonBlockExtractor
+from .join_operator import JoinOperator
+from utils.dict_utils import DictUtils
 class ModelViewer(object):
     '''
     ModelViewer is a PyVO table wrapper aiming at providing a model view on VOTable data read with usual tools
@@ -52,9 +57,12 @@ class ModelViewer(object):
         self._annotation_seeker = None
         self._resource_seeker = ResourceSeeker(self._resource)
         self._connected_table = None
-        self._connected_table_ref = None
+        self._connected_tableref = None
         self._current_data_row = None
+        self._last_row=None
         self._templates = None
+        self._joins = None
+        self._references = None
         self._extract_mapping_block(votable_path=votable_path)
     
     """
@@ -136,63 +144,112 @@ class ModelViewer(object):
         Required to browse table data.
         Connect to the first table if tableref is None
         """
-        self.connected_table_ref = tableref
-        self.connected_table = self._resource_seeker.get_table(tableref)
+        self._connected_tableref = tableref
+        self._connected_table = self._resource_seeker.get_table(tableref)
         if self.connected_table is None:
             raise MappingException("Cannot find table {} in VOTable".format(tableref))
         logger.debug("table %s found in VOTable", tableref)
         
         self._templates = deepcopy(self.annotation_seeker.get_templates_block(tableref))
-        if self.top_templates is None:
+        if self._templates is None:
             raise MappingException("Cannot find TEMPLATES {} ".format(tableref))
         logger.debug("TEMPLATES %s found ", tableref)
         
-        self.table_iterator = TableIterator(tableref, self.top_table.to_table())
-
+        self.table_iterator = TableIterator(tableref, self.connected_table.to_table())
+        self._squash_join_and_references()
+        self._set_column_indices()
     
     def get_next_row(self):
         """
         Return the next data row of the connected table 
         """
         self._assert_table_is_connected()
-        pass
+        self._current_data_row = self.table_iterator._get_next_row()
+        return self._current_data_row
     
     def rewind(self):
         """
         Rewind the table iterator of the connected table
         """
         self._assert_table_is_connected()
-        pass
+        self.table_iterator._rewind()
     
     def get_model_view(self):
         """
         return a XML model view of the last read row
         """
         self._assert_table_is_connected()
-        pass
-    
+        
+        templates_copy = deepcopy(self._templates)
+        StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
+        for ele in templates_copy.xpath("//ATTRIBUTE"):
+            ref = ele.get("ref")
+            if ref is not None:
+                index = ele.attrib["index"]
+                ele.attrib["value"] = str(self._current_data_row[int(index)])
+        for dref_tag, dref in self._references.items():
+            logger.info("resolve reference %s", dref_tag)
+            dyn_resolver = DynamicReference(self, dref_tag, self._connected_tableref, dref)
+            dyn_resolver._set_mode()
+            ref_target = dyn_resolver.get_target_instance(self._current_data_row)
+            ref_element = templates_copy.xpath("//" + dref_tag)[0]
+            ref_host = ref_element.getparent()
+            ref_target_copy = deepcopy(ref_target)
+            # Set the reference role to the copied instance
+            ref_target_copy.attrib["dmrole"] = ref_element.get('dmrole')
+            # Insert the referenced object
+            ref_host.append(ref_target_copy)
+            # Drop the reference
+            ref_host.remove(ref_element)
+            
+        for join_tag, join in self._joins.items():
+            logger.info("resolve join %s", join_tag)
+            join_operator = JoinOperator(self, self._connected_tableref, join)
+            join_operator._set_filter()
+            join_operator._set_foreign_instance()
+            join_operator.get_matching_data(self._current_data_row)
+            ref_element = templates_copy.xpath("//" + join_tag)[0]
+            ref_host = ref_element.getparent()
+            print(ref_host)
+            for cpart in join_operator.get_matching_model_view():          
+                ref_host.append(deepcopy(cpart))
+            # Drop the reference
+            ref_host.remove(ref_element)
+
+
+
+        return templates_copy
+
     def get_json_model_view(self):
         """
         return a JSON model view of the last read row
         """
         self._assert_table_is_connected()
-        pass
+        logger.debug("build json view")
+        tjc = ToJsonConverter(self.get_model_view())
+        return tjc.get_json_instance()
+
     
-    def get_json_model_component_by_type(self, dmtype):
+    def get_json_model_component_by_type(self, searched_dmtype):
         """
-        return the first instance with dmtype=dmtype from the json view of the current data row
-        Return a {} if no matching dmtype is found 
+        return the first instance with @dmtype=searched_ from the json view of the current data row
+        Return a {} if no matching dmtype was found 
         """
         self._assert_table_is_connected()
+        json_view = self.get_json_model_view()
+        return JsonBlockExtractor.search_subelement_by_type(json_view, searched_dmtype)
+
         pass
     
-    def get_json_model_component_by_role(self, dmrole):
+    def get_json_model_component_by_role(self, searched_dmrole):
         """
         return the first instance with dmrole=dmrole from the json view of the current data row
         Return a {} if no matching dmrole is found 
         """
         self._assert_table_is_connected()
-        pass
+        json_view = self.get_json_model_view()
+        return JsonBlockExtractor.search_subelement_by_role(json_view, searched_dmrole)
+
     
     """
     Private methods
@@ -201,7 +258,6 @@ class ModelViewer(object):
         assert self._connected_table is not None, "Operation failed: no connected data table"
         
     def _assert_resource_is_result(self):
-        print(self._resource.type)
         assert self._resource.type == "results", "ModelViewer must be set on a Resource with type=results"
 
     def _extract_mapping_block(self, votable_path=None):
@@ -218,7 +274,33 @@ class ModelViewer(object):
             stop_pattern = '</dm-mapping:VODML>'
             stop = content.index(stop_pattern) + len(stop_pattern)
             content = content[:stop]
-            self._annotation_seeker = AnnotationSeeker(lxml.etree.fromstring(content))
+            self._annotation_seeker = AnnotationSeeker(etree.fromstring(content))
 
         logger.info("VODML found")
 
+    def _squash_join_and_references(self):
+        """
+        Remove both JOINs and REFERENCEs fron the templates and store them in to be resolved later on
+        This avoid to have the model view polluted with elements that are not in the model
+        """
+        for ele in self._templates.xpath("//*[starts-with(name(), 'REFERENCE_')]"):
+            self._references = {ele.tag: deepcopy(ele)}
+            for child in list(ele):
+                ele.remove(child)
+        
+        for ele in self._templates.xpath("//*[starts-with(name(), 'JOIN')]"):
+            self._joins = {ele.tag: deepcopy(ele)}
+            for child in list(ele):
+                ele.remove(child)    
+
+    def _set_column_indices(self):
+        """
+        add column ranks to attribute having a ref.
+        Using ranks allow to identify columns even numpy raw have been serialised as []
+        """
+        index_map = self._resource_seeker.get_id_index_mapping(self._connected_tableref)
+        for ele in self._templates.xpath("//ATTRIBUTE"):
+            ref = ele.get("ref")
+            if ref is not None:
+                ele.attrib["index"] = str(index_map[ref])
+                

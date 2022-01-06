@@ -7,7 +7,7 @@ import unittest
 import os
 from utils.xml_utils import XmlUtils
 from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
-from client.xml_interpreter.mapping_block_cursor import MappingBlockCursor
+from client.xml_interpreter.annotation_seeker import AnnotationSeeker
 
 class TestMapppingBuilder(unittest.TestCase):
 
@@ -16,10 +16,10 @@ class TestMapppingBuilder(unittest.TestCase):
         
         mapping_block = XmlUtils.xmltree_from_file(
             os.path.join(self.data_path, "data/input/test.0.xml"))  
-        MappingBlockCursor.init(mapping_block.getroot())
+        aseeker = AnnotationSeeker(mapping_block.getroot())
 
         instance = XmlUtils.xmltree_from_file(os.path.join(self.data_path, "data/input/test.4.xml"))
-        StaticReferenceResolver.resolve(None, instance)
+        StaticReferenceResolver.resolve(aseeker, None, instance)
         XmlUtils.assertXmltreeEqualsFile(instance, 
                                          os.path.join(self.data_path, "data/output/test.4.1.xml"))
 
