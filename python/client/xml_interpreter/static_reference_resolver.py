@@ -33,7 +33,7 @@ class StaticReferenceResolver(object):
                 target = annotation_seeker.get_templates_instance_by_dmid(templates_ref, dmref)
                 found_in_global = False
             if target is None:
-                raise MappingException("Cannot resolve reference={}".format(dmref))
+                raise MappingException(f"Cannot resolve reference={dmref}")
             # Resolve static references recursively
             if found_in_global is False:
                 StaticReferenceResolver.resolve(annotation_seeker, templates_ref, ele)

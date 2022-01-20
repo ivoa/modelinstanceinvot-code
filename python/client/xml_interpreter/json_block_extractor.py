@@ -177,7 +177,6 @@ class JsonBlockExtractor(object):
                 JsonBlockExtractor._search_subelement_by_key(root_element[idx], searched_key,  searched_elements)
         elif isinstance(root_element, dict):
             for k, v in root_element.items():
-                print(k + " " + searched_key)
                 if k == searched_key  :
                     searched_elements.append(v)
                 if isinstance(v, list):

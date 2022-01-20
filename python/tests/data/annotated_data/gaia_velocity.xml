@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+	<RESOURCE type="results">
+		<INFO name="QUERY_STATUS" value="OK" />
+
+		<INFO name="QUERY"
+			value="SELECT TOP 10 gaiadr2.gaia_source.designation , gaiadr2.gaia_source.ra , gaiadr2.gaia_source.&quot;dec&quot; , gaiadr2.gaia_source.pmra , gaiadr2.gaia_source.pmra_error , gaiadr2.gaia_source.pmdec , gaiadr2.gaia_source.pmdec_error , gaiadr2.gaia_source.radial_velocity , gaiadr2.gaia_source.radial_velocity_error
+ FROM  gaiadr2.gaia_source
+ WHERE ( gaiadr2.gaia_source.radial_velocity IS NOT NULL )"><![CDATA[SELECT TOP 10 gaiadr2.gaia_source.designation , gaiadr2.gaia_source.ra , gaiadr2.gaia_source."dec" , gaiadr2.gaia_source.pmra , gaiadr2.gaia_source.pmra_error , gaiadr2.gaia_source.pmdec , gaiadr2.gaia_source.pmdec_error , gaiadr2.gaia_source.radial_velocity , gaiadr2.gaia_source.radial_velocity_error
+ FROM  gaiadr2.gaia_source
+ WHERE ( gaiadr2.gaia_source.radial_velocity IS NOT NULL )]]></INFO>
+		<INFO name="CAPTION"
+			value="How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html"><![CDATA[How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html]]></INFO>
+		<INFO name="PAGE" value="" />
+		<INFO name="PAGE_SIZE" value="" />
+		<INFO name="JOBID" value="1642672667268O"><![CDATA[1642672667268O]]></INFO>
+		<INFO name="JOBNAME" value="" />
+		<COOSYS ID="GAIADR2" epoch="J2015.5" system="ICRS" />
+
+		<RESOURCE>
+			<COOSYS ID="t2839507-coosys-1" epoch="J2015.5" system="ICRS" />
+		</RESOURCE>
+		<TABLE>
+			<FIELD arraysize="*" datatype="char" name="designation" ucd="meta.id;meta.main">
+				<DESCRIPTION>Unique source designation (unique across all Data Releases)</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ra" ref="t2839507-coosys-1" ucd="pos.eq.ra;meta.main" unit="deg"
+				utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1">
+				<DESCRIPTION>Right ascension</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="dec" ref="t2839507-coosys-1" ucd="pos.eq.dec;meta.main" unit="deg"
+				utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2">
+				<DESCRIPTION>Declination</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmra" ucd="pos.pm;pos.eq.ra" unit="mas.yr**-1">
+				<DESCRIPTION>Proper motion in right ascension direction</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmra_error" ucd="stat.error;pos.pm;pos.eq.ra" unit="mas.yr**-1">
+				<DESCRIPTION>Standard error of proper motion in right ascension direction</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmdec" ucd="pos.pm;pos.eq.dec" unit="mas.yr**-1">
+				<DESCRIPTION>Proper motion in declination direction</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="pmdec_error" ucd="stat.error;pos.pm;pos.eq.dec" unit="mas.yr**-1">
+				<DESCRIPTION>Standard error of proper motion in declination direction</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="radial_velocity" ucd="spect.dopplerVeloc.opt" unit="km.s**-1">
+				<DESCRIPTION>Radial velocity</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="radial_velocity_error" ucd="stat.error;spect.dopplerVeloc.opt" unit="km.s**-1">
+				<DESCRIPTION>Radial velocity error</DESCRIPTION>
+			</FIELD>
+			<DATA>
+				<BINARY2>
+					<STREAM encoding='base64'>
+AAAAAAAcR2FpYSBEUjIgNTkzMzI2NjgzNDMxMDAwNzgwOEBuTxMKePCZwEpnPHUh
+itbAFslGk3ifZD/ajBzOhLu4wBLjFdE/PEw/16GGZ3CXWMCPOkLL8/SIQASt30sE
+f24AAAAAABxHYWlhIERSMiA0NjU4ODY1NzkxODI3NjgxNTM2QFP21EIDdarAUNYr
+yTiMWz/5vxWGxb49P8J7vgz9jp8/uOoj2CfLID/H2I1lTaGKwI7b7/TBb/xABphR
+o8sRYgAAAAAAHEdhaWEgRFIyIDQxMDMwNDk2MzczMjcyMTM0NDBAcW4zq6IcicAu
+s5llVYJ+v/6zMHqO7/8/zQUFwY8wuMAD6bzf952iP8RY/pigDR3AjtH7NcIFekAR
+5nxj0EffAAAAAAAcR2FpYSBEUjIgNTk1MTExNDQyMDYzMTI2NDY0MEBwQj1rDARP
+wEdlsmc4L9tABXomBklb/j+zzTROc96NQAeCa6THU+U/sHJDR/+mnsCOwjL845Qc
+QAszZlnfHKYAAAAAABxHYWlhIERSMiA1OTY2NzEyMDIzODE0MTAwNzM2QG/8lK+T
+90TARMgnYAvZ5j/2iDSvIdhwP8BPiN/tU/HACfMrYmHhND+4WZ7g3RApwI49/1yJ
+dz5AFy+xNxfasgAAAAAAHEdhaWEgRFIyIDIxOTgyOTIxMTg5OTMwMzg0NjRAdLFa
++ewKDEBMcw2LdA1KwADes5Td1w8/tWrm/Qhhfb/1eMJfuj6HP7TDgurESGPAjQAG
+e+71xEAU3iSSBd/kAAAAAAAcR2FpYSBEUjIgNDA1ODIxMDk2OTAyOTM3MjkyOEBw
+YNTZmEifwD7DQCEVsrPABnR5TqOXKz/X5iJ+HTrbwACKHNuKHs0/03xuyVr9h8CM
+2e1DTrdIP7xdmSC602AeAAAAABxHYWlhIERSMiA0MDYyODgzODI5MDkyMTgyMTQ0
+QHDxEbA0n1zAPCAmSHl0Hn/4AAAAAAAAf/gAAAAAAAB/+AAAAAAAAH/4AAAAAAAA
+wIxqqdxNLno/69KQ65l+4AAAAAAAHEdhaWEgRFIyIDU5NTkwMTk4MDE4MTY1ODIy
+NzJAcH7ZL5Z0FMBE8BwhW/okwAdS3lhdomo/vMYjxpIFhb/yq/opickLP7VjUwjp
+VZvAjDIpFl1MikAGE703gueuAAAAAAAcR2FpYSBEUjIgNDA2NTc5MTM4MDE0NTA3
+NTA3MkBw/zEy0yi+wDjSr5Yzg5jABwU2eVjpkT/F2TFkaJESwCFgV/H6IWk/wzu9
+AEpYuMCLk5RmHw/BQArVCt0jXno=
+</STREAM>
+				</BINARY2>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>

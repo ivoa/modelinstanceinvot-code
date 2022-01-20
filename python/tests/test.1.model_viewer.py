@@ -43,14 +43,17 @@ class TestModelViewer(unittest.TestCase):
 
         XmlUtils.assertXmltreeEqualsFile(self.mviewer._templates,
                                        os.path.join(self.data_path, "data/output/test.1.3.xml"))
-        XmlUtils.assertXmltreeEqualsFile(self.mviewer._references["REFERENCE_2"],
+        XmlUtils.assertXmltreeEqualsFile(self.mviewer._dyn_references["REFERENCE_2"],
                                        os.path.join(self.data_path, "data/output/test.1.4.xml"))
         XmlUtils.assertXmltreeEqualsFile(self.mviewer._joins["JOIN_6"],
                                        os.path.join(self.data_path, "data/output/test.1.5.xml"))
         model_view = self.mviewer.get_model_view()
         XmlUtils.pretty_print(model_view)
+        
+        # We stop here meanwhile we decide how to handle join data
         import sys
         sys.exit(1)
+        
         XmlUtils.assertXmltreeEqualsFile(model_view,
                                        os.path.join(self.data_path, "data/output/test.1.8.xml"))
     

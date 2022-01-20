@@ -115,7 +115,10 @@ class ToJsonConverter(object):
         elif atype == "ivoa:integer":
             attr["@value"] = int(avalue)
         elif atype == "ivoa:RealQuantity" or atype == "ivoa:real":
-            attr["@value"] = float64(avalue)
+            if not attr["@value"] :
+                attr["@value"] = None
+            else:
+                attr["@value"] = float64(avalue)
             
     def _revert_instances(self):
         '''
@@ -132,8 +135,6 @@ class ToJsonConverter(object):
             content = attr["content"]
             host = attr["host"]
             if isinstance(content, dict):
-                if "@dmrole" not in content:
-                    DictUtils.print_pretty_json(attr)
                 role = content["@dmrole"]
                 host[role] = content
                 host[role].pop("@dmrole")

@@ -61,8 +61,8 @@ class ModelViewer(object):
         self._current_data_row = None
         self._last_row=None
         self._templates = None
-        self._joins = None
-        self._references = None
+        self._joins = {}
+        self._dyn_references = {}
         self._extract_mapping_block(votable_path=votable_path)
     
     """
@@ -174,20 +174,21 @@ class ModelViewer(object):
         self._assert_table_is_connected()
         self.table_iterator._rewind()
     
-    def get_model_view(self):
+    def get_model_view(self, resolve_ref=True):
         """
         return a XML model view of the last read row
         """
         self._assert_table_is_connected()
         
         templates_copy = deepcopy(self._templates)
-        StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
+        if resolve_ref is True:
+            StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
         for ele in templates_copy.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
             if ref is not None:
                 index = ele.attrib["index"]
                 ele.attrib["value"] = str(self._current_data_row[int(index)])
-        for dref_tag, dref in self._references.items():
+        for dref_tag, dref in self._dyn_references.items():
             logger.info("resolve reference %s", dref_tag)
             dyn_resolver = DynamicReference(self, dref_tag, self._connected_tableref, dref)
             dyn_resolver._set_mode()
@@ -210,7 +211,6 @@ class ModelViewer(object):
             join_operator.get_matching_data(self._current_data_row)
             ref_element = templates_copy.xpath("//" + join_tag)[0]
             ref_host = ref_element.getparent()
-            print(ref_host)
             for cpart in join_operator.get_matching_model_view():          
                 ref_host.append(deepcopy(cpart))
             # Drop the reference
@@ -220,13 +220,13 @@ class ModelViewer(object):
 
         return templates_copy
 
-    def get_json_model_view(self):
+    def get_json_model_view(self, resolve_ref=True):
         """
         return a JSON model view of the last read row
         """
         self._assert_table_is_connected()
         logger.debug("build json view")
-        tjc = ToJsonConverter(self.get_model_view())
+        tjc = ToJsonConverter(self.get_model_view(resolve_ref=resolve_ref))
         return tjc.get_json_instance()
 
     
@@ -284,9 +284,10 @@ class ModelViewer(object):
         This avoid to have the model view polluted with elements that are not in the model
         """
         for ele in self._templates.xpath("//*[starts-with(name(), 'REFERENCE_')]"):
-            self._references = {ele.tag: deepcopy(ele)}
-            for child in list(ele):
-                ele.remove(child)
+            if ele.get("tableref") is not None:
+                self._dyn_references = {ele.tag: deepcopy(ele)}
+                for child in list(ele):
+                    ele.remove(child)
         
         for ele in self._templates.xpath("//*[starts-with(name(), 'JOIN')]"):
             self._joins = {ele.tag: deepcopy(ele)}

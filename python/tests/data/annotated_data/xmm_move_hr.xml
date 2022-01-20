@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+	<RESOURCE type="results">
+		<INFO name="QUERY_STATUS" value="OK" />
+		<INFO name="QUERY" value=""><![CDATA[SELECT TOP 10 xsa.v_epic_source_cat.date_obs , xsa.v_epic_source_cat."dec" , xsa.v_epic_source_cat.ep_hr1 , xsa.v_epic_source_cat.ep_hr1_err , xsa.v_epic_source_cat.ep_hr2 , xsa.v_epic_source_cat.ep_hr2_err , xsa.v_epic_source_cat.ep_hr3 , xsa.v_epic_source_cat.ep_hr3_err , xsa.v_epic_source_cat.ep_hr4 , xsa.v_epic_source_cat.ep_hr4_err , xsa.v_epic_source_cat.iauname , xsa.v_epic_source_cat.ra
+ FROM  xsa.v_epic_source_cat
+ WHERE ( xsa.v_epic_source_cat.iauname = '4XMM J174544.4-290024' )]]></INFO>
+		<INFO name="CAPTION" value=""></INFO>
+		<INFO name="PAGE" value=""></INFO>
+		<INFO name="PAGE_SIZE" value=""></INFO>
+		<INFO name="JOBID" value="1642672988079O"><![CDATA[1642672988079O]]></INFO>
+		<INFO name="JOBNAME" value=""></INFO>
+
+		<TABLE>
+			<FIELD arraysize="*" datatype="char" name="date_obs">
+				<DESCRIPTION>Start date of the observation in UTC</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="dec" unit="deg">
+				<DESCRIPTION>Declination J2000 [degrees]</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr1">
+				<DESCRIPTION>EPIC Hardness Ratio 1, between counts in the 0.5-1.0 and the 0.2-0.5 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr1_err">
+				<DESCRIPTION>Error on EPIC Hardness Ratio 1, between counts in the 0.5-1.0 and the 0.2-0.5 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr2">
+				<DESCRIPTION>EPIC hardness ratio between the 0.5-1.0 keV and 1.0-2.0 keV bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr2_err">
+				<DESCRIPTION>Error on EPIC hardness ratio between the 0.5-1.0 keV and 1.0-2.0 keV bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr3">
+				<DESCRIPTION>EPIC Hardness Ratio 3, between the counts in the 2.0-4.5 and 1.0-2.0 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr3_err">
+				<DESCRIPTION>Error on EPIC Hardness Ratio 3, between the counts in the 2.0-4.5 and 1.0-2.0 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr4">
+				<DESCRIPTION>EPIC Hardness Ratio 4, between the counts in the 4.5-12.0 and 2.0-4.5 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ep_hr4_err">
+				<DESCRIPTION>Error on EPIC Hardness Ratio 4, between the counts in the 4.5-12.0 and 2.0-4.5 keV energy bands</DESCRIPTION>
+			</FIELD>
+			<FIELD arraysize="*" datatype="char" name="iauname">
+				<DESCRIPTION>The IAU name assigned to the unique SRCID</DESCRIPTION>
+			</FIELD>
+			<FIELD datatype="double" name="ra" unit="deg">
+				<DESCRIPTION>Right Ascension [degrees]</DESCRIPTION>
+			</FIELD>
+			<DATA>
+				<BINARY2>
+					<STREAM encoding='base64'>
+AAAAAAAVMjAwOC0wMy0yM1QxNDo1OTo0My4wwD0BO01JZBY/1wO+ZgG8mUAd1Q/H
+HWBjv/AAAAAAAABAMMawdKdxyT/wAAAAAAAAP5mpiHoMi38/1ae3aY45Ez+1TBuM
+eHPaAAAAFTRYTU0gSjE3NDU0NC40LTI5MDAyNEBwpuCfrl8NAAAAAAAVMjAxMi0w
+OS0wMlQxOToxMDowNC4wwD0B4PPSEpG/7d0COZYjwz/pY7POzwWMP8d3yWU5P70/
+9sNhE0BOpT/vd3QKk9e5P7AKrzCErSM/5kv7FbVz6z+0/lOtfCSUAAAAFTRYTU0g
+SjE3NDU0NC40LTI5MDAyNEBwpvnzNmOsAAAAAAAVMjAxOS0wOC0zMVQxNToyNzoz
+MS4wwD0B7i2WNnE/8AAAAAAAAD/comNstuKAv/AAAAAAAAA//3BYV6/qPj/wAAAA
+AAAAP7Zm7HMwTlE/4thVzLsvFj+88lolD4QCAAAAFTRYTU0gSjE3NDU0NC40LTI5
+MDAyNEBwpvoewtYBAAAAAAAVMjAwMS0wOS0wNFQwMToyMDo0Mi4wwD0B5bRpOIe/
+8AAAAAAAAEAC7pu/DcdpP/AAAAAAAAA/03GqZ0c29j/u/4YnzM2kP6ix1ft0qvg/
+3tCUbQnulj+28OeJO6h4AAAAFTRYTU0gSjE3NDU0NC40LTI5MDAyNEBwpv5V1rQd
+AAAAAAAVMjAxOS0wMy0zMVQwNDo0MzoxOC4wwD0B8lZl0pe/4bQo/HiMAz/o0wRU
+IpcEP++v7qVkqPc/4QdqIdzJmj/vPhAGB4D+P7SckO/R34Y/4jGbTc6/7D+3afGL
+SB0lAAAAFTRYTU0gSjE3NDU0NC40LTI5MDAyNEBwpv2ar9VWAAAAAAAVMjAxOS0w
+OC0zMVQyMjowNzozMS4wwD0B1sSdJ2e/6Lvttygf2j/TucX0a3dHP+saePJaJRA/
+40uEmICU5j/v7DaJ/8ijP5sUTxdqVN0/5GKl54W1tz+za+FPkLbyAAAAFTRYTU0g
+SjE3NDU0NC40LTI5MDAyNEBwpvqFe09jAAAAAAAVMjAxMi0wMy0xOVQwMzo1Mjoz
+OC4wwD0B3sFClEi/7rF+yFz7hD/WPN5CQBZxv/AAAAAAAABAE75avA44qD/wAAAA
+AAAAP7Bzy/+dWZg/5v6Sd2Zo6z+/KT0QK8cuAAAAFTRYTU0gSjE3NDU0NC40LTI5
+MDAyNEBwpv+NFztsAAAAAAAVMjAxMS0wOC0zMVQyMzoxNDoyMy4wwD0CKXNTFUU/
+5dL78KbGqT/X4DDCP6sRv7zEvTPSlWQ/5QfaVHTMWz/v5C+KMUbKP6XymryvSFg/
+6Af2bobGWD+0N5Rr3UjGAAAAFTRYTU0gSjE3NDU0NC40LTI5MDAyNEBwpv4Zpuk6
+AAAAAAAVMjAxMi0wOC0zMVQxMToyMDoyNi4wwD0B/z6zXM0/8AAAAAAAAEAib62v
+0RODv/AAAAAAAABAJ8KbKA8Swj/wAAAAAAAAP7s9tJZ1Ies/7B/JKNNd4T+1qz6y
+mEMtAAAAFTRYTU0gSjE3NDU0NC40LTI5MDAyNEBwpvauu81zAAAAAAAVMjAxMy0w
+OS0yMlQyMToxNTo0OS4wwD0B4ikZ0aY/y284nP9/qD/nxlBGaXDdP9vkBCD28I0/
+27Bxt9NAhD/vURVmmZINP7AWXxIJQfM/5QIpOovtCT+8Mw1zhgmaAAAAFTRYTU0g
+SjE3NDU0NC40LTI5MDAyNEBwpvuJwxVy
+</STREAM>
+				</BINARY2>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
+</VOTABLE>

@@ -25,7 +25,7 @@ class TestMapppingBuilder(unittest.TestCase):
 
         mviewer.connect_table('_PKTable')
 
-        dynamic_ref = DynamicReference(mviewer, "REFERENCE_2", '_PKTable', mviewer._references["REFERENCE_2"])
+        dynamic_ref = DynamicReference(mviewer, "REFERENCE_2", '_PKTable', mviewer._dyn_references["REFERENCE_2"])
         dynamic_ref._set_mode()
         
         self.assertEqual(dynamic_ref.target_id, '_Datasets')

@@ -43,7 +43,8 @@ class TestJoinOperator(unittest.TestCase):
         for line in join_operator.get_matching_data(row):
             self.assertEqual(line[0], "5813181197970338560")
             self.assertEqual(line[2], "G")
-        
+            
+        XmlUtils.pretty_print(join_operator.get_matching_model_view()[0])
         XmlUtils.assertXmltreeEqualsFile(join_operator.get_matching_model_view()[0], 
                 os.path.join(
                     self.data_path, "data/output/test.6.3.xml"

@@ -85,7 +85,6 @@ class JoinOperator(object):
         for tableref in self.annotation_seeker.get_tablerefs():
             if self.annotation_seeker.get_templates_instance_by_dmid(tableref, self.target_id) is not None:
                 self.foreign_xml_instance = self.annotation_seeker.get_templates_instance_by_dmid(tableref, self.target_id)
-                print(tableref)
                 self.target_table_id = tableref
                 logger.debug("Found INSTANCE dmid=%s in table %s ", self.target_id, self.target_table_id)
                 break
@@ -142,6 +141,7 @@ class JoinOperator(object):
         for joined_row in self.last_joined_data:
             templates_copy = deepcopy(self.foreign_xml_instance)
             StaticReferenceResolver.resolve(self.annotation_seeker, self.table_ref, templates_copy)
+            # resolve references in attributes
             for ele in templates_copy.xpath("//ATTRIBUTE"):
                 ref = ele.get("ref")
                 if ref is not None:
