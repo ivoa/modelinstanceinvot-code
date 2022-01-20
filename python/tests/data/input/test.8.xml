@@ -1,0 +1,42 @@
+<INSTANCE dmrole="" dmtype="meas:Position">
+	<ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
+	<INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
+        <INSTANCE dmrole="coord:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="253.923544" />
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+        </INSTANCE>
+        <INSTANCE dmrole="coord:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" index="4" value="-42.8271581" />
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+        </INSTANCE>
+        <INSTANCE dmrole="coord:LonLatPoint.dist" dmtype="ivoa:RealQuantity">
+        <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="psec" />
+        </INSTANCE>
+
+
+		<INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceFrame" dmrole="coords:Coordinate.coordSys">
+			<INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+				<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
+			</INSTANCE>
+			<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
+			<ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="NoSet" />
+		</INSTANCE>
+	</INSTANCE>
+	<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Ellipse">
+		<COLLECTION dmrole="meas:Ellipse.semiAxis">
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r0" index="5" value="21.157" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec" />
+			</INSTANCE>
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r1" index="6" value="13.738" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec" />
+			</INSTANCE>
+		</COLLECTION>
+		<INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="PA" index="7" value="61.84" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+		</INSTANCE>
+	</INSTANCE>
+</INSTANCE>
