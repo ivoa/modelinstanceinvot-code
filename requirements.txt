@@ -1,4 +1,3 @@
-json
 lxml
 xmltojson
 numpy
