@@ -1,3 +1,5 @@
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ivoa/modelinstanceinvot-code/merge-syntax)
+
 ### Python Workflow
 
 This folder contains demonstrators for all the steps of the VOTable annotation process.
