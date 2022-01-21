@@ -149,9 +149,14 @@ Execution Reports
 				<dm-mapping:INSTANCE dmrole="" dmtype="meas:Position">
 					<dm-mapping:ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
 					<dm-mapping:INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.lon" dmtype="ivoa:real" ref="RAICRS" />
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.lat" dmtype="ivoa:real" ref="DEICRS" />
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.dist" dmtype="ivoa:real" value="" />
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lon">
+								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" />
+								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+						</dm-mapping:INSTANCE>
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lat">
+								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" />
+								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+						</dm-mapping:INSTANCE>
 						<dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
 					</dm-mapping:INSTANCE>
 					<dm-mapping:INSTANCE dmrole="meas:Measure.error" dmtype="meas:Ellipse">
@@ -175,9 +180,14 @@ Execution Reports
 				<dm-mapping:INSTANCE dmrole="" dmtype="meas:Position">
 					<dm-mapping:ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
 					<dm-mapping:INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.lon" dmtype="ivoa:real" ref="GLON" />
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.lat" dmtype="ivoa:real" ref="GLAT" />
-						<dm-mapping:ATTRIBUTE dmrole="coord:LonLatPoint.dist" dmtype="ivoa:real" value="" />
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lon">
+							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="GLON" />
+							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+						</dm-mapping:INSTANCE>
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lat">
+							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="GLAT" />
+							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+						</dm-mapping:INSTANCE>
 						<dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_Galactic" />
 					</dm-mapping:INSTANCE>
 					<dm-mapping:INSTANCE dmrole="meas:Measure.error" dmtype="meas:Ellipse">
@@ -191,7 +201,7 @@ Execution Reports
 								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec" />
 							</dm-mapping:INSTANCE>
 						</dm-mapping:COLLECTION>
-						<dm-mapping:INSTANCE dmrole="meas:Ellipse.posAngle " dmtype="ivoa:RealQuantity">
+						<dm-mapping:INSTANCE dmrole="meas:Ellipse.posAngle" dmtype="ivoa:RealQuantity">
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="PA" />
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
 						</dm-mapping:INSTANCE>

@@ -52,7 +52,6 @@ class LonLatPoint(Point):
             self.dist = Quantity(ele)
             break
 
-
     def __repr__(self):
-        return f"[{self.dmtype}: {self.lon} {self.lat} {self.dist} {self.coordSys}]"
+        return f"[{self.dmtype}: {self.lon} {self.lat} {self.coordSys}]"
         
