@@ -22,12 +22,15 @@ class Position(object):
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.error"]'):
             self.error = Error.get_error(ele)
+            break
             
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:Position.ucd"]'):
             self.ucd = ele.get("value")
+            break
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Position.coord"]'):
             self.coord = Point.get_point(ele)
+            break
 
         
 
