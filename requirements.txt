@@ -1,0 +1,4 @@
+lxml
+xmltojson
+numpy
+astropy

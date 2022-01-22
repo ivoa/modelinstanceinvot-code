@@ -10,8 +10,6 @@ class Position(object):
     '''
     classdocs
     '''
-
-
     def __init__(self, model_view):
         '''
         Constructor
@@ -32,6 +30,8 @@ class Position(object):
             self.coord = Point.get_point(ele)
             break
 
+    def __repr__(self):
+        return f"ucd: {self.ucd} coord: {self.coord} error: {self.error}"
         
 
         

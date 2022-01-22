@@ -15,6 +15,7 @@ from .dynamic_reference import DynamicReference
 from .to_json_converter import ToJsonConverter
 from .json_block_extractor import JsonBlockExtractor
 from .join_operator import JoinOperator
+from client.stc_classes.position import Position
 from utils.dict_utils import DictUtils
 class ModelViewer(object):
     '''
@@ -239,7 +240,17 @@ class ModelViewer(object):
         json_view = self.get_json_model_view()
         return JsonBlockExtractor.search_subelement_by_type(json_view, searched_dmtype)
 
-        pass
+    def get_model_component_by_type(self, searched_dmtype):
+        """
+        return the list of the xml instances with @dmtype=searched_ type from the model view of the current data row
+        Return a {} if no matching dmtype was found 
+        """
+        self._assert_table_is_connected()
+        retour = []
+        model_view = self.get_model_view(resolve_ref=True)
+        for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
+            retour.append(deepcopy(ele)) 
+        return retour
     
     def get_json_model_component_by_role(self, searched_dmrole):
         """
@@ -249,6 +260,11 @@ class ModelViewer(object):
         self._assert_table_is_connected()
         json_view = self.get_json_model_view()
         return JsonBlockExtractor.search_subelement_by_role(json_view, searched_dmrole)
+
+    def get_stc_positions(self):
+        for position in self.get_model_component_by_type("meas:Position"):
+            print( Position(position))
+
 
     
     """
