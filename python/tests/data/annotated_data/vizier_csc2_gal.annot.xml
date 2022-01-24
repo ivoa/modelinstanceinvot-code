@@ -147,13 +147,13 @@ Execution Reports
 			<dm-mapping:TEMPLATES tableref="Results">
 			
 				<dm-mapping:INSTANCE dmrole="" dmtype="meas:Position">
-					<dm-mapping:ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
-					<dm-mapping:INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
-						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lon">
+					<dm-mapping:ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
+					<dm-mapping:INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
 								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" />
 								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
 						</dm-mapping:INSTANCE>
-						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lat">
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
 								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" />
 								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
 						</dm-mapping:INSTANCE>
@@ -178,13 +178,13 @@ Execution Reports
 				</dm-mapping:INSTANCE>
 				
 				<dm-mapping:INSTANCE dmrole="" dmtype="meas:Position">
-					<dm-mapping:ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
-					<dm-mapping:INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
-						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lon">
+					<dm-mapping:ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
+					<dm-mapping:INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="GLON" />
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
 						</dm-mapping:INSTANCE>
-						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coord:LonLatPoint.lat">
+						<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="GLAT" />
 							<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
 						</dm-mapping:INSTANCE>

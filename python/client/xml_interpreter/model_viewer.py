@@ -15,7 +15,8 @@ from .dynamic_reference import DynamicReference
 from .to_json_converter import ToJsonConverter
 from .json_block_extractor import JsonBlockExtractor
 from .join_operator import JoinOperator
-from client.stc_classes.position import Position
+from client.stc_classes.measure import Measure
+from client.stc_classes.measure import Position, Time, GenericMeasure
 from utils.dict_utils import DictUtils
 class ModelViewer(object):
     '''
@@ -262,8 +263,42 @@ class ModelViewer(object):
         return JsonBlockExtractor.search_subelement_by_role(json_view, searched_dmrole)
 
     def get_stc_positions(self):
+        """
+        returns the all positions found as a list of STC Positions instances  
+        """
+        retour = []
         for position in self.get_model_component_by_type("meas:Position"):
-            print( Position(position))
+            retour.append(Position(position))
+        return retour
+    
+    def get_stc_times(self):
+        """
+        returns the all positions found as a list of STC Time instances  
+        """
+        retour = []
+        for time in self.get_model_component_by_type("meas:Time"):
+            retour.append(Time(time))
+        return retour
+    
+    def get_stc_generic_measures(self):
+        """
+        returns the all positions found as a list of STC Time instances  
+        """
+        retour = []
+        for measure in self.get_model_component_by_type("meas:GenericMeasure"):
+            retour.append(GenericMeasure(measure))
+        return retour
+    
+    def get_stc_measures(self):
+        """
+        returns the all positions found as a list of STC Positions instances  
+        """
+        retour = []
+        model_view = self.get_model_view(resolve_ref=True)
+        for ele in model_view.xpath(f'.//INSTANCE[ATTRIBUTE[@dmrole="meas:Measure.ucd"]]'):
+            retour.append(Measure.get_measure(ele)) 
+        return retour
+
 
 
     

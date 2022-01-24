@@ -1,4 +1,6 @@
 lxml
+mplcursors
+ipympl
 xmltojson
 numpy
 astropy

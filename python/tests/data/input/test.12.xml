@@ -1,0 +1,37 @@
+<INSTANCE dmrole="" dmtype="meas:ProperMotion">
+	<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.pm" />
+	<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+		<INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="1.1" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+		</INSTANCE>
+		<INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" index="4" value="2.2" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+		</INSTANCE>
+		<ATTRIBUTE dmrole="meas:ProperMotion.cosLat_applied" dmtype="ivoa:bool" ref="DEICRS" index="4" value="true" />
+
+	</INSTANCE>
+	<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Bound2D">
+		<COLLECTION dmrole="meas:Bounds2D.loLimit">
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r0" index="5" value="1.0" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+			</INSTANCE>
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r1" index="6" value="2.1" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+			</INSTANCE>
+		</COLLECTION>
+		<COLLECTION dmrole="meas:Bounds2D.hiLimit">
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r0" index="5" value="1.2" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+			</INSTANCE>
+			<INSTANCE dmtype="ivoa:RealQuantity">
+				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="r1" index="6" value="2.3" />
+				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+			</INSTANCE>
+		</COLLECTION>
+	</INSTANCE>
+</INSTANCE>

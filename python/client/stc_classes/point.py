@@ -23,7 +23,7 @@ class Point(object):
     @staticmethod 
     def get_point(model_view):
         dmtype = model_view.get("dmtype")
-        if dmtype == "coord:LonLatPoint":
+        if dmtype == "coords:LonLatPoint":
             return LonLatPoint(model_view)
         else:
             raise Exception(f"Point type {dmtype} not supported yet")
@@ -42,13 +42,13 @@ class LonLatPoint(Point):
         self.dist = None
         self.dmtype = "LonLatPoint"
         
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="coord:LonLatPoint.lon"]'):
-            self.lon = Quantity(ele)
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lon"]'):
+            self.lon = Quantity(ele))
             break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="coord:LonLatPoint.lat"]'):
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lat"]'):
             self.lat = Quantity(ele)
             break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="coord:LonLatPoint.dist"]'):
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.dist"]'):
             self.dist = Quantity(ele)
             break
 

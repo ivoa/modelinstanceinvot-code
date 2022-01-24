@@ -6,20 +6,21 @@ Created on jan  2022
 import unittest
 import os
 
-from client.stc_classes.measure import Position
+from client.stc_classes.measure import Time
 from utils.xml_utils import XmlUtils
 
-class TestSTCPosition(unittest.TestCase):
+class TestSTCGeneric(unittest.TestCase):
 
     def test_PKTable(self):      
         self.maxDiff = None
-        vpath = os.path.join(self.data_path, "data/input/test.8.xml")
+        vpath = os.path.join(self.data_path, "data/input/test.10.xml")
         
         xmltree = XmlUtils.xmltree_from_file(vpath)
-        position = Position(xmltree)
+        measure = Time(xmltree)
 
-        self.assertEqual(position.error.__repr__(), "[Ellipse: [21.157arcsec 21.157arcsec] 61.84deg]")
-        self.assertEqual(position.coord.__repr__(), "[LonLatPoint: 253.923544deg -42.8271581deg ICRS]")
+        self.assertIsNone(measure.error)
+        self.assertEqual(measure.coord.__repr__(), "[ISOTime: 2022-01-23 [TT GEOCENTER]]")
+        self.assertEqual(measure.__repr__(), "ucd: time coords: [ISOTime: 2022-01-23 [TT GEOCENTER]] error: None")
         
 
     def setUp(self):

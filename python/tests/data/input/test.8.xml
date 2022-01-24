@@ -1,18 +1,18 @@
 <INSTANCE dmrole="" dmtype="meas:Position">
-	<ATTRIBUTE dmrole="meas:Position.ucd" dmtype="ivoa:string" value="pos" />
-	<INSTANCE dmrole="meas:Position.coord" dmtype="coord:LonLatPoint">
-        <INSTANCE dmrole="coord:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
-            <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="253.923544" />
-            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-        </INSTANCE>
-        <INSTANCE dmrole="coord:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
-            <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" index="4" value="-42.8271581" />
-            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-        </INSTANCE>
-        <INSTANCE dmrole="coord:LonLatPoint.dist" dmtype="ivoa:RealQuantity">
-        <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
-            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="psec" />
-        </INSTANCE>
+	<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
+	<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+		<INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="253.923544" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+		</INSTANCE>
+		<INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="DEICRS" index="4" value="-42.8271581" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+		</INSTANCE>
+		<INSTANCE dmrole="coords:LonLatPoint.dist" dmtype="ivoa:RealQuantity">
+			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
+			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="psec" />
+		</INSTANCE>
 
 
 		<INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceFrame" dmrole="coords:Coordinate.coordSys">

@@ -27,7 +27,9 @@ class TestLonLatPoint(unittest.TestCase):
         DictUtils.print_pretty_json(self.mviewer.get_json_model_component_by_type("coords:SpaceFrame"))
         for position in self.mviewer.get_model_component_by_type("meas:Position"):
             XmlUtils.pretty_print(position)
-        self.mviewer.get_stc_positions()
+        print(self.mviewer.get_stc_positions())
+        print(self.mviewer.get_stc_measures())
+        
     @classmethod
     def setUpClass(cls):
         cls.data_path = os.path.dirname(os.path.realpath(__file__))

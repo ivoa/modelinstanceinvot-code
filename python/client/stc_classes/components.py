@@ -3,6 +3,7 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+
 class Quantity():
     
     def __init__(self, model_view):
@@ -12,7 +13,7 @@ class Quantity():
             dmrole = att.get("dmrole")
             value = att.get("value")
             if dmrole == "ivoa:Quantity.val":
-                self.value = value
+                self.value = float(value)
             if dmrole == "ivoa:Quantity.unit":
                 self.unit = value
                 

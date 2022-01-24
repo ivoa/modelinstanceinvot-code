@@ -1,0 +1,12 @@
+<INSTANCE dmrole="" dmtype="meas:Time">
+	<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="time" />
+	<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:ISOTime">
+		<ATTRIBUTE dmrole="coords:ISOTime.date" dmtype="ivoa:real" ref="RAICRS" index="3" value="2022-01-23" />
+		<INSTANCE dmid="TimeFrame_ICRS" dmrole="coords:Coordinate.coordSys" dmtype="coords:TimeFrame">
+			<INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+				<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="GEOCENTER" />
+			</INSTANCE>
+			<ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TT" />
+		</INSTANCE>
+	</INSTANCE>
+</INSTANCE>
