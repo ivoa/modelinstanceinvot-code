@@ -273,7 +273,7 @@ class ModelViewer(object):
     
     def get_stc_times(self):
         """
-        returns the all positions found as a list of STC Time instances  
+        returns the all time measure found as a list of STC Time instances  
         """
         retour = []
         for time in self.get_model_component_by_type("meas:Time"):
@@ -282,7 +282,7 @@ class ModelViewer(object):
     
     def get_stc_generic_measures(self):
         """
-        returns the all positions found as a list of STC Time instances  
+        returns the all generic measures found as a list of STC Time instances  
         """
         retour = []
         for measure in self.get_model_component_by_type("meas:GenericMeasure"):
@@ -291,11 +291,21 @@ class ModelViewer(object):
     
     def get_stc_measures(self):
         """
-        returns the all positions found as a list of STC Positions instances  
+        returns the all measures found as a list of STC Positions instances  
         """
         retour = []
         model_view = self.get_model_view(resolve_ref=True)
         for ele in model_view.xpath(f'.//INSTANCE[ATTRIBUTE[@dmrole="meas:Measure.ucd"]]'):
+            retour.append(Measure.get_measure(ele)) 
+        return retour
+
+    def get_stc_measures_by_ucd(self, ucd):
+        """
+        returns the all measures found as a list of STC Positions instances  
+        """
+        retour = []
+        model_view = self.get_model_view(resolve_ref=True)
+        for ele in model_view.xpath(f'.//INSTANCE[ATTRIBUTE[@dmrole="meas:Measure.ucd" and @value="{ucd}"]]'):
             retour.append(Measure.get_measure(ele)) 
         return retour
 

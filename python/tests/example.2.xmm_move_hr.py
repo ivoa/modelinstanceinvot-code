@@ -52,6 +52,7 @@ class TestLonLatPoint(unittest.TestCase):
         for dec in decs:
             decm += dec
         decm /= len(decs)
+        
         for i in range(len(ras)):
             ras[i] = 3600*(ras[i] - ram)
             decs[i] = 3600*(decs[i] - decm)

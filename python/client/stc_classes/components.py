@@ -13,7 +13,11 @@ class Quantity():
             dmrole = att.get("dmrole")
             value = att.get("value")
             if dmrole == "ivoa:Quantity.val":
-                self.value = float(value)
+                try:
+                    self.value = float(value)
+                except :
+                    self.value = float('NaN')
+
             if dmrole == "ivoa:Quantity.unit":
                 self.unit = value
                 
