@@ -25,6 +25,10 @@ class Error(object):
             return Bound2D(model_view)
         elif dmtype == "meas:Bound3D":
             return Bound3D(model_view)
+        elif dmtype == "meas:Asymmetrical2D":
+            return Asymmetrical2D(model_view)
+        elif dmtype == "meas:Asymmetrical3D":
+            return Asymmetrical3D(model_view)
         else:
             raise Exception(f"Error type {dmtype} not supported yet")
         return "error"
@@ -116,3 +120,52 @@ class Bound3D(Error):
             f"[{self.loLimit[0].value} {self.hiLimit[0].value}]{self.hiLimit[0].unit} "\
             f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit} "\
             f"[{self.loLimit[2].value} {self.hiLimit[2].value}]{self.hiLimit[2].unit}]"
+
+class Asymmetrical2D(Error):
+    '''
+    classdocs
+    '''
+    def __init__(self, model_view):
+        '''
+        Constructor
+        '''
+        self.plus = []
+        self.minus = []
+        self.dmtype = "Asymmetrical2D"
+        
+        for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical2D.plus"]/INSTANCE'):
+            self.plus.append(Quantity(ele))
+            
+        for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical2D.minus"]/INSTANCE'):
+            self.minus.append(Quantity(ele))
+                
+
+    def __repr__(self):
+        return f"[{self.dmtype}: ["\
+            f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
+            f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit} "
+                
+class Asymmetrical3D(Error):
+    '''
+    classdocs
+    '''
+    def __init__(self, model_view):
+        '''
+        Constructor
+        '''
+        self.plus = []
+        self.minus = []
+        self.dmtype = "Asymmetrical3D"
+        
+        for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical3D.plus"]/INSTANCE'):
+            self.plus.append(Quantity(ele))
+            
+        for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical3D.minus"]/INSTANCE'):
+            self.minus.append(Quantity(ele))
+                
+
+    def __repr__(self):
+        return f"[{self.dmtype}: ["\
+            f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
+            f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit} "\
+            f"[+{self.plus[2].value} -{self.minus[2].value}]{self.minus[2].unit}]"
