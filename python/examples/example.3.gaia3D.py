@@ -67,7 +67,7 @@ class TestLonLatDistPoint(unittest.TestCase):
    
     @classmethod
     def setUpClass(cls):
-        cls.data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data/annotated_data/")
+        cls.data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data/")
         cls.votable = parse(os.path.join(cls.data_path, "gaia_luhman16.xml"))
         
         cls.mviewer = None

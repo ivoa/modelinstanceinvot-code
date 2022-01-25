@@ -4,7 +4,7 @@ Created on Jul 6, 2020
 @author: laurentmichel
 '''
 
-from client.translator.vocabulary import Ele, Att
+from client.xml_interpreter.vocabulary import Att
 
 
 class AttUtils(object):

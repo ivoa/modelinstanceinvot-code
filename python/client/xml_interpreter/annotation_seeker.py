@@ -5,8 +5,7 @@ Created on 11 Dec 2021
 '''
 from client.xml_interpreter.exceptions import MappingException
 from client.xml_interpreter.vocabulary import Att, Ele
-from client.translator import logger
-from utils.dict_utils import DictUtils
+from client import logger
 
 
 class AnnotationSeeker(object):

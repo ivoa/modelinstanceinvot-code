@@ -69,11 +69,11 @@ class TestLonLatPoint(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.data_path = os.path.dirname(os.path.realpath(__file__))
-        cls.votable = parse(os.path.join(cls.data_path, "data/annotated_data/xmm_move_hr.xml"))
+        cls.votable = parse(os.path.join(cls.data_path, "data/xmm_move_hr.xml"))
         
         cls.mviewer = None
         for resource in cls.votable.resources:
-            cls.mviewer = ModelViewer(resource, votable_path=os.path.join(cls.data_path, "data/annotated_data/xmm_move_hr.xml"))
+            cls.mviewer = ModelViewer(resource, votable_path=os.path.join(cls.data_path, "data/xmm_move_hr.xml"))
             break;
 
 

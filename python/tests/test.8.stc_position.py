@@ -18,8 +18,8 @@ class TestSTCPosition(unittest.TestCase):
         xmltree = XmlUtils.xmltree_from_file(vpath)
         position = Position(xmltree)
 
-        self.assertEqual(position.error.__repr__(), "[Ellipse: [21.157arcsec 21.157arcsec] 61.84deg]")
-        self.assertEqual(position.coord.__repr__(), "[LonLatPoint: 253.923544deg -42.8271581deg ICRS]")
+        self.assertEqual(position.error.__repr__(), "[Ellipse: [21.157arcsec 13.738arcsec] 61.84deg]")
+        self.assertEqual(position.coord.__repr__(), "[LonLatPoint: 253.923544deg -42.8271581deg nanpsec ICRS]")
         
 
     def setUp(self):
