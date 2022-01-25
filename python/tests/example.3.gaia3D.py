@@ -13,10 +13,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 from astropy.io.votable import parse
 from utils.quantity_converter import QuantityConverter
+
 from client.xml_interpreter.model_viewer import ModelViewer
 
 matplotlib.font_manager: logging.getLogger('matplotlib.font_manager').setLevel(logging.WARNING)
-class TestLonLatPoint(unittest.TestCase):
+class TestLonLatDistPoint(unittest.TestCase):
     votable = None
     mviewer = None
     def test_global_getters(self):      
@@ -27,7 +28,8 @@ class TestLonLatPoint(unittest.TestCase):
         times = []
         ras = []
         decs = []
-        dist = []       
+        dist = []
+        
         must_convert = False
         first_row = True
         while True:
@@ -53,7 +55,6 @@ class TestLonLatPoint(unittest.TestCase):
                 dist.append(position.coord.dist.value)   
                 pm = self.mviewer.get_stc_measures_by_ucd("pos.pm")[0]
                 times.append(f"Proper Motion ({pm.coord.lon.unit}):\nra:{pm.coord.lon.value:.2f} \ndec:{pm.coord.lat.value:.2f}")
-
             
         fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
