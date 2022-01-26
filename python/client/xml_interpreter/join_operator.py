@@ -129,7 +129,6 @@ class JoinOperator(object):
                     break
             if is_valid is True:
                 retour.append(row)
-            break
         self.last_joined_data = retour
         return retour
     

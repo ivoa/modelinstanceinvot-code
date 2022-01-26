@@ -24,25 +24,48 @@ class ToJsonConverter(object):
         self.xml_instance = xml_instance
         self.json_instance = None
         
-    def _translate_xml(self):
+    def _translate_xml_templates(self):
         '''
-        Translates the xml block given to the constructor into a 
+        Translates the xml TEMPLATES block given to the constructor into a 
         dictionary with the following structure:
         { tablename:[{obj1}, .... {objn}] where {obj1}, .... {objn} are the objects mapping one table row.
         These are actually made with the content of dmrole-less INSTANCE elements.
         The INSTANCE keys are removed to hide these objects to the further processing which would fail
-        due to the lack ofdmrole.
+        due to the lack of dmrole.
         '''
         xmv = lxml.etree.tostring(self.xml_instance)
         tmp_json_block = xmltodict.parse(xmv) 
+        if "TEMPLATES" not in tmp_json_block.keys():
+            self._translate_xml_instance()
+            return
         tmp_json_block_tmpl = tmp_json_block["TEMPLATES"]
         self.json_instance = {}
-        self.json_instance[tmp_json_block_tmpl["@tableref"]] = []
-        tbl = self.json_instance[tmp_json_block_tmpl["@tableref"]]
+        tableref = tmp_json_block_tmpl["@tableref"]
+        self.json_instance[tableref] = []
+        tbl = self.json_instance[tableref]
         for key, value in tmp_json_block_tmpl.items():
-            if key.startswith("@") is True:
-                continue
-            tbl.append(value)
+            if key.startswith("@") is False:
+                tbl.append(value)
+                
+    def _translate_xml_instance(self):
+        '''
+        Translates the xml block given to the constructor into a 
+        dictionary with the following structure:
+        { "NoTable":[{obj1}, .... {objn}] where {obj1}, .... {objn} are the objects mapping one table row.
+        These are actually made with the content of dmrole-less INSTANCE elements.
+        The INSTANCE keys are removed to hide these objects to the further processing which would fail
+        due to the lack of dmrole.
+        '''
+        xmv = lxml.etree.tostring(self.xml_instance)
+        tmp_json_block = xmltodict.parse(xmv) 
+        #tmp_json_block_tmpl = tmp_json_block["TEMPLATES"]
+        self.json_instance = {}
+        tableref = "NoTable"
+        self.json_instance[tableref] = []
+        tbl = self.json_instance[tableref]
+        for key, value in tmp_json_block.items():
+            if key.startswith("@") is False:
+                tbl.append(value)
                  
     def _revert_collections(self):
         '''
@@ -150,7 +173,7 @@ class ToJsonConverter(object):
         Run the sequence of operations that will issue a clean serialization if the object
         The result is a list of instances role-less.
         '''
-        self._translate_xml()
+        self._translate_xml_templates()
         self._revert_collections()
         self._revert_attributes()
         self._revert_instances()

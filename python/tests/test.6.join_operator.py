@@ -26,9 +26,6 @@ class TestJoinOperator(unittest.TestCase):
 
         mviewer.connect_table('_PKTable')
 
-        mapping_block = XmlUtils.xmltree_from_file(
-            os.path.join(self.data_path, "data/input/test.0.xml"))  
-        
         join_block = XmlUtils.xmltree_from_file(
             os.path.join(self.data_path, "data/input/test.6.xml"))  
         join_operator = JoinOperator(mviewer, '_PKTable', join_block)
@@ -44,7 +41,6 @@ class TestJoinOperator(unittest.TestCase):
             self.assertEqual(line[0], "5813181197970338560")
             self.assertEqual(line[2], "G")
             
-        XmlUtils.pretty_print(join_operator.get_matching_model_view()[0])
         XmlUtils.assertXmltreeEqualsFile(join_operator.get_matching_model_view()[0], 
                 os.path.join(
                     self.data_path, "data/output/test.6.3.xml"
