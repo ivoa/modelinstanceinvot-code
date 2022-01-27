@@ -318,8 +318,6 @@ class ModelViewer(object):
         """
         return SkyCoord(self.get_stc_measures()).get_sky_coord()
         
-
-    
     """
     Private methods
     """
