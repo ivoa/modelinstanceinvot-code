@@ -132,14 +132,15 @@ class JoinOperator(object):
         self.last_joined_data = retour
         return retour
     
-    def get_matching_model_view(self):
+    def get_matching_model_view(self, resolve_ref=True):
         if self.last_joined_data is None:
             return None
         retour = []
 
         for joined_row in self.last_joined_data:
             templates_copy = deepcopy(self.foreign_xml_instance)
-            StaticReferenceResolver.resolve(self.annotation_seeker, self.table_ref, templates_copy)
+            if resolve_ref is True:
+                StaticReferenceResolver.resolve(self.annotation_seeker, self.table_ref, templates_copy)
             # resolve references in attributes
             for ele in templates_copy.xpath("//ATTRIBUTE"):
                 ref = ele.get("ref")

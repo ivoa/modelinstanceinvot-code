@@ -41,6 +41,8 @@ class Measure(object):
                 return Position(model_view)
             elif dmtype == "meas:Time":
                 return Time(model_view)
+            elif dmtype == "meas:Velocity":
+                return Velocity(model_view)
             elif dmtype == "meas:GenericMeasure":
                 return GenericMeasure(model_view)
             else:

@@ -17,6 +17,8 @@ from .json_block_extractor import JsonBlockExtractor
 from .join_operator import JoinOperator
 from client.stc_classes.measure import Measure
 from client.stc_classes.measure import Position, Time, GenericMeasure
+from client.astropy_wrapper.sky_coord import SkyCoord
+
 from utils.dict_utils import DictUtils
 class ModelViewer(object):
     '''
@@ -213,7 +215,7 @@ class ModelViewer(object):
             join_operator.get_matching_data(self._current_data_row)
             ref_element = templates_copy.xpath("//" + join_tag)[0]
             ref_host = ref_element.getparent()
-            for cpart in join_operator.get_matching_model_view():          
+            for cpart in join_operator.get_matching_model_view(resolve_ref=resolve_ref):          
                 ref_host.append(deepcopy(cpart))
             # Drop the reference
             ref_host.remove(ref_element)
@@ -309,7 +311,13 @@ class ModelViewer(object):
             retour.append(Measure.get_measure(ele)) 
         return retour
 
-
+    def get_astropy_sky_coord(self):
+        """
+        Returns an instance of Astropy.SkyCoord if the set of mapped STC Measures allows it.
+        None otherwise
+        """
+        return SkyCoord(self.get_stc_measures()).get_sky_coord()
+        
 
     
     """
