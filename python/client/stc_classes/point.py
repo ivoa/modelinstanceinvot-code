@@ -43,7 +43,7 @@ class LonLatPoint(Point):
         self.dmtype = "LonLatPoint"
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lon"]'):
-            self.lon = Quantity(ele))
+            self.lon = Quantity(ele)
             break
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lat"]'):
             self.lat = Quantity(ele)
