@@ -1,0 +1,98 @@
+<GLOBALS>
+	<INSTANCE dmtype="photdm:PhotCal">
+		<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" ref="" value="" />
+		<INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
+			<ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:MagnitudeSystem.refererenceSpectrum" dmtype="ivoa:anyURI" ref="" value="" />
+		</INSTANCE>
+        <REFERENCE dmref="_Linear_Flux" dmrole="photdm:PhotCal.zeroPoint"/>
+		<REFERENCE dmref="_Filter" dmrole="photdm:PhotCal.photometryFilter" />
+	</INSTANCE>
+
+	<INSTANCE dmid="_Filter" dmtype="photdm:PhotometryFilter">
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityFrom" dmtype="ivoa:ISOTime" ref="" value="" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityTo" dmtype="ivoa:ISOTime" ref="" value="" />
+
+		<INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" ref="" value="" />
+		</INSTANCE>
+
+		<INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" ref="" value="" />
+		</INSTANCE>
+
+		<REFERENCE dmref="_Transmission_Curve" dmrole="photdm:Bandwith.transmissionCurve" />
+	</INSTANCE>
+
+	<INSTANCE dmid="_Transmission_Curve" dmtype="photdm:TransmissionCurve">
+		<INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+			<ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" ref="" value="" />
+			<ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" ref="" value="" />
+		</INSTANCE>
+
+		<COLLECTION dmrole="photdm:TransmissionCurve.transmissionPoint">
+			<INSTANCE dmtype="photdm:TransmissionPoint">
+				<ATTRIBUTE dmrole="photdm:TransmissionPoint.ucd" dmtype="ivoa:UCD" ref="" value="" />
+				<ATTRIBUTE dmrole="photdm:TransmissionPoint.unit" dmtype="ivoa:Unit" ref="" value="" />
+				<ATTRIBUTE dmrole="photdm:TransmissionPoint.transmissionValue" dmtype="ivoa:real" ref="" value="" />
+				<ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralValue" dmtype="ivoa:real" ref="" value="" />
+				<ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralError" dmtype="ivoa:real" ref="" value="" />
+			</INSTANCE>
+		</COLLECTION>
+
+	</INSTANCE>
+
+
+    <INSTANCE dmtype="photdm:PogsonZeroPoint" dmid="_Pogson">
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:integer" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" ref="" value="" />
+
+        <INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+            <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.error" dmtype="ivoa:real" ref="" value="" />
+        </INSTANCE>
+    </INSTANCE>
+    
+    <INSTANCE dmtype="photdm:LinearFluxZeroPoint" dmid="_Linear_Flux">
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:integer" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" ref="" value="" />
+
+        <INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+            <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.error" dmtype="ivoa:real" ref="" value="" />
+        </INSTANCE>
+    </INSTANCE>
+
+    <INSTANCE dmtype="photdm:AsinhZeroPoint" dmid="_Asinh">
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:integer" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" ref="" value="" />
+        <ATTRIBUTE dmrole="photdm:AsinhZeroPoint.softeningParameter" dmtype="ivoa:real" ref="" value="" />
+
+        <INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+            <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" ref="" value="" />
+            <ATTRIBUTE dmrole="photdm:Flux.error" dmtype="ivoa:real" ref="" value="" />
+        </INSTANCE>
+    </INSTANCE>
+
+</GLOBALS>
