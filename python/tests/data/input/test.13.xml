@@ -1,0 +1,79 @@
+
+<INSTANCE dmtype="photdm:PhotCal">
+	<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="test_filter" />
+	<INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
+		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="system" />
+		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.refererenceSpectrum" dmtype="ivoa:anyURI" value="vo://filter/uri" />
+	</INSTANCE>
+
+	<INSTANCE dmtype="photdm:LinearFluxZeroPoint" dmid="_Linear_Flux">
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:integer" value="0" />
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" value="-1" />
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" value="+1" />
+
+		<INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+			<ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="a.b.c;d.e.f" />
+			<ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" value="km/h" />
+			<ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" value="10" />
+			<ATTRIBUTE dmrole="photdm:Flux.error" dmtype="ivoa:real" value="1" />
+		</INSTANCE>
+	</INSTANCE>
+
+
+	<INSTANCE dmid="_Filter" dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="psidentifier" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="identifier" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="filtername" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="nice filter" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="jazzband" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityFrom" dmtype="ivoa:ISOTime" value="2022-02-02" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityTo" dmtype="ivoa:ISOTime" value="2022-02-03" />
+
+		<INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="i.j;k.l" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="km" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="12.2" />
+		</INSTANCE>
+
+		<INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="q.w;e.r" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="sec" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="3" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="2" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="0" />
+		</INSTANCE>
+
+		<INSTANCE dmid="_Transmission_Curve" dmtype="photdm:TransmissionCurve">
+			<INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+				<ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"  value="http://curve" />
+				<ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer"  value="3" />
+				<ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string"  value="fits" />
+			</INSTANCE>
+
+			<COLLECTION dmrole="photdm:TransmissionCurve.transmissionPoint">
+                <INSTANCE dmtype="photdm:TransmissionPoint">
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.ucd" dmtype="ivoa:UCD"  value="u.i;o.p" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.unit" dmtype="ivoa:Unit"  value="kg" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.transmissionValue" dmtype="ivoa:real"  value="1" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralValue" dmtype="ivoa:real" value="2" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralError" dmtype="ivoa:real"  value="3" />
+                </INSTANCE>
+                <INSTANCE dmtype="photdm:TransmissionPoint">
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.ucd" dmtype="ivoa:UCD"  value="u.i;o.p" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.unit" dmtype="ivoa:Unit"  value="kg" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.transmissionValue" dmtype="ivoa:real"  value="4" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralValue" dmtype="ivoa:real" value="5" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralError" dmtype="ivoa:real"  value="6" />
+                </INSTANCE>
+                <INSTANCE dmtype="photdm:TransmissionPoint">
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.ucd" dmtype="ivoa:UCD"  value="u.i;o.p" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.unit" dmtype="ivoa:Unit"  value="kg" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.transmissionValue" dmtype="ivoa:real"  value="7" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralValue" dmtype="ivoa:real" value="8" />
+                    <ATTRIBUTE dmrole="photdm:TransmissionPoint.spectralError" dmtype="ivoa:real"  value="9" />
+                </INSTANCE>
+			</COLLECTION>
+
+		</INSTANCE>
+	</INSTANCE>
+</INSTANCE>
