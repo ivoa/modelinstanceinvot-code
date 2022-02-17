@@ -2,16 +2,16 @@
 <INSTANCE dmtype="photdm:PhotCal">
 	<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="test_filter" />
 	<INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
-		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="system" />
+		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="mag_sys" />
 		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.refererenceSpectrum" dmtype="ivoa:anyURI" value="vo://filter/uri" />
 	</INSTANCE>
 
-	<INSTANCE dmtype="photdm:LinearFluxZeroPoint" dmid="_Linear_Flux">
+	<INSTANCE dmtype="photdm:LinearFluxZeroPoint" dmrole="photdm:PhotCal.zeroPoint" dmid="_Linear_Flux">
 		<ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:integer" value="0" />
 		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" value="-1" />
 		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" value="+1" />
 
-		<INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+		<INSTANCE dmtype="photdm:Flux" dmrole="photdm:ZeroPoint.flux">
 			<ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="a.b.c;d.e.f" />
 			<ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" value="km/h" />
 			<ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" value="10" />
@@ -35,15 +35,15 @@
 			<ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="12.2" />
 		</INSTANCE>
 
-		<INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
-			<ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="q.w;e.r" />
-			<ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="sec" />
-			<ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="3" />
-			<ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="2" />
-			<ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="0" />
+		<INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.bandWidth">
+			<ATTRIBUTE dmrole="photdm:BandWidth.ucd" dmtype="ivoa:UCD" value="q.w;e.r" />
+			<ATTRIBUTE dmrole="photdm:BandWidth.unitexpression" dmtype="ivoa:Unit" value="sec" />
+			<ATTRIBUTE dmrole="photdm:BandWidth.extent" dmtype="ivoa:real" value="3" />
+			<ATTRIBUTE dmrole="photdm:BandWidth.start" dmtype="ivoa:real" value="0" />
+			<ATTRIBUTE dmrole="photdm:BandWidth.stop" dmtype="ivoa:real" value="2" />
 		</INSTANCE>
 
-		<INSTANCE dmid="_Transmission_Curve" dmtype="photdm:TransmissionCurve">
+		<INSTANCE dmid="_Transmission_Curve" dmtype="photdm:TransmissionCurve" dmrole="photdm:PhotometryFilter.transmissionCurve">
 			<INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
 				<ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"  value="http://curve" />
 				<ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer"  value="3" />

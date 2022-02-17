@@ -1,0 +1,70 @@
+<!-- 
+
+XML serialization of 2MASS Ks
+
+Done by hand from http://svo2.cab.inta-csic.es/theory/fps/index.php?id=2MASS/2MASS.Ks&&mode=browse&gname=2MASS&gname2=2MASS#filter
+
+LM 02/2022
+ -->
+
+<!-- Photometric Calibration -->
+<INSTANCE dmtype="photdm:PhotCal">
+	<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="2MASS/2MASS.Ks/Vega" />
+	<!-- Magnitude System -->
+	<INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
+		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="Vega" />
+		<ATTRIBUTE dmrole="photdm:MagnitudeSystem.refererenceSpectrum" dmtype="ivoa:anyURI" value="?????" />
+	</INSTANCE>
+	
+	<!-- Zero Point -->
+	<INSTANCE dmtype="photdm:PogsonZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="Pogson" />
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" value="?????" />
+		<ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" value="?????" />
+
+		<INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+			<ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="phot.flux;meta.modelled" />
+			<ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" value="Jy" />
+			<ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" value="649.85" />
+			<ATTRIBUTE dmrole="photdm:Flux.error" dmtype="ivoa:real" value="???" />
+		</INSTANCE>
+	</INSTANCE>
+	
+	<!--  Filter -->
+	<INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="2MASS/2MASS.Ks" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="2MASS/2MASS.Ks" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="2MASS Ks" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="2MASS Ks" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="Ks" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityFrom" dmtype="ivoa:ISOTime" value="?????" />
+		<ATTRIBUTE dmrole="photdm:PhotometryFilter.dateValidityTo" dmtype="ivoa:ISOTime" value="?????" />
+
+        <!-- Spectral Location -->
+		<INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="meta.ref;em.wl;em.pw" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+			<ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="21603.09" />
+		</INSTANCE>
+
+        <!-- Band width -->
+		<INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+			<ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="2784.55" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="19543.69" />
+			<ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="23552.40" />
+		</INSTANCE>
+
+        <!-- Transmision Curve -->
+		<INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
+			<INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+				<ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"
+					value="http://svo2.cab.inta-csic.es/theory/fps/fps.php?ID=2MASS/2MASS.Ks" />
+				<ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
+				<ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="VOTable" />
+			</INSTANCE>
+		</INSTANCE>
+	</INSTANCE>
+</INSTANCE>
+
