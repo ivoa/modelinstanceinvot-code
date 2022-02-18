@@ -18,6 +18,7 @@ class XmlUtils(object):
         
     @staticmethod
     def pretty_string(xmltree):
+        etree.indent(xmltree, space="   ")
         return etree.tostring(xmltree, pretty_print=True).decode("utf-8")
 
     @staticmethod

@@ -1,0 +1,26 @@
+
+<COLLECTION dmrole="cube:NDPoint.observable">
+	<INSTANCE dmtype="cube:Observable">
+		<ATTRIBUTE dmrole="cube:DataAxis.dependent"
+			dmtype="ivoa:boolean" value="False" />
+		<INSTANCE dmrole="cube:MeasurementAxis.measure"
+			dmtype="meas:Time">
+			<INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+				<ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real"
+					ref="_obstime" index="3" value="1705.9437360200984" />
+			</INSTANCE>
+		</INSTANCE>
+	</INSTANCE>
+	<INSTANCE dmtype="cube:Observable">
+		<ATTRIBUTE dmrole="cube:DataAxis.dependent"
+			dmtype="ivoa:boolean" value="True" />
+		<INSTANCE dmrole="cube:MeasurementAxis.measure"
+			dmtype="meas:GenericMeasure">
+			<INSTANCE dmrole="meas:GenericMeasure.coord"
+				dmtype="coords:PhysicalCoordinate">
+				<ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval"
+					dmtype="ivoa:RealQuantity" ref="_mag" index="4" value="15.216575" />
+			</INSTANCE>
+		</INSTANCE>
+	</INSTANCE>
+</COLLECTION>

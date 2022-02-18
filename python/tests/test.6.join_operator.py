@@ -40,12 +40,12 @@ class TestJoinOperator(unittest.TestCase):
         for line in join_operator.get_matching_data(row):
             self.assertEqual(line[0], "5813181197970338560")
             self.assertEqual(line[2], "G")
-            
         XmlUtils.assertXmltreeEqualsFile(join_operator.get_matching_model_view()[0], 
                 os.path.join(
                     self.data_path, "data/output/test.6.3.xml"
                 ))
              
+
         self.assertDictEqual(
             join_operator.get_json_json_model_view()[0],
             DictUtils.read_dict_from_file(
@@ -54,6 +54,7 @@ class TestJoinOperator(unittest.TestCase):
                 )
             )
         )
+        
         self.assertDictEqual(
             join_operator.get_json_json_model_view()[1],
             DictUtils.read_dict_from_file(

@@ -18,11 +18,12 @@ class TestModelViewer(unittest.TestCase):
         self.maxDiff = None
         self.assertListEqual(self.mviewer.get_table_ids(),
                              ['_PKTable', 'Results'])
+
         self.assertDictEqual(self.mviewer.get_globals_models(), 
                              DictUtils.read_dict_from_file(os.path.join(
                                  self.data_path, "data/output/test.1.11.json")))
-        DictUtils.print_pretty_json(self.mviewer.get_globals_models())
-        DictUtils.print_pretty_json(self.mviewer.get_templates_models())
+
+
         self.assertDictEqual(self.mviewer.get_templates_models(), 
                              DictUtils.read_dict_from_file(os.path.join(
                                  self.data_path, "data/output/test.1.12.json")))

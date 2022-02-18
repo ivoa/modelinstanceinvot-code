@@ -15,12 +15,13 @@ from client.xml_interpreter.table_iterator import TableIterator
 from client import logger
 from client.xml_interpreter.static_reference_resolver import StaticReferenceResolver
 from client.xml_interpreter.to_json_converter import ToJsonConverter
+from utils.xml_utils import XmlUtils
 
 class Where():
     '''
     Evaluator of foreign data against a primary key
     '''
-    def __init__(self, resource_seeker, foreignkey, primarykey):
+    def __init__(self, resource_seeker, foreignkey, primarykey, fk_is_constant=False):
         '''
         :param foreignkey: identifier of the column used for the foreign key
         :param primarykey: identifier of the column used for the primary key
@@ -32,6 +33,8 @@ class Where():
         self.primarykey = primarykey
         # Number of primary table used as primary key
         self.primary_col = None
+        # flag telling thta the primary key must be evaluated against a constant value
+        self.fk_is_constant = fk_is_constant
     
     def __repr__(self):
         return "(foreign: {}:{}  primary: {}:{})".format(
@@ -42,8 +45,9 @@ class Where():
         self.primary_col = index_map[self.primarykey ]
         
     def set_foreign_col(self, foreign_table_ref):
-        index_map = self.resource_seeker.get_id_index_mapping(foreign_table_ref)
-        self.foreign_col = index_map[self.foreignkey ]
+        if self.fk_is_constant is False:
+            index_map = self.resource_seeker.get_id_index_mapping(foreign_table_ref)
+            self.foreign_col = index_map[self.foreignkey ]
         
     def match(self, primary_key_value, foreign_row):
         '''
@@ -53,7 +57,10 @@ class Where():
         :param foreign_row: Numpy data row of the joined table that must 
                be checked against the primary key
         '''
-        return (str(foreign_row[self.foreign_col]) == str(primary_key_value))
+        if self.fk_is_constant is False:
+            return (str(foreign_row[self.foreign_col]) == str(primary_key_value))
+        else:
+            return (str(self.foreignkey) == str(foreign_row[self.primary_col]))
 
 
 class JoinOperator(object):
@@ -93,7 +100,11 @@ class JoinOperator(object):
             raise MappingException("Cannot find joined INSTANCE dmid={}".format(self.target_id))
             
         for  ele in self.xml_join_block.xpath("//WHERE"):
-            where = Where(self.resource_seeker, ele.get("foreignkey"), ele.get("primarykey"))
+            if ele.get("foreignkey") is not None:
+                where = Where(self.resource_seeker, ele.get("foreignkey"), ele.get("primarykey"))
+            else:
+                where = Where(self.resource_seeker, ele.get("value"), ele.get("primarykey"), fk_is_constant=True)
+
             where.set_primary_col(self.table_ref)
             where.set_foreign_col(self.target_table_id )
             self.wheres.append(where)
@@ -107,24 +118,23 @@ class JoinOperator(object):
             ref = ele.get("ref")
             if ref is not None:
                 ele.attrib["index"] = str(index_map[ref])
-                
-        #fake_template = lxml.etree.fromstring("<TEMPLATES tableref='" + self.target_table_id+ "'/>")
-        #fake_template.append(self.foreign_xml_instance)
-        
-        #self.foreign_xml_instance = fake_template
         
     def get_matching_data(self, primary_row):
         retour = []
         self.table_iterator._rewind()
-        if primary_row is None:
-            return retour
         while True:
             row = self.table_iterator._get_next_row()
             if row is None:
                 break;
             is_valid =True
             for where in self.wheres:
-                if where.match(primary_row[where.primary_col], row) is False:
+                # the primary col is in the GLOBALS: no row and the foreign_key is constant
+                if primary_row is None: 
+                    where_match = where.match(None, row)
+                else:
+                    where_match =  where.match(primary_row[where.primary_col], row)
+
+                if where_match is False:
                     is_valid = False
                     break
             if is_valid is True:
@@ -139,8 +149,14 @@ class JoinOperator(object):
 
         for joined_row in self.last_joined_data:
             templates_copy = deepcopy(self.foreign_xml_instance)
+            for ele in templates_copy.xpath("//FOREIGN_KEY"):
+                ref = ele.get("ref")
+                if ref is not None:
+                    # We add the PK value for the current row, so that the ref can be resolved as a static one
+                    ele.attrib["value"] = str(joined_row[ref])
             if resolve_ref is True:
                 StaticReferenceResolver.resolve(self.annotation_seeker, self.table_ref, templates_copy)
+
             # resolve references in attributes
             for ele in templates_copy.xpath("//ATTRIBUTE"):
                 ref = ele.get("ref")

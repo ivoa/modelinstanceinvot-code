@@ -17,7 +17,7 @@ class TestTopJson(unittest.TestCase):
             os.path.join(self.data_path, "data/input/test.5.1.xml"))  
         
         tjc = ToJsonConverter(mapping_block)
-        tjc._translate_xml()
+        tjc._translate_xml_templates()
         self.assertDictEqual(tjc.json_instance, 
                              DictUtils.read_dict_from_file(
                                  os.path.join(self.data_path, "data/output/test.5.5.json")))
