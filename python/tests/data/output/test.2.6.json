@@ -1,0 +1,29 @@
+[
+  {
+    "@dmtype": "root",
+    "cube:NDPoint.observable": [
+      {
+        "@dmtype": "cube:Observable",
+        "cube:DataAxis.dependent": true,
+        "cube:MeasurementAxis.measure": {
+          "@dmtype": "meas:Time",
+          "meas:Time.coord": {
+            "@dmtype": "coords:MJD",
+            "coords:MJD.date": 1705.9437360200984
+          }
+        }
+      },
+      {
+        "@dmtype": "cube:Observable",
+        "cube:DataAxis.dependent": true,
+        "cube:MeasurementAxis.measure": {
+          "@dmtype": "meas:GenericMeasure",
+          "meas:GenericMeasure.coord": {
+            "@dmtype": "coords:PhysicalCoordinate",
+            "coords:PhysicalCoordinate.cval": 15.216575
+          }
+        }
+      }
+    ]
+  }
+]

@@ -3,8 +3,6 @@
     "coords:TimeSys",
     "coords:SpaceSys",
     "mango:coordinates.PhotometryCoordSys",
-    "mango:coordinates.PhotometryCoordSys",
-    "mango:coordinates.PhotometryCoordSys",
     "ds:experiment.ObsDataset"
   ],
   "INSTANCE": [

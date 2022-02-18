@@ -149,7 +149,9 @@ class AnnotationSeeker(object):
         eles = self._globals_block.xpath("//GLOBALS/COLLECTION/INSTANCE")
         retour = []
         for inst in eles:
-            retour.append(inst.get(Att.dmtype))
+            dmtype = inst.get(Att.dmtype)
+            if dmtype not in retour:
+                retour.append(dmtype)
         return retour
    
     def get_globals_instance_dmids(self):
@@ -171,6 +173,16 @@ class AnnotationSeeker(object):
         eset =  self._globals_block.xpath("//INSTANCE[@dmid='" + dmid + "']")
         for ele in eset:
             return ele
+        return None
+    
+    def get_globals_instance_from_collection(self, sourceref, pk_value):
+        '''
+        Gets the GLOBALS/COLLECTION[@dmid=sourceref]/INSTANCE/PRIMARY_KEY[@value='pk_value']
+        :param dmid:
+        '''
+        einst =  self._globals_block.xpath("//COLLECTION[@dmid='" + sourceref + "']/INSTANCE/PRIMARY_KEY[@value='" + pk_value + "']")
+        for inst in einst:
+            return inst.getparent()
         return None
     
     def get_templates_instance_by_dmid(self, tableref, dmid):

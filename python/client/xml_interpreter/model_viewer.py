@@ -20,6 +20,7 @@ from client.stc_classes.measure import Position, Time, GenericMeasure
 from client.astropy_wrapper.sky_coord import SkyCoord
 
 from utils.dict_utils import DictUtils
+from utils.xml_utils import XmlUtils
 class ModelViewer(object):
     '''
     ModelViewer is a PyVO table wrapper aiming at providing a model view on VOTable data read with usual tools
@@ -63,6 +64,8 @@ class ModelViewer(object):
         self._connected_table = None
         self._connected_tableref = None
         self._current_data_row = None
+        # when the search object is in GLOBALS
+        self._globals_instance = None
         self._last_row=None
         self._templates = None
         self._joins = {}
@@ -136,12 +139,57 @@ class ModelViewer(object):
     """
     Data browsing
     """
-    def get_globals_instance(self, dmtype):
+    def get_globals_instance(self, dmtype, resolve_ref=True):
         """
         The a model view on the GLOBALS object (INSTANCE or COLLECTION) with @dmtype=dmtype
         """
-        raise NotImplementedException("GLOBALS Instance access not implemented")
+        globals_models = self.get_globals_models()
+        found = False
+        retour = []
+        for globals_type in globals_models["COLLECTION"]:
+            if globals_type == dmtype:
+                found = True
+                # We process only one instance for now
+                self._globals_instance = self.annotation_seeker.get_instance_by_dmtype(globals_type)['GLOBALS'][0]
+                self._squash_globals_join_and_references()
+                globals_instance_copy = deepcopy(self._globals_instance)
+
+                if resolve_ref is True:
+                    StaticReferenceResolver.resolve(self._annotation_seeker, None, globals_instance_copy)
+                for join_tag, join in self._joins.items():
+                    logger.info("resolve join %s", join_tag)
+                    join_operator = JoinOperator(self, self._connected_tableref, join)
+                    join_operator._set_filter()
+                    join_operator._set_foreign_instance()
+                    join_operator.get_matching_data(None)
+                    ref_element = globals_instance_copy.xpath("//" + join_tag)[0]
+                    ref_host = ref_element.getparent()
+                    for cpart in join_operator.get_matching_model_view(resolve_ref=resolve_ref):          
+                        ref_host.append(deepcopy(cpart))
+                    # Drop the reference
+                    ref_host.remove(ref_element)
+                retour.append(globals_instance_copy);
+        if found is True:
+            return retour
+        else:
+            for globals_type in globals_models["INSTANCE"]:
+                if globals_type == dmtype:
+                    raise NotImplementedException("GLOBALS/INSTANCE access not implemented yet")
+        
+        raise NotImplementedException(f"no {dmtype} type found in GLOBALS")
     
+    def get_globals_instance_json_model_view(self, dmtype, resolve_ref=True):
+        """
+        return a JSON model view of the last read row
+        """
+        retour = []
+        xml_instances = self.get_globals_instance(dmtype, resolve_ref=resolve_ref)
+        for xml_instance in xml_instances:
+            logger.debug("build json view")
+            tjc = ToJsonConverter(xml_instance)
+            retour.append(tjc.get_json_instance())
+        return retour
+
     def connect_table(self, tableref):
         """
         Iterate over the table identified by tableref
@@ -183,7 +231,6 @@ class ModelViewer(object):
         return a XML model view of the last read row
         """
         self._assert_table_is_connected()
-        
         templates_copy = deepcopy(self._templates)
         if resolve_ref is True:
             StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
@@ -347,7 +394,7 @@ class ModelViewer(object):
 
     def _squash_join_and_references(self):
         """
-        Remove both JOINs and REFERENCEs fron the templates and store them in to be resolved later on
+        Remove both JOINs and REFERENCEs from the templates and store them in to be resolved later on
         This avoid to have the model view polluted with elements that are not in the model
         """
         for ele in self._templates.xpath("//*[starts-with(name(), 'REFERENCE_')]"):
@@ -357,6 +404,17 @@ class ModelViewer(object):
                     ele.remove(child)
         
         for ele in self._templates.xpath("//*[starts-with(name(), 'JOIN')]"):
+            self._joins = {ele.tag: deepcopy(ele)}
+            for child in list(ele):
+                ele.remove(child) 
+                   
+    def _squash_globals_join_and_references(self):
+        """
+        Remove both JOINs and REFERENCEs from the templates and store them in to be resolved later on
+        This avoid to have the model view polluted with elements that are not in the model
+        TODO: merge with the former method
+        """
+        for ele in self._globals_instance.xpath("//*[starts-with(name(), 'JOIN')]"):
             self._joins = {ele.tag: deepcopy(ele)}
             for child in list(ele):
                 ele.remove(child)    
@@ -371,4 +429,4 @@ class ModelViewer(object):
             ref = ele.get("ref")
             if ref is not None:
                 ele.attrib["index"] = str(index_map[ref])
-                
+                                
