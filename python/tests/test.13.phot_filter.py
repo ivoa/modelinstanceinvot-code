@@ -6,7 +6,7 @@ Created on jan  2022
 import unittest
 import os
 
-from client.stc_classes.photdm import PhotCal
+from client.photdm.photcal import PhotCal
 
 from utils.xml_utils import XmlUtils
 
