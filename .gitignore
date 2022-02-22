@@ -191,3 +191,5 @@ local.properties
 .project
 
 .DS*
+
+.ipynb_checkpoints
