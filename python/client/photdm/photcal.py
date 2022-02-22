@@ -35,10 +35,15 @@ class PhotCal(object):
             break
         
     def __repr__(self):
-        return f"{self.identifier}\n"\
-            f"   magnitudeSystem {self.magnitudeSystem}\n"\
-            f"   photometryFilter {self.photometryFilter}\n"\
-            f"   zeroPoint {self.zeroPoint}\n"\
+        retour = f"== PhotCal {self.identifier} =====\n"
+        if self.magnitudeSystem is not None:
+            retour += f"{self.magnitudeSystem}"
+        if self.photometryFilter is not None:
+            retour += f"{self.photometryFilter}"
+        if self.zeroPoint is not None:
+            retour += f"{self.zeroPoint}"
+
+        return retour
        
 class MagnitudeSystem(object):
     '''
@@ -49,21 +54,21 @@ class MagnitudeSystem(object):
         Constructor
         '''
         self.type = None
-        self.referencesSpectrum = None
+        self.referenceSpectrum = None
         
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:MagnitudeSystem.type"]'):
             self.type = ele.get("value")
             break
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:MagnitudeSystem.refererenceSpectrum"]'):
-            self.referencesSpectrum = ele.get("value")
+            self.referenceSpectrum = ele.get("value")
             break
 
 
     def __repr__(self):
-        return f"ucd: {self.type} refSpectrum: {self.referencesSpectrum}"
-    
-    
-
+        retour = f"== MagnitudeSystem =====\n"\
+                 f"  type: {self.type}\n"\
+                 f"  referenceSpectrum: {self.referenceSpectrum}\n"
+        return retour
 
 class ZeroPoint(object):
     '''
@@ -109,8 +114,9 @@ class ZeroPoint(object):
         raise Exception(f"ZeroPoint of type {dmtype} not supported")
 
     def __repr__(self):
-        return f"type: {self.type} mag: {self.referenceMagnitudeValue} +/- {self.referenceMagnitudeError}\n"\
-            f"flux: {self.flux}"
+        return f"  type: {self.type}\n"\
+               f"  referenceMagnitude: {self.referenceMagnitudeValue} +/- {self.referenceMagnitudeError}\n"\
+               f"  {self.flux}\n"
     
 class PogsonZeroPoint(ZeroPoint):
     '''
@@ -123,7 +129,7 @@ class PogsonZeroPoint(ZeroPoint):
         ZeroPoint.__init__(self, model_view)
 
     def __repr__(self):
-        return f"PogsonZeroPoint : {ZeroPoint.__repr__(self)}"
+        return f"== PogsonZeroPoint =====\n{ZeroPoint.__repr__(self)}\n"
     
 class LinearFluxZeroPoint(ZeroPoint):
     '''
@@ -136,7 +142,7 @@ class LinearFluxZeroPoint(ZeroPoint):
         ZeroPoint.__init__(self, model_view)
 
     def __repr__(self):
-        return f"LinearFluxZeroPoint : {ZeroPoint.__repr__(self)}"
+        return f"== LinearFluxZeroPoint =====\n{ZeroPoint.__repr__(self)}\n"
     
 class AsinhZeroPoint(ZeroPoint):
     '''
@@ -155,7 +161,7 @@ class AsinhZeroPoint(ZeroPoint):
 
 
     def __repr__(self):
-        return f"AsinhZeroPoint : {ZeroPoint.__repr__(self)} softeningParameter:{self.softeningParameter}"
+        return f"== AsinhZeroPoint =====\n{ZeroPoint.__repr__(self)}\n  softeningParameter:{self.softeningParameter}\n"
  
 class Flux(object):
     
@@ -179,4 +185,6 @@ class Flux(object):
             break
 
     def __repr__(self):
-        return f"ucd: {self.ucd} value:{self.value} +/- {self.error} {self.unitexpression}"
+        return f"== Flux =====\n"\
+               f"  ucd: {self.ucd}\n"\
+               f"  value:{self.value} +/- {self.error} {self.unitexpression}\n"

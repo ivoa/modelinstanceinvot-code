@@ -60,10 +60,21 @@ class PhotometryFilter(object):
             break
 
     def __repr__(self):
-        return f"{self.fpsidentifier}/{self.identifier}/{self.name}/{self.bandname}  {self.description} valid from {self.dateValidityFrom} to {self.dateValidityTo}"\
-            f"\nspectralLocation {self.spectralLocation}" \
-            f"\nbandWidth {self.bandWidh}" \
-            f"\ntransmissionCurve\n {self.transmissionCurve}" 
+        retour = f"== PhotometryFilter =====\n"\
+                 f"  fpsidentifier: {self.fpsidentifier}\n"\
+                 f"  identifier: {self.identifier}\n"\
+                 f"  name: {self.name}\n"\
+                 f"  bandname: {self.bandname}\n"\
+                 f"  description: {self.description}\n"\
+                 f"  dateValidityFrom: {self.dateValidityFrom}\n"\
+                 f"  dateValidityTo: {self.dateValidityTo}\n"
+        if self.spectralLocation is not None:
+            retour += f"  {self.spectralLocation}"
+        if self.bandWidh is not None:
+            retour += f"  {self.bandWidh}"
+        if self.transmissionCurve is not None:
+            retour += f"  {self.transmissionCurve}"
+        return retour
     
 class SpectralLocation(object):
     '''
@@ -88,7 +99,9 @@ class SpectralLocation(object):
             break
 
     def __repr__(self):
-        return f"ucd:{self.ucd} value:{self.value} {self.unitexpression}"
+        return f"== SpectralLocation =====\n"\
+               f"  ucd:{self.ucd}\n"\
+               f"  value:{self.value} {self.unitexpression}\n"
     
 class BandWidth(object):
     '''
@@ -121,7 +134,11 @@ class BandWidth(object):
             break
 
     def __repr__(self):
-        return f"ucd:{self.ucd} range:[{self.start} - {self.stop}] {self.extent} {self.unitexpression}"
+        return f"== BandWidth =====\n"\
+               f"  ucd:{self.ucd}\n"\
+               f"  start-stop:[{self.start} to {self.stop}]\n"\
+               f"  extent: {self.extent}\n"\
+               f"  unitexpression: {self.unitexpression}\n"
       
 class TransmissionCurve(object):
     '''
@@ -143,9 +160,12 @@ class TransmissionCurve(object):
             break
      
     def __repr__(self):
-        retour= f"access:{self.access}\ntransmissionPoint\n"
+        retour= f"== TransmissionCurve =====\n"
+        if self.access is not None:
+            retour += f"  {self.access}"
+        retour += f"  transmissionPoint:\n"
         for point in self.transmissionPoint:
-            retour += f" {point}\n"
+            retour += f"   {point}"
         return retour
 
         
@@ -172,7 +192,10 @@ class Access(object):
             break
 
     def __repr__(self):
-        return f"reference:{self.reference} size:{self.size} format:{self.format}"
+        return f"== Access =====\n"\
+               f"  reference:{self.reference}\n"\
+               f"  size:{self.size}\n"\
+               f"  format:{self.format}\n"
         
 class TransmissionPoint(object):
     '''
@@ -205,7 +228,7 @@ class TransmissionPoint(object):
             break
 
     def __repr__(self):
-        return f"{self.ucd} spectra:{self.spectralValue} +/- {self.spectralError} {self.unit} -> {self.transmissionValue}"
+        return f"{self.ucd} spectra:{self.spectralValue} +/- {self.spectralError} {self.unit} -> {self.transmissionValue}\n"
    
       
 
