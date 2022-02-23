@@ -1,224 +1,2364 @@
 <?xml version="1.0"?>
 <!DOCTYPE VOTABLE SYSTEM "http://us-vo.org/xml/VOTable.dtd">
 <VOTABLE version="1.0">
-  <DEFINITIONS>
-    <COOSYS system="eq_FK5" equinox="2000" />
-  </DEFINITIONS>
-    
-  <RESOURCE ID="T9001">
-     <DESCRIPTION>
-       HEASARC Browse data service
-       Please send inquiries to mailto:request@athena.gsfc.nasa.gov
-    </DESCRIPTION>
-    <PARAM ID="default_search_radius" ucd="OBS_ANG-SIZE" value="0.0333333333333333" ></PARAM>
-    <TABLE>
-      <DESCRIPTION> AllWISE Counterparts and Gaia Matches to XMM-Newton Slew Survey (v2.0) Sources </DESCRIPTION>
-      
-      <FIELD name="w3___row" datatype="int"  >
-        <DESCRIPTION>  </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="name" datatype="char" arraysize="*"  ucd="meta.id;meta.main">
-        <DESCRIPTION> XMM-Newton Slew Survey (XMMSL2) Source Designation (XMMSL2_ID) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="ra" datatype="double" unit="degree" ucd="pos.eq.ra;meta.main">
-        <DESCRIPTION> Right Ascension </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="dec" datatype="double" unit="degree" ucd="pos.eq.dec;meta.main">
-        <DESCRIPTION> Declination </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b8" datatype="double" unit="erg/s/cm^2" ucd="phot.flux;em.X-ray">
-        <DESCRIPTION> XMMSL2 Flux in Band 8 (XMMSL2_FLUX_B8) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b8_error" datatype="double" unit="erg/s/cm^2" ucd="stat.error;phot.flux;em.X-ray">
-        <DESCRIPTION> XMMSL2 Flux Error in Band 8 (XMMSL2_FLUX_ERR_B8) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="allwise_name" datatype="char" arraysize="*"  ucd="meta.id.cross;em.IR">
-        <DESCRIPTION> WISE All-Sky Source Designation from Cutri et al. (2013, Cat. II/328) (ALLW_ID) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="allwise_xmm_offset" datatype="double" unit="arcsec" ucd="pos.angDistance;em.X-ray;em.IR">
-        <DESCRIPTION> Separation Between X-Ray Source and AllWISE Candidate Counterpart </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w1_mag" datatype="double" unit="mag" ucd="phot.mag;em.IR.3-4um">
-        <DESCRIPTION> AllWISE Vega Magnitude in the W1 Band (ALLW_w1mpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w1_mag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.3-4um">
-        <DESCRIPTION> AllWISE Magnitude Error in the W1 Band (ALLW_w1sigmpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w2_mag" datatype="double" unit="mag" ucd="phot.mag;em.IR.4-8um">
-        <DESCRIPTION> AllWISE Vega Magnitude in the W2 Band (ALLW_w2mpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w2_mag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.4-8um">
-        <DESCRIPTION> AllWISE Magnitude Error in the W2 Band (ALLW_w2sigmpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="det_ml_b8" datatype="double"  ucd="stat.likelihood;src;em.X-ray">
-        <DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 8 (XMMSL2_DET_ML_B8) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="det_ml_b7" datatype="double"  ucd="stat.likelihood;src;em.X-ray.medium">
-        <DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 7 (XMMSL2_DET_ML_B7) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="det_ml_b6" datatype="double"  ucd="stat.likelihood;src;em.X-ray.soft">
-        <DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 6 (XMMSL2_DET_ML_B6) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b7" datatype="double" unit="erg/s/cm^2" ucd="phot.flux;em.X-ray.medium">
-        <DESCRIPTION> XMMSL2 Flux in Band 7 (XMMSL2_FLUX_B7) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b7_error" datatype="double" unit="erg/s/cm^2" ucd="stat.error;phot.flux;em.X-ray.medium">
-        <DESCRIPTION> XMMSL2 Flux Error in Band 7 (XMMSL2_FLUX_ERR_B7) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b6" datatype="double" unit="erg/s/cm^2" ucd="phot.flux;em.X-ray.soft">
-        <DESCRIPTION> XMMSL2 Flux in Band 6 (XMMSL2_FLUX_B6) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="flux_b6_error" datatype="double" unit="erg/s/cm^2" ucd="stat.error;phot.flux;em.X-ray.soft">
-        <DESCRIPTION> XMMSL2 Flux Error in Band 6 (XMMSL2_FLUX_ERR_B6) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w3_mag" datatype="double" unit="mag" ucd="phot.mag;em.IR.8-15um">
-        <DESCRIPTION> AllWISE Vega Magnitude in the W3 Band (ALLW_w3mpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w3_mag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.8-15um">
-        <DESCRIPTION> AllWISE Magnitude Error in the W3 Band (ALLW_w3sigmpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w4_mag" datatype="double" unit="mag" ucd="phot.mag;em.IR.15-30um">
-        <DESCRIPTION> AllWISE Vega Magnitude in the W4 Band (ALLW_w4mpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="w4_mag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.15-30um">
-        <DESCRIPTION> AllWISE Magnitude Error in the W4band (ALLW_w4sigmpro) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="twomass_name" datatype="char" arraysize="*"  ucd="meta.id.cross;em.IR">
-        <DESCRIPTION> 2MASS Source Designation as Listed in the AllWISE Catalog (ALLW_2MASS_ID) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="jmag" datatype="double" unit="mag" ucd="phot.mag;em.IR.J">
-        <DESCRIPTION> 2MASS Magnitude in the J Band, as from AllWISE Catalog (ALLW_j_m_2mass) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="jmag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.J">
-        <DESCRIPTION> 2MASS Magnitude Error in the J Band as Reported in the AllWISE Catalog </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="hmag" datatype="double" unit="mag" ucd="phot.mag;em.IR.H">
-        <DESCRIPTION> 2MASS Magnitude in the H Band, as from AllWISE Catalog (ALLW_h_m_2mass) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="hmag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.H">
-        <DESCRIPTION> 2MASS Magnitude Error in the H Band as Reported in the AllWISE Catalog </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="kmag" datatype="double" unit="mag" ucd="phot.mag;em.IR.K">
-        <DESCRIPTION> 2MASS Magnitude in the K Band, as from AllWISE Catalog (ALLW_k_m_2mass) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="kmag_error" datatype="double" unit="mag" ucd="stat.error;phot.mag;em.IR.K">
-        <DESCRIPTION> 2MASS Magnitude Error in the K Band as Reported in the AllWISE Catalog </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_name" datatype="char" arraysize="*"  ucd="meta.id.cross;em.opt">
-        <DESCRIPTION> Identification from Original Gaia DR1 Catalog from Fabricious et al. (2016) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_ra" datatype="double" unit="degree" ucd="pos.eq.ra">
-        <DESCRIPTION> Gaia Right Ascension (Gaia_DR1_RA) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_dec" datatype="double" unit="degree" ucd="pos.eq.dec">
-        <DESCRIPTION> Gaia Declination (Gaia_DR1_DEC) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_pm_ra" datatype="double" unit="mas/yr" ucd="pos.pm;pos.eq.ra">
-        <DESCRIPTION> Proper Motion in Right Ascension as Measured by Gaia (pmra) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_pm_ra_error" datatype="double" unit="mas/yr" ucd="stat.error;pos.pm;pos.eq.ra">
-        <DESCRIPTION> Proper Motion Error in Right Ascension as Measured by Gaia (pmra_error) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_pm_dec" datatype="double" unit="mas/yr" ucd="pos.pm;pos.eq.dec">
-        <DESCRIPTION> Proper Motion in Declination as Measured by Gaia (pmdec) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_pm_dec_error" datatype="double" unit="mas/yr" ucd="stat.error;pos.pm;pos.eq.dec">
-        <DESCRIPTION> Proper Motion Error in Declination as Measured by Gaia (pmdec_error) </DESCRIPTION>
-      </FIELD>
-      
-      <FIELD name="gaia_gmag" datatype="double" unit="mag" ucd="phot.mag;em.opt">
-        <DESCRIPTION> Gaia Mean Magnitude (phot_g_mean_mag) </DESCRIPTION>
-      </FIELD>
-      <DATA>
-        <TABLEDATA>
-<TR><TD>11455</TD><TD>XMMSL2 J000006.9+081615</TD><TD>0.02910</TD><TD>8.27096</TD><TD>3.201e-12</TD><TD>1.218e-12</TD><TD>WISEA J000005.72+081614.9</TD><TD>18.663</TD><TD>15.602</TD><TD> 0.050</TD><TD>15.356</TD><TD> 0.123</TD><TD>21.282</TD><TD></TD><TD>21.726</TD><TD></TD><TD></TD><TD>1.370e-12</TD><TD>5.168e-13</TD><TD>12.085</TD><TD></TD><TD> 8.643</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>433</TD><TD>XMMSL2 J000007.5-772033</TD><TD>0.03162</TD><TD>-77.34244</TD><TD>3.652e-12</TD><TD>1.242e-12</TD><TD>WISEA J000008.79-772020.0</TD><TD>13.327</TD><TD>12.498</TD><TD> 0.024</TD><TD>12.143</TD><TD> 0.022</TD><TD>31.249</TD><TD></TD><TD>21.072</TD><TD></TD><TD></TD><TD>9.818e-13</TD><TD>4.113e-13</TD><TD> 8.434</TD><TD> 0.022</TD><TD> 5.776</TD><TD> 0.037</TD><TD>2MASS J00000884-7720194</TD><TD>14.881</TD><TD>0.075</TD><TD>14.066</TD><TD>0.091</TD><TD>13.583</TD><TD>0.073</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>10565</TD><TD>XMMSL2 J000011.9+014613</TD><TD>0.04965</TD><TD>1.77023</TD><TD>4.559e-12</TD><TD>1.702e-12</TD><TD>WISEA J000012.20+014617.0</TD><TD>6.076</TD><TD> 7.796</TD><TD> 0.028</TD><TD> 7.832</TD><TD> 0.021</TD><TD>28.309</TD><TD></TD><TD>35.125</TD><TD></TD><TD></TD><TD>1.950e-12</TD><TD>6.915e-13</TD><TD> 7.837</TD><TD> 0.022</TD><TD> 7.962</TD><TD> 0.228</TD><TD>2MASS J00001217+0146173</TD><TD> 8.311</TD><TD>0.020</TD><TD> 7.981</TD><TD>0.044</TD><TD> 7.934</TD><TD>0.029</TD><TD>Gaia DR1 2738669094385615104</TD><TD>0.05112</TD><TD>1.77141</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>10.197</TD></TR>
-<TR><TD>13636</TD><TD>XMMSL2 J000027.7+252813</TD><TD>0.11553</TD><TD>25.47043</TD><TD>4.379e-12</TD><TD>2.200e-12</TD><TD>WISEA J000027.92+252805.0</TD><TD>8.972</TD><TD>14.829</TD><TD> 0.032</TD><TD>14.394</TD><TD> 0.055</TD><TD>14.646</TD><TD></TD><TD>20.350</TD><TD></TD><TD></TD><TD>1.563e-12</TD><TD>7.809e-13</TD><TD>11.844</TD><TD> 0.371</TD><TD> 8.634</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 2853139146871914624</TD><TD>0.11640</TD><TD>25.46807</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>19.426</TD></TR>
-<TR><TD>10177</TD><TD>XMMSL2 J000027.7-010238</TD><TD>0.11580</TD><TD>-1.04402</TD><TD></TD><TD></TD><TD>WISEA J000027.88-010234.7</TD><TD>3.950</TD><TD>14.533</TD><TD> 0.030</TD><TD>14.370</TD><TD> 0.055</TD><TD></TD><TD></TD><TD>10.701</TD><TD></TD><TD></TD><TD>6.466e-13</TD><TD>3.390e-13</TD><TD>12.365</TD><TD></TD><TD> 8.709</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>300</TD><TD>XMMSL2 J000029.6-790346</TD><TD>0.12372</TD><TD>-79.06271</TD><TD>2.744e-12</TD><TD>1.036e-12</TD><TD>WISEA J000027.74-790343.7</TD><TD>5.899</TD><TD> 6.816</TD><TD> 0.080</TD><TD> 6.802</TD><TD> 0.023</TD><TD>29.987</TD><TD></TD><TD>33.821</TD><TD></TD><TD></TD><TD>1.170e-12</TD><TD>4.397e-13</TD><TD> 6.820</TD><TD> 0.015</TD><TD> 6.932</TD><TD> 0.078</TD><TD>2MASS J00002716-7903431</TD><TD> 7.301</TD><TD>0.023</TD><TD> 6.884</TD><TD>0.036</TD><TD> 6.858</TD><TD>0.027</TD><TD>Gaia DR1 4635422653407496576</TD><TD>0.11313</TD><TD>-79.06198</TD><TD>162.485</TD><TD>0.061</TD><TD>-62.084</TD><TD>0.065</TD><TD> 8.404</TD></TR>
-<TR><TD>3569</TD><TD>XMMSL2 J000037.5-483002</TD><TD>0.15652</TD><TD>-48.50057</TD><TD>2.667e-12</TD><TD>1.130e-12</TD><TD>WISEA J000036.75-482957.9</TD><TD>9.030</TD><TD>17.448</TD><TD> 0.154</TD><TD>17.116</TD><TD> 0.389</TD><TD>11.606</TD><TD></TD><TD>13.662</TD><TD></TD><TD></TD><TD>9.392e-13</TD><TD>4.217e-13</TD><TD>12.753</TD><TD></TD><TD> 9.296</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>3570</TD><TD>XMMSL2 J000037.5-483002</TD><TD>0.15652</TD><TD>-48.50057</TD><TD>2.667e-12</TD><TD>1.130e-12</TD><TD>WISEA J000038.35-483012.7</TD><TD>13.256</TD><TD>16.825</TD><TD> 0.090</TD><TD>16.306</TD><TD> 0.199</TD><TD>11.606</TD><TD></TD><TD>13.662</TD><TD></TD><TD></TD><TD>9.392e-13</TD><TD>4.217e-13</TD><TD>12.794</TD><TD></TD><TD> 8.857</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>3571</TD><TD>XMMSL2 J000037.5-483002</TD><TD>0.15652</TD><TD>-48.50057</TD><TD>2.667e-12</TD><TD>1.130e-12</TD><TD>WISEA J000037.11-482940.0</TD><TD>22.452</TD><TD>14.331</TD><TD> 0.029</TD><TD>14.241</TD><TD> 0.043</TD><TD>11.606</TD><TD></TD><TD>13.662</TD><TD></TD><TD></TD><TD>9.392e-13</TD><TD>4.217e-13</TD><TD>12.238</TD><TD> 0.312</TD><TD> 8.779</TD><TD></TD><TD>2MASS J00003709-4829398</TD><TD>15.708</TD><TD>0.073</TD><TD>14.975</TD><TD>0.077</TD><TD>14.809</TD><TD>0.119</TD><TD>Gaia DR1 4977908808786628096</TD><TD>0.15453</TD><TD>-48.49438</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.541</TD></TR>
-<TR><TD>18862</TD><TD>XMMSL2 J000041.4+794042</TD><TD>0.17281</TD><TD>79.67836</TD><TD>3.722e-12</TD><TD>1.148e-12</TD><TD>WISEA J000041.30+794039.9</TD><TD>2.210</TD><TD> 8.454</TD><TD> 0.022</TD><TD> 8.480</TD><TD> 0.020</TD><TD>54.922</TD><TD></TD><TD>58.821</TD><TD></TD><TD></TD><TD>1.605e-12</TD><TD>4.905e-13</TD><TD> 8.395</TD><TD> 0.022</TD><TD> 8.311</TD><TD> 0.211</TD><TD>2MASS J00004121+7940398</TD><TD> 8.922</TD><TD>0.027</TD><TD> 8.612</TD><TD>0.033</TD><TD> 8.523</TD><TD>0.021</TD><TD>Gaia DR1 564638150446547200</TD><TD>0.17174</TD><TD>79.67775</TD><TD>22.601</TD><TD>0.637</TD><TD>0.630</TD><TD>0.602</TD><TD>10.017</TD></TR>
-<TR><TD>6773</TD><TD>XMMSL2 J000043.2-260527</TD><TD>0.18022</TD><TD>-26.09091</TD><TD>6.347e-12</TD><TD>2.052e-12</TD><TD>WISEA J000043.92-260521.3</TD><TD>10.793</TD><TD>13.072</TD><TD> 0.024</TD><TD>12.515</TD><TD> 0.024</TD><TD>40.442</TD><TD></TD><TD>32.962</TD><TD></TD><TD></TD><TD>2.011e-12</TD><TD>6.979e-13</TD><TD>10.337</TD><TD> 0.069</TD><TD> 8.359</TD><TD> 0.309</TD><TD>2MASS J00004391-2605212</TD><TD>15.336</TD><TD>0.070</TD><TD>14.672</TD><TD>0.105</TD><TD>14.243</TD><TD>0.088</TD><TD>Gaia DR1 2334782189616563712</TD><TD>0.18301</TD><TD>-26.08926</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.533</TD></TR>
-<TR><TD>3027</TD><TD>XMMSL2 J000045.1-524508</TD><TD>0.18825</TD><TD>-52.75231</TD><TD>2.900e-12</TD><TD>1.485e-12</TD><TD>WISEA J000045.70-524510.4</TD><TD>5.159</TD><TD>16.987</TD><TD> 0.100</TD><TD>16.337</TD><TD> 0.187</TD><TD>10.519</TD><TD>9.851</TD><TD></TD><TD>8.981e-12</TD><TD>4.693e-12</TD><TD></TD><TD></TD><TD>12.752</TD><TD></TD><TD> 9.100</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>3028</TD><TD>XMMSL2 J000045.1-524508</TD><TD>0.18825</TD><TD>-52.75231</TD><TD>2.900e-12</TD><TD>1.485e-12</TD><TD>WISEA J000046.99-524512.9</TD><TD>17.117</TD><TD>16.064</TD><TD> 0.055</TD><TD>15.658</TD><TD> 0.111</TD><TD>10.519</TD><TD>9.851</TD><TD></TD><TD>8.981e-12</TD><TD>4.693e-12</TD><TD></TD><TD></TD><TD>12.726</TD><TD></TD><TD> 9.106</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>4067</TD><TD>XMMSL2 J000053.3-443927</TD><TD>0.22211</TD><TD>-44.65764</TD><TD>6.181e-12</TD><TD>1.707e-12</TD><TD>WISEA J000053.51-443933.4</TD><TD>6.371</TD><TD>12.555</TD><TD> 0.023</TD><TD>11.810</TD><TD> 0.022</TD><TD>58.736</TD><TD></TD><TD>48.106</TD><TD></TD><TD></TD><TD>1.976e-12</TD><TD>6.102e-13</TD><TD> 8.922</TD><TD> 0.031</TD><TD> 6.223</TD><TD> 0.053</TD><TD>2MASS J00005350-4439335</TD><TD>15.087</TD><TD>0.056</TD><TD>14.358</TD><TD>0.057</TD><TD>13.885</TD><TD>0.064</TD><TD>Gaia DR1 4994511881042485248</TD><TD>0.22295</TD><TD>-44.65930</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.028</TD></TR>
-<TR><TD>5861</TD><TD>XMMSL2 J000117.1-315032</TD><TD>0.32143</TD><TD>-31.84230</TD><TD>2.740e-12</TD><TD>1.163e-12</TD><TD>WISEA J000117.85-315022.7</TD><TD>13.101</TD><TD>16.656</TD><TD> 0.081</TD><TD>15.692</TD><TD> 0.116</TD><TD>15.782</TD><TD></TD><TD>19.503</TD><TD></TD><TD></TD><TD>1.112e-12</TD><TD>4.836e-13</TD><TD>12.441</TD><TD></TD><TD> 8.561</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>5862</TD><TD>XMMSL2 J000117.1-315032</TD><TD>0.32143</TD><TD>-31.84230</TD><TD>2.740e-12</TD><TD>1.163e-12</TD><TD>WISEA J000117.08-315043.8</TD><TD>11.574</TD><TD>14.937</TD><TD> 0.034</TD><TD>14.645</TD><TD> 0.057</TD><TD>15.782</TD><TD></TD><TD>19.503</TD><TD></TD><TD></TD><TD>1.112e-12</TD><TD>4.836e-13</TD><TD>12.293</TD><TD></TD><TD> 9.230</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 2314356562107484416</TD><TD>0.32114</TD><TD>-31.84552</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>20.104</TD></TR>
-<TR><TD>1624</TD><TD>XMMSL2 J000129.0-625530</TD><TD>0.37120</TD><TD>-62.92502</TD><TD>1.886e-12</TD><TD>8.753e-13</TD><TD>WISEA J000129.40-625523.1</TD><TD>7.216</TD><TD> 6.871</TD><TD> 0.062</TD><TD> 6.888</TD><TD> 0.020</TD><TD>15.115</TD><TD></TD><TD>17.944</TD><TD></TD><TD></TD><TD>8.437e-13</TD><TD>3.818e-13</TD><TD> 6.910</TD><TD> 0.016</TD><TD> 6.875</TD><TD> 0.074</TD><TD>2MASS J00012943-6255234</TD><TD> 7.071</TD><TD>0.024</TD><TD> 7.007</TD><TD>0.031</TD><TD> 6.935</TD><TD>0.020</TD><TD>Gaia DR1 4904492939931038336</TD><TD>0.37258</TD><TD>-62.92313</TD><TD>-2.200</TD><TD>0.041</TD><TD>11.069</TD><TD>0.039</TD><TD> 7.451</TD></TR>
-<TR><TD>13109</TD><TD>XMMSL2 J000133.0+211340</TD><TD>0.38784</TD><TD>21.22789</TD><TD>2.021e-12</TD><TD>1.050e-12</TD><TD>WISEA J000132.36+211336.2</TD><TD>10.876</TD><TD>13.988</TD><TD> 0.026</TD><TD>13.126</TD><TD> 0.029</TD><TD>12.452</TD><TD></TD><TD>12.703</TD><TD></TD><TD></TD><TD>8.332e-13</TD><TD>4.362e-13</TD><TD> 9.715</TD><TD> 0.054</TD><TD> 7.439</TD><TD> 0.126</TD><TD>2MASS J00013236+2113362</TD><TD>16.231</TD><TD>0.099</TD><TD>15.534</TD><TD>0.142</TD><TD>14.561</TD><TD>0.102</TD><TD>Gaia DR1 2846735969108432384</TD><TD>0.38488</TD><TD>21.22674</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.551</TD></TR>
-<TR><TD>12307</TD><TD>XMMSL2 J000133.1+145610</TD><TD>0.38811</TD><TD>14.93616</TD><TD>1.641e-12</TD><TD>8.152e-13</TD><TD>WISEA J000132.83+145607.9</TD><TD>5.075</TD><TD>14.238</TD><TD> 0.027</TD><TD>13.308</TD><TD> 0.031</TD><TD>15.503</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>10.447</TD><TD> 0.081</TD><TD> 7.673</TD><TD> 0.169</TD><TD>2MASS J00013285+1456081</TD><TD>16.584</TD><TD></TD><TD>15.611</TD><TD>0.149</TD><TD>15.274</TD><TD>0.165</TD><TD>Gaia DR1 2772004362791856896</TD><TD>0.38679</TD><TD>14.93558</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>20.024</TD></TR>
-<TR><TD>1066</TD><TD>XMMSL2 J000141.3-684912</TD><TD>0.42247</TD><TD>-68.82007</TD><TD>4.758e-12</TD><TD>1.971e-12</TD><TD>WISEA J000140.51-684912.6</TD><TD>4.752</TD><TD>14.110</TD><TD> 0.025</TD><TD>13.054</TD><TD> 0.024</TD><TD>17.119</TD><TD></TD><TD>23.642</TD><TD></TD><TD></TD><TD>1.554e-12</TD><TD>6.451e-13</TD><TD>10.375</TD><TD> 0.052</TD><TD> 7.925</TD><TD> 0.138</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 4706338920013529856</TD><TD>0.41883</TD><TD>-68.82018</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>19.632</TD></TR>
-<TR><TD>11850</TD><TD>XMMSL2 J000144.8+110955</TD><TD>0.43671</TD><TD>11.16522</TD><TD>6.533e-12</TD><TD>1.864e-12</TD><TD>WISEA J000144.85+111000.0</TD><TD>5.337</TD><TD>13.537</TD><TD> 0.025</TD><TD>12.712</TD><TD> 0.026</TD><TD>54.321</TD><TD></TD><TD>50.721</TD><TD></TD><TD></TD><TD>2.347e-12</TD><TD>7.085e-13</TD><TD>10.304</TD><TD> 0.083</TD><TD> 8.117</TD><TD> 0.220</TD><TD>2MASS J00014484+1109598</TD><TD>16.158</TD><TD>0.099</TD><TD>15.465</TD><TD>0.127</TD><TD>14.626</TD><TD>0.107</TD><TD>Gaia DR1 2765480582346775680</TD><TD>0.43691</TD><TD>11.16669</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.577</TD></TR>
-<TR><TD>11868</TD><TD>XMMSL2 J000151.1+111642</TD><TD>0.46296</TD><TD>11.27815</TD><TD>5.628e-12</TD><TD>2.623e-12</TD><TD>WISEA J000150.56+111647.3</TD><TD>10.025</TD><TD>11.677</TD><TD> 0.023</TD><TD>10.725</TD><TD> 0.020</TD><TD>17.968</TD><TD></TD><TD>13.224</TD><TD></TD><TD></TD><TD>1.694e-12</TD><TD>9.345e-13</TD><TD> 8.308</TD><TD> 0.023</TD><TD> 6.171</TD><TD> 0.052</TD><TD>2MASS J00015055+1116471</TD><TD>14.765</TD><TD>0.046</TD><TD>14.051</TD><TD>0.054</TD><TD>12.966</TD><TD>0.043</TD><TD>Gaia DR1 2765670694779128576</TD><TD>0.46070</TD><TD>11.27979</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>16.420</TD></TR>
-<TR><TD>3498</TD><TD>XMMSL2 J000153.8-485957</TD><TD>0.47441</TD><TD>-48.99918</TD><TD>2.352e-12</TD><TD>1.207e-12</TD><TD>WISEA J000153.86-485947.9</TD><TD>9.129</TD><TD>15.396</TD><TD> 0.037</TD><TD>14.961</TD><TD> 0.062</TD><TD>12.020</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>12.002</TD><TD> 0.236</TD><TD> 8.804</TD><TD> 0.393</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>1194</TD><TD>XMMSL2 J000155.4-670739</TD><TD>0.48120</TD><TD>-67.12759</TD><TD>8.857e-12</TD><TD>1.780e-12</TD><TD>WISEA J000155.12-670743.3</TD><TD>4.557</TD><TD>12.651</TD><TD> 0.023</TD><TD>12.529</TD><TD> 0.023</TD><TD>121.874</TD><TD>10.274</TD><TD>124.054</TD><TD>4.874e-12</TD><TD>2.473e-12</TD><TD>3.028e-12</TD><TD>6.720e-13</TD><TD>12.553</TD><TD> 0.373</TD><TD> 9.403</TD><TD></TD><TD>2MASS J00015507-6707432</TD><TD>13.296</TD><TD>0.026</TD><TD>12.873</TD><TD>0.031</TD><TD>12.724</TD><TD>0.028</TD><TD>Gaia DR1 4707482480825968000</TD><TD>0.47974</TD><TD>-67.12871</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>14.358</TD></TR>
-<TR><TD>6530</TD><TD>XMMSL2 J000155.5-273734</TD><TD>0.48149</TD><TD>-27.62608</TD><TD>3.110e-12</TD><TD>1.119e-12</TD><TD>WISEA J000155.79-273737.9</TD><TD>5.102</TD><TD>10.761</TD><TD> 0.023</TD><TD>10.643</TD><TD> 0.020</TD><TD>35.001</TD><TD></TD><TD>24.318</TD><TD></TD><TD></TD><TD>8.251e-13</TD><TD>3.690e-13</TD><TD> 7.899</TD><TD> 0.020</TD><TD> 6.149</TD><TD> 0.061</TD><TD>2MASS J00015580-2737378</TD><TD>13.297</TD><TD>0.105</TD><TD>12.355</TD><TD>0.075</TD><TD>11.975</TD><TD>0.065</TD><TD>Gaia DR1 2333731674980592640</TD><TD>0.48247</TD><TD>-27.62718</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>16.892</TD></TR>
-<TR><TD>3137</TD><TD>XMMSL2 J000203.0-515719</TD><TD>0.51262</TD><TD>-51.95529</TD><TD></TD><TD></TD><TD>WISEA J000201.11-515736.7</TD><TD>25.051</TD><TD>14.828</TD><TD> 0.040</TD><TD>14.466</TD><TD> 0.054</TD><TD></TD><TD></TD><TD>12.310</TD><TD></TD><TD></TD><TD>6.253e-13</TD><TD>2.978e-13</TD><TD>11.833</TD><TD> 0.247</TD><TD> 9.047</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>3138</TD><TD>XMMSL2 J000203.0-515719</TD><TD>0.51262</TD><TD>-51.95529</TD><TD></TD><TD></TD><TD>WISEA J000200.65-515741.8</TD><TD>31.659</TD><TD>12.831</TD><TD> 0.023</TD><TD>12.704</TD><TD> 0.024</TD><TD></TD><TD></TD><TD>12.310</TD><TD></TD><TD></TD><TD>6.253e-13</TD><TD>2.978e-13</TD><TD>11.721</TD><TD> 0.219</TD><TD> 9.099</TD><TD></TD><TD>2MASS J00020064-5157416</TD><TD>14.856</TD><TD>0.071</TD><TD>14.141</TD><TD>0.089</TD><TD>13.642</TD><TD>0.072</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>11015</TD><TD>XMMSL2 J000215.7+045535</TD><TD>0.56582</TD><TD>4.92644</TD><TD>2.225e-12</TD><TD>9.573e-13</TD><TD>WISEA J000215.29+045525.8</TD><TD>11.963</TD><TD>15.004</TD><TD> 0.035</TD><TD>14.220</TD><TD> 0.049</TD><TD>20.253</TD><TD></TD><TD>10.096</TD><TD></TD><TD></TD><TD>5.930e-13</TD><TD>3.247e-13</TD><TD>11.339</TD><TD> 0.172</TD><TD> 8.614</TD><TD> 0.382</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 2741959108050717440</TD><TD>0.56368</TD><TD>4.92388</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>19.314</TD></TR>
-<TR><TD>10790</TD><TD>XMMSL2 J000226.5+032110</TD><TD>0.61056</TD><TD>3.35290</TD><TD>1.580e-11</TD><TD>2.693e-12</TD><TD>WISEA J000226.42+032106.8</TD><TD>3.927</TD><TD>10.756</TD><TD> 0.023</TD><TD>10.126</TD><TD> 0.020</TD><TD>166.654</TD><TD>19.269</TD><TD>132.690</TD><TD>7.454e-12</TD><TD>3.367e-12</TD><TD>5.067e-12</TD><TD>9.395e-13</TD><TD> 6.965</TD><TD> 0.017</TD><TD> 4.773</TD><TD> 0.028</TD><TD>2MASS J00022642+0321069</TD><TD>13.868</TD><TD>0.098</TD><TD>13.019</TD><TD>0.112</TD><TD>12.338</TD><TD>0.064</TD><TD>Gaia DR1 2740040116662706304</TD><TD>0.61008</TD><TD>3.35193</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>16.042</TD></TR>
-<TR><TD>4466</TD><TD>XMMSL2 J000237.9-415043</TD><TD>0.65831</TD><TD>-41.84523</TD><TD>4.566e-12</TD><TD>1.834e-12</TD><TD>WISEA J000238.35-415038.8</TD><TD>5.656</TD><TD>14.056</TD><TD> 0.027</TD><TD>13.809</TD><TD> 0.035</TD><TD>20.952</TD><TD></TD><TD>19.316</TD><TD></TD><TD></TD><TD>1.466e-12</TD><TD>6.256e-13</TD><TD>12.531</TD><TD></TD><TD> 9.097</TD><TD></TD><TD>2MASS J00023837-4150389</TD><TD>15.161</TD><TD>0.042</TD><TD>14.492</TD><TD>0.051</TD><TD>14.205</TD><TD>0.075</TD><TD>Gaia DR1 4995934477291070464</TD><TD>0.65978</TD><TD>-41.84414</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.327</TD></TR>
-<TR><TD>2786</TD><TD>XMMSL2 J000248.7-542503</TD><TD>0.70316</TD><TD>-54.41736</TD><TD>1.901e-12</TD><TD>9.224e-13</TD><TD>WISEA J000247.24-542457.3</TD><TD>14.176</TD><TD>16.047</TD><TD> 0.052</TD><TD>15.324</TD><TD> 0.081</TD><TD>11.609</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>12.411</TD><TD> 0.406</TD><TD> 8.951</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>221</TD><TD>XMMSL2 J000255.4-802534</TD><TD>0.73088</TD><TD>-80.42618</TD><TD>2.835e-12</TD><TD>1.515e-12</TD><TD>WISEA J000252.98-802529.8</TD><TD>7.528</TD><TD>17.760</TD><TD> 0.142</TD><TD>17.859</TD><TD></TD><TD>10.504</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>12.879</TD><TD></TD><TD> 9.309</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>13211</TD><TD>XMMSL2 J000309.3+215745</TD><TD>0.78882</TD><TD>21.96257</TD><TD>3.550e-12</TD><TD>1.072e-12</TD><TD>WISEA J000309.60+215736.8</TD><TD>9.290</TD><TD> 9.719</TD><TD> 0.023</TD><TD> 8.912</TD><TD> 0.020</TD><TD>47.788</TD><TD></TD><TD>50.868</TD><TD></TD><TD></TD><TD>1.209e-12</TD><TD>3.938e-13</TD><TD> 5.406</TD><TD> 0.015</TD><TD> 2.464</TD><TD> 0.020</TD><TD>2MASS J00030960+2157368</TD><TD>12.912</TD><TD>0.055</TD><TD>11.925</TD><TD>0.053</TD><TD>11.096</TD><TD>0.033</TD><TD>Gaia DR1 2847176564033310464</TD><TD>0.79002</TD><TD>21.96026</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>15.655</TD></TR>
-<TR><TD>785</TD><TD>XMMSL2 J000309.4-724521</TD><TD>0.78920</TD><TD>-72.75573</TD><TD>1.765e-12</TD><TD>7.883e-13</TD><TD>WISEA J000310.72-724522.3</TD><TD>6.080</TD><TD>14.381</TD><TD> 0.032</TD><TD>13.455</TD><TD> 0.029</TD><TD>17.745</TD><TD></TD><TD>17.877</TD><TD></TD><TD></TD><TD>6.670e-13</TD><TD>3.111e-13</TD><TD>10.396</TD><TD> 0.056</TD><TD> 7.911</TD><TD> 0.150</TD><TD>2MASS J00031075-7245222</TD><TD>16.836</TD><TD>0.151</TD><TD>16.061</TD><TD>0.182</TD><TD>15.323</TD><TD>0.166</TD><TD>Gaia DR1 4689675237183988608</TD><TD>0.79463</TD><TD>-72.75619</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.824</TD></TR>
-<TR><TD>9485</TD><TD>XMMSL2 J000310.4-060503</TD><TD>0.79369</TD><TD>-6.08412</TD><TD>3.805e-12</TD><TD>1.398e-12</TD><TD>WISEA J000310.68-060506.9</TD><TD>5.103</TD><TD>15.488</TD><TD> 0.046</TD><TD>15.665</TD><TD> 0.170</TD><TD>16.401</TD><TD></TD><TD>22.157</TD><TD></TD><TD></TD><TD>1.740e-12</TD><TD>5.749e-13</TD><TD>11.742</TD><TD></TD><TD> 8.856</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>4462</TD><TD>XMMSL2 J000311.3-415225</TD><TD>0.79717</TD><TD>-41.87375</TD><TD>2.864e-12</TD><TD>1.176e-12</TD><TD>WISEA J000311.35-415228.4</TD><TD>2.936</TD><TD>13.793</TD><TD> 0.025</TD><TD>12.749</TD><TD> 0.025</TD><TD>23.958</TD><TD></TD><TD>22.751</TD><TD></TD><TD></TD><TD>9.765e-13</TD><TD>4.377e-13</TD><TD>10.139</TD><TD> 0.055</TD><TD> 7.345</TD><TD> 0.119</TD><TD>2MASS J00031132-4152283</TD><TD>16.907</TD><TD>0.185</TD><TD>16.149</TD><TD>0.176</TD><TD>15.427</TD><TD>0.208</TD><TD>Gaia DR1 4995954062341923328</TD><TD>0.79729</TD><TD>-41.87457</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.131</TD></TR>
-<TR><TD>6473</TD><TD>XMMSL2 J000316.6-275626</TD><TD>0.81918</TD><TD>-27.94062</TD><TD>7.752e-12</TD><TD>2.175e-12</TD><TD>WISEA J000316.84-275627.0</TD><TD>3.256</TD><TD>12.530</TD><TD> 0.022</TD><TD>11.596</TD><TD> 0.021</TD><TD>56.791</TD><TD></TD><TD>66.004</TD><TD></TD><TD></TD><TD>2.944e-12</TD><TD>8.214e-13</TD><TD> 8.471</TD><TD> 0.024</TD><TD> 5.928</TD><TD> 0.045</TD><TD>2MASS J00031684-2756269</TD><TD>15.462</TD><TD>0.068</TD><TD>14.635</TD><TD>0.074</TD><TD>13.816</TD><TD>0.064</TD><TD>Gaia DR1 2333520843621290624</TD><TD>0.82016</TD><TD>-27.94081</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.683</TD></TR>
-<TR><TD>3022</TD><TD>XMMSL2 J000319.5-524729</TD><TD>0.83135</TD><TD>-52.79149</TD><TD>1.140e-11</TD><TD>2.089e-12</TD><TD>WISEA J000319.57-524727.6</TD><TD>1.803</TD><TD>14.315</TD><TD> 0.028</TD><TD>13.897</TD><TD> 0.038</TD><TD>142.415</TD><TD></TD><TD>115.935</TD><TD></TD><TD></TD><TD>4.139e-12</TD><TD>8.208e-13</TD><TD>11.683</TD><TD> 0.239</TD><TD> 8.252</TD><TD></TD><TD>2MASS J00031961-5247272</TD><TD>16.915</TD><TD>0.158</TD><TD>16.393</TD><TD>0.239</TD><TD>15.564</TD><TD>0.187</TD><TD>Gaia DR1 4972337755167600256</TD><TD>0.83165</TD><TD>-52.79091</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.641</TD></TR>
-<TR><TD>18864</TD><TD>XMMSL2 J000332.0+794219</TD><TD>0.88336</TD><TD>79.70528</TD><TD>1.354e-12</TD><TD>7.396e-13</TD><TD>WISEA J000335.27+794213.0</TD><TD>10.621</TD><TD>15.102</TD><TD> 0.032</TD><TD>15.205</TD><TD> 0.059</TD><TD>10.712</TD><TD></TD><TD>12.379</TD><TD></TD><TD></TD><TD>5.977e-13</TD><TD>3.160e-13</TD><TD>12.989</TD><TD></TD><TD> 9.037</TD><TD></TD><TD>2MASS J00033530+7942129</TD><TD>15.809</TD><TD>0.079</TD><TD>15.340</TD><TD>0.112</TD><TD>15.150</TD><TD>0.143</TD><TD>Gaia DR1 565010232053644672</TD><TD>0.89712</TD><TD>79.70359</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.529</TD></TR>
-<TR><TD>1060</TD><TD>XMMSL2 J000337.1-685335</TD><TD>0.90498</TD><TD>-68.89297</TD><TD>4.206e-12</TD><TD>2.189e-12</TD><TD>WISEA J000340.20-685329.2</TD><TD>17.149</TD><TD>16.592</TD><TD> 0.059</TD><TD>17.148</TD><TD> 0.319</TD><TD>11.487</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>13.050</TD><TD></TD><TD> 9.485</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD></TR>
-<TR><TD>7694</TD><TD>XMMSL2 J000354.9-193526</TD><TD>0.97884</TD><TD>-19.59054</TD><TD>2.484e-12</TD><TD>9.650e-13</TD><TD>WISEA J000355.11-193533.8</TD><TD>8.359</TD><TD>13.963</TD><TD> 0.028</TD><TD>12.793</TD><TD> 0.026</TD><TD>22.821</TD><TD></TD><TD>35.163</TD><TD></TD><TD></TD><TD>1.094e-12</TD><TD>4.033e-13</TD><TD>10.277</TD><TD> 0.067</TD><TD> 7.726</TD><TD> 0.214</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 2365838617097944832</TD><TD>0.97967</TD><TD>-19.59273</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.654</TD></TR>
-<TR><TD>15016</TD><TD>XMMSL2 J000357.9+373329</TD><TD>0.99128</TD><TD>37.55807</TD><TD>1.791e-12</TD><TD>8.266e-13</TD><TD>WISEA J000359.09+373333.7</TD><TD>14.915</TD><TD>15.073</TD><TD> 0.035</TD><TD>14.986</TD><TD> 0.072</TD><TD>14.444</TD><TD>9.571</TD><TD></TD><TD>3.776e-12</TD><TD>2.120e-12</TD><TD></TD><TD></TD><TD>12.717</TD><TD></TD><TD> 9.053</TD><TD></TD><TD>2MASS J00035908+3733339</TD><TD>15.543</TD><TD>0.055</TD><TD>15.189</TD><TD>0.090</TD><TD>14.963</TD><TD>0.088</TD><TD>Gaia DR1 2880310175141422464</TD><TD>0.99618</TD><TD>37.55936</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>16.702</TD></TR>
-<TR><TD>363</TD><TD>XMMSL2 J000358.9-780742</TD><TD>0.99549</TD><TD>-78.12836</TD><TD>2.231e-12</TD><TD>9.851e-13</TD><TD>WISEA J000358.12-780734.4</TD><TD>8.045</TD><TD>12.369</TD><TD> 0.023</TD><TD>11.783</TD><TD> 0.020</TD><TD>22.495</TD><TD></TD><TD>25.971</TD><TD></TD><TD></TD><TD>8.051e-13</TD><TD>3.664e-13</TD><TD> 9.354</TD><TD> 0.031</TD><TD> 7.260</TD><TD> 0.091</TD><TD>2MASS J00035812-7807343</TD><TD>14.944</TD><TD>0.078</TD><TD>14.140</TD><TD>0.087</TD><TD>13.627</TD><TD>0.063</TD><TD>Gaia DR1 4683746262460730624</TD><TD>0.99228</TD><TD>-78.12624</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>18.183</TD></TR>
-<TR><TD>6279</TD><TD>XMMSL2 J000416.3-290239</TD><TD>1.06825</TD><TD>-29.04435</TD><TD>2.255e-12</TD><TD>8.668e-13</TD><TD>WISEA J000416.65-290234.6</TD><TD>6.171</TD><TD>13.686</TD><TD> 0.026</TD><TD>12.722</TD><TD> 0.026</TD><TD>26.694</TD><TD></TD><TD>29.436</TD><TD></TD><TD></TD><TD>7.978e-13</TD><TD>3.278e-13</TD><TD>10.468</TD><TD> 0.069</TD><TD> 8.209</TD><TD> 0.255</TD><TD>2MASS J00041665-2902346</TD><TD>16.887</TD><TD>0.184</TD><TD>15.968</TD><TD>0.196</TD><TD>15.294</TD><TD>0.162</TD><TD>Gaia DR1 2321006202274219904</TD><TD>1.06942</TD><TD>-29.04295</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.651</TD></TR>
-<TR><TD>4136</TD><TD>XMMSL2 J000419.6-440833</TD><TD>1.08170</TD><TD>-44.14261</TD><TD>3.217e-12</TD><TD>1.134e-12</TD><TD>WISEA J000418.69-440831.5</TD><TD>10.019</TD><TD>13.065</TD><TD> 0.023</TD><TD>12.178</TD><TD> 0.022</TD><TD>22.629</TD><TD></TD><TD>32.592</TD><TD></TD><TD></TD><TD>1.290e-12</TD><TD>4.414e-13</TD><TD> 9.002</TD><TD> 0.030</TD><TD> 6.637</TD><TD> 0.068</TD><TD>2MASS J00041869-4408314</TD><TD>15.033</TD><TD>0.060</TD><TD>14.257</TD><TD>0.065</TD><TD>13.438</TD><TD>0.053</TD><TD>Gaia DR1 4994548817761562112</TD><TD>1.07786</TD><TD>-44.14210</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.542</TD></TR>
-<TR><TD>2876</TD><TD>XMMSL2 J000426.8-535342</TD><TD>1.11207</TD><TD>-53.89496</TD><TD>2.427e-12</TD><TD>9.386e-13</TD><TD>WISEA J000426.29-535354.6</TD><TD>13.870</TD><TD>13.428</TD><TD> 0.024</TD><TD>12.306</TD><TD> 0.022</TD><TD>18.832</TD><TD></TD><TD>23.103</TD><TD></TD><TD></TD><TD>1.086e-12</TD><TD>4.025e-13</TD><TD> 9.619</TD><TD> 0.041</TD><TD> 7.343</TD><TD> 0.108</TD><TD>2MASS J00042628-5353543</TD><TD>16.602</TD><TD>0.139</TD><TD>15.983</TD><TD>0.165</TD><TD>14.985</TD><TD>0.151</TD><TD>Gaia DR1 4923971372533630976</TD><TD>1.10956</TD><TD>-53.89849</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>17.399</TD></TR>
-<TR><TD>3676</TD><TD>XMMSL2 J000435.9-473621</TD><TD>1.14981</TD><TD>-47.60566</TD><TD>2.452e-12</TD><TD>1.157e-12</TD><TD>WISEA J000435.65-473619.6</TD><TD>3.060</TD><TD>13.202</TD><TD> 0.024</TD><TD>12.108</TD><TD> 0.022</TD><TD>15.804</TD><TD></TD><TD>20.081</TD><TD></TD><TD></TD><TD>9.401e-13</TD><TD>4.455e-13</TD><TD> 8.780</TD><TD> 0.026</TD><TD> 6.474</TD><TD> 0.066</TD><TD>2MASS J00043562-4736197</TD><TD>16.169</TD><TD>0.121</TD><TD>15.231</TD><TD>0.105</TD><TD>14.384</TD><TD>0.083</TD><TD>Gaia DR1 4978016560925910400</TD><TD>1.14856</TD><TD>-47.60545</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>19.854</TD></TR>
-<TR><TD>13124</TD><TD>XMMSL2 J000453.9+211908</TD><TD>1.22464</TD><TD>21.31880</TD><TD>1.052e-12</TD><TD>5.256e-13</TD><TD>WISEA J000452.28+211922.6</TD><TD>27.255</TD><TD>10.755</TD><TD> 0.023</TD><TD>10.775</TD><TD> 0.020</TD><TD>13.696</TD><TD></TD><TD>14.731</TD><TD></TD><TD></TD><TD>3.697e-13</TD><TD>2.097e-13</TD><TD>10.673</TD><TD> 0.100</TD><TD> 8.687</TD><TD></TD><TD>2MASS J00045227+2119228</TD><TD>11.149</TD><TD>0.023</TD><TD>10.844</TD><TD>0.032</TD><TD>10.821</TD><TD>0.022</TD><TD>Gaia DR1 2846918797275697536</TD><TD>1.21789</TD><TD>21.32296</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>12.036</TD></TR>
-<TR><TD>14685</TD><TD>XMMSL2 J000454.2+343937</TD><TD>1.22596</TD><TD>34.66024</TD><TD>8.906e-12</TD><TD>2.313e-12</TD><TD>WISEA J000454.32+343936.9</TD><TD>1.179</TD><TD> 4.351</TD><TD> 0.220</TD><TD> 3.851</TD><TD> 0.190</TD><TD>74.341</TD><TD></TD><TD>80.618</TD><TD></TD><TD></TD><TD>3.374e-12</TD><TD>8.909e-13</TD><TD> 4.396</TD><TD> 0.018</TD><TD> 4.366</TD><TD> 0.025</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>Gaia DR1 2876698932276200960</TD><TD>1.22791</TD><TD>34.66018</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD> 5.888</TD></TR>
-<TR><TD>5693</TD><TD>XMMSL2 J000457.3-330825</TD><TD>1.23897</TD><TD>-33.14019</TD><TD>1.491e-12</TD><TD>7.390e-13</TD><TD>WISEA J000457.17-330831.8</TD><TD>7.520</TD><TD>10.445</TD><TD> 0.023</TD><TD>10.468</TD><TD> 0.021</TD><TD>16.887</TD><TD></TD><TD>12.997</TD><TD></TD><TD></TD><TD>5.044e-13</TD><TD>2.865e-13</TD><TD>10.325</TD><TD> 0.066</TD><TD> 8.819</TD><TD> 0.401</TD><TD>2MASS J00045715-3308316</TD><TD>11.027</TD><TD>0.022</TD><TD>10.568</TD><TD>0.025</TD><TD>10.469</TD><TD>0.021</TD><TD>Gaia DR1 2313291100980313728</TD><TD>1.23827</TD><TD>-33.14219</TD><TD></TD><TD></TD><TD></TD><TD></TD><TD>12.330</TD></TR>
-        </TABLEDATA>
-      </DATA>
-    </TABLE>
-  </RESOURCE>
+	<DEFINITIONS>
+		<COOSYS system="eq_FK5" equinox="2000" />
+	</DEFINITIONS>
+
+	<RESOURCE ID="T9001" type="results">
+		<RESOURCE type="meta">
+			<dm-mapping:VODML
+				xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
+				<dm-mapping:REPORT status="OK">hand-made mapping</dm-mapping:REPORT>
+				
+				<dm-mapping:MODEL name="photdm" />
+				<dm-mapping:MODEL name="photpoint" />
+				<dm-mapping:MODEL name="sed" />
+				
+				<dm-mapping:GLOBALS>
+				</dm-mapping:GLOBALS>
+				
+				<dm-mapping:TEMPLATES>
+					<dm-mapping:INSTANCE dmtype="sed:Sed">
+						<dm-mapping:INSTANCE dmtype="sed:Source"
+							dmrole="sed:Sed.source">
+							<dm-mapping:ATTRIBUTE dmtype="ivoa:string"
+								dmrole="sed:Source.name" ref="" />
+							<dm-mapping:INSTANCE dmtype="sed.Position"
+								dmrole="sed:Source.position">
+								<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+									dmrole="sed.Position.longitude" ref="" />
+								<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+									dmrole="sed.Position.latitude" ref="" />
+								<dm-mapping:ATTRIBUTE dmtype="ivoa:vounit"
+									dmrole="sed.Position.unit" value="deg" />
+							</dm-mapping:INSTANCE>
+
+							<dm-mapping:COLLECTION
+								dmrole="sed:Sed.points">
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="flux_b6" unit="erg/cm2/sec" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB6" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="flux_b7" unit="erg/cm2/sec" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB7" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="flux_b8" unit="erg/cm2/sec" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB8" />
+								</dm-mapping:INSTANCE>
+								
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="w1_mag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W1" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="w2_mag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W2" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="w3_mag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W3" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="w4_mag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W4" />
+								</dm-mapping:INSTANCE>
+								
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="hmag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_H" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="jmag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_J" />
+								</dm-mapping:INSTANCE>
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="kmag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_K" />
+								</dm-mapping:INSTANCE>
+								
+								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
+									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
+										dmrole="sed:PhotPoint.flux" ref="gaia_gmag" unit="mag" />
+									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_GAIA_G" />
+								</dm-mapping:INSTANCE>
+								
+							</dm-mapping:COLLECTION>
+						</dm-mapping:INSTANCE>
+
+					</dm-mapping:INSTANCE>
+				</dm-mapping:TEMPLATES>
+
+			</dm-mapping:VODML>
+		</RESOURCE>
+		<DESCRIPTION>
+			HEASARC Browse data service
+			Please send inquiries to
+			mailto:request@athena.gsfc.nasa.gov
+		</DESCRIPTION>
+		<PARAM ID="default_search_radius" ucd="OBS_ANG-SIZE"
+			value="0.0333333333333333"></PARAM>
+		<TABLE>
+			<DESCRIPTION> AllWISE Counterparts and Gaia Matches to XMM-Newton
+				Slew Survey (v2.0) Sources
+			</DESCRIPTION>
+
+			<FIELD name="w3___row" datatype="int">
+				<DESCRIPTION>
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="name" datatype="char" arraysize="*"
+				ucd="meta.id;meta.main">
+				<DESCRIPTION> XMM-Newton Slew Survey (XMMSL2) Source Designation
+					(XMMSL2_ID)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="ra" datatype="double" unit="degree"
+				ucd="pos.eq.ra;meta.main">
+				<DESCRIPTION> Right Ascension </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="dec" datatype="double" unit="degree"
+				ucd="pos.eq.dec;meta.main">
+				<DESCRIPTION> Declination </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b8" datatype="double" unit="erg/s/cm^2"
+				ucd="phot.flux;em.X-ray">
+				<DESCRIPTION> XMMSL2 Flux in Band 8 (XMMSL2_FLUX_B8) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b8_error" datatype="double" unit="erg/s/cm^2"
+				ucd="stat.error;phot.flux;em.X-ray">
+				<DESCRIPTION> XMMSL2 Flux Error in Band 8 (XMMSL2_FLUX_ERR_B8) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="allwise_name" datatype="char" arraysize="*"
+				ucd="meta.id.cross;em.IR">
+				<DESCRIPTION> WISE All-Sky Source Designation from Cutri et al.
+					(2013, Cat. II/328) (ALLW_ID)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="allwise_xmm_offset" datatype="double"
+				unit="arcsec" ucd="pos.angDistance;em.X-ray;em.IR">
+				<DESCRIPTION> Separation Between X-Ray Source and AllWISE Candidate
+					Counterpart
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w1_mag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.3-4um">
+				<DESCRIPTION> AllWISE Vega Magnitude in the W1 Band (ALLW_w1mpro) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w1_mag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.3-4um">
+				<DESCRIPTION> AllWISE Magnitude Error in the W1 Band
+					(ALLW_w1sigmpro)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w2_mag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.4-8um">
+				<DESCRIPTION> AllWISE Vega Magnitude in the W2 Band (ALLW_w2mpro) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w2_mag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.4-8um">
+				<DESCRIPTION> AllWISE Magnitude Error in the W2 Band
+					(ALLW_w2sigmpro)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="det_ml_b8" datatype="double"
+				ucd="stat.likelihood;src;em.X-ray">
+				<DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 8
+					(XMMSL2_DET_ML_B8)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="det_ml_b7" datatype="double"
+				ucd="stat.likelihood;src;em.X-ray.medium">
+				<DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 7
+					(XMMSL2_DET_ML_B7)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="det_ml_b6" datatype="double"
+				ucd="stat.likelihood;src;em.X-ray.soft">
+				<DESCRIPTION> XMMSL2 Source Detection Likelihood in Band 6
+					(XMMSL2_DET_ML_B6)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b7" datatype="double" unit="erg/s/cm^2"
+				ucd="phot.flux;em.X-ray.medium">
+				<DESCRIPTION> XMMSL2 Flux in Band 7 (XMMSL2_FLUX_B7) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b7_error" datatype="double" unit="erg/s/cm^2"
+				ucd="stat.error;phot.flux;em.X-ray.medium">
+				<DESCRIPTION> XMMSL2 Flux Error in Band 7 (XMMSL2_FLUX_ERR_B7) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b6" datatype="double" unit="erg/s/cm^2"
+				ucd="phot.flux;em.X-ray.soft">
+				<DESCRIPTION> XMMSL2 Flux in Band 6 (XMMSL2_FLUX_B6) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="flux_b6_error" datatype="double" unit="erg/s/cm^2"
+				ucd="stat.error;phot.flux;em.X-ray.soft">
+				<DESCRIPTION> XMMSL2 Flux Error in Band 6 (XMMSL2_FLUX_ERR_B6) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w3_mag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.8-15um">
+				<DESCRIPTION> AllWISE Vega Magnitude in the W3 Band (ALLW_w3mpro) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w3_mag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.8-15um">
+				<DESCRIPTION> AllWISE Magnitude Error in the W3 Band
+					(ALLW_w3sigmpro)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w4_mag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.15-30um">
+				<DESCRIPTION> AllWISE Vega Magnitude in the W4 Band (ALLW_w4mpro) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="w4_mag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.15-30um">
+				<DESCRIPTION> AllWISE Magnitude Error in the W4band
+					(ALLW_w4sigmpro)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="twomass_name" datatype="char" arraysize="*"
+				ucd="meta.id.cross;em.IR">
+				<DESCRIPTION> 2MASS Source Designation as Listed in the AllWISE
+					Catalog (ALLW_2MASS_ID)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="jmag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.J">
+				<DESCRIPTION> 2MASS Magnitude in the J Band, as from AllWISE
+					Catalog
+					(ALLW_j_m_2mass)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="jmag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.J">
+				<DESCRIPTION> 2MASS Magnitude Error in the J Band as Reported in
+					the
+					AllWISE Catalog
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="hmag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.H">
+				<DESCRIPTION> 2MASS Magnitude in the H Band, as from AllWISE
+					Catalog
+					(ALLW_h_m_2mass)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="hmag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.H">
+				<DESCRIPTION> 2MASS Magnitude Error in the H Band as Reported in
+					the
+					AllWISE Catalog
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="kmag" datatype="double" unit="mag"
+				ucd="phot.mag;em.IR.K">
+				<DESCRIPTION> 2MASS Magnitude in the K Band, as from AllWISE
+					Catalog
+					(ALLW_k_m_2mass)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="kmag_error" datatype="double" unit="mag"
+				ucd="stat.error;phot.mag;em.IR.K">
+				<DESCRIPTION> 2MASS Magnitude Error in the K Band as Reported in
+					the
+					AllWISE Catalog
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_name" datatype="char" arraysize="*"
+				ucd="meta.id.cross;em.opt">
+				<DESCRIPTION> Identification from Original Gaia DR1 Catalog from
+					Fabricious et al. (2016)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_ra" datatype="double" unit="degree"
+				ucd="pos.eq.ra">
+				<DESCRIPTION> Gaia Right Ascension (Gaia_DR1_RA) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_dec" datatype="double" unit="degree"
+				ucd="pos.eq.dec">
+				<DESCRIPTION> Gaia Declination (Gaia_DR1_DEC) </DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_pm_ra" datatype="double" unit="mas/yr"
+				ucd="pos.pm;pos.eq.ra">
+				<DESCRIPTION> Proper Motion in Right Ascension as Measured by Gaia
+					(pmra)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_pm_ra_error" datatype="double" unit="mas/yr"
+				ucd="stat.error;pos.pm;pos.eq.ra">
+				<DESCRIPTION> Proper Motion Error in Right Ascension as Measured by
+					Gaia (pmra_error)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_pm_dec" datatype="double" unit="mas/yr"
+				ucd="pos.pm;pos.eq.dec">
+				<DESCRIPTION> Proper Motion in Declination as Measured by Gaia
+					(pmdec)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_pm_dec_error" datatype="double" unit="mas/yr"
+				ucd="stat.error;pos.pm;pos.eq.dec">
+				<DESCRIPTION> Proper Motion Error in Declination as Measured by
+					Gaia
+					(pmdec_error)
+				</DESCRIPTION>
+			</FIELD>
+
+			<FIELD name="gaia_gmag" datatype="double" unit="mag"
+				ucd="phot.mag;em.opt">
+				<DESCRIPTION> Gaia Mean Magnitude (phot_g_mean_mag) </DESCRIPTION>
+			</FIELD>
+			<DATA>
+				<TABLEDATA>
+					<TR>
+						<TD>11455</TD>
+						<TD>XMMSL2 J000006.9+081615</TD>
+						<TD>0.02910</TD>
+						<TD>8.27096</TD>
+						<TD>3.201e-12</TD>
+						<TD>1.218e-12</TD>
+						<TD>WISEA J000005.72+081614.9</TD>
+						<TD>18.663</TD>
+						<TD>15.602</TD>
+						<TD> 0.050</TD>
+						<TD>15.356</TD>
+						<TD> 0.123</TD>
+						<TD>21.282</TD>
+						<TD></TD>
+						<TD>21.726</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.370e-12</TD>
+						<TD>5.168e-13</TD>
+						<TD>12.085</TD>
+						<TD></TD>
+						<TD> 8.643</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>433</TD>
+						<TD>XMMSL2 J000007.5-772033</TD>
+						<TD>0.03162</TD>
+						<TD>-77.34244</TD>
+						<TD>3.652e-12</TD>
+						<TD>1.242e-12</TD>
+						<TD>WISEA J000008.79-772020.0</TD>
+						<TD>13.327</TD>
+						<TD>12.498</TD>
+						<TD> 0.024</TD>
+						<TD>12.143</TD>
+						<TD> 0.022</TD>
+						<TD>31.249</TD>
+						<TD></TD>
+						<TD>21.072</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.818e-13</TD>
+						<TD>4.113e-13</TD>
+						<TD> 8.434</TD>
+						<TD> 0.022</TD>
+						<TD> 5.776</TD>
+						<TD> 0.037</TD>
+						<TD>2MASS J00000884-7720194</TD>
+						<TD>14.881</TD>
+						<TD>0.075</TD>
+						<TD>14.066</TD>
+						<TD>0.091</TD>
+						<TD>13.583</TD>
+						<TD>0.073</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>10565</TD>
+						<TD>XMMSL2 J000011.9+014613</TD>
+						<TD>0.04965</TD>
+						<TD>1.77023</TD>
+						<TD>4.559e-12</TD>
+						<TD>1.702e-12</TD>
+						<TD>WISEA J000012.20+014617.0</TD>
+						<TD>6.076</TD>
+						<TD> 7.796</TD>
+						<TD> 0.028</TD>
+						<TD> 7.832</TD>
+						<TD> 0.021</TD>
+						<TD>28.309</TD>
+						<TD></TD>
+						<TD>35.125</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.950e-12</TD>
+						<TD>6.915e-13</TD>
+						<TD> 7.837</TD>
+						<TD> 0.022</TD>
+						<TD> 7.962</TD>
+						<TD> 0.228</TD>
+						<TD>2MASS J00001217+0146173</TD>
+						<TD> 8.311</TD>
+						<TD>0.020</TD>
+						<TD> 7.981</TD>
+						<TD>0.044</TD>
+						<TD> 7.934</TD>
+						<TD>0.029</TD>
+						<TD>Gaia DR1 2738669094385615104</TD>
+						<TD>0.05112</TD>
+						<TD>1.77141</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>10.197</TD>
+					</TR>
+					<TR>
+						<TD>13636</TD>
+						<TD>XMMSL2 J000027.7+252813</TD>
+						<TD>0.11553</TD>
+						<TD>25.47043</TD>
+						<TD>4.379e-12</TD>
+						<TD>2.200e-12</TD>
+						<TD>WISEA J000027.92+252805.0</TD>
+						<TD>8.972</TD>
+						<TD>14.829</TD>
+						<TD> 0.032</TD>
+						<TD>14.394</TD>
+						<TD> 0.055</TD>
+						<TD>14.646</TD>
+						<TD></TD>
+						<TD>20.350</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.563e-12</TD>
+						<TD>7.809e-13</TD>
+						<TD>11.844</TD>
+						<TD> 0.371</TD>
+						<TD> 8.634</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 2853139146871914624</TD>
+						<TD>0.11640</TD>
+						<TD>25.46807</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>19.426</TD>
+					</TR>
+					<TR>
+						<TD>10177</TD>
+						<TD>XMMSL2 J000027.7-010238</TD>
+						<TD>0.11580</TD>
+						<TD>-1.04402</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>WISEA J000027.88-010234.7</TD>
+						<TD>3.950</TD>
+						<TD>14.533</TD>
+						<TD> 0.030</TD>
+						<TD>14.370</TD>
+						<TD> 0.055</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>10.701</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>6.466e-13</TD>
+						<TD>3.390e-13</TD>
+						<TD>12.365</TD>
+						<TD></TD>
+						<TD> 8.709</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>300</TD>
+						<TD>XMMSL2 J000029.6-790346</TD>
+						<TD>0.12372</TD>
+						<TD>-79.06271</TD>
+						<TD>2.744e-12</TD>
+						<TD>1.036e-12</TD>
+						<TD>WISEA J000027.74-790343.7</TD>
+						<TD>5.899</TD>
+						<TD> 6.816</TD>
+						<TD> 0.080</TD>
+						<TD> 6.802</TD>
+						<TD> 0.023</TD>
+						<TD>29.987</TD>
+						<TD></TD>
+						<TD>33.821</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.170e-12</TD>
+						<TD>4.397e-13</TD>
+						<TD> 6.820</TD>
+						<TD> 0.015</TD>
+						<TD> 6.932</TD>
+						<TD> 0.078</TD>
+						<TD>2MASS J00002716-7903431</TD>
+						<TD> 7.301</TD>
+						<TD>0.023</TD>
+						<TD> 6.884</TD>
+						<TD>0.036</TD>
+						<TD> 6.858</TD>
+						<TD>0.027</TD>
+						<TD>Gaia DR1 4635422653407496576</TD>
+						<TD>0.11313</TD>
+						<TD>-79.06198</TD>
+						<TD>162.485</TD>
+						<TD>0.061</TD>
+						<TD>-62.084</TD>
+						<TD>0.065</TD>
+						<TD> 8.404</TD>
+					</TR>
+					<TR>
+						<TD>3569</TD>
+						<TD>XMMSL2 J000037.5-483002</TD>
+						<TD>0.15652</TD>
+						<TD>-48.50057</TD>
+						<TD>2.667e-12</TD>
+						<TD>1.130e-12</TD>
+						<TD>WISEA J000036.75-482957.9</TD>
+						<TD>9.030</TD>
+						<TD>17.448</TD>
+						<TD> 0.154</TD>
+						<TD>17.116</TD>
+						<TD> 0.389</TD>
+						<TD>11.606</TD>
+						<TD></TD>
+						<TD>13.662</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.392e-13</TD>
+						<TD>4.217e-13</TD>
+						<TD>12.753</TD>
+						<TD></TD>
+						<TD> 9.296</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>3570</TD>
+						<TD>XMMSL2 J000037.5-483002</TD>
+						<TD>0.15652</TD>
+						<TD>-48.50057</TD>
+						<TD>2.667e-12</TD>
+						<TD>1.130e-12</TD>
+						<TD>WISEA J000038.35-483012.7</TD>
+						<TD>13.256</TD>
+						<TD>16.825</TD>
+						<TD> 0.090</TD>
+						<TD>16.306</TD>
+						<TD> 0.199</TD>
+						<TD>11.606</TD>
+						<TD></TD>
+						<TD>13.662</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.392e-13</TD>
+						<TD>4.217e-13</TD>
+						<TD>12.794</TD>
+						<TD></TD>
+						<TD> 8.857</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>3571</TD>
+						<TD>XMMSL2 J000037.5-483002</TD>
+						<TD>0.15652</TD>
+						<TD>-48.50057</TD>
+						<TD>2.667e-12</TD>
+						<TD>1.130e-12</TD>
+						<TD>WISEA J000037.11-482940.0</TD>
+						<TD>22.452</TD>
+						<TD>14.331</TD>
+						<TD> 0.029</TD>
+						<TD>14.241</TD>
+						<TD> 0.043</TD>
+						<TD>11.606</TD>
+						<TD></TD>
+						<TD>13.662</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.392e-13</TD>
+						<TD>4.217e-13</TD>
+						<TD>12.238</TD>
+						<TD> 0.312</TD>
+						<TD> 8.779</TD>
+						<TD></TD>
+						<TD>2MASS J00003709-4829398</TD>
+						<TD>15.708</TD>
+						<TD>0.073</TD>
+						<TD>14.975</TD>
+						<TD>0.077</TD>
+						<TD>14.809</TD>
+						<TD>0.119</TD>
+						<TD>Gaia DR1 4977908808786628096</TD>
+						<TD>0.15453</TD>
+						<TD>-48.49438</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.541</TD>
+					</TR>
+					<TR>
+						<TD>18862</TD>
+						<TD>XMMSL2 J000041.4+794042</TD>
+						<TD>0.17281</TD>
+						<TD>79.67836</TD>
+						<TD>3.722e-12</TD>
+						<TD>1.148e-12</TD>
+						<TD>WISEA J000041.30+794039.9</TD>
+						<TD>2.210</TD>
+						<TD> 8.454</TD>
+						<TD> 0.022</TD>
+						<TD> 8.480</TD>
+						<TD> 0.020</TD>
+						<TD>54.922</TD>
+						<TD></TD>
+						<TD>58.821</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.605e-12</TD>
+						<TD>4.905e-13</TD>
+						<TD> 8.395</TD>
+						<TD> 0.022</TD>
+						<TD> 8.311</TD>
+						<TD> 0.211</TD>
+						<TD>2MASS J00004121+7940398</TD>
+						<TD> 8.922</TD>
+						<TD>0.027</TD>
+						<TD> 8.612</TD>
+						<TD>0.033</TD>
+						<TD> 8.523</TD>
+						<TD>0.021</TD>
+						<TD>Gaia DR1 564638150446547200</TD>
+						<TD>0.17174</TD>
+						<TD>79.67775</TD>
+						<TD>22.601</TD>
+						<TD>0.637</TD>
+						<TD>0.630</TD>
+						<TD>0.602</TD>
+						<TD>10.017</TD>
+					</TR>
+					<TR>
+						<TD>6773</TD>
+						<TD>XMMSL2 J000043.2-260527</TD>
+						<TD>0.18022</TD>
+						<TD>-26.09091</TD>
+						<TD>6.347e-12</TD>
+						<TD>2.052e-12</TD>
+						<TD>WISEA J000043.92-260521.3</TD>
+						<TD>10.793</TD>
+						<TD>13.072</TD>
+						<TD> 0.024</TD>
+						<TD>12.515</TD>
+						<TD> 0.024</TD>
+						<TD>40.442</TD>
+						<TD></TD>
+						<TD>32.962</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2.011e-12</TD>
+						<TD>6.979e-13</TD>
+						<TD>10.337</TD>
+						<TD> 0.069</TD>
+						<TD> 8.359</TD>
+						<TD> 0.309</TD>
+						<TD>2MASS J00004391-2605212</TD>
+						<TD>15.336</TD>
+						<TD>0.070</TD>
+						<TD>14.672</TD>
+						<TD>0.105</TD>
+						<TD>14.243</TD>
+						<TD>0.088</TD>
+						<TD>Gaia DR1 2334782189616563712</TD>
+						<TD>0.18301</TD>
+						<TD>-26.08926</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.533</TD>
+					</TR>
+					<TR>
+						<TD>3027</TD>
+						<TD>XMMSL2 J000045.1-524508</TD>
+						<TD>0.18825</TD>
+						<TD>-52.75231</TD>
+						<TD>2.900e-12</TD>
+						<TD>1.485e-12</TD>
+						<TD>WISEA J000045.70-524510.4</TD>
+						<TD>5.159</TD>
+						<TD>16.987</TD>
+						<TD> 0.100</TD>
+						<TD>16.337</TD>
+						<TD> 0.187</TD>
+						<TD>10.519</TD>
+						<TD>9.851</TD>
+						<TD></TD>
+						<TD>8.981e-12</TD>
+						<TD>4.693e-12</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.752</TD>
+						<TD></TD>
+						<TD> 9.100</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>3028</TD>
+						<TD>XMMSL2 J000045.1-524508</TD>
+						<TD>0.18825</TD>
+						<TD>-52.75231</TD>
+						<TD>2.900e-12</TD>
+						<TD>1.485e-12</TD>
+						<TD>WISEA J000046.99-524512.9</TD>
+						<TD>17.117</TD>
+						<TD>16.064</TD>
+						<TD> 0.055</TD>
+						<TD>15.658</TD>
+						<TD> 0.111</TD>
+						<TD>10.519</TD>
+						<TD>9.851</TD>
+						<TD></TD>
+						<TD>8.981e-12</TD>
+						<TD>4.693e-12</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.726</TD>
+						<TD></TD>
+						<TD> 9.106</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>4067</TD>
+						<TD>XMMSL2 J000053.3-443927</TD>
+						<TD>0.22211</TD>
+						<TD>-44.65764</TD>
+						<TD>6.181e-12</TD>
+						<TD>1.707e-12</TD>
+						<TD>WISEA J000053.51-443933.4</TD>
+						<TD>6.371</TD>
+						<TD>12.555</TD>
+						<TD> 0.023</TD>
+						<TD>11.810</TD>
+						<TD> 0.022</TD>
+						<TD>58.736</TD>
+						<TD></TD>
+						<TD>48.106</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.976e-12</TD>
+						<TD>6.102e-13</TD>
+						<TD> 8.922</TD>
+						<TD> 0.031</TD>
+						<TD> 6.223</TD>
+						<TD> 0.053</TD>
+						<TD>2MASS J00005350-4439335</TD>
+						<TD>15.087</TD>
+						<TD>0.056</TD>
+						<TD>14.358</TD>
+						<TD>0.057</TD>
+						<TD>13.885</TD>
+						<TD>0.064</TD>
+						<TD>Gaia DR1 4994511881042485248</TD>
+						<TD>0.22295</TD>
+						<TD>-44.65930</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.028</TD>
+					</TR>
+					<TR>
+						<TD>5861</TD>
+						<TD>XMMSL2 J000117.1-315032</TD>
+						<TD>0.32143</TD>
+						<TD>-31.84230</TD>
+						<TD>2.740e-12</TD>
+						<TD>1.163e-12</TD>
+						<TD>WISEA J000117.85-315022.7</TD>
+						<TD>13.101</TD>
+						<TD>16.656</TD>
+						<TD> 0.081</TD>
+						<TD>15.692</TD>
+						<TD> 0.116</TD>
+						<TD>15.782</TD>
+						<TD></TD>
+						<TD>19.503</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.112e-12</TD>
+						<TD>4.836e-13</TD>
+						<TD>12.441</TD>
+						<TD></TD>
+						<TD> 8.561</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>5862</TD>
+						<TD>XMMSL2 J000117.1-315032</TD>
+						<TD>0.32143</TD>
+						<TD>-31.84230</TD>
+						<TD>2.740e-12</TD>
+						<TD>1.163e-12</TD>
+						<TD>WISEA J000117.08-315043.8</TD>
+						<TD>11.574</TD>
+						<TD>14.937</TD>
+						<TD> 0.034</TD>
+						<TD>14.645</TD>
+						<TD> 0.057</TD>
+						<TD>15.782</TD>
+						<TD></TD>
+						<TD>19.503</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.112e-12</TD>
+						<TD>4.836e-13</TD>
+						<TD>12.293</TD>
+						<TD></TD>
+						<TD> 9.230</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 2314356562107484416</TD>
+						<TD>0.32114</TD>
+						<TD>-31.84552</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>20.104</TD>
+					</TR>
+					<TR>
+						<TD>1624</TD>
+						<TD>XMMSL2 J000129.0-625530</TD>
+						<TD>0.37120</TD>
+						<TD>-62.92502</TD>
+						<TD>1.886e-12</TD>
+						<TD>8.753e-13</TD>
+						<TD>WISEA J000129.40-625523.1</TD>
+						<TD>7.216</TD>
+						<TD> 6.871</TD>
+						<TD> 0.062</TD>
+						<TD> 6.888</TD>
+						<TD> 0.020</TD>
+						<TD>15.115</TD>
+						<TD></TD>
+						<TD>17.944</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>8.437e-13</TD>
+						<TD>3.818e-13</TD>
+						<TD> 6.910</TD>
+						<TD> 0.016</TD>
+						<TD> 6.875</TD>
+						<TD> 0.074</TD>
+						<TD>2MASS J00012943-6255234</TD>
+						<TD> 7.071</TD>
+						<TD>0.024</TD>
+						<TD> 7.007</TD>
+						<TD>0.031</TD>
+						<TD> 6.935</TD>
+						<TD>0.020</TD>
+						<TD>Gaia DR1 4904492939931038336</TD>
+						<TD>0.37258</TD>
+						<TD>-62.92313</TD>
+						<TD>-2.200</TD>
+						<TD>0.041</TD>
+						<TD>11.069</TD>
+						<TD>0.039</TD>
+						<TD> 7.451</TD>
+					</TR>
+					<TR>
+						<TD>13109</TD>
+						<TD>XMMSL2 J000133.0+211340</TD>
+						<TD>0.38784</TD>
+						<TD>21.22789</TD>
+						<TD>2.021e-12</TD>
+						<TD>1.050e-12</TD>
+						<TD>WISEA J000132.36+211336.2</TD>
+						<TD>10.876</TD>
+						<TD>13.988</TD>
+						<TD> 0.026</TD>
+						<TD>13.126</TD>
+						<TD> 0.029</TD>
+						<TD>12.452</TD>
+						<TD></TD>
+						<TD>12.703</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>8.332e-13</TD>
+						<TD>4.362e-13</TD>
+						<TD> 9.715</TD>
+						<TD> 0.054</TD>
+						<TD> 7.439</TD>
+						<TD> 0.126</TD>
+						<TD>2MASS J00013236+2113362</TD>
+						<TD>16.231</TD>
+						<TD>0.099</TD>
+						<TD>15.534</TD>
+						<TD>0.142</TD>
+						<TD>14.561</TD>
+						<TD>0.102</TD>
+						<TD>Gaia DR1 2846735969108432384</TD>
+						<TD>0.38488</TD>
+						<TD>21.22674</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.551</TD>
+					</TR>
+					<TR>
+						<TD>12307</TD>
+						<TD>XMMSL2 J000133.1+145610</TD>
+						<TD>0.38811</TD>
+						<TD>14.93616</TD>
+						<TD>1.641e-12</TD>
+						<TD>8.152e-13</TD>
+						<TD>WISEA J000132.83+145607.9</TD>
+						<TD>5.075</TD>
+						<TD>14.238</TD>
+						<TD> 0.027</TD>
+						<TD>13.308</TD>
+						<TD> 0.031</TD>
+						<TD>15.503</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>10.447</TD>
+						<TD> 0.081</TD>
+						<TD> 7.673</TD>
+						<TD> 0.169</TD>
+						<TD>2MASS J00013285+1456081</TD>
+						<TD>16.584</TD>
+						<TD></TD>
+						<TD>15.611</TD>
+						<TD>0.149</TD>
+						<TD>15.274</TD>
+						<TD>0.165</TD>
+						<TD>Gaia DR1 2772004362791856896</TD>
+						<TD>0.38679</TD>
+						<TD>14.93558</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>20.024</TD>
+					</TR>
+					<TR>
+						<TD>1066</TD>
+						<TD>XMMSL2 J000141.3-684912</TD>
+						<TD>0.42247</TD>
+						<TD>-68.82007</TD>
+						<TD>4.758e-12</TD>
+						<TD>1.971e-12</TD>
+						<TD>WISEA J000140.51-684912.6</TD>
+						<TD>4.752</TD>
+						<TD>14.110</TD>
+						<TD> 0.025</TD>
+						<TD>13.054</TD>
+						<TD> 0.024</TD>
+						<TD>17.119</TD>
+						<TD></TD>
+						<TD>23.642</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.554e-12</TD>
+						<TD>6.451e-13</TD>
+						<TD>10.375</TD>
+						<TD> 0.052</TD>
+						<TD> 7.925</TD>
+						<TD> 0.138</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 4706338920013529856</TD>
+						<TD>0.41883</TD>
+						<TD>-68.82018</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>19.632</TD>
+					</TR>
+					<TR>
+						<TD>11850</TD>
+						<TD>XMMSL2 J000144.8+110955</TD>
+						<TD>0.43671</TD>
+						<TD>11.16522</TD>
+						<TD>6.533e-12</TD>
+						<TD>1.864e-12</TD>
+						<TD>WISEA J000144.85+111000.0</TD>
+						<TD>5.337</TD>
+						<TD>13.537</TD>
+						<TD> 0.025</TD>
+						<TD>12.712</TD>
+						<TD> 0.026</TD>
+						<TD>54.321</TD>
+						<TD></TD>
+						<TD>50.721</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2.347e-12</TD>
+						<TD>7.085e-13</TD>
+						<TD>10.304</TD>
+						<TD> 0.083</TD>
+						<TD> 8.117</TD>
+						<TD> 0.220</TD>
+						<TD>2MASS J00014484+1109598</TD>
+						<TD>16.158</TD>
+						<TD>0.099</TD>
+						<TD>15.465</TD>
+						<TD>0.127</TD>
+						<TD>14.626</TD>
+						<TD>0.107</TD>
+						<TD>Gaia DR1 2765480582346775680</TD>
+						<TD>0.43691</TD>
+						<TD>11.16669</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.577</TD>
+					</TR>
+					<TR>
+						<TD>11868</TD>
+						<TD>XMMSL2 J000151.1+111642</TD>
+						<TD>0.46296</TD>
+						<TD>11.27815</TD>
+						<TD>5.628e-12</TD>
+						<TD>2.623e-12</TD>
+						<TD>WISEA J000150.56+111647.3</TD>
+						<TD>10.025</TD>
+						<TD>11.677</TD>
+						<TD> 0.023</TD>
+						<TD>10.725</TD>
+						<TD> 0.020</TD>
+						<TD>17.968</TD>
+						<TD></TD>
+						<TD>13.224</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.694e-12</TD>
+						<TD>9.345e-13</TD>
+						<TD> 8.308</TD>
+						<TD> 0.023</TD>
+						<TD> 6.171</TD>
+						<TD> 0.052</TD>
+						<TD>2MASS J00015055+1116471</TD>
+						<TD>14.765</TD>
+						<TD>0.046</TD>
+						<TD>14.051</TD>
+						<TD>0.054</TD>
+						<TD>12.966</TD>
+						<TD>0.043</TD>
+						<TD>Gaia DR1 2765670694779128576</TD>
+						<TD>0.46070</TD>
+						<TD>11.27979</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>16.420</TD>
+					</TR>
+					<TR>
+						<TD>3498</TD>
+						<TD>XMMSL2 J000153.8-485957</TD>
+						<TD>0.47441</TD>
+						<TD>-48.99918</TD>
+						<TD>2.352e-12</TD>
+						<TD>1.207e-12</TD>
+						<TD>WISEA J000153.86-485947.9</TD>
+						<TD>9.129</TD>
+						<TD>15.396</TD>
+						<TD> 0.037</TD>
+						<TD>14.961</TD>
+						<TD> 0.062</TD>
+						<TD>12.020</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.002</TD>
+						<TD> 0.236</TD>
+						<TD> 8.804</TD>
+						<TD> 0.393</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>1194</TD>
+						<TD>XMMSL2 J000155.4-670739</TD>
+						<TD>0.48120</TD>
+						<TD>-67.12759</TD>
+						<TD>8.857e-12</TD>
+						<TD>1.780e-12</TD>
+						<TD>WISEA J000155.12-670743.3</TD>
+						<TD>4.557</TD>
+						<TD>12.651</TD>
+						<TD> 0.023</TD>
+						<TD>12.529</TD>
+						<TD> 0.023</TD>
+						<TD>121.874</TD>
+						<TD>10.274</TD>
+						<TD>124.054</TD>
+						<TD>4.874e-12</TD>
+						<TD>2.473e-12</TD>
+						<TD>3.028e-12</TD>
+						<TD>6.720e-13</TD>
+						<TD>12.553</TD>
+						<TD> 0.373</TD>
+						<TD> 9.403</TD>
+						<TD></TD>
+						<TD>2MASS J00015507-6707432</TD>
+						<TD>13.296</TD>
+						<TD>0.026</TD>
+						<TD>12.873</TD>
+						<TD>0.031</TD>
+						<TD>12.724</TD>
+						<TD>0.028</TD>
+						<TD>Gaia DR1 4707482480825968000</TD>
+						<TD>0.47974</TD>
+						<TD>-67.12871</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>14.358</TD>
+					</TR>
+					<TR>
+						<TD>6530</TD>
+						<TD>XMMSL2 J000155.5-273734</TD>
+						<TD>0.48149</TD>
+						<TD>-27.62608</TD>
+						<TD>3.110e-12</TD>
+						<TD>1.119e-12</TD>
+						<TD>WISEA J000155.79-273737.9</TD>
+						<TD>5.102</TD>
+						<TD>10.761</TD>
+						<TD> 0.023</TD>
+						<TD>10.643</TD>
+						<TD> 0.020</TD>
+						<TD>35.001</TD>
+						<TD></TD>
+						<TD>24.318</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>8.251e-13</TD>
+						<TD>3.690e-13</TD>
+						<TD> 7.899</TD>
+						<TD> 0.020</TD>
+						<TD> 6.149</TD>
+						<TD> 0.061</TD>
+						<TD>2MASS J00015580-2737378</TD>
+						<TD>13.297</TD>
+						<TD>0.105</TD>
+						<TD>12.355</TD>
+						<TD>0.075</TD>
+						<TD>11.975</TD>
+						<TD>0.065</TD>
+						<TD>Gaia DR1 2333731674980592640</TD>
+						<TD>0.48247</TD>
+						<TD>-27.62718</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>16.892</TD>
+					</TR>
+					<TR>
+						<TD>3137</TD>
+						<TD>XMMSL2 J000203.0-515719</TD>
+						<TD>0.51262</TD>
+						<TD>-51.95529</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>WISEA J000201.11-515736.7</TD>
+						<TD>25.051</TD>
+						<TD>14.828</TD>
+						<TD> 0.040</TD>
+						<TD>14.466</TD>
+						<TD> 0.054</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.310</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>6.253e-13</TD>
+						<TD>2.978e-13</TD>
+						<TD>11.833</TD>
+						<TD> 0.247</TD>
+						<TD> 9.047</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>3138</TD>
+						<TD>XMMSL2 J000203.0-515719</TD>
+						<TD>0.51262</TD>
+						<TD>-51.95529</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>WISEA J000200.65-515741.8</TD>
+						<TD>31.659</TD>
+						<TD>12.831</TD>
+						<TD> 0.023</TD>
+						<TD>12.704</TD>
+						<TD> 0.024</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.310</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>6.253e-13</TD>
+						<TD>2.978e-13</TD>
+						<TD>11.721</TD>
+						<TD> 0.219</TD>
+						<TD> 9.099</TD>
+						<TD></TD>
+						<TD>2MASS J00020064-5157416</TD>
+						<TD>14.856</TD>
+						<TD>0.071</TD>
+						<TD>14.141</TD>
+						<TD>0.089</TD>
+						<TD>13.642</TD>
+						<TD>0.072</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>11015</TD>
+						<TD>XMMSL2 J000215.7+045535</TD>
+						<TD>0.56582</TD>
+						<TD>4.92644</TD>
+						<TD>2.225e-12</TD>
+						<TD>9.573e-13</TD>
+						<TD>WISEA J000215.29+045525.8</TD>
+						<TD>11.963</TD>
+						<TD>15.004</TD>
+						<TD> 0.035</TD>
+						<TD>14.220</TD>
+						<TD> 0.049</TD>
+						<TD>20.253</TD>
+						<TD></TD>
+						<TD>10.096</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5.930e-13</TD>
+						<TD>3.247e-13</TD>
+						<TD>11.339</TD>
+						<TD> 0.172</TD>
+						<TD> 8.614</TD>
+						<TD> 0.382</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 2741959108050717440</TD>
+						<TD>0.56368</TD>
+						<TD>4.92388</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>19.314</TD>
+					</TR>
+					<TR>
+						<TD>10790</TD>
+						<TD>XMMSL2 J000226.5+032110</TD>
+						<TD>0.61056</TD>
+						<TD>3.35290</TD>
+						<TD>1.580e-11</TD>
+						<TD>2.693e-12</TD>
+						<TD>WISEA J000226.42+032106.8</TD>
+						<TD>3.927</TD>
+						<TD>10.756</TD>
+						<TD> 0.023</TD>
+						<TD>10.126</TD>
+						<TD> 0.020</TD>
+						<TD>166.654</TD>
+						<TD>19.269</TD>
+						<TD>132.690</TD>
+						<TD>7.454e-12</TD>
+						<TD>3.367e-12</TD>
+						<TD>5.067e-12</TD>
+						<TD>9.395e-13</TD>
+						<TD> 6.965</TD>
+						<TD> 0.017</TD>
+						<TD> 4.773</TD>
+						<TD> 0.028</TD>
+						<TD>2MASS J00022642+0321069</TD>
+						<TD>13.868</TD>
+						<TD>0.098</TD>
+						<TD>13.019</TD>
+						<TD>0.112</TD>
+						<TD>12.338</TD>
+						<TD>0.064</TD>
+						<TD>Gaia DR1 2740040116662706304</TD>
+						<TD>0.61008</TD>
+						<TD>3.35193</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>16.042</TD>
+					</TR>
+					<TR>
+						<TD>4466</TD>
+						<TD>XMMSL2 J000237.9-415043</TD>
+						<TD>0.65831</TD>
+						<TD>-41.84523</TD>
+						<TD>4.566e-12</TD>
+						<TD>1.834e-12</TD>
+						<TD>WISEA J000238.35-415038.8</TD>
+						<TD>5.656</TD>
+						<TD>14.056</TD>
+						<TD> 0.027</TD>
+						<TD>13.809</TD>
+						<TD> 0.035</TD>
+						<TD>20.952</TD>
+						<TD></TD>
+						<TD>19.316</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.466e-12</TD>
+						<TD>6.256e-13</TD>
+						<TD>12.531</TD>
+						<TD></TD>
+						<TD> 9.097</TD>
+						<TD></TD>
+						<TD>2MASS J00023837-4150389</TD>
+						<TD>15.161</TD>
+						<TD>0.042</TD>
+						<TD>14.492</TD>
+						<TD>0.051</TD>
+						<TD>14.205</TD>
+						<TD>0.075</TD>
+						<TD>Gaia DR1 4995934477291070464</TD>
+						<TD>0.65978</TD>
+						<TD>-41.84414</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.327</TD>
+					</TR>
+					<TR>
+						<TD>2786</TD>
+						<TD>XMMSL2 J000248.7-542503</TD>
+						<TD>0.70316</TD>
+						<TD>-54.41736</TD>
+						<TD>1.901e-12</TD>
+						<TD>9.224e-13</TD>
+						<TD>WISEA J000247.24-542457.3</TD>
+						<TD>14.176</TD>
+						<TD>16.047</TD>
+						<TD> 0.052</TD>
+						<TD>15.324</TD>
+						<TD> 0.081</TD>
+						<TD>11.609</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.411</TD>
+						<TD> 0.406</TD>
+						<TD> 8.951</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>221</TD>
+						<TD>XMMSL2 J000255.4-802534</TD>
+						<TD>0.73088</TD>
+						<TD>-80.42618</TD>
+						<TD>2.835e-12</TD>
+						<TD>1.515e-12</TD>
+						<TD>WISEA J000252.98-802529.8</TD>
+						<TD>7.528</TD>
+						<TD>17.760</TD>
+						<TD> 0.142</TD>
+						<TD>17.859</TD>
+						<TD></TD>
+						<TD>10.504</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.879</TD>
+						<TD></TD>
+						<TD> 9.309</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>13211</TD>
+						<TD>XMMSL2 J000309.3+215745</TD>
+						<TD>0.78882</TD>
+						<TD>21.96257</TD>
+						<TD>3.550e-12</TD>
+						<TD>1.072e-12</TD>
+						<TD>WISEA J000309.60+215736.8</TD>
+						<TD>9.290</TD>
+						<TD> 9.719</TD>
+						<TD> 0.023</TD>
+						<TD> 8.912</TD>
+						<TD> 0.020</TD>
+						<TD>47.788</TD>
+						<TD></TD>
+						<TD>50.868</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.209e-12</TD>
+						<TD>3.938e-13</TD>
+						<TD> 5.406</TD>
+						<TD> 0.015</TD>
+						<TD> 2.464</TD>
+						<TD> 0.020</TD>
+						<TD>2MASS J00030960+2157368</TD>
+						<TD>12.912</TD>
+						<TD>0.055</TD>
+						<TD>11.925</TD>
+						<TD>0.053</TD>
+						<TD>11.096</TD>
+						<TD>0.033</TD>
+						<TD>Gaia DR1 2847176564033310464</TD>
+						<TD>0.79002</TD>
+						<TD>21.96026</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>15.655</TD>
+					</TR>
+					<TR>
+						<TD>785</TD>
+						<TD>XMMSL2 J000309.4-724521</TD>
+						<TD>0.78920</TD>
+						<TD>-72.75573</TD>
+						<TD>1.765e-12</TD>
+						<TD>7.883e-13</TD>
+						<TD>WISEA J000310.72-724522.3</TD>
+						<TD>6.080</TD>
+						<TD>14.381</TD>
+						<TD> 0.032</TD>
+						<TD>13.455</TD>
+						<TD> 0.029</TD>
+						<TD>17.745</TD>
+						<TD></TD>
+						<TD>17.877</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>6.670e-13</TD>
+						<TD>3.111e-13</TD>
+						<TD>10.396</TD>
+						<TD> 0.056</TD>
+						<TD> 7.911</TD>
+						<TD> 0.150</TD>
+						<TD>2MASS J00031075-7245222</TD>
+						<TD>16.836</TD>
+						<TD>0.151</TD>
+						<TD>16.061</TD>
+						<TD>0.182</TD>
+						<TD>15.323</TD>
+						<TD>0.166</TD>
+						<TD>Gaia DR1 4689675237183988608</TD>
+						<TD>0.79463</TD>
+						<TD>-72.75619</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.824</TD>
+					</TR>
+					<TR>
+						<TD>9485</TD>
+						<TD>XMMSL2 J000310.4-060503</TD>
+						<TD>0.79369</TD>
+						<TD>-6.08412</TD>
+						<TD>3.805e-12</TD>
+						<TD>1.398e-12</TD>
+						<TD>WISEA J000310.68-060506.9</TD>
+						<TD>5.103</TD>
+						<TD>15.488</TD>
+						<TD> 0.046</TD>
+						<TD>15.665</TD>
+						<TD> 0.170</TD>
+						<TD>16.401</TD>
+						<TD></TD>
+						<TD>22.157</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.740e-12</TD>
+						<TD>5.749e-13</TD>
+						<TD>11.742</TD>
+						<TD></TD>
+						<TD> 8.856</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>4462</TD>
+						<TD>XMMSL2 J000311.3-415225</TD>
+						<TD>0.79717</TD>
+						<TD>-41.87375</TD>
+						<TD>2.864e-12</TD>
+						<TD>1.176e-12</TD>
+						<TD>WISEA J000311.35-415228.4</TD>
+						<TD>2.936</TD>
+						<TD>13.793</TD>
+						<TD> 0.025</TD>
+						<TD>12.749</TD>
+						<TD> 0.025</TD>
+						<TD>23.958</TD>
+						<TD></TD>
+						<TD>22.751</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.765e-13</TD>
+						<TD>4.377e-13</TD>
+						<TD>10.139</TD>
+						<TD> 0.055</TD>
+						<TD> 7.345</TD>
+						<TD> 0.119</TD>
+						<TD>2MASS J00031132-4152283</TD>
+						<TD>16.907</TD>
+						<TD>0.185</TD>
+						<TD>16.149</TD>
+						<TD>0.176</TD>
+						<TD>15.427</TD>
+						<TD>0.208</TD>
+						<TD>Gaia DR1 4995954062341923328</TD>
+						<TD>0.79729</TD>
+						<TD>-41.87457</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.131</TD>
+					</TR>
+					<TR>
+						<TD>6473</TD>
+						<TD>XMMSL2 J000316.6-275626</TD>
+						<TD>0.81918</TD>
+						<TD>-27.94062</TD>
+						<TD>7.752e-12</TD>
+						<TD>2.175e-12</TD>
+						<TD>WISEA J000316.84-275627.0</TD>
+						<TD>3.256</TD>
+						<TD>12.530</TD>
+						<TD> 0.022</TD>
+						<TD>11.596</TD>
+						<TD> 0.021</TD>
+						<TD>56.791</TD>
+						<TD></TD>
+						<TD>66.004</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>2.944e-12</TD>
+						<TD>8.214e-13</TD>
+						<TD> 8.471</TD>
+						<TD> 0.024</TD>
+						<TD> 5.928</TD>
+						<TD> 0.045</TD>
+						<TD>2MASS J00031684-2756269</TD>
+						<TD>15.462</TD>
+						<TD>0.068</TD>
+						<TD>14.635</TD>
+						<TD>0.074</TD>
+						<TD>13.816</TD>
+						<TD>0.064</TD>
+						<TD>Gaia DR1 2333520843621290624</TD>
+						<TD>0.82016</TD>
+						<TD>-27.94081</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.683</TD>
+					</TR>
+					<TR>
+						<TD>3022</TD>
+						<TD>XMMSL2 J000319.5-524729</TD>
+						<TD>0.83135</TD>
+						<TD>-52.79149</TD>
+						<TD>1.140e-11</TD>
+						<TD>2.089e-12</TD>
+						<TD>WISEA J000319.57-524727.6</TD>
+						<TD>1.803</TD>
+						<TD>14.315</TD>
+						<TD> 0.028</TD>
+						<TD>13.897</TD>
+						<TD> 0.038</TD>
+						<TD>142.415</TD>
+						<TD></TD>
+						<TD>115.935</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>4.139e-12</TD>
+						<TD>8.208e-13</TD>
+						<TD>11.683</TD>
+						<TD> 0.239</TD>
+						<TD> 8.252</TD>
+						<TD></TD>
+						<TD>2MASS J00031961-5247272</TD>
+						<TD>16.915</TD>
+						<TD>0.158</TD>
+						<TD>16.393</TD>
+						<TD>0.239</TD>
+						<TD>15.564</TD>
+						<TD>0.187</TD>
+						<TD>Gaia DR1 4972337755167600256</TD>
+						<TD>0.83165</TD>
+						<TD>-52.79091</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.641</TD>
+					</TR>
+					<TR>
+						<TD>18864</TD>
+						<TD>XMMSL2 J000332.0+794219</TD>
+						<TD>0.88336</TD>
+						<TD>79.70528</TD>
+						<TD>1.354e-12</TD>
+						<TD>7.396e-13</TD>
+						<TD>WISEA J000335.27+794213.0</TD>
+						<TD>10.621</TD>
+						<TD>15.102</TD>
+						<TD> 0.032</TD>
+						<TD>15.205</TD>
+						<TD> 0.059</TD>
+						<TD>10.712</TD>
+						<TD></TD>
+						<TD>12.379</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5.977e-13</TD>
+						<TD>3.160e-13</TD>
+						<TD>12.989</TD>
+						<TD></TD>
+						<TD> 9.037</TD>
+						<TD></TD>
+						<TD>2MASS J00033530+7942129</TD>
+						<TD>15.809</TD>
+						<TD>0.079</TD>
+						<TD>15.340</TD>
+						<TD>0.112</TD>
+						<TD>15.150</TD>
+						<TD>0.143</TD>
+						<TD>Gaia DR1 565010232053644672</TD>
+						<TD>0.89712</TD>
+						<TD>79.70359</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.529</TD>
+					</TR>
+					<TR>
+						<TD>1060</TD>
+						<TD>XMMSL2 J000337.1-685335</TD>
+						<TD>0.90498</TD>
+						<TD>-68.89297</TD>
+						<TD>4.206e-12</TD>
+						<TD>2.189e-12</TD>
+						<TD>WISEA J000340.20-685329.2</TD>
+						<TD>17.149</TD>
+						<TD>16.592</TD>
+						<TD> 0.059</TD>
+						<TD>17.148</TD>
+						<TD> 0.319</TD>
+						<TD>11.487</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>13.050</TD>
+						<TD></TD>
+						<TD> 9.485</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+					</TR>
+					<TR>
+						<TD>7694</TD>
+						<TD>XMMSL2 J000354.9-193526</TD>
+						<TD>0.97884</TD>
+						<TD>-19.59054</TD>
+						<TD>2.484e-12</TD>
+						<TD>9.650e-13</TD>
+						<TD>WISEA J000355.11-193533.8</TD>
+						<TD>8.359</TD>
+						<TD>13.963</TD>
+						<TD> 0.028</TD>
+						<TD>12.793</TD>
+						<TD> 0.026</TD>
+						<TD>22.821</TD>
+						<TD></TD>
+						<TD>35.163</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.094e-12</TD>
+						<TD>4.033e-13</TD>
+						<TD>10.277</TD>
+						<TD> 0.067</TD>
+						<TD> 7.726</TD>
+						<TD> 0.214</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 2365838617097944832</TD>
+						<TD>0.97967</TD>
+						<TD>-19.59273</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.654</TD>
+					</TR>
+					<TR>
+						<TD>15016</TD>
+						<TD>XMMSL2 J000357.9+373329</TD>
+						<TD>0.99128</TD>
+						<TD>37.55807</TD>
+						<TD>1.791e-12</TD>
+						<TD>8.266e-13</TD>
+						<TD>WISEA J000359.09+373333.7</TD>
+						<TD>14.915</TD>
+						<TD>15.073</TD>
+						<TD> 0.035</TD>
+						<TD>14.986</TD>
+						<TD> 0.072</TD>
+						<TD>14.444</TD>
+						<TD>9.571</TD>
+						<TD></TD>
+						<TD>3.776e-12</TD>
+						<TD>2.120e-12</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.717</TD>
+						<TD></TD>
+						<TD> 9.053</TD>
+						<TD></TD>
+						<TD>2MASS J00035908+3733339</TD>
+						<TD>15.543</TD>
+						<TD>0.055</TD>
+						<TD>15.189</TD>
+						<TD>0.090</TD>
+						<TD>14.963</TD>
+						<TD>0.088</TD>
+						<TD>Gaia DR1 2880310175141422464</TD>
+						<TD>0.99618</TD>
+						<TD>37.55936</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>16.702</TD>
+					</TR>
+					<TR>
+						<TD>363</TD>
+						<TD>XMMSL2 J000358.9-780742</TD>
+						<TD>0.99549</TD>
+						<TD>-78.12836</TD>
+						<TD>2.231e-12</TD>
+						<TD>9.851e-13</TD>
+						<TD>WISEA J000358.12-780734.4</TD>
+						<TD>8.045</TD>
+						<TD>12.369</TD>
+						<TD> 0.023</TD>
+						<TD>11.783</TD>
+						<TD> 0.020</TD>
+						<TD>22.495</TD>
+						<TD></TD>
+						<TD>25.971</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>8.051e-13</TD>
+						<TD>3.664e-13</TD>
+						<TD> 9.354</TD>
+						<TD> 0.031</TD>
+						<TD> 7.260</TD>
+						<TD> 0.091</TD>
+						<TD>2MASS J00035812-7807343</TD>
+						<TD>14.944</TD>
+						<TD>0.078</TD>
+						<TD>14.140</TD>
+						<TD>0.087</TD>
+						<TD>13.627</TD>
+						<TD>0.063</TD>
+						<TD>Gaia DR1 4683746262460730624</TD>
+						<TD>0.99228</TD>
+						<TD>-78.12624</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>18.183</TD>
+					</TR>
+					<TR>
+						<TD>6279</TD>
+						<TD>XMMSL2 J000416.3-290239</TD>
+						<TD>1.06825</TD>
+						<TD>-29.04435</TD>
+						<TD>2.255e-12</TD>
+						<TD>8.668e-13</TD>
+						<TD>WISEA J000416.65-290234.6</TD>
+						<TD>6.171</TD>
+						<TD>13.686</TD>
+						<TD> 0.026</TD>
+						<TD>12.722</TD>
+						<TD> 0.026</TD>
+						<TD>26.694</TD>
+						<TD></TD>
+						<TD>29.436</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>7.978e-13</TD>
+						<TD>3.278e-13</TD>
+						<TD>10.468</TD>
+						<TD> 0.069</TD>
+						<TD> 8.209</TD>
+						<TD> 0.255</TD>
+						<TD>2MASS J00041665-2902346</TD>
+						<TD>16.887</TD>
+						<TD>0.184</TD>
+						<TD>15.968</TD>
+						<TD>0.196</TD>
+						<TD>15.294</TD>
+						<TD>0.162</TD>
+						<TD>Gaia DR1 2321006202274219904</TD>
+						<TD>1.06942</TD>
+						<TD>-29.04295</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.651</TD>
+					</TR>
+					<TR>
+						<TD>4136</TD>
+						<TD>XMMSL2 J000419.6-440833</TD>
+						<TD>1.08170</TD>
+						<TD>-44.14261</TD>
+						<TD>3.217e-12</TD>
+						<TD>1.134e-12</TD>
+						<TD>WISEA J000418.69-440831.5</TD>
+						<TD>10.019</TD>
+						<TD>13.065</TD>
+						<TD> 0.023</TD>
+						<TD>12.178</TD>
+						<TD> 0.022</TD>
+						<TD>22.629</TD>
+						<TD></TD>
+						<TD>32.592</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.290e-12</TD>
+						<TD>4.414e-13</TD>
+						<TD> 9.002</TD>
+						<TD> 0.030</TD>
+						<TD> 6.637</TD>
+						<TD> 0.068</TD>
+						<TD>2MASS J00041869-4408314</TD>
+						<TD>15.033</TD>
+						<TD>0.060</TD>
+						<TD>14.257</TD>
+						<TD>0.065</TD>
+						<TD>13.438</TD>
+						<TD>0.053</TD>
+						<TD>Gaia DR1 4994548817761562112</TD>
+						<TD>1.07786</TD>
+						<TD>-44.14210</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.542</TD>
+					</TR>
+					<TR>
+						<TD>2876</TD>
+						<TD>XMMSL2 J000426.8-535342</TD>
+						<TD>1.11207</TD>
+						<TD>-53.89496</TD>
+						<TD>2.427e-12</TD>
+						<TD>9.386e-13</TD>
+						<TD>WISEA J000426.29-535354.6</TD>
+						<TD>13.870</TD>
+						<TD>13.428</TD>
+						<TD> 0.024</TD>
+						<TD>12.306</TD>
+						<TD> 0.022</TD>
+						<TD>18.832</TD>
+						<TD></TD>
+						<TD>23.103</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>1.086e-12</TD>
+						<TD>4.025e-13</TD>
+						<TD> 9.619</TD>
+						<TD> 0.041</TD>
+						<TD> 7.343</TD>
+						<TD> 0.108</TD>
+						<TD>2MASS J00042628-5353543</TD>
+						<TD>16.602</TD>
+						<TD>0.139</TD>
+						<TD>15.983</TD>
+						<TD>0.165</TD>
+						<TD>14.985</TD>
+						<TD>0.151</TD>
+						<TD>Gaia DR1 4923971372533630976</TD>
+						<TD>1.10956</TD>
+						<TD>-53.89849</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>17.399</TD>
+					</TR>
+					<TR>
+						<TD>3676</TD>
+						<TD>XMMSL2 J000435.9-473621</TD>
+						<TD>1.14981</TD>
+						<TD>-47.60566</TD>
+						<TD>2.452e-12</TD>
+						<TD>1.157e-12</TD>
+						<TD>WISEA J000435.65-473619.6</TD>
+						<TD>3.060</TD>
+						<TD>13.202</TD>
+						<TD> 0.024</TD>
+						<TD>12.108</TD>
+						<TD> 0.022</TD>
+						<TD>15.804</TD>
+						<TD></TD>
+						<TD>20.081</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>9.401e-13</TD>
+						<TD>4.455e-13</TD>
+						<TD> 8.780</TD>
+						<TD> 0.026</TD>
+						<TD> 6.474</TD>
+						<TD> 0.066</TD>
+						<TD>2MASS J00043562-4736197</TD>
+						<TD>16.169</TD>
+						<TD>0.121</TD>
+						<TD>15.231</TD>
+						<TD>0.105</TD>
+						<TD>14.384</TD>
+						<TD>0.083</TD>
+						<TD>Gaia DR1 4978016560925910400</TD>
+						<TD>1.14856</TD>
+						<TD>-47.60545</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>19.854</TD>
+					</TR>
+					<TR>
+						<TD>13124</TD>
+						<TD>XMMSL2 J000453.9+211908</TD>
+						<TD>1.22464</TD>
+						<TD>21.31880</TD>
+						<TD>1.052e-12</TD>
+						<TD>5.256e-13</TD>
+						<TD>WISEA J000452.28+211922.6</TD>
+						<TD>27.255</TD>
+						<TD>10.755</TD>
+						<TD> 0.023</TD>
+						<TD>10.775</TD>
+						<TD> 0.020</TD>
+						<TD>13.696</TD>
+						<TD></TD>
+						<TD>14.731</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>3.697e-13</TD>
+						<TD>2.097e-13</TD>
+						<TD>10.673</TD>
+						<TD> 0.100</TD>
+						<TD> 8.687</TD>
+						<TD></TD>
+						<TD>2MASS J00045227+2119228</TD>
+						<TD>11.149</TD>
+						<TD>0.023</TD>
+						<TD>10.844</TD>
+						<TD>0.032</TD>
+						<TD>10.821</TD>
+						<TD>0.022</TD>
+						<TD>Gaia DR1 2846918797275697536</TD>
+						<TD>1.21789</TD>
+						<TD>21.32296</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.036</TD>
+					</TR>
+					<TR>
+						<TD>14685</TD>
+						<TD>XMMSL2 J000454.2+343937</TD>
+						<TD>1.22596</TD>
+						<TD>34.66024</TD>
+						<TD>8.906e-12</TD>
+						<TD>2.313e-12</TD>
+						<TD>WISEA J000454.32+343936.9</TD>
+						<TD>1.179</TD>
+						<TD> 4.351</TD>
+						<TD> 0.220</TD>
+						<TD> 3.851</TD>
+						<TD> 0.190</TD>
+						<TD>74.341</TD>
+						<TD></TD>
+						<TD>80.618</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>3.374e-12</TD>
+						<TD>8.909e-13</TD>
+						<TD> 4.396</TD>
+						<TD> 0.018</TD>
+						<TD> 4.366</TD>
+						<TD> 0.025</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>Gaia DR1 2876698932276200960</TD>
+						<TD>1.22791</TD>
+						<TD>34.66018</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD> 5.888</TD>
+					</TR>
+					<TR>
+						<TD>5693</TD>
+						<TD>XMMSL2 J000457.3-330825</TD>
+						<TD>1.23897</TD>
+						<TD>-33.14019</TD>
+						<TD>1.491e-12</TD>
+						<TD>7.390e-13</TD>
+						<TD>WISEA J000457.17-330831.8</TD>
+						<TD>7.520</TD>
+						<TD>10.445</TD>
+						<TD> 0.023</TD>
+						<TD>10.468</TD>
+						<TD> 0.021</TD>
+						<TD>16.887</TD>
+						<TD></TD>
+						<TD>12.997</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>5.044e-13</TD>
+						<TD>2.865e-13</TD>
+						<TD>10.325</TD>
+						<TD> 0.066</TD>
+						<TD> 8.819</TD>
+						<TD> 0.401</TD>
+						<TD>2MASS J00045715-3308316</TD>
+						<TD>11.027</TD>
+						<TD>0.022</TD>
+						<TD>10.568</TD>
+						<TD>0.025</TD>
+						<TD>10.469</TD>
+						<TD>0.021</TD>
+						<TD>Gaia DR1 2313291100980313728</TD>
+						<TD>1.23827</TD>
+						<TD>-33.14219</TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD></TD>
+						<TD>12.330</TD>
+					</TR>
+				</TABLEDATA>
+			</DATA>
+		</TABLE>
+	</RESOURCE>
 </VOTABLE>
