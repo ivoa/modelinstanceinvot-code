@@ -210,6 +210,7 @@ class ModelViewer(object):
         self.table_iterator = TableIterator(tableref, self.connected_table.to_table())
         self._squash_join_and_references()
         self._set_column_indices()
+        self._set_column_units()
     
     def get_next_row(self):
         """
@@ -297,7 +298,8 @@ class ModelViewer(object):
         """
         self._assert_table_is_connected()
         retour = []
-        model_view = self.get_model_view(resolve_ref=True)
+        #model_view = self.get_model_view(resolve_ref=True)
+        model_view = self.get_model_view(resolve_ref=False)
         for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
             retour.append(deepcopy(ele)) 
         return retour
@@ -429,4 +431,22 @@ class ModelViewer(object):
             ref = ele.get("ref")
             if ref is not None:
                 ele.attrib["index"] = str(index_map[ref])
-                                
+  
+  
+    def _set_column_units(self):
+        """
+        add field unit to attribute having a ref.
+        Used for performing unit conversions
+        """
+        unit_map = self._resource_seeker.get_id_unit_mapping(self._connected_tableref)
+        print(unit_map)
+        for ele in self._templates.xpath("//ATTRIBUTE"):
+            ref = ele.get("ref")
+            if ref is not None:
+                unit = unit_map[ref]
+                if unit is None:
+                    unit = ""
+                else:
+                    unit = unit.__str__()
+                ele.attrib["unit_org"] = unit
+                              

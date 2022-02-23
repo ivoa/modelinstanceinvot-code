@@ -23,13 +23,13 @@
 						<dm-mapping:INSTANCE dmtype="sed:Source"
 							dmrole="sed:Sed.source">
 							<dm-mapping:ATTRIBUTE dmtype="ivoa:string"
-								dmrole="sed:Source.name" ref="" />
+								dmrole="sed:Source.name" ref="name" />
 							<dm-mapping:INSTANCE dmtype="sed.Position"
 								dmrole="sed:Source.position">
 								<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-									dmrole="sed.Position.longitude" ref="" />
+									dmrole="sed.Position.longitude" ref="ra" />
 								<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-									dmrole="sed.Position.latitude" ref="" />
+									dmrole="sed.Position.latitude" ref="dec" />
 								<dm-mapping:ATTRIBUTE dmtype="ivoa:vounit"
 									dmrole="sed.Position.unit" value="deg" />
 							</dm-mapping:INSTANCE>
@@ -38,60 +38,60 @@
 								dmrole="sed:Sed.points">
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="flux_b6" unit="erg/cm2/sec" />
+										dmrole="sed:PhotPoint.flux" ref="flux_b6" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB6" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="flux_b7" unit="erg/cm2/sec" />
+										dmrole="sed:PhotPoint.flux" ref="flux_b7" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB7" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="flux_b8" unit="erg/cm2/sec" />
+										dmrole="sed:PhotPoint.flux" ref="flux_b8" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_XMM_EB8" />
 								</dm-mapping:INSTANCE>
 								
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="w1_mag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="w1_mag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W1" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="w2_mag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="w2_mag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W2" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="w3_mag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="w3_mag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W3" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="w4_mag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="w4_mag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_ALLWISE_W4" />
 								</dm-mapping:INSTANCE>
 								
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="hmag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="hmag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_H" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="jmag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="jmag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_J" />
 								</dm-mapping:INSTANCE>
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="kmag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="kmag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_2MASS_K" />
 								</dm-mapping:INSTANCE>
 								
 								<dm-mapping:INSTANCE dmtype="sed:PhotPoint">
 									<dm-mapping:ATTRIBUTE dmtype="ivoa:real"
-										dmrole="sed:PhotPoint.flux" ref="gaia_gmag" unit="mag" />
+										dmrole="sed:PhotPoint.flux" ref="gaia_gmag" unit="erg/s/cm^2" />
 									<dm-mapping:REFERENCE dmrole="sed:PhotPoint.filter" dmref="_GAIA_G" />
 								</dm-mapping:INSTANCE>
 								

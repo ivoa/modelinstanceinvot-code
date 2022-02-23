@@ -67,3 +67,20 @@ class ResourceSeeker(object):
             indx += 1
         return retour
 
+    def get_id_unit_mapping(self, table_name):
+        '''
+        build an index binding filed unit with field id
+        :param table_name: name of the table
+        '''
+        retour = {}
+        table = self.get_table(table_name)   
+        for field in  table.fields:
+            unit = field.unit
+            if field.ID is not None:
+                retour[field.ID] = unit
+            elif field.name is not None:
+                retour[field.name] = unit
+            elif field.ref is not None :
+                retour[field.ref] = unit
+        return retour
+
