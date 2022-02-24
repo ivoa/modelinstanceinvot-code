@@ -4,7 +4,7 @@ XML serialization of Photometry Filter
 
  -->
 <!-- Photometric System -->
-<INSTANCE dmtype="photdm:PhotometricSystem">
+<INSTANCE dmtype="photdm:PhotometricSystem" dmid="_WISE_W2">
     <ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer" value="0" />
 </INSTANCE>
 
