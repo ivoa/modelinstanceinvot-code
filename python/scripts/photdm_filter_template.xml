@@ -1,0 +1,67 @@
+<!-- 
+
+XML serialization of Photometry Filter
+
+ -->
+<!-- Photometric System -->
+<INSTANCE dmtype="photdm:PhotometricSystem">
+    <ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer" value="$detectorType" />
+</INSTANCE>
+
+
+<!-- Photometric Calibration -->
+<INSTANCE dmtype="photdm:PhotCal">
+    <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="$photCalIdentifier" />
+    <!-- Magnitude System -->
+    <INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
+        <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="$magnitudeSystemType" />
+        <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI" value="$referenceSpectrum" />
+    </INSTANCE>
+    
+    <!-- Zero Point -->
+    <INSTANCE dmtype="photdm:PogsonZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="$zeroPointType" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" value="$referenceMagnitudeValue" />
+
+        <INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+            <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="phot.flux;meta.modelled" />
+            <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" value="$zeroPointFluxUnit" />
+            <ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" value="$zeroPointFluxValue" />
+        </INSTANCE>
+    </INSTANCE>
+    
+    <!--  Filter -->
+    <INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="$photometryFilterFpsIdentifier" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="$photometryFilterIdentifier" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="$photometryFilterName" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="$photometryFilterDescription" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="$bandName" />
+
+        <!-- Spectral Location -->
+        <INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="$spectralLocationUCD" />
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="$spectralLocation" />
+        </INSTANCE>
+
+        <!-- Band width -->
+        <INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+            <ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="$bandwidthExtent" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="$bandwidthStart" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="$bandwidthStop" />
+        </INSTANCE>
+
+        <!-- Transmision Curve -->
+        <INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
+            <INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+                <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" value="$fpsVOTable" />
+                <ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
+                <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="VOTable" />
+            </INSTANCE>
+        </INSTANCE>
+    </INSTANCE>
+</INSTANCE>
+

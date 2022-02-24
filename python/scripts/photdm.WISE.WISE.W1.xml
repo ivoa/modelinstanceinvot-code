@@ -1,0 +1,67 @@
+<!-- 
+
+XML serialization of Photometry Filter
+
+ -->
+<!-- Photometric System -->
+<INSTANCE dmtype="photdm:PhotometricSystem">
+    <ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer" value="0" />
+</INSTANCE>
+
+
+<!-- Photometric Calibration -->
+<INSTANCE dmtype="photdm:PhotCal">
+    <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="WISE/WISE.W1/Vega" />
+    <!-- Magnitude System -->
+    <INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
+        <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="Vega" />
+        <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI" value="http://svo2.cab.inta-csic.es/theory/fps/morefiles/vega.dat" />
+    </INSTANCE>
+    
+    <!-- Zero Point -->
+    <INSTANCE dmtype="photdm:PogsonZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="Pogson" />
+        <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" value="0" />
+
+        <INSTANCE dmtype="photdm:Flux" dmrole="photdm:PhotCal.flux">
+            <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="phot.flux;meta.modelled" />
+            <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit" value="Jy" />
+            <ATTRIBUTE dmrole="photdm:Flux.value" dmtype="ivoa:real" value="309.54" />
+        </INSTANCE>
+    </INSTANCE>
+    
+    <!--  Filter -->
+    <INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="ivo://svo/fps" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="WISE/WISE.W1" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="WISE W1 filter" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="WISE W1 filter" />
+        <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="" />
+
+        <!-- Spectral Location -->
+        <INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective" />
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+            <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="33526.0" />
+        </INSTANCE>
+
+        <!-- Band width -->
+        <INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+            <ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="6626.4186524258" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="27540.970745309" />
+            <ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="38723.877229677" />
+        </INSTANCE>
+
+        <!-- Transmision Curve -->
+        <INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
+            <INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+                <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" value="http://svo2.cab.inta-csic.es/theory/fps/fps.php?PhotCalID=WISE/WISE.W1/Vega" />
+                <ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
+                <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="VOTable" />
+            </INSTANCE>
+        </INSTANCE>
+    </INSTANCE>
+</INSTANCE>
+
