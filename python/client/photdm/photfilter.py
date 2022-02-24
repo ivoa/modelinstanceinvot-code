@@ -22,7 +22,7 @@ class PhotometryFilter(object):
         self.dateValidityTo = None
         
         self.spectralLocation = None
-        self.bandwidth = None
+        self.bandWidth = None
         self.transmissionCurve = None
         
         
@@ -53,7 +53,7 @@ class PhotometryFilter(object):
             self.spectralLocation = SpectralLocation(ele)
             break
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.bandWidth"]'):
-            self.bandWidh = BandWidth(ele)
+            self.bandWidth = BandWidth(ele)
             break
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.transmissionCurve"]'):
             self.transmissionCurve = TransmissionCurve(ele)
@@ -70,8 +70,8 @@ class PhotometryFilter(object):
                  f"  dateValidityTo: {self.dateValidityTo}\n"
         if self.spectralLocation is not None:
             retour += f"  {self.spectralLocation}"
-        if self.bandWidh is not None:
-            retour += f"  {self.bandWidh}"
+        if self.bandWidth is not None:
+            retour += f"  {self.bandWidth}"
         if self.transmissionCurve is not None:
             retour += f"  {self.transmissionCurve}"
         return retour
