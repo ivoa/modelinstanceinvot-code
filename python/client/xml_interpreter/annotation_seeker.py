@@ -100,6 +100,9 @@ class AnnotationSeeker(object):
         Return the TEMPLATES mapping block of the table matcing @tableref
         :param tableref:
         '''
+        # one table: name forced to DEFAULT
+        if tableref is None:
+            return self._templates_blocks['DEFAULT']
         return self._templates_blocks[tableref]
     
     def get_globals_collections(self):
