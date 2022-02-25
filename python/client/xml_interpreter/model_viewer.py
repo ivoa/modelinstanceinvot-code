@@ -298,8 +298,7 @@ class ModelViewer(object):
         """
         self._assert_table_is_connected()
         retour = []
-        #model_view = self.get_model_view(resolve_ref=True)
-        model_view = self.get_model_view(resolve_ref=False)
+        model_view = self.get_model_view(resolve_ref=True)
         for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
             retour.append(deepcopy(ele)) 
         return retour
