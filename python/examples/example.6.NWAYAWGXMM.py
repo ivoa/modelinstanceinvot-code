@@ -3,7 +3,6 @@ Created on Jan 6, 2022
 
 @author: laurentmichel
 """
-import unittest
 import os
 import numpy as np
 import logging
@@ -14,8 +13,6 @@ from astropy.io.votable import parse
 from astropy import units as u
 from client.photdm.photcal import PhotCal
 
-from utils.xml_utils import XmlUtils
-from utils.dict_utils import DictUtils
 from client.xml_interpreter.model_viewer import ModelViewer
 
 matplotlib.font_manager: logging.getLogger('matplotlib.font_manager').setLevel(logging.WARNING)
@@ -86,10 +83,16 @@ while True:
             wl.append(spec_loc_value)
             tlt.append(phot_cal.identifier)
             print(f"{phot_cal.identifier} {spec_loc.value} {spec_loc.unitexpression} {flux_erg}  {unit}")
+    
+    print(wl)
+    print(flx)
+
 
     plt.scatter(wl, flx)
     plt.title("Source " + name)
     plt.xscale("log")
+    # Lim must be force to wirk on Linux 3.6
+    plt.ylim([min(flx)/10, max(flx)*10])
     plt.yscale("log")
     plt.xlabel("Wavelength (angstrom)")
     plt.ylabel("flux (erg/cm2/sec)")
