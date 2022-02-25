@@ -53,7 +53,6 @@ while True:
         phot_cal = None
         flux_erg = None
         for ele in phot_point.xpath('.//ATTRIBUTE[@dmrole="sed:PhotPoint.flux"]'):
-            #XmlUtils.pretty_print(ele)
             try:
                 flux = float(ele.get("value"))
                 unit_org = ele.get("unit_org")
@@ -62,7 +61,6 @@ while True:
                 pass
             break
         for ele in phot_point.xpath('.//INSTANCE[@dmrole="sed:PhotPoint.photcal"]'):
-            #XmlUtils.pretty_print(ele)
             phot_cal = PhotCal(ele)
             spec_loc = phot_cal.photometryFilter.spectralLocation
             spec_loc_value = None
@@ -94,7 +92,7 @@ while True:
     # Lim must be force to wirk on Linux 3.6
     plt.ylim([min(flx)/10, max(flx)*10])
     plt.yscale("log")
-    plt.xlabel("Wavelength (angstrom)")
+    plt.xlabel("Wavelength (Angstrom)")
     plt.ylabel("flux (erg/cm2/sec)")
     mplcursors.cursor(hover=True).connect("add", lambda sel: sel.annotation.set_text(tlt[sel.index]))
     plt.subplots_adjust(bottom=.15, left=.15) 
