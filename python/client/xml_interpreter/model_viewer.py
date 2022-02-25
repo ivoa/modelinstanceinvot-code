@@ -438,7 +438,6 @@ class ModelViewer(object):
         Used for performing unit conversions
         """
         unit_map = self._resource_seeker.get_id_unit_mapping(self._connected_tableref)
-        print(unit_map)
         for ele in self._templates.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
             if ref is not None:

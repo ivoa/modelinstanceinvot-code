@@ -164,8 +164,6 @@ class ToJsonConverter(object):
             # IF INSTANCES are into a COLLECTION with a role they have no role
             # build the json element @dmrole=[)
             elif isinstance(content, list) and "@dmrole" in host:
-                if  "@dmrole" not in host:
-                    DictUtils.print_pretty_json(attr)
                 host_role = host["@dmrole"]
                 host[host_role] = []
                 for item in content:
