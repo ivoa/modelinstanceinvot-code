@@ -4,13 +4,13 @@ XML serialization of Photometry Filter
 
  -->
 <!-- Photometric System -->
-<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_WISE_W2">
+<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_sys_WISE_W2">
     <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer" value="0" />
 </dm-mapping:INSTANCE>
 
 
 <!-- Photometric Calibration -->
-<dm-mapping:INSTANCE dmtype="photdm:PhotCal" dmid="_WISE_W2">
+<dm-mapping:INSTANCE dmtype="photdm:PhotCal" dmid="_cal_WISE_W2">
     <dm-mapping:ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="WISE/WISE.W2/Vega" />
     <!-- Magnitude System -->
     <dm-mapping:INSTANCE dmtype="photdm:MagnitudeSystem" dmrole="photdm:PhotCal.magnitudeSystem">
@@ -31,7 +31,7 @@ XML serialization of Photometry Filter
     </dm-mapping:INSTANCE>
     
     <!--  Filter -->
-    <dm-mapping:INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
+    <dm-mapping:INSTANCE dmtype="photdm:PhotometryFilter" dmid="_filter_WISE_W2" dmrole="photdm:PhotCal.photometryFilter">
         <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="ivo://svo/fps" />
         <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="WISE/WISE.W2" />
         <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="WISE W2 filter" />

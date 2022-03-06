@@ -37,7 +37,9 @@ for filterBand in filterBands:
     
     #Setting defaults (add here values that are not always present)
     bandName = ""
-    dmid = "_" + filterBand.split("/")[1].replace(".", "_")
+    sys_dmid = "_sys_" + filterBand.split("/")[1].replace(".", "_")
+    cal_dmid = "_cal_" + filterBand.split("/")[1].replace(".", "_")
+    filter_dmid = "_filter_" + filterBand.split("/")[1].replace(".", "_")
     # We need to iterate on the params (looks a limitation of the library) and we fill-in 
     # variables for the replacement. This could be probably simplified with a set but, at least
     # it is quite easy to identify possible problems in this approach
@@ -83,7 +85,9 @@ for filterBand in filterBands:
     from string import Template
     the_template = Template(data)
     result = the_template.substitute(
-        dmid = dmid,
+        sys_dmid = sys_dmid,
+        cal_dmid = cal_dmid,
+        filter_dmid = filter_dmid,
         detectorType = detectorType,
         photCalIdentifier = photCalIdentifier,
         magnitudeSystemType = magnitudeSystemType,
