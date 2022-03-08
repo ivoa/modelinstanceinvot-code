@@ -399,7 +399,7 @@ class ModelViewer(object):
         This avoid to have the model view polluted with elements that are not in the model
         """
         for ele in self._templates.xpath("//*[starts-with(name(), 'REFERENCE_')]"):
-            if ele.get("tableref") is not None:
+            if ele.get("sourceref") is not None:
                 self._dyn_references = {ele.tag: deepcopy(ele)}
                 for child in list(ele):
                     ele.remove(child)

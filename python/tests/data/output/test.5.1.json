@@ -27,7 +27,7 @@
 							},
 							"REFERENCE_4": {
 								"@dmrole": "coords:Coordinate.coordSys",
-								"@tableref": "_CoordinateSystems"
+								"@sourceref": "_CoordinateSystems"
 							}
 						}
 					}

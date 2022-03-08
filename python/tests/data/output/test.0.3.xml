@@ -14,7 +14,7 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
-                      <REFERENCE_4 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <REFERENCE_4 dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
                       </REFERENCE_4>
                     </INSTANCE>
@@ -25,7 +25,7 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
-                      <REFERENCE_5 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <REFERENCE_5 dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
                       </REFERENCE_5>
                     </INSTANCE>
