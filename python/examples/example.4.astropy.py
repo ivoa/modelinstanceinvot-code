@@ -1,4 +1,40 @@
 """
+
+## Meas/Coords Validation with Astropy
+
+This goal of this example is to show that real data mapped on `Measure` classes can be transformed in Astropy instances in a transparent way.
+
+We proceed with data mapped on individual `Measure` objects in order to avoid bias possibly introduced by some host model.
+
+This workflow validates the [Measure](https://github.com/ivoa/modelinstanceinvot-code) model (and its coordinates(https://github.com/ivoa-std/CoordinateDM)) in the extand of the the implemented classes.
+
+
+### Test Case
+
+The VOtable has been queried from tme ESAC archive (https://gea.esac.esa.int/tap-server/tap) with the following query:
+```
+SELECT TOP 100 gaiadr2.gaia_source.designation, gaiadr2.gaia_source.ra, gaiadr2.gaia_source.ra_error ,
+               gaiadr2.gaia_source.\"dec\", gaiadr2.gaia_source.dec_error, gaiadr2.gaia_source.parallax , 
+               gaiadr2.gaia_source.parallax_error, gaiadr2.gaia_source.pmra, 
+               gaiadr2.gaia_source.pmra_error, gaiadr2.gaia_source.pmdec, 
+               gaiadr2.gaia_source.pmdec_error,gaiadr2.gaia_source.radial_velocity, 
+               gaiadr2.gaia_source.radial_velocity_error
+ FROM  gaiadr2.gaia_source
+ WHERE ( CONTAINS(POINT('ICRS', ra, \"dec\"), 
+         CIRCLE('ICRS', 162.328814, -53.319466, 0.016666666666666666)) = 1 )
+```
+
+We select positions, parallax, radial velocity and proper motions around `luhman 16`. 
+
+The goal of the script is to show how we can build complex Astropy SkyCoord object in a transparent way by using the `Meas/Coords` mapping. 
+The parallax is given to Astropy to build the 3rd coordinate dimension. 
+There no data checking, for each row, all mapped STC components are built and given to the SkyCoord builder which does its best.
+    
+- We are using the annotation [syntax](https://github.com/ivoa-std/ModelInstanceInVot) that has been designed after the 2021 workshop.
+- The Python code used for this notebook is being [developped](https://github.com/ivoa/modelinstanceinvot-code) to design qnd validate the processing of model annotation.
+- This notebook does not pretend to have any scientific value, it is juste a validation case for the mapping syntax
+ 
+ 
 Created on Jan 26, 2022
 
 @author: laurentmichel

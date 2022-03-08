@@ -1,4 +1,48 @@
 """
+## PhotDM Reference Implementation
+
+This notebook should how model annotations can be used to plot SEDs from a VOTable.
+
+The annotation bind the data cells with the description of their Photometric calibration.
+- Some brighness are given as magnitudes and some others as fluxes.
+- The photometric calibrations are given as instances of PhotDM.
+- The challenge of that code is to build SEDs (wavelength vs fluxes) just by using these annotations. 
+  - There no use of any data not within the VOTable
+  - All data access are done through the model view of each data row.
+
+#### Input Data
+
+The input VOTable (NWAYAWGXMM.xml) provided by HEASARC is a subset of the XMMSL2 catalogue.
+Let's consider the quantities of interest :
+- Each XMMSL2 source comes with a name, a position and fluxes in EB6,7,8 bands
+- For each XMMSL2 sources, we get the following counterpart magnitudes:
+  - Wise W1,2,3,4
+  - 2MASS Ks,H,J
+  - GAIA G
+The others columns are ignored by this proof of concept.
+
+#### Annotation Model
+
+The goal of this exercice is to validate PhotDM.
+To make this example working, we need a model that encompasses the photometric calibrations with the brightness data.
+For this purpose, we have built a mock model named `sed`.
+- A sed is
+  - A name
+  - a position
+  - a collection a photometric points which are
+    - A magnitude or a flux
+    - A pointer to the PhotCal instance
+    
+#### The code
+The code iterates over the data table and build an `sed` instance for each row. 
+The magnitudes are converted in fluxes and one SED is then plotted.
+
+#### Watchout: X-Ray Photcal
+In this data set, we assimilate the X-Ray energy bands to photometric calibrations without zero point and with a square filter profile.
+This approach is questionnable, but it is workable in this example.
+The reason is that we use optical/IR calibrations to transform magnitudes into fluxes that are compliant with X-Ray fluxes.
+X_Ray calibrations are just used to compute the wavelengths.
+
 Created on Jan 6, 2022
 
 @author: laurentmichel

@@ -1,4 +1,29 @@
 """
+
+   ## Meas/Coords Validation\n,
+    
+    This goal of this example is to show that real data can be mapped on Measure classes and that the Measure object quantities can be retrieved by generic code.
+    
+    We proceed with data mapped on individual Measure objects in order to avoid bias possibly introduced by some host model.,
+    
+    This workflow validates the [Measure](https://github.com/ivoa/MeasureDM) model (and its coordinates(https://github.com/ivoa-std/CoordinateDM)) in the extend of the the implemented classes.,
+    
+    ### Test Case,
+    
+    The VOtable has been queried from tme ESAC XMM TAP archive with the following query:,
+    ```
+    SELECT TOP 10 xsa.v_epic_source_cat.date_obs , xsa.v_epic_source_cat.dec , xsa.v_epic_source_cat.ep_hr1 , xsa.v_epic_source_cat.ep_hr1_err , xsa.v_epic_source_cat.ep_hr2 , xsa.v_epic_source_cat.ep_hr2_err , xsa.v_epic_source_cat.ep_hr3 , xsa.v_epic_source_cat.ep_hr3_err , xsa.v_epic_source_cat.ep_hr4 , xsa.v_epic_source_cat.ep_hr4_err , xsa.v_epic_source_cat.iauname , xsa.v_epic_source_cat.ra,
+     FROM  xsa.v_epic_source_cat,
+     WHERE ( xsa.v_epic_source_cat.iauname = '4XMM J174544.4-290024' )
+    ```
+    
+    We select the positions and the observation dates of the '4XMM J174544.4-290024' source as well as its hardness ratios.
+    This source is located near the galactic center, so we can expect these parameters to vary along of the observations covering 20 years.
+    
+    - We are using the annotation [syntax](https://github.com/ivoa-std/ModelInstanceInVot) that has been designed after the 2021 workshop.
+    - The Python code used for this notebook is being [developped](https://github.com/ivoa/modelinstanceinvot-code) to design qnd validate the processing of model annotation.
+ 
+ 
 Created on Jan 6, 2022
 
 @author: laurentmichel
