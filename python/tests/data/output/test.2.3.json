@@ -47,7 +47,7 @@
               "@dmtype": "coords:PhysicalCoordinate",
               "REFERENCE_4": {
                 "@dmrole": "coords:Coordinate.coordSys",
-                "@tableref": "_CoordinateSystems"
+                "@sourceref": "_CoordinateSystems"
               },
               "coords:PhysicalCoordinate.cval": 15.216575
             }

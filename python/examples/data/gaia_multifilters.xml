@@ -225,7 +225,7 @@
 											dmtype="ivoa:RealQuantity" ref="_mag" />
 										<dm-mapping:REFERENCE
 											dmrole="coords:Coordinate.coordSys"
-											tableref="_CoordinateSystems">
+											sourceref="_CoordinateSystems">
 											<dm-mapping:FOREIGN_KEY ref="_band" />
 										</dm-mapping:REFERENCE>
 									</dm-mapping:INSTANCE>
@@ -246,7 +246,7 @@
 											dmtype="ivoa:RealQuantity" ref="_flux" />
 										<dm-mapping:REFERENCE
 											dmrole="coords:Coordinate.coordSys"
-											tableref="_CoordinateSystems">
+											sourceref="_CoordinateSystems">
 											<dm-mapping:FOREIGN_KEY ref="_band" />
 										</dm-mapping:REFERENCE>
 									</dm-mapping:INSTANCE>

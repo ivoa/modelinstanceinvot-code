@@ -35,7 +35,7 @@ class DynamicReference(object):
             logger.info("STATIC ref TODO")
         else:
             logger.info("Dynamic reference")
-            self.target_id = fkey[0].get("tableref")
+            self.target_id = fkey[0].get("sourceref")
             fkey = self.xml_block.xpath("//FOREIGN_KEY")
             self.fk_ref = fkey[0].get("ref")
             index_map = self.resource_seeker.get_id_index_mapping(self.templates_ref)

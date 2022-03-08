@@ -93,7 +93,7 @@
           </dm-mapping:GLOBALS>
           <dm-mapping:TEMPLATES tableref="_PKTable">
             <dm-mapping:INSTANCE dmid="_TimeSeries" dmrole="" dmtype="cube:SparseCube">
-              <dm-mapping:REFERENCE dmrole="cube:DataProduct.dataset" tableref="_Datasets">
+              <dm-mapping:REFERENCE dmrole="cube:DataProduct.dataset" sourceref="_Datasets">
                 <dm-mapping:FOREIGN_KEY ref="_pksrcid"/>
               </dm-mapping:REFERENCE>
               <dm-mapping:COLLECTION dmrole="cube:SparseCube.data">
@@ -121,7 +121,7 @@
                   <dm-mapping:INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <dm-mapping:INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <dm-mapping:ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
-                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <dm-mapping:FOREIGN_KEY ref="_band"/>
                       </dm-mapping:REFERENCE>
                     </dm-mapping:INSTANCE>
@@ -132,7 +132,7 @@
                   <dm-mapping:INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <dm-mapping:INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <dm-mapping:ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
-                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <dm-mapping:FOREIGN_KEY ref="_band"/>
                       </dm-mapping:REFERENCE>
                     </dm-mapping:INSTANCE>

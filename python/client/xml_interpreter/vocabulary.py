@@ -33,6 +33,7 @@ class Att(object):
     value = "value"
     dmref = "dmref"
     tableref = "tableref"
+    sourceref = "sourceref"
     ref = "ref"
     primarykey = "primarykey"
     foreignkey = "foreignkey"

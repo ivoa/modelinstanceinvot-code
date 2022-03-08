@@ -57,7 +57,7 @@ class StaticReferenceResolver(object):
         """
         Resolve a static reference based on a key mechanism
         e.g.
-        <REFERENCE_4 dmrole="coords:Coordinate.coordSys" tableref="_CoordinateSystems">
+        <REFERENCE_4 dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
             <FOREIGN_KEY ref="_band" value="G"/>
         </REFERENCE_4>
         
@@ -74,7 +74,7 @@ class StaticReferenceResolver(object):
         # No pkvalue: likely a dynamic reference (TEMPLATES -> GLOBALS)
         if pk_value is None:
             return
-        target = annotation_seeker.get_globals_instance_from_collection(ref_element.get("tableref"), pk_value)
+        target = annotation_seeker.get_globals_instance_from_collection(ref_element.get("sourceref"), pk_value)
         StaticReferenceResolver.resolve(annotation_seeker, None, ref_element)
         # Set the reference role to the copied instance
         target_copy = deepcopy(target)

@@ -23,6 +23,7 @@
                 "@dmtype": "ivoa:real",
                 "@ref": "_obstime",
                 "@index": "3",
+                "@unit_org": "d",
                 "@value": "1705.9437360200984"
               },
               "INSTANCE": {
@@ -73,11 +74,12 @@
                 "@dmtype": "ivoa:RealQuantity",
                 "@ref": "_mag",
                 "@index": "4",
+                "@unit_org": "mag",
                 "@value": "15.216575"
               },
               "REFERENCE_4": {
                 "@dmrole": "coords:Coordinate.coordSys",
-                "@tableref": "_CoordinateSystems"
+                "@sourceref": "_CoordinateSystems"
               }
             }
           }
@@ -101,6 +103,7 @@
                   "@dmtype": "ivoa:RealQuantity",
                   "@ref": "_flux",
                   "@index": "5",
+                  "@unit_org": "e-/s",
                   "@value": "15442.456"
                 },
                 "INSTANCE": {
@@ -160,6 +163,7 @@
                     "@dmtype": "ivoa:RealQuantity",
                     "@ref": "_fluxerr",
                     "@index": "6",
+                    "@unit_org": "e-/s",
                     "@value": "44.15126"
                   }
                 }
