@@ -5,7 +5,12 @@ XML serialization of Photometry Filter
  -->
 <!-- Photometric System -->
 <dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_XMMSL2_EB8">
+    <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.description" dmtype="ivoa:string" value="XMMSL2" />
     <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer" value="1" />
+  <dm-mapping:COLLECTION dmrole="photdm:PhotCal.photometryFilter">
+    <!-- Others filter references can be added here -->
+    <dm-mapping:REFERENCE dmref="_filter__XMMSL2_EB8" />
+  </dm-mapping:COLLECTION>
 </dm-mapping:INSTANCE>
 
 
@@ -20,38 +25,46 @@ XML serialization of Photometry Filter
     </dm-mapping:INSTANCE>
         
     <!--  Filter -->
-    <dm-mapping:INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter">
-        <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string" value="ivo://svo/fps" />
-        <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="XMMSL2/XMMSL2.EB8" />
-        <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMMSL2 EB8" />
-        <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Total" />
-        <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB8" />
+  <!-- Filter -->
+  <dm-mapping:REFERENCE dmref="_filter__XMMSL2_EB8" dmrole="photdm:PhotCal.photometryFilter" />
 
-        <!-- Spectral Location -->
-        <dm-mapping:INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
-            <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="6.1" />
-        </dm-mapping:INSTANCE>
-
-        <!-- Band width -->
-        <dm-mapping:INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
-            <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="keV" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="11.8" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="0.2" />
-            <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="12" />
-        </dm-mapping:INSTANCE>
-
-        <!-- Transmission Curve -->
-        <dm-mapping:INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
-            <dm-mapping:INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
-                <dm-mapping:ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" 
-                           value="https://www.cosmos.esa.int/web/xmm-newton/xmmsl2-ug" />
-                <dm-mapping:ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
-                <dm-mapping:ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="HTML" />
-            </dm-mapping:INSTANCE>
-        </dm-mapping:INSTANCE>
-    </dm-mapping:INSTANCE>
 </dm-mapping:INSTANCE>
+
+<!-- Filter -->
+<dm-mapping:INSTANCE dmtype="photdm:PhotometryFilter" dmrole="photdm:PhotCal.photometryFilter"
+  dmid="_filter__XMMSL2_EB8">
+  <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.fpsidentifier" dmtype="ivoa:string"
+    value="ivo://svo/fps" />
+  <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string"
+    value="XMMSL2/XMMSL2.EB8" />
+  <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMMSL2 EB8" />
+  <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Hard" />
+  <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB8" />
+
+  <!-- Spectral Location -->
+  <dm-mapping:INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
+    <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="7.0" />
+  </dm-mapping:INSTANCE>
+
+  <!-- Band width -->
+  <dm-mapping:INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
+    <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="keV" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="10.0" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="2.0" />
+    <dm-mapping:ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="12.0" />
+  </dm-mapping:INSTANCE>
+
+  <!-- Transmission Curve -->
+  <dm-mapping:INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
+    <dm-mapping:INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
+      <dm-mapping:ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"
+        value="https://www.cosmos.esa.int/web/xmm-newton/xmmsl2-ug" />
+      <dm-mapping:ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
+      <dm-mapping:ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="HTML" />
+    </dm-mapping:INSTANCE>
+  </dm-mapping:INSTANCE>
+
 

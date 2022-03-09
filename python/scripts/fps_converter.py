@@ -16,7 +16,7 @@ for filterBand in filterBands:
     print("=== Processing " + filterBand)
     outputFile = "./photdm." + filterBand.replace("/", ".") + ".xml"
     vegaFile = "./vega." + filterBand.replace("/", ".") + ".xml"
-    
+    photSystem = filterBand.split('/')[0]
     fpsServer = "svo2.cab.inta-csic.es"
     fpsQuery = "/theory/fps/fps.php?PhotCalID=" + filterBand + "/Vega"
     fpsServiceURL = "http://svo2.cab.inta-csic.es/theory/fps/fps.php?PhotCalID="
@@ -88,6 +88,7 @@ for filterBand in filterBands:
         sys_dmid = sys_dmid,
         cal_dmid = cal_dmid,
         filter_dmid = filter_dmid,
+        photSystem = photSystem,
         detectorType = detectorType,
         photCalIdentifier = photCalIdentifier,
         magnitudeSystemType = magnitudeSystemType,
