@@ -37,7 +37,7 @@ for filterBand in filterBands:
     
     #Setting defaults (add here values that are not always present)
     bandName = ""
-    sys_dmid = "_sys_" + filterBand.split("/")[1].replace(".", "_")
+    sys_dmid = "_sys_" + filterBand.split("/")[0].replace(".", "_")
     cal_dmid = "_cal_" + filterBand.split("/")[1].replace(".", "_")
     filter_dmid = "_filter_" + filterBand.split("/")[1].replace(".", "_")
     # We need to iterate on the params (looks a limitation of the library) and we fill-in 
