@@ -1,6 +1,6 @@
 <!-- XML serialization of Photometry Filter -->
 <!-- Photometric System -->
-<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_sys_WISE_W1">
+<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_sys_WISE">
   <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.description" dmtype="ivoa:string"
     value="WISE" />
   <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer"

@@ -1,6 +1,6 @@
 <!-- XML serialization of Photometry Filter -->
 <!-- Photometric System -->
-<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_sys_GAIA2_G">
+<dm-mapping:INSTANCE dmtype="photdm:PhotometricSystem" dmid="_sys_GAIA">
   <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.description" dmtype="ivoa:string"
     value="GAIA" />
   <dm-mapping:ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer"
