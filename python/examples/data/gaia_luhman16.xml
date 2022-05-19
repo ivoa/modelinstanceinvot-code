@@ -5,113 +5,113 @@
 	<RESOURCE type="results">
 
 		<RESOURCE type="meta">
-			<dm-mapping:VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
-				<dm-mapping:REPORT status="OK">hand-made mapping</dm-mapping:REPORT>
+			<VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
+				<REPORT status="OK">hand-made mapping</REPORT>
 
-				<dm-mapping:MODEL name="meas" url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
-				<dm-mapping:MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
-				<dm-mapping:MODEL name="ivoa" url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
+				<MODEL name="meas" url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
+				<MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
+				<MODEL name="ivoa" url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
 
-				<dm-mapping:GLOBALS>
-					<dm-mapping:INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
-						<dm-mapping:INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
-							<dm-mapping:ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
-						</dm-mapping:INSTANCE>
-						<dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
-						<dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="2015.0" />
-					</dm-mapping:INSTANCE>
-				</dm-mapping:GLOBALS>
+				<GLOBALS>
+					<INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
+						<INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+							<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
+						</INSTANCE>
+						<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
+						<ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="2015.0" />
+					</INSTANCE>
+				</GLOBALS>
 
-				<dm-mapping:TEMPLATES tableref="Results">
-					<dm-mapping:INSTANCE dmrole="" dmtype="meas:Position">
-						<dm-mapping:ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
-						<dm-mapping:INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
-							<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra" />
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-							</dm-mapping:INSTANCE>
-							<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec" />
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-							</dm-mapping:INSTANCE>
-							<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
-							</dm-mapping:INSTANCE>
-							<dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
-						</dm-mapping:INSTANCE>
+				<TEMPLATES tableref="Results">
+					<INSTANCE dmrole="" dmtype="meas:Position">
+						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
+						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
+								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra" />
+								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+							</INSTANCE>
+							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
+								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec" />
+								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+							</INSTANCE>
+							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
+								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
+								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
+							</INSTANCE>
+							<REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
+						</INSTANCE>
 
-						<dm-mapping:INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
-							<dm-mapping:COLLECTION dmrole="meas:Asymmetrical3D.plus">
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
-								</dm-mapping:INSTANCE>
-							</dm-mapping:COLLECTION>
-							<dm-mapping:COLLECTION dmrole="meas:Asymmetrical3D.minus">
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
-								</dm-mapping:INSTANCE>
-							</dm-mapping:COLLECTION>
-						</dm-mapping:INSTANCE>
-					</dm-mapping:INSTANCE>
+						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
+							<COLLECTION dmrole="meas:Asymmetrical3D.plus">
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
+								</INSTANCE>
+							</COLLECTION>
+							<COLLECTION dmrole="meas:Asymmetrical3D.minus">
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
+								</INSTANCE>
+							</COLLECTION>
+						</INSTANCE>
+					</INSTANCE>
 
-					<dm-mapping:INSTANCE dmrole="" dmtype="meas:ProperMotion">
-						<dm-mapping:ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.pm" />
-						<dm-mapping:INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
-							<dm-mapping:INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra" />
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-							</dm-mapping:INSTANCE>
-							<dm-mapping:INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec" />
-								<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-							</dm-mapping:INSTANCE>
-							<dm-mapping:ATTRIBUTE dmrole="meas:ProperMotion.cosLat_applied" dmtype="ivoa:bool" value="true" />
+					<INSTANCE dmrole="" dmtype="meas:ProperMotion">
+						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.pm" />
+						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+							<INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra" />
+								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+							</INSTANCE>
+							<INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec" />
+								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+							</INSTANCE>
+							<ATTRIBUTE dmrole="meas:ProperMotion.cosLat_applied" dmtype="ivoa:bool" value="true" />
 
-						</dm-mapping:INSTANCE>
-						<dm-mapping:INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical2D">
-							<dm-mapping:COLLECTION dmrole="meas:Asymmetrical2D.plus">
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</dm-mapping:INSTANCE>
-							</dm-mapping:COLLECTION>
-							<dm-mapping:COLLECTION dmrole="meas:Asymmetrical2D.minus">
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</dm-mapping:INSTANCE>
-								<dm-mapping:INSTANCE dmtype="ivoa:RealQuantity">
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
-									<dm-mapping:ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</dm-mapping:INSTANCE>
-							</dm-mapping:COLLECTION>
-						</dm-mapping:INSTANCE>
-					</dm-mapping:INSTANCE>
-				</dm-mapping:TEMPLATES>
-			</dm-mapping:VODML>
+						</INSTANCE>
+						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical2D">
+							<COLLECTION dmrole="meas:Asymmetrical2D.plus">
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+								</INSTANCE>
+							</COLLECTION>
+							<COLLECTION dmrole="meas:Asymmetrical2D.minus">
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+								</INSTANCE>
+								<INSTANCE dmtype="ivoa:RealQuantity">
+									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
+									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+								</INSTANCE>
+							</COLLECTION>
+						</INSTANCE>
+					</INSTANCE>
+				</TEMPLATES>
+			</VODML>
 		</RESOURCE>
 		<INFO name="QUERY_STATUS" value="OK" />
 

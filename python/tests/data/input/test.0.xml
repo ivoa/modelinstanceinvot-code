@@ -1,128 +1,128 @@
-<dm-mapping:VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax" >
-          <dm-mapping:MODEL name="mango"  url="file:/Users/sao/Documents/IVOA/GitHub/ivoa-dm-examples/tmp/Mango-v1.0.vo-dml.xml" />
-          <dm-mapping:MODEL name="cube"   url="https://volute.g-vo.org/svn/trunk/projects/dm/Cube/vo-dml/Cube-1.0.vo-dml.xml" />
-          <dm-mapping:MODEL name="ds"     url="https://volute.g-vo.org/svn/trunk/projects/dm/DatasetMetadata/vo-dml/DatasetMetadata-1.0.vo-dml.xml" />
-          <dm-mapping:MODEL name="meas"   url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
-          <dm-mapping:MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
-          <dm-mapping:MODEL name="ivoa"   url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
-          <dm-mapping:GLOBALS>
-            <dm-mapping:COLLECTION dmid="_CoordinateSystems" dmrole="" >
-              <dm-mapping:INSTANCE dmid="_timesys" dmrole="" dmtype="coords:TimeSys">
-                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="TCB"/>
-                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:TimeFrame">
-                  <dm-mapping:ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB" />
-                  <dm-mapping:INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
-                    <dm-mapping:ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER"/>
-                  </dm-mapping:INSTANCE>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:INSTANCE>
-              <dm-mapping:INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
-                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
-                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
-                  <dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
-                  <dm-mapping:ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="J2015.5"/>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:INSTANCE>
-              <dm-mapping:INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys">
-                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="G"/>
-                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="2.49524e-9"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="6246.77"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom" />
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="4578.32"/>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:INSTANCE>
-              <dm-mapping:INSTANCE dmid="_photsys_RP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
-                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="RP"/>
-                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Grp"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="1.29363e-9"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="7740.87"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2943.72"/>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:INSTANCE>
-              <dm-mapping:INSTANCE dmid="_photsys_BP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
-                <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="BP"/>
-                <dm-mapping:INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="4.03528e-9"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="5278.58"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
-                  <dm-mapping:ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2279.45"/>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:INSTANCE>
-            </dm-mapping:COLLECTION>
-            <dm-mapping:COLLECTION dmid="_Datasets" dmrole="">
-              <dm-mapping:INSTANCE dmid="_ds1" dmrole="" dmtype="ds:experiment.ObsDataset">
-               <dm-mapping:PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560"/>
-                <dm-mapping:ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductType" dmtype="ds:dataset.DataProductType" value="TIMESERIES"/>
-                <dm-mapping:ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductSubtype" dmtype="ivoa:string" value="GAIA Time Series"/>
-                <dm-mapping:ATTRIBUTE dmrole="ds:experiment.ObsDataset.calibLevel" dmtype="ivoa:integer" value="1"/>
-                <dm-mapping:REFERENCE dmrole="ds:experiment.ObsDataset.target" dmref="_tg1"/>
-              </dm-mapping:INSTANCE>
-            </dm-mapping:COLLECTION>
-            <dm-mapping:INSTANCE dmid="_tg1" dmrole="" dmtype="ds:experiment.Target">
-              <dm-mapping:ATTRIBUTE dmrole="ds:experiment.BaseTarget.name" dmtype="ivoa:string" value="5813181197970338560"/>
-            </dm-mapping:INSTANCE>
-          </dm-mapping:GLOBALS>
-          <dm-mapping:TEMPLATES tableref="_PKTable">
-            <dm-mapping:INSTANCE dmid="_TimeSeries" dmrole="" dmtype="cube:SparseCube">
-              <dm-mapping:REFERENCE dmrole="cube:DataProduct.dataset" sourceref="_Datasets">
-                <dm-mapping:FOREIGN_KEY ref="_pksrcid"/>
-              </dm-mapping:REFERENCE>
-              <dm-mapping:COLLECTION dmrole="cube:SparseCube.data">
-                <dm-mapping:JOIN dmref="_ts_data">
-                  <dm-mapping:WHERE foreignkey="_srcid" primarykey="_pksrcid" />
-                  <dm-mapping:WHERE foreignkey="_band" primarykey="_pkband"  />
-                </dm-mapping:JOIN>
-              </dm-mapping:COLLECTION>
-            </dm-mapping:INSTANCE>
-          </dm-mapping:TEMPLATES>
-          <dm-mapping:TEMPLATES tableref="Results">
-            <dm-mapping:INSTANCE dmid="_ts_data" dmrole="" dmtype="cube:NDPoint">
-              <dm-mapping:COLLECTION dmrole="cube:NDPoint.observable">
-                <dm-mapping:INSTANCE dmtype="cube:Observable">
-                  <dm-mapping:ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="False"/>
-                  <dm-mapping:INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
-                    <dm-mapping:INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
-                      <dm-mapping:ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime"/>
-                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
-                    </dm-mapping:INSTANCE>
-                  </dm-mapping:INSTANCE>
-                </dm-mapping:INSTANCE>
-                <dm-mapping:INSTANCE dmtype="cube:Observable">
-                  <dm-mapping:ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
-                  <dm-mapping:INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
-                    <dm-mapping:INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-                      <dm-mapping:ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
-                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
-                        <dm-mapping:FOREIGN_KEY ref="_band"/>
-                      </dm-mapping:REFERENCE>
-                    </dm-mapping:INSTANCE>
-                  </dm-mapping:INSTANCE>
-                </dm-mapping:INSTANCE>
-                <dm-mapping:INSTANCE dmtype="cube:Observable">
-                  <dm-mapping:ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
-                  <dm-mapping:INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
-                    <dm-mapping:INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-                      <dm-mapping:ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
-                      <dm-mapping:REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
-                        <dm-mapping:FOREIGN_KEY ref="_band"/>
-                      </dm-mapping:REFERENCE>
-                    </dm-mapping:INSTANCE>
-                    <dm-mapping:INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                      <dm-mapping:INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                        <dm-mapping:ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr"/>
-                      </dm-mapping:INSTANCE>
-                    </dm-mapping:INSTANCE>
-                  </dm-mapping:INSTANCE>
-                </dm-mapping:INSTANCE>
-              </dm-mapping:COLLECTION>
-            </dm-mapping:INSTANCE>
-          </dm-mapping:TEMPLATES>
-      </dm-mapping:VODML>
+<VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax" >
+          <MODEL name="mango"  url="file:/Users/sao/Documents/IVOA/GitHub/ivoa-dm-examples/tmp/Mango-v1.0.vo-dml.xml" />
+          <MODEL name="cube"   url="https://volute.g-vo.org/svn/trunk/projects/dm/Cube/vo-dml/Cube-1.0.vo-dml.xml" />
+          <MODEL name="ds"     url="https://volute.g-vo.org/svn/trunk/projects/dm/DatasetMetadata/vo-dml/DatasetMetadata-1.0.vo-dml.xml" />
+          <MODEL name="meas"   url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
+          <MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
+          <MODEL name="ivoa"   url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
+          <GLOBALS>
+            <COLLECTION dmid="_CoordinateSystems" dmrole="" >
+              <INSTANCE dmid="_timesys" dmrole="" dmtype="coords:TimeSys">
+                <PRIMARY_KEY dmtype="ivoa:string" value="TCB"/>
+                <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:TimeFrame">
+                  <ATTRIBUTE dmrole="coords:TimeFrame.timescale" dmtype="ivoa:string" value="TCB" />
+                  <INSTANCE dmrole="coords:TimeFrame.refPosition" dmtype="coords:StdRefLocation">
+                    <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="BARYCENTER"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
+                <PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
+                <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+                  <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+                  <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="J2015.5"/>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys">
+                <PRIMARY_KEY dmtype="ivoa:string" value="G"/>
+                <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="2.49524e-9"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="6246.77"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom" />
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="4578.32"/>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="_photsys_RP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
+                <PRIMARY_KEY dmtype="ivoa:string" value="RP"/>
+                <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Grp"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="1.29363e-9"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="7740.87"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2943.72"/>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="_photsys_BP" dmrole="" dmtype="mango:coordinates.PhotometryCoordSys">
+                <PRIMARY_KEY dmtype="ivoa:string" value="BP"/>
+                <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.Gbp"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.zeroPointFlux" dmtype="ivoa:RealQuantity" value="4.03528e-9"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Vega"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.effectiveWavelength" dmtype="ivoa:RealQuantity" value="5278.58"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.unit" dmtype="ivoa:Unit" value="Angstrom"/>
+                  <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.bandWidth" dmtype="ivoa:real" value="2279.45"/>
+                </INSTANCE>
+              </INSTANCE>
+            </COLLECTION>
+            <COLLECTION dmid="_Datasets" dmrole="">
+              <INSTANCE dmid="_ds1" dmrole="" dmtype="ds:experiment.ObsDataset">
+               <PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560"/>
+                <ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductType" dmtype="ds:dataset.DataProductType" value="TIMESERIES"/>
+                <ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductSubtype" dmtype="ivoa:string" value="GAIA Time Series"/>
+                <ATTRIBUTE dmrole="ds:experiment.ObsDataset.calibLevel" dmtype="ivoa:integer" value="1"/>
+                <REFERENCE dmrole="ds:experiment.ObsDataset.target" dmref="_tg1"/>
+              </INSTANCE>
+            </COLLECTION>
+            <INSTANCE dmid="_tg1" dmrole="" dmtype="ds:experiment.Target">
+              <ATTRIBUTE dmrole="ds:experiment.BaseTarget.name" dmtype="ivoa:string" value="5813181197970338560"/>
+            </INSTANCE>
+          </GLOBALS>
+          <TEMPLATES tableref="_PKTable">
+            <INSTANCE dmid="_TimeSeries" dmrole="" dmtype="cube:SparseCube">
+              <REFERENCE dmrole="cube:DataProduct.dataset" sourceref="_Datasets">
+                <FOREIGN_KEY ref="_pksrcid"/>
+              </REFERENCE>
+              <COLLECTION dmrole="cube:SparseCube.data">
+                <JOIN dmref="_ts_data">
+                  <WHERE foreignkey="_srcid" primarykey="_pksrcid" />
+                  <WHERE foreignkey="_band" primarykey="_pkband"  />
+                </JOIN>
+              </COLLECTION>
+            </INSTANCE>
+          </TEMPLATES>
+          <TEMPLATES tableref="Results">
+            <INSTANCE dmid="_ts_data" dmrole="" dmtype="cube:NDPoint">
+              <COLLECTION dmrole="cube:NDPoint.observable">
+                <INSTANCE dmtype="cube:Observable">
+                  <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="False"/>
+                  <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
+                    <INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
+                      <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime"/>
+                      <REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmtype="cube:Observable">
+                  <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
+                  <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+                    <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
+                      <REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
+                        <FOREIGN_KEY ref="_band"/>
+                      </REFERENCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmtype="cube:Observable">
+                  <ATTRIBUTE dmrole="cube:DataAxis.dependent" dmtype="ivoa:boolean" value="True"/>
+                  <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
+                    <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                      <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
+                      <REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
+                        <FOREIGN_KEY ref="_band"/>
+                      </REFERENCE>
+                    </INSTANCE>
+                    <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                      <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                        <ATTRIBUTE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity" ref="_fluxerr"/>
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </COLLECTION>
+            </INSTANCE>
+          </TEMPLATES>
+      </VODML>

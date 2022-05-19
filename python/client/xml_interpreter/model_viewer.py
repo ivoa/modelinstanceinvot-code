@@ -1,4 +1,4 @@
-'''
+F'''
 Created on 5 Jan 2022
 
 @author: laurentmichel
@@ -382,11 +382,11 @@ class ModelViewer(object):
         logger.info("extract vodml block from %s", votable_path)
         with open(votable_path) as xml_file:
             content = xml_file.read()
-            start = content.index('<dm-mapping:VODML')
+            start = content.index('<VODML')
             if start == -1:
                 raise MappingException("Cannot find mapping block")
             content = content[start:]
-            stop_pattern = '</dm-mapping:VODML>'
+            stop_pattern = '</VODML>'
             stop = content.index(stop_pattern) + len(stop_pattern)
             content = content[:stop]
             self._annotation_seeker = AnnotationSeeker(etree.fromstring(content))
