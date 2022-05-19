@@ -62,7 +62,7 @@ class AnnotationSeeker(object):
         for tag in['INSTANCE', 'ATTRIBUTE', 'COLLECTION', 'GLOBALS', 
                    'TEMPLATES', 'PRIMARY_KEY', 
                    'FOREIGN_KEY', 'WHERE', 'VODML']:
-            xpath = './/dm-mapping:' + tag            
+            xpath = './/' + tag            
             for ele in self._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
                 ele.tag = tag 
          
@@ -70,7 +70,7 @@ class AnnotationSeeker(object):
         # cannot be identified by role: make them unique to facilitate the job of the resolvers
         cpt = 1
         for tag in['REFERENCE', 'JOIN']:
-            xpath = '//dm-mapping:' + tag            
+            xpath = '//' + tag            
             for ele in self._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
                 ele.tag = tag + '_' + str(cpt)
                 cpt += 1            

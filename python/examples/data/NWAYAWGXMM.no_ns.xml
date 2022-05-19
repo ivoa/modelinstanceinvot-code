@@ -66,7 +66,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_XMMSL2_EB7">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="XMMSL2/XMMSL2.EB7" />
@@ -119,8 +118,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_XMMSL2_EB6">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="XMMSL2/XMMSL2.EB6" />
@@ -239,8 +236,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_2MASS_J">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="2MASS/2MASS.J/Vega" />
@@ -306,7 +301,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_2MASS_Ks">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="2MASS/2MASS.Ks/Vega" />
@@ -439,7 +433,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_WISE_W2">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="WISE/WISE.W2/Vega" />
@@ -506,7 +499,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_WISE_W3">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="WISE/WISE.W3/Vega" />
@@ -573,7 +565,6 @@
 							</INSTANCE>
 						</INSTANCE>
 					</INSTANCE>
-
 					<INSTANCE dmtype="photdm:PhotCal" dmid="_WISE_W4">
 						<ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string"
 							value="WISE/WISE.W4/Vega" />
@@ -713,6 +704,7 @@
 					<INSTANCE dmtype="sed:Sed">
 						<INSTANCE dmtype="sed:Source" dmrole="sed:Sed.source">
 							<ATTRIBUTE dmtype="ivoa:string" dmrole="sed:Source.name" ref="name" />
+              
 							<INSTANCE dmtype="sed.Position" dmrole="sed:Source.position">
 								<ATTRIBUTE dmtype="ivoa:real" dmrole="sed.Position.longitude" ref="ra" />
 								<ATTRIBUTE dmtype="ivoa:real" dmrole="sed.Position.latitude" ref="dec" />
@@ -720,11 +712,13 @@
 							</INSTANCE>
 
 							<COLLECTION dmrole="sed:Sed.points">
+              
 								<INSTANCE dmtype="sed:PhotPoint">
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="flux_b6"
 										unit="erg/s/cm^2" />
 									<REFERENCE dmrole="sed:PhotPoint.photcal" dmref="_XMMSL2_EB6" />
 								</INSTANCE>
+                
 								<INSTANCE dmtype="sed:PhotPoint">
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="flux_b7"
 										unit="erg/s/cm^2" />
@@ -735,7 +729,6 @@
 										unit="erg/s/cm^2" />
 									<REFERENCE dmrole="sed:PhotPoint.photcal" dmref="_XMMSL2_EB8" />
 								</INSTANCE>
-
 								<INSTANCE dmtype="sed:PhotPoint">
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="w1_mag"
 										unit="erg/s/cm^2" />
@@ -756,7 +749,6 @@
 										unit="erg/s/cm^2" />
 									<REFERENCE dmrole="sed:PhotPoint.photcal" dmref="_WISE_W4" />
 								</INSTANCE>
-
 								<INSTANCE dmtype="sed:PhotPoint">
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="hmag" unit="erg/s/cm^2" />
 									<REFERENCE dmrole="sed:PhotPoint.photcal" dmref="_2MASS_H" />
@@ -769,7 +761,6 @@
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="kmag" unit="erg/s/cm^2" />
 									<REFERENCE dmrole="sed:PhotPoint.photcal" dmref="_2MASS_Ks" />
 								</INSTANCE>
-
 								<INSTANCE dmtype="sed:PhotPoint">
 									<ATTRIBUTE dmtype="ivoa:real" dmrole="sed:PhotPoint.flux" ref="gaia_gmag"
 										unit="erg/s/cm^2" />

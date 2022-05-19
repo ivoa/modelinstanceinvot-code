@@ -24,7 +24,7 @@ The test goal is to validate the 3D position. To get that third dimension, we ma
 
 There is currently no standard method to handle this sort of implicit transformation. We are doing it here just because we know it is part the test.
 
-This opens the issue of defining a client behaviour when the <FIELD> unit does not match the <dm-mapping:ATTRIBUTE> unit.
+This opens the issue of defining a client behaviour when the <FIELD> unit does not match the <ATTRIBUTE> unit.
 
     
 - We are using the annotation [syntax](https://github.com/ivoa-std/ModelInstanceInVot) that has been designed after the 2021 workshop.
