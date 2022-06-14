@@ -6,6 +6,7 @@ Created on 22 Dec 2021
 from copy import deepcopy
 from client.xml_interpreter.exceptions import MappingException
 from utils.xml_utils import XmlUtils
+from astropy.table._column_mixins import sys
 
 class StaticReferenceResolver(object):
     '''
@@ -46,11 +47,23 @@ class StaticReferenceResolver(object):
                 StaticReferenceResolver.resolve(annotation_seeker, None, ele)
             # Set the reference role to the copied instance
             target_copy = deepcopy(target)
-            target_copy.attrib["dmrole"] = ele.get('dmrole')
+            #if the reference is within a collection: no role
+            if ele.get('dmrole'):
+                target_copy.attrib["dmrole"] = ele.get('dmrole')
+            parent = ele.getparent()
             # Insert the referenced object
-            ele.getparent().append(target_copy)
+            parent.append(target_copy)
             # Drop the reference
-            ele.getparent().remove(ele)
+            parent.remove(ele)
+            if target_copy.get("dmid") == "GenericMeasure_@flag.variability":
+                print (target_copy.tag)
+                XmlUtils.pretty_print(ele)
+                XmlUtils.pretty_print(target_copy)
+                XmlUtils.pretty_print(parent)
+                print("finit")
+                import sys
+                #sys.exit(1)
+
             
     @staticmethod 
     def resolve_from_forein_key(ref_element, annotation_seeker):

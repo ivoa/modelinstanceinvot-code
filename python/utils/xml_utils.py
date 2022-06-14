@@ -45,6 +45,37 @@ class XmlUtils(object):
         testcase.assertDictEqual(dict1, dict2, message)
     
     
-    
+    @staticmethod
+    def set_column_indices(mapping_block, index_map):
+        """
+        add column ranks to attribute having a ref.
+        Using ranks allow to identify columns even numpy raw have been serialised as []
+        """
+        print(index_map)
+        for ele in mapping_block.xpath("//ATTRIBUTE"):
+            ref = ele.get("ref")
+            print(f'{ele.get("dmrole")} {ele.get("ref")}')
+            if ref is not None and ref != 'NotSet':
+                print(f"good {index_map[ref]}")
+                ele.attrib["index"] = str(index_map[ref])
+                
+    @staticmethod
+    def set_column_units(mapping_block, unit_map):
+        """
+        add field unit to attribute having a ref.
+        Used for performing unit conversions
+        """
+        for ele in mapping_block.xpath("//ATTRIBUTE"):
+            ref = ele.get("ref")
+            if ref is not None and ref != 'NotSet':
+                unit = unit_map[ref]
+                if unit is None:
+                    unit = ""
+                else:
+                    unit = unit.__str__()
+                ele.attrib["unit_org"] = unit
+
+
+
 
         

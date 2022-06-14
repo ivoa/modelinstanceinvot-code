@@ -235,9 +235,17 @@ class ModelViewer(object):
         templates_copy = deepcopy(self._templates)
         if resolve_ref is True:
             StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
+            # Make sure the instances of the resolved references have both indexes and unit attribute
+            XmlUtils.set_column_indices(templates_copy,
+                                        self._resource_seeker.get_id_index_mapping(self._connected_tableref))
+            XmlUtils.set_column_units(templates_copy,
+                                        self._resource_seeker.get_id_unit_mapping(self._connected_tableref))
         for ele in templates_copy.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
-            if ref is not None:
+            if ref is not None and ref != 'NotSet':
+                print(">> " + ref)
+                print(ele.attrib.keys())
+
                 index = ele.attrib["index"]
                 ele.attrib["value"] = str(self._current_data_row[int(index)])
         for dref_tag, dref in self._dyn_references.items():
@@ -299,6 +307,12 @@ class ModelViewer(object):
         self._assert_table_is_connected()
         retour = []
         model_view = self.get_model_view(resolve_ref=True)
+        XmlUtils.pretty_print(model_view)
+
+        for ele in model_view.xpath(f'.//*'):
+            print(ele) 
+            print(ele.get("dmtype")) 
+            
         for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
             retour.append(deepcopy(ele)) 
         return retour
@@ -426,10 +440,8 @@ class ModelViewer(object):
         Using ranks allow to identify columns even numpy raw have been serialised as []
         """
         index_map = self._resource_seeker.get_id_index_mapping(self._connected_tableref)
-        for ele in self._templates.xpath("//ATTRIBUTE"):
-            ref = ele.get("ref")
-            if ref is not None:
-                ele.attrib["index"] = str(index_map[ref])
+        print(index_map)
+        XmlUtils.set_column_indices(self._templates, index_map)
   
   
     def _set_column_units(self):
@@ -438,13 +450,5 @@ class ModelViewer(object):
         Used for performing unit conversions
         """
         unit_map = self._resource_seeker.get_id_unit_mapping(self._connected_tableref)
-        for ele in self._templates.xpath("//ATTRIBUTE"):
-            ref = ele.get("ref")
-            if ref is not None:
-                unit = unit_map[ref]
-                if unit is None:
-                    unit = ""
-                else:
-                    unit = unit.__str__()
-                ele.attrib["unit_org"] = unit
-                              
+        XmlUtils.set_column_units(self._templates,unit_map)
+                               

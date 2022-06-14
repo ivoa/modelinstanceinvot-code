@@ -35,7 +35,7 @@ class Measure(object):
         """
         Returns the Measure instance matching model_view
         """
-        for ele in model_view.xpath("//INSTANCE"):
+        for ele in model_view.xpath(".//INSTANCE"):
             dmtype = ele.get("dmtype")
             if dmtype == "meas:Position":
                 return Position(model_view)
@@ -45,8 +45,11 @@ class Measure(object):
                 return Velocity(model_view)
             elif dmtype == "meas:GenericMeasure":
                 return GenericMeasure(model_view)
-            else:
-                raise Exception(f'Measure {dmtype} not supported yet')
+            elif dmtype.startswith("mango:stcextend"):
+                return None
+            print(dmtype)
+            #else:
+            #    raise Exception(f'Measure {dmtype} not supported yet')
             
         raise Exception('This element is not a Measure')
 

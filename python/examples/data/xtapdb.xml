@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+<RESOURCE type="results">
+<RESOURCE type="meta">
+
+<!-- Here starts the mapping block This bloc maps all data contained in the VOTable on the MANGO MODEL_INSTANCE. The MODEL_INSTANCEInstanceInVot syntax 
+        is detailed here https://github.com/ivoa-std/MODEL_INSTANCEinstanceinvot with a lot of snippet here https://github.com/ivoa/MODEL_INSTANCEinstanceinvot-code 
+     -->
+    
+  <!-- VODML xmlns="http://ivoa.net/xml/merged-synthax" -->
+		<VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
+  <REPORT status="OK">
+    <INSTANCE ID="PhotFrame_ACISBroad" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="ACIS Broad"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Chandra"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="2.3"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="6.5"/>
+    </INSTANCE>
+  </REPORT>
+  <MODEL name="Mango" syntax="MODEL_INSTANCEInstanceInVot" uri="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml"/>
+  <!-- 
+      The GLOBALS block contains all objects with a scope covering all data.
+      This is typically the case for the coordinate Systems 
+      -->
+  <GLOBALS>
+    <INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
+      <PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
+      <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+        <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
+      </INSTANCE>
+    </INSTANCE>
+    <INSTANCE dmidREFE="PhotFrame_ACISHard" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="ACIS Hard"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NoSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Chandra"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="3.8"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="5.0"/>
+    </INSTANCE>
+    <INSTANCE dmid="PhotFrame_ACISMedium" dmrole="" dmtype="mango:stcextend.PhotFilter">
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.name" dmtype="ivoa:string" value="ACIS Medium"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.zeroPointFlux" dmtype="ivoa:real" value="NotSet"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.magnitudeSystem" dmtype="ivoa:string" value="Chandra"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.effectiveWavlength" dmtype="ivoa:real" value="1.56"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.unit" dmtype="ivoa:string" value="KeV"/>
+      <ATTRIBUTE dmrole="mango:stcextend.PhotFilter.bandWidth" dmtype="ivoa:real" value="1.8"/>
+    </INSTANCE>
+    <INSTANCE dmid="PhotFrame_ACISHRMediumHard" dmrole="" dmtype="mango:stcextend.HRFrame">
+      <INSTANCE dmref="PhotFrame_ACISMedium" dmrole="mango:stcextend.HRFrame.low"/>
+      <INSTANCE dmref="PhotFrame_ACISHard" dmrole="mango:stcextend.HRFrame.high"/>
+    </INSTANCE>
+  </GLOBALS>
+  <!-- 
+      This block maps the data of the table identified as "Results" 
+      -->
+  <TEMPLATES>
+    <!-- 
+        The table contain a set of Mango instances, this is why we have COLLECTION at the top level
+        -->
+    <COLLECTION dmrole="root">
+      <INSTANCE dmrole="root" dmtype="mango:MangoObject">
+        <!--
+                      Collection of the complex data attached to the source
+                      -->
+        <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="IAUNAME"/>
+        <!--
+                      Collection of the parameters attached to the source
+                      Each child INSTANCE maps one parameter
+                      -->
+        <COLLECTION dmrole="mango:MangoObject.parameters">
+          <INSTANCE dmid="LonLatSkyPosition_@position.corrected" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position.corrected"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value=""/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Source sky position"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.LonLatSkyPosition">
+              <INSTANCE dmrole="mango:stcextend.LonLatSkyPosition.coord" dmtype="mango:stcextend.LonLatPoint">
+                <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.longitude" dmtype="ivoa:real" ref="SC_DEC"/>
+                <ATTRIBUTE dmrole="mango:stcextend.LonLatPoint.latitude" dmtype="ivoa:real" ref="SC_RA"/>
+                <INSTANCE dmref="SpaceFrame_ICRS" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+          <INSTANCE dmid="Photometry_@flux.corrected" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;em.X-ray"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[0/5.5e-10]? Aperture-corrected net energy flux inferred from the source region aperture; ACIS broad (0.5-7.0keV) band, in erg/s/cm^2^ (flux_aper_b) (14)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value=""/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+              <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="SC_EP_8_FMIN"/>
+                <INSTANCE dmref="PhotFrame_ACISBroad" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </INSTANCE>
+          <INSTANCE dmid="Photometry_@flux.corrected" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;em.X-ray"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[0/5.5e-10]? Aperture-corrected net energy flux inferred from the source region aperture; ACIS broad (0.5-7.0keV) band, in erg/s/cm^2^ (flux_aper_b) (14)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value=""/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+              <INSTANCE dmrole="mango:stcextend.Photometry.coord" dmtype="mango:stcextend.PhotometryCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.PhotometryCoord.luminosity" dmtype="ivoa:real" ref="SC_EP_8_FMAX"/>
+                <INSTANCE dmref="PhotFrame_ACISBroad" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </INSTANCE>
+          <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[-1/1]? ACIS medium-soft (0.5-1.2keV) energy band hardness ratio (hard_ms)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+              <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="SC_HR1"/>
+                <REFERENCE dmref="PhotFrame_ACISHRMediumHard" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+          <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[-1/1]? ACIS medium-soft (0.5-1.2keV) energy band hardness ratio (hard_ms)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+              <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="SC_HR2"/>
+                <REFERENCE dmref="PhotFrame_ACISHRMediumHard" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+          <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[-1/1]? ACIS medium-soft (0.5-1.2keV) energy band hardness ratio (hard_ms)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+              <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="SC_HR3"/>
+                <REFERENCE dmref="PhotFrame_ACISHRMediumHard" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+          <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="[-1/1]? ACIS medium-soft (0.5-1.2keV) energy band hardness ratio (hard_ms)"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+              <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="SC_HR4"/>
+                <REFERENCE dmref="PhotFrame_ACISHRMediumHard" dmrole="coords:Coordinate.coordSys"/>
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" value="NotSet"/>
+                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+          <INSTANCE dmid="GenericMeasure_@variability" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#variability"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="src.var"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Variability"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+              <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_FVAR"/>
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value=""/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_FVARERR"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure">
+              <REFERENCE dmref="GenericMeasure_@flag.variability"/>
+            </COLLECTION>
+          </INSTANCE>
+          <INSTANCE dmid="GenericMeasure_@flag.variability" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
+            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#Flag.variability"/>
+            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="meta.code.error;src.var"/>
+            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flag : variability"/>
+            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated"/>
+            <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+              <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
+                <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_VAR_FLAG"/>
+                  <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value=""/>
+                </INSTANCE>
+                <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                  <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                    <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="NotSet"/>
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="NotSet"/>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+            <COLLECTION dmrole="mango:MangoObject.associatedData"/>
+            <COLLECTION dmrole="mango:MangoObject.associatedMeasure"/>
+          </INSTANCE>
+        </COLLECTION>
+      </INSTANCE>
+    </COLLECTION>
+  </TEMPLATES>
+</VODML>
+</RESOURCE>
+
+<INFO name="QUERY_STATUS" value="OK"/>
+<INFO name="QUERY" value="SELECT * FROM mergedentry;"/>
+<TABLE name="result_S1654263430384">
+<FIELD arraysize="*" datatype="char" name="SRCID" ucd="meta.id">
+<DESCRIPTION>A unique number assigned to a group of catalogue entries which are assumed to be the same source</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="IAUNAME" ucd="meta.name">
+<DESCRIPTION>unique SRCID</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="SC_RA" ucd="pos.eq.ra" unit="deg">
+<DESCRIPTION>The mean Right Ascension in degrees</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="SC_DEC" ucd="pos.eq.dec" unit="deg">
+<DESCRIPTION>The mean Declination Ascension in degrees</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_POSERR" ucd="stat.error" unit="arcsec">
+<DESCRIPTION>error in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_DET_ML" ucd="stat.likelihood;instr.saturation;stat.max">
+<DESCRIPTION>likelihood on the detection maximum</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 1 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 1 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_2_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 2 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_2_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 2 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_3_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 3 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_3_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 3 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_4_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 4 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_4_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 4 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_5_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 5 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_5_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 5 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_9_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>the flux of the energy band number 9 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_9_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the the flux of energy band number 9 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR1" ucd="phot.flux;arith.ratio">
+<DESCRIPTION>the hr1</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR1_ERR" ucd="stat.error;phot.flux;arith.ratio">
+<DESCRIPTION>error on the the hr1</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR2" ucd="phot.flux;arith.ratio">
+<DESCRIPTION>the hr2</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR2_ERR" ucd="stat.error;phot.flux;arith.ratio">
+<DESCRIPTION>error on the the hr2</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR3" ucd="phot.flux;arith.ratio">
+<DESCRIPTION>the hr3</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR3_ERR" ucd="stat.error;phot.flux;arith.ratio">
+<DESCRIPTION>error on the the hr3</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR4" ucd="phot.flux;arith.ratio">
+<DESCRIPTION>the hr4</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_HR4_ERR" ucd="stat.error;phot.flux;arith.ratio">
+<DESCRIPTION>error on the the hr4</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EXTENT" unit="arcsec">
+<DESCRIPTION>in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EXT_ERR" ucd="stat.error;phys.angSize" unit="arcsec">
+<DESCRIPTION>error on the extent radius</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EXT_ML" ucd="stat.likelihood;phys.angSize">
+<DESCRIPTION>likelihood on the extent radius</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_CHI2PROB" ucd="stat.fit.goodness">
+<DESCRIPTION>The chi square probability</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_FVAR" ucd="src.var">
+<DESCRIPTION>variable</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_FVARERR" ucd="stat.error;src.var">
+<DESCRIPTION>error on the the variability</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_VAR_FLAG" ucd="meta.code.error;src.var">
+<DESCRIPTION>the flag on the variable</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_SUM_FLAG" ucd="meta.code.error">
+<DESCRIPTION>the flag on the summary</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FMIN" ucd="stat.min;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>minimum flux of the energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FMIN_ERR" ucd="stat.error;stat.min;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the minimum flux of energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FMAX" ucd="stat.max;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>maximum flux of the energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="SC_EP_8_FMAX_ERR" ucd="stat.error;stat.max;phot.flux" unit="erg/cm**2/s">
+<DESCRIPTION>error on the maximum flux of energy band number 8 of the ep camera in sc</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="MJD_FIRST" ucd="time.epoch" unit="d">
+<DESCRIPTION>The MJD start date (MJD_START) of the earliest observation of any constituent detection of the unique source</DESCRIPTION>
+</FIELD>
+<FIELD datatype="double" name="MJD_LAST" ucd="time.epoch" unit="d">
+<DESCRIPTION>The MJD end date (MJD_STOP) of the last observation of any constituent detection of the unique source</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="N_DETECTIONS" ucd="meta.number">
+<DESCRIPTION>The number of detections of the unique source SRCID used to derive the combined values</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="CONFUSED">
+<DESCRIPTION>Set True when a given detection has a probability above zero of being associated with two or more distinct sources</DESCRIPTION>
+</FIELD>
+<FIELD arraysize="*" datatype="char" name="WEBPAGE_URL"/>
+<DATA>
+<TABLEDATA>
+  <TR>
+    <TD>201130203010001</TD>
+    <TD>4XMM J082157.3-430017</TD>
+    <TD>125.48893973784371</TD>
+    <TD>-43.00477446385631</TD>
+    <TD>0.38535756</TD>
+    <TD>486533.3</TD>
+    <TD>6.902415E-14</TD>
+    <TD>6.002846E-16</TD>
+    <TD>9.332315E-13</TD>
+    <TD>2.130253E-15</TD>
+    <TD>2.844053E-12</TD>
+    <TD>3.4466414E-15</TD>
+    <TD>1.7740565E-12</TD>
+    <TD>4.364614E-15</TD>
+    <TD>1.12654366E-13</TD>
+    <TD>2.6223005E-15</TD>
+    <TD>5.777178E-12</TD>
+    <TD>6.6592278E-15</TD>
+    <TD>6.259429E-12</TD>
+    <TD>6.096701E-15</TD>
+    <TD>0.85151154</TD>
+    <TD>0.0012098447</TD>
+    <TD>0.46780854</TD>
+    <TD>0.0010072464</TD>
+    <TD>-0.63790804</TD>
+    <TD>8.130386E-4</TD>
+    <TD>-0.96821326</TD>
+    <TD>7.227371E-4</TD>
+    <TD>0.0</TD>
+    <TD></TD>
+    <TD>225.0</TD>
+    <TD>0.0</TD>
+    <TD>0.18588173</TD>
+    <TD>0.0069858204</TD>
+    <TD>1</TD>
+    <TD>3</TD>
+    <TD>5.300491E-12</TD>
+    <TD>4.0913623E-14</TD>
+    <TD>5.8928314E-12</TD>
+    <TD>1.9344083E-14</TD>
+    <TD>52221.76076388889</TD>
+    <TD>57701.093506944446</TD>
+    <TD>14</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/201130203010001/</TD>
+  </TR>
+  <TR>
+    <TD>206576002010348</TD>
+    <TD>4XMM J082157.4-425435</TD>
+    <TD>125.48934172374</TD>
+    <TD>-42.909872412974</TD>
+    <TD>1.5466014</TD>
+    <TD>35.37601</TD>
+    <TD>5.610426E-14</TD>
+    <TD>8.094831E-15</TD>
+    <TD>0.0</TD>
+    <TD>1.9897124E-15</TD>
+    <TD>0.0</TD>
+    <TD>4.510819E-16</TD>
+    <TD>0.0</TD>
+    <TD>5.3619557E-16</TD>
+    <TD>0.0</TD>
+    <TD>8.577534E-15</TD>
+    <TD>5.610426E-14</TD>
+    <TD>1.1981249E-14</TD>
+    <TD>0.0</TD>
+    <TD>1.6626769E-15</TD>
+    <TD>-1.0</TD>
+    <TD>0.09886898</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>0.0</TD>
+    <TD></TD>
+    <TD>2.46188</TD>
+    <TD>0.18689837</TD>
+    <TD>0.74332774</TD>
+    <TD>0.3891819</TD>
+    <TD>0</TD>
+    <TD>3</TD>
+    <TD>5.610426E-14</TD>
+    <TD>1.1981249E-14</TD>
+    <TD>5.610426E-14</TD>
+    <TD>1.1981249E-14</TD>
+    <TD>55873.28959490741</TD>
+    <TD>55873.719814814816</TD>
+    <TD>1</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/206576002010348/</TD>
+  </TR>
+  <TR>
+    <TD>201130203015089</TD>
+    <TD>4XMM J082157.4-425804</TD>
+    <TD>125.48950599782756</TD>
+    <TD>-42.96794729734733</TD>
+    <TD>0.41749713</TD>
+    <TD>24281.48</TD>
+    <TD>6.698476E-13</TD>
+    <TD>6.097588E-15</TD>
+    <TD>5.5230937E-12</TD>
+    <TD>1.6911919E-14</TD>
+    <TD>2.070012E-12</TD>
+    <TD>1.3611253E-14</TD>
+    <TD>3.2822182E-13</TD>
+    <TD>8.975725E-15</TD>
+    <TD>4.7730434E-15</TD>
+    <TD>5.392601E-15</TD>
+    <TD>8.652734E-12</TD>
+    <TD>3.03266E-14</TD>
+    <TD>1.0850329E-11</TD>
+    <TD>2.4562805E-14</TD>
+    <TD>0.78644955</TD>
+    <TD>0.0018542843</TD>
+    <TD>-0.5317477</TD>
+    <TD>0.0026085055</TD>
+    <TD>-0.89641017</TD>
+    <TD>0.0027605393</TD>
+    <TD>-0.9908868</TD>
+    <TD>0.008246306</TD>
+    <TD>46.968803</TD>
+    <TD>0.077238776</TD>
+    <TD>16557.96</TD>
+    <TD>0.00253412</TD>
+    <TD>0.30878007</TD>
+    <TD>0.0713766</TD>
+    <TD>0</TD>
+    <TD>4</TD>
+    <TD>3.743421E-12</TD>
+    <TD>2.0039069E-13</TD>
+    <TD>1.1066571E-11</TD>
+    <TD>1.6958577E-13</TD>
+    <TD>52221.76076388889</TD>
+    <TD>57701.093506944446</TD>
+    <TD>14</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/201130203015089/</TD>
+  </TR>
+  <TR>
+    <TD>206907002010151</TD>
+    <TD>4XMM J082157.7-424800</TD>
+    <TD>125.49049002837</TD>
+    <TD>-42.800260088061</TD>
+    <TD>3.101787</TD>
+    <TD>10.58821</TD>
+    <TD>1.8931535E-14</TD>
+    <TD>8.8319465E-15</TD>
+    <TD>1.0523442E-13</TD>
+    <TD>2.310438E-14</TD>
+    <TD>1.6021286E-14</TD>
+    <TD>9.9897465E-15</TD>
+    <TD>0.0</TD>
+    <TD>1.8612782E-15</TD>
+    <TD>0.0</TD>
+    <TD>8.915472E-15</TD>
+    <TD>1.4957892E-13</TD>
+    <TD>2.8892033E-14</TD>
+    <TD>2.123403E-13</TD>
+    <TD>3.2927755E-14</TD>
+    <TD>0.6457031</TD>
+    <TD>0.1194436</TD>
+    <TD>-0.7448646</TD>
+    <TD>0.1596992</TD>
+    <TD>-1.0</TD>
+    <TD>0.089098744</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>0.0</TD>
+    <TD></TD>
+    <TD>-0.6850538</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>0</TD>
+    <TD>3</TD>
+    <TD>1.4957892E-13</TD>
+    <TD>2.8892033E-14</TD>
+    <TD>1.4957892E-13</TD>
+    <TD>2.8892033E-14</TD>
+    <TD>56220.21611111111</TD>
+    <TD>56220.45554398148</TD>
+    <TD>1</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/206907002010151/</TD>
+  </TR>
+  <TR>
+    <TD>202004701010086</TD>
+    <TD>4XMM J082157.7+704300</TD>
+    <TD>125.49070889834002</TD>
+    <TD>70.716819904439</TD>
+    <TD>1.9338439</TD>
+    <TD>15.40403</TD>
+    <TD>5.463971E-16</TD>
+    <TD>3.5027867E-16</TD>
+    <TD>1.1897873E-15</TD>
+    <TD>4.4965713E-16</TD>
+    <TD>2.1676136E-15</TD>
+    <TD>6.138779E-16</TD>
+    <TD>3.8734927E-15</TD>
+    <TD>1.6788215E-15</TD>
+    <TD>5.8351062E-15</TD>
+    <TD>1.068093E-14</TD>
+    <TD>1.5051496E-14</TD>
+    <TD>1.094109E-14</TD>
+    <TD>7.170286E-15</TD>
+    <TD>1.4004853E-15</TD>
+    <TD>0.4272055</TD>
+    <TD>0.2913651</TD>
+    <TD>0.2823773</TD>
+    <TD>0.2020849</TD>
+    <TD>-0.2909341</TD>
+    <TD>0.2188827</TD>
+    <TD>-0.1469082</TD>
+    <TD>0.5258405</TD>
+    <TD>0.0</TD>
+    <TD></TD>
+    <TD>-0.6989279</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>0</TD>
+    <TD>0</TD>
+    <TD>1.5051496E-14</TD>
+    <TD>1.094109E-14</TD>
+    <TD>1.5051496E-14</TD>
+    <TD>1.094109E-14</TD>
+    <TD>53110.855416666665</TD>
+    <TD>53111.938125</TD>
+    <TD>1</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/202004701010086/</TD>
+  </TR>
+  <TR>
+    <TD>203042013015033</TD>
+    <TD>4XMM J082157.7-393929</TD>
+    <TD>125.49074029564</TD>
+    <TD>-39.658320244376995</TD>
+    <TD>1.6563458</TD>
+    <TD>14.92487</TD>
+    <TD>1.9289371E-16</TD>
+    <TD>2.675924E-16</TD>
+    <TD>0.0</TD>
+    <TD>1.6090252E-16</TD>
+    <TD>1.0982043E-16</TD>
+    <TD>3.408723E-16</TD>
+    <TD>5.23235E-15</TD>
+    <TD>1.8092963E-15</TD>
+    <TD>7.3043945E-15</TD>
+    <TD>7.0545203E-15</TD>
+    <TD>1.4135799E-14</TD>
+    <TD>7.520301E-15</TD>
+    <TD>1.7297088E-15</TD>
+    <TD>8.7520754E-16</TD>
+    <TD>-1.0</TD>
+    <TD>0.3001448</TD>
+    <TD>1.0</TD>
+    <TD>0.3722284</TD>
+    <TD>0.7673919</TD>
+    <TD>0.2360534</TD>
+    <TD>-0.075246744</TD>
+    <TD>0.2788955</TD>
+    <TD>0.0</TD>
+    <TD></TD>
+    <TD>-0.6896505</TD>
+    <TD></TD>
+    <TD></TD>
+    <TD></TD>
+    <TD>0</TD>
+    <TD>0</TD>
+    <TD>1.4135799E-14</TD>
+    <TD>7.520301E-15</TD>
+    <TD>1.4135799E-14</TD>
+    <TD>7.520301E-15</TD>
+    <TD>53833.481516203705</TD>
+    <TD>53833.6177662037</TD>
+    <TD>1</TD>
+    <TD>0</TD>
+    <TD>http://xmm-catalog.irap.omp.eu/source/203042013015033/</TD>
+  </TR>
+</TABLEDATA>
+</DATA>
+</TABLE>
+<INFO name="QUERY_STATUS" value="OVERFLOW"/>
+</RESOURCE>
+</VOTABLE>

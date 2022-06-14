@@ -25,20 +25,11 @@ class AnnotationSeeker(object):
         '''
         # Full mapping blocks
         self._xml_block = xml_block
-        # XML namespace descriptor
-        self._nsname = None
-        self._nsuri = None
         # GLOBALS bock
         self._globals_block = None
         # Templates dictionary {tableref: XML-TEMPLATES}
         self._templates_blocks = {}
-       
-        # Get the mapping namespace 
-        _namespace  = xml_block.nsmap
-        for key, value in _namespace.items():
-            self._nsname = key + ':'
-            self._nsuri = '{' + value + '}'
-            
+                   
         # get the GLOBALS block
         for child in self._xml_block:
             if self._name_match(child.tag, Ele.GLOBALS) is True:
@@ -63,7 +54,7 @@ class AnnotationSeeker(object):
                    'TEMPLATES', 'PRIMARY_KEY', 
                    'FOREIGN_KEY', 'WHERE', 'VODML']:
             xpath = './/' + tag            
-            for ele in self._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
+            for ele in self._xml_block.xpath(xpath):
                 ele.tag = tag 
          
         # remove the namespaces from the element tags that are numbered
@@ -71,7 +62,7 @@ class AnnotationSeeker(object):
         cpt = 1
         for tag in['REFERENCE', 'JOIN']:
             xpath = '//' + tag            
-            for ele in self._xml_block.xpath(xpath, namespaces=xml_block.nsmap):
+            for ele in self._xml_block.xpath(xpath):
                 ele.tag = tag + '_' + str(cpt)
                 cpt += 1            
         
@@ -80,8 +71,11 @@ class AnnotationSeeker(object):
     def _name_match(self, name, expected): 
         """
         Returns true if name matches expected whatever the namespace
-        """
-        return (name.replace(self._nsuri, "") == (expected.replace(self._nsname, "")))
+        """        #skipp comment
+        if type(name).__name__ == 'cython_function_or_method':
+            return False
+        return (name.endswith(expected))
+        #return (name.replace(self._nsuri, "") == (expected.replace(self._nsname, "")))
         
     def get_globals(self):
         '''
