@@ -5,6 +5,7 @@ Created on 20 Jan 2022
 '''
 from .components import Quantity
 from .coordsys import CoordSys
+from utils.xml_utils import XmlUtils
 
 class Coord(object):
     '''
@@ -47,6 +48,7 @@ class PhysicalCoordinate(Coord):
 
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:PhysicalCoordinate.cval"]'):
+            print("zzzzzzz")
             self.cval = Quantity(ele)
             break
  
@@ -124,13 +126,10 @@ class LonLatPoint(Point):
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lon"]'):
             self.lon = Quantity(ele)
-            break
+
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lat"]'):
             self.lat = Quantity(ele)
-            break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.dist"]'):
-            self.dist = Quantity(ele)
-            break
+
 
     def __repr__(self):
         if self.dist == None:

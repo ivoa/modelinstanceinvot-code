@@ -20,7 +20,7 @@ class CoordSys(object):
     def get_coordsys(model_view):
         dmtype = model_view.get("dmtype")
         
-        if dmtype == "coords:SpaceFrame":
+        if dmtype == "coords:SpaceSys":
             return SpaceFrame.get_spaceframe(model_view)
         elif dmtype == "coords:TimeFrame":
             return TimeFrame(model_view)

@@ -3,6 +3,7 @@ Created on 5 Jan 2022
 
 @author: laurentmichel
 '''
+import re
 from lxml import etree
 from copy import deepcopy
 from . import logger
@@ -243,9 +244,6 @@ class ModelViewer(object):
         for ele in templates_copy.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
             if ref is not None and ref != 'NotSet':
-                print(">> " + ref)
-                print(ele.attrib.keys())
-
                 index = ele.attrib["index"]
                 ele.attrib["value"] = str(self._current_data_row[int(index)])
         for dref_tag, dref in self._dyn_references.items():
@@ -307,12 +305,7 @@ class ModelViewer(object):
         self._assert_table_is_connected()
         retour = []
         model_view = self.get_model_view(resolve_ref=True)
-        XmlUtils.pretty_print(model_view)
 
-        for ele in model_view.xpath(f'.//*'):
-            print(ele) 
-            print(ele.get("dmtype")) 
-            
         for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
             retour.append(deepcopy(ele)) 
         return retour
@@ -403,6 +396,8 @@ class ModelViewer(object):
             stop_pattern = '</VODML>'
             stop = content.index(stop_pattern) + len(stop_pattern)
             content = content[:stop]
+            
+            content = re.sub('xmlns=["\'].*["\']', '', content)
             self._annotation_seeker = AnnotationSeeker(etree.fromstring(content))
 
         logger.info("VODML found")
@@ -440,7 +435,6 @@ class ModelViewer(object):
         Using ranks allow to identify columns even numpy raw have been serialised as []
         """
         index_map = self._resource_seeker.get_id_index_mapping(self._connected_tableref)
-        print(index_map)
         XmlUtils.set_column_indices(self._templates, index_map)
   
   

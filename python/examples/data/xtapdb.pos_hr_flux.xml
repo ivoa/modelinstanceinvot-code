@@ -1,311 +1,325 @@
 <?xml version="1.0" encoding="utf-8"?>
-<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
-<RESOURCE type="meta">
-  <!-- Here starts the mapping block This bloc maps all data contained in the VOTable on the MANGO MODEL_INSTANCE. The MODEL_INSTANCEInstanceInVot 
-  syntax is detailed here https://github.com/ivoa-std/MODEL_INSTANCEinstanceinvot with a lot of snippet here https://github.com/ivoa/MODEL_INSTANCEinstanceinvot-code -->
-  <VODML xmlns="http://ivoa.net/xml/merged-synthax">
-    <REPORT status="OK">Automatically generated. NotSet instance have been removed</REPORT>
-    <MODEL name="ivoa" url="http://www.ivoa.net/xml/VODML/20180519/IVOA-v1.0.vo-dml.xml"/>
-    <MODEL name="meas" url="https://github.com/ivoa-std/MeasurementDM/blob/master/vo-dml/Meas-v1.0.vo-dml.xml"/>
-    <MODEL name="coords" url="https://github.com/ivoa-std/CoordinateDM/blob/master/vo-dml/Coords-v1.0.vo-dml.xml"/>
-    <MODEL name="mango" url="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml"/>
-    <!-- The GLOBALS block contains all objects with a scope covering all data. This is typically the case for the coordinate Systems -->
-    <GLOBALS>
-      <INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
-        <PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
-        <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
-          <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
-        </INSTANCE>
-      </INSTANCE>
-      <INSTANCE dmid="PhotCal_XMM_EB1" dmtype="coords:PhysicalCoordSys">
-        <INSTANCE dmtype="mango:PhotFrame">
-          <INSTANCE dmtype="photdm:PhotCal">
-            <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB1"/>
-            <!-- Magnitude System -->
-            <INSTANCE dmrole="photdm:PhotCal.magnitudeSystem" dmtype="photdm:MagnitudeSystem">
-              <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="XMM"/>
-              <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI" value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html"/>
-            </INSTANCE>
-            <!-- Filter -->
-            <INSTANCE dmid="PhotFilter_XMM_EB1" dmrole="photdm:PhotCal.photometryFilter" dmtype="photdm:PhotometryFilter">
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB1"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMM EPIC EB1"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Soft"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB1"/>
-              <!-- Spectral Location -->
-              <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:SpectralLocation">
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective"/>
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV"/>
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="0.35"/>
-              </INSTANCE>
-              <!-- Band width -->
-              <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:Bandwidth">
-                <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="keV"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="0.3"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.start" dmtype="ivoa:real" value="0.2"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.stop" dmtype="ivoa:real" value="0.5"/>
-              </INSTANCE>
-              <!-- Transmission Curve -->
-              <INSTANCE dmrole="photdm:Bandwidth.transmissionCurve" dmtype="photdm:TransmissionCurve">
-                <INSTANCE dmrole="photdm:TransmissionCurve.access" dmtype="photdm:Access">
-                  <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html"/>
-                  <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="text/html"/>
-                </INSTANCE>
-              </INSTANCE>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <RESOURCE type="meta">
+      <!-- Here starts the mapping block This bloc maps all data contained in the VOTable on the MANGO MODEL_INSTANCE. The MODEL_INSTANCEInstanceInVot 
+        syntax is detailed here https://github.com/ivoa-std/MODEL_INSTANCEinstanceinvot with a lot of snippet here https://github.com/ivoa/MODEL_INSTANCEinstanceinvot-code -->
+      <VODML xmlns="http://ivoa.net/xml/merged-synthax">
+        <REPORT status="OK">Automatically generated. NotSet instance have been removed</REPORT>
+        <MODEL name="ivoa" url="http://www.ivoa.net/xml/VODML/20180519/IVOA-v1.0.vo-dml.xml" />
+        <MODEL name="meas" url="https://github.com/ivoa-std/MeasurementDM/blob/master/vo-dml/Meas-v1.0.vo-dml.xml" />
+        <MODEL name="coords" url="https://github.com/ivoa-std/CoordinateDM/blob/master/vo-dml/Coords-v1.0.vo-dml.xml" />
+        <MODEL name="mango" url="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml" />
+        <!-- The GLOBALS block contains all objects with a scope covering all data. This is typically the case for the coordinate 
+          Systems -->
+        <GLOBALS>
+          <INSTANCE dmid="SpaceFrame_ICRS" dmrole="" dmtype="coords:SpaceSys">
+            <PRIMARY_KEY dmtype="ivoa:string" value="ICRS" />
+            <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+              <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
             </INSTANCE>
           </INSTANCE>
-        </INSTANCE>
-      </INSTANCE>
-      <INSTANCE dmid="PhotCal_XMM_EB2" dmtype="coords:PhysicalCoordSys">
-        <INSTANCE dmtype="mango:PhotFrame">
-          <INSTANCE dmtype="photdm:PhotCal">
-            <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB2"/>
-            <!-- Magnitude System -->
-            <INSTANCE dmrole="photdm:PhotCal.magnitudeSystem" dmtype="photdm:MagnitudeSystem">
-              <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="XMM"/>
-              <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI" value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html"/>
-            </INSTANCE>
-            <!-- Filter -->
-            <INSTANCE dmid="PhotFilter_XMM_EB2" dmrole="photdm:PhotCal.photometryFilter" dmtype="photdm:PhotometryFilter">
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB2"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMM EPIC EB2"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Soft"/>
-              <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB2"/>
-              <!-- Spectral Location -->
-              <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:SpectralLocation">
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective"/>
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV"/>
-                <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="0.75"/>
-              </INSTANCE>
-              <!-- Band width -->
-              <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:Bandwidth">
-                <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="keV"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="0.5"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.start" dmtype="ivoa:real" value="0.5"/>
-                <ATTRIBUTE dmrole="photdm:Bandwidth.stop" dmtype="ivoa:real" value="1.0"/>
-              </INSTANCE>
-              <!-- Transmission Curve -->
-              <INSTANCE dmrole="photdm:Bandwidth.transmissionCurve" dmtype="photdm:TransmissionCurve">
-                <INSTANCE dmrole="photdm:TransmissionCurve.access" dmtype="photdm:Access">
-                  <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html"/>
-                  <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="text/html"/>
+          <INSTANCE dmid="PhotCal_XMM_EB1" dmtype="coords:PhotCoordSys">
+            <INSTANCE dmtype="mango:PhotFrame">
+              <INSTANCE dmtype="photdm:PhotCal">
+                <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB1" />
+                <!-- Magnitude System -->
+                <INSTANCE dmrole="photdm:PhotCal.magnitudeSystem" dmtype="photdm:MagnitudeSystem">
+                  <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="XMM" />
+                  <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI"
+                    value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html" />
                 </INSTANCE>
-              </INSTANCE>
-            </INSTANCE>
-          </INSTANCE>
-        </INSTANCE>
-      </INSTANCE>
-      <INSTANCE dmid="HRFrame_XMM_HR1" dmrole="" dmtype="mango:stcextend.HRFrame">
-        <REFERENCE dmref="PhotFilter_XMM_EB1" dmrole="mango:stcextend.HRFrame.low"/>
-        <REFERENCE dmref="PhotFilter_XMM_EB2" dmrole="mango:stcextend.HRFrame.high"/>
-      </INSTANCE>
-    </GLOBALS>
-    <!-- This block maps the data of the table identified as "Results" -->
-    <TEMPLATES tableref="result_S1655295529955">
-      <!-- The table contain a set of Mango instances, this is why we have COLLECTION at the top level -->
-      <INSTANCE dmtype="mango:MangoObject">
-        <!-- Collection of the complex data attached to the source -->
-        <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="IAUNAME"/>
-        <!-- Collection of the parameters attached to the source Each child INSTANCE maps one parameter -->
-        <COLLECTION dmrole="mango:MangoObject.parameters">
-          <INSTANCE dmid="LonLatPoint_@position.corrected" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
-            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position.corrected"/>
-            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Source sky position"/>
-            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
-            <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:Position">
-              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos;meta.main"/>
-              <INSTANCE dmrole="mango:Position.coord" dmtype="coords:LonLatPoint">
-                <INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
-                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_DEC"/>
-                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="deg"/>
-                </INSTANCE>
-                <INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
-                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_RA"/>
-                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="deg"/>
-                </INSTANCE>
-                <INSTANCE dmref="SpaceFrame_ICRS" dmrole="coords:Coordinate.coordSys"/>
-              </INSTANCE>
-              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_POSERR"/>
-                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="arcsec"/>
+                <!-- Filter -->
+                <INSTANCE dmid="PhotFilter_XMM_EB1" dmrole="photdm:PhotCal.photometryFilter"
+                  dmtype="photdm:PhotometryFilter">
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB1" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMM EPIC EB1" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Soft" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB1" />
+                  <!-- Spectral Location -->
+                  <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:SpectralLocation">
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective" />
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV" />
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="0.35" />
+                  </INSTANCE>
+                  <!-- Band width -->
+                  <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:Bandwidth">
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="keV" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="0.3" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.start" dmtype="ivoa:real" value="0.2" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.stop" dmtype="ivoa:real" value="0.5" />
+                  </INSTANCE>
+                  <!-- Transmission Curve -->
+                  <INSTANCE dmrole="photdm:Bandwidth.transmissionCurve" dmtype="photdm:TransmissionCurve">
+                    <INSTANCE dmrole="photdm:TransmissionCurve.access" dmtype="photdm:Access">
+                      <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"
+                        value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html" />
+                      <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="text/html" />
+                    </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
               </INSTANCE>
             </INSTANCE>
           </INSTANCE>
-          <INSTANCE dmid="Photometry_@flux.corrected" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
-            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected"/>
-            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="EB1 flux"/>
-            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected"/>
-            <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
-              <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;em.X-ray"/>
-              <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
-                <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
-                  <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_EP_1_FLUX"/>
-                  <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" ref="erg/cm**2/s"/>
+          <INSTANCE dmid="PhotCal_XMM_EB2" dmtype="coords:PhysicalCoordSys">
+            <INSTANCE dmtype="mango:PhotFrame">
+              <INSTANCE dmtype="photdm:PhotCal">
+                <ATTRIBUTE dmrole="photdm:PhotCal.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB2" />
+                <!-- Magnitude System -->
+                <INSTANCE dmrole="photdm:PhotCal.magnitudeSystem" dmtype="photdm:MagnitudeSystem">
+                  <ATTRIBUTE dmrole="photdm:MagnitudeSystem.type" dmtype="photdm:TypeOfMagSystem" value="XMM" />
+                  <ATTRIBUTE dmrole="photdm:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI"
+                    value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html" />
                 </INSTANCE>
-                <REFERENCE dmref="PhotCal_XMM_EB1" dmrole="coords:Coordinate.coordSys"/>
-              </INSTANCE>
-              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_EP_1_FLUX_ERR"/>
-                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="erg/cm**2/s"/>
+                <!-- Filter -->
+                <INSTANCE dmid="PhotFilter_XMM_EB2" dmrole="photdm:PhotCal.photometryFilter"
+                  dmtype="photdm:PhotometryFilter">
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.identifier" dmtype="ivoa:string" value="XMM/EPIC/EB2" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.name" dmtype="ivoa:string" value="XMM EPIC EB2" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string" value="Soft" />
+                  <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="EB2" />
+                  <!-- Spectral Location -->
+                  <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:SpectralLocation">
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD" value="em.wl.effective" />
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit" value="keV" />
+                    <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="0.75" />
+                  </INSTANCE>
+                  <!-- Band width -->
+                  <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:Bandwidth">
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="keV" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="0.5" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.start" dmtype="ivoa:real" value="0.5" />
+                    <ATTRIBUTE dmrole="photdm:Bandwidth.stop" dmtype="ivoa:real" value="1.0" />
+                  </INSTANCE>
+                  <!-- Transmission Curve -->
+                  <INSTANCE dmrole="photdm:Bandwidth.transmissionCurve" dmtype="photdm:TransmissionCurve">
+                    <INSTANCE dmrole="photdm:TransmissionCurve.access" dmtype="photdm:Access">
+                      <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI"
+                        value="https://xmm-tools.cosmos.esa.int/external/xmm_user_support/documentation/sas_usg/USG/SASUSG.html" />
+                      <ATTRIBUTE dmrole="photdm:Access.format" dmtype="ivoa:string" value="text/html" />
+                    </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
               </INSTANCE>
             </INSTANCE>
           </INSTANCE>
-          <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters" dmtype="mango:Parameter">
-            <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed"/>
-            <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio"/>
-            <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="EB1/EB2 hardness ratio"/>
-            <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed"/>
-            <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
-              <INSTANCE dmrole="mango:stcextend.HardnessRatio.coord" dmtype="mango:stcextend.HardnessRatioCoord">
-                <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real" ref="SC_HR1"/>
-                <REFERENCE dmref="PhotFrame_XMM_HR1" dmrole="coords:Coordinate.coordSys"/>
-              </INSTANCE>
-              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
-                <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
-                  <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-                    <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_HR1_ERR"/>
+          <INSTANCE dmid="HRFrame_XMM_HR1" dmrole="" dmtype="mango:stcextend.HRFrame">
+            <REFERENCE dmref="PhotFilter_XMM_EB1" dmrole="mango:stcextend.HRFrame.low" />
+            <REFERENCE dmref="PhotFilter_XMM_EB2" dmrole="mango:stcextend.HRFrame.high" />
+          </INSTANCE>
+        </GLOBALS>
+        <!-- This block maps the data of the table identified as "Results" -->
+        <TEMPLATES tableref="result_S1655295529955">
+          <!-- The table contain a set of Mango instances, this is why we have COLLECTION at the top level -->
+          <INSTANCE dmtype="mango:MangoObject">
+            <!-- Collection of the complex data attached to the source -->
+            <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" value="NotSet" />
+            <!-- Collection of the parameters attached to the source Each child INSTANCE maps one parameter -->
+            <COLLECTION dmrole="mango:MangoObject.parameters">
+              <INSTANCE dmid="LonLatPoint_@position.corrected" dmrole="mango:MangoObject.parameters"
+                dmtype="mango:Parameter">
+                <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#position.corrected" />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Source sky position" />
+                <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected" />
+                <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:Position">
+                  <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="pos;meta.main" />
+                  <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+                    <INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_DEC" />
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                    </INSTANCE>
+                    <INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_RA" />
+                      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                    </INSTANCE>
+                    <REFERENCE dmref="SpaceFrame_ICRS" dmrole="coords:Coordinate.coordSys" />
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_POSERR" />
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="arcsec" />
+                      </INSTANCE>
+                    </INSTANCE>
                   </INSTANCE>
                 </INSTANCE>
               </INSTANCE>
-            </INSTANCE>
+              <INSTANCE dmid="Photometry_@flux.corrected" dmrole="mango:MangoObject.parameters"
+                dmtype="mango:Parameter">
+                <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flux.corrected" />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="EB1 flux" />
+                <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Corrected" />
+                <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Photometry">
+                  <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;em.X-ray" />
+                  <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
+                    <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_EP_1_FLUX" />
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="erg/cm**2/s" />
+                    </INSTANCE>
+                    <REFERENCE dmref="PhotCal_XMM_EB1" dmrole="coords:Coordinate.coordSys" />
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_EP_1_FLUX_ERR" />
+                        <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="erg/cm**2/s" />
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="HardnessRatio_@hardnessratio.computed" dmrole="mango:MangoObject.parameters"
+                dmtype="mango:Parameter">
+                <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#hardnessratio.computed" />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="EB1/EB2 hardness ratio" />
+                <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Computed" />
+                <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.HardnessRatio">
+                  <ATTRIBUTE dmrole="mango:Parameter.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio" />
+                  <INSTANCE dmrole="meas:Measure.coord" dmtype="mango:stcextend.HardnessRatioCoord">
+                    <ATTRIBUTE dmrole="mango:stcextend.HardnessRatioCoord.hardnessRatio" dmtype="ivoa:real"
+                      ref="SC_HR1" />
+                    <REFERENCE dmref="HRFrame_XMM_HR1" dmrole="coords:Coordinate.coordSys" />
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_HR1_ERR" />
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+            </COLLECTION>
           </INSTANCE>
-        </COLLECTION>
-      </INSTANCE>
-    </TEMPLATES>
-  </VODML>
-</RESOURCE>
+        </TEMPLATES>
+      </VODML>
+    </RESOURCE>
 
-<RESOURCE type="results">
-<INFO name="QUERY_STATUS" value="OK"/>
-<INFO name="QUERY" value="SELECT SC_HR1, SC_HR1_ERR,  SC_RA, SC_DEC, SC_POSERR, SC_EP_1_FLUX, SC_EP_1_FLUX_ERR
-FROM mergedentry"/>
-<TABLE name="result_S1655295529955">
-<FIELD arraysize="*" datatype="char" name="SC_HR1" ucd="phot.flux;arith.ratio">
-<DESCRIPTION>the hr1</DESCRIPTION>
-</FIELD>
-<FIELD arraysize="*" datatype="char" name="SC_HR1_ERR" ucd="stat.error;phot.flux;arith.ratio">
-<DESCRIPTION>error on the the hr1</DESCRIPTION>
-</FIELD>
-<FIELD datatype="double" name="SC_RA" ucd="pos.eq.ra" unit="deg">
-<DESCRIPTION>The mean Right Ascension in degrees</DESCRIPTION>
-</FIELD>
-<FIELD datatype="double" name="SC_DEC" ucd="pos.eq.dec" unit="deg">
-<DESCRIPTION>The mean Declination Ascension in degrees</DESCRIPTION>
-</FIELD>
-<FIELD arraysize="*" datatype="char" name="SC_POSERR" ucd="stat.error" unit="arcsec">
-<DESCRIPTION>error in sc</DESCRIPTION>
-</FIELD>
-<FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
-<DESCRIPTION>the flux of the energy band number 1 of the ep camera in sc</DESCRIPTION>
-</FIELD>
-<FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
-<DESCRIPTION>error on the the flux of energy band number 1 of the ep camera in sc</DESCRIPTION>
-</FIELD>
-<DATA>
-<TABLEDATA>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.3543267</TD>
-    <TD>2.0276946271273</TD>
-    <TD>51.3808858436</TD>
-    <TD>2.121132</TD>
-    <TD>6.737939E-16</TD>
-    <TD>3.483969E-16</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.018051272</TD>
-    <TD>5.7232008546001</TD>
-    <TD>-70.758685439564</TD>
-    <TD>0.4458938</TD>
-    <TD>3.6947587E-14</TD>
-    <TD>2.391803E-15</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.09803064</TD>
-    <TD>6.4302137177107</TD>
-    <TD>64.281805882781</TD>
-    <TD>2.4885743</TD>
-    <TD>9.545983E-17</TD>
-    <TD>2.3484235E-16</TD>
-  </TR>
-  <TR>
-    <TD></TD>
-    <TD></TD>
-    <TD>6.6019097770306</TD>
-    <TD>64.176406746985</TD>
-    <TD>1.7303576</TD>
-    <TD>0.0</TD>
-    <TD>4.7366413E-17</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.107056</TD>
-    <TD>7.8901224864868</TD>
-    <TD>-58.802866590491</TD>
-    <TD>1.9447867</TD>
-    <TD>1.7295775E-15</TD>
-    <TD>6.758391E-16</TD>
-  </TR>
-  <TR>
-    <TD>-0.037884176</TD>
-    <TD>0.2802978</TD>
-    <TD>8.7971933915386</TD>
-    <TD>-43.549385719964</TD>
-    <TD>3.3429174</TD>
-    <TD>1.8384797E-15</TD>
-    <TD>6.9469905E-16</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.1206879</TD>
-    <TD>9.5558505586324</TD>
-    <TD>41.872976222471</TD>
-    <TD>1.6602228</TD>
-    <TD>1.6005678E-15</TD>
-    <TD>1.0094164E-15</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.096543744</TD>
-    <TD>9.963433121657998</TD>
-    <TD>-44.795411629694</TD>
-    <TD>1.800385</TD>
-    <TD>4.913698E-15</TD>
-    <TD>1.2539966E-15</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.09312002</TD>
-    <TD>10.386094563702999</TD>
-    <TD>40.73658116374</TD>
-    <TD>2.083059</TD>
-    <TD>2.078437E-15</TD>
-    <TD>4.680218E-16</TD>
-  </TR>
-  <TR>
-    <TD>-1.0</TD>
-    <TD>0.004802639</TD>
-    <TD>10.850610312282</TD>
-    <TD>41.226167628484</TD>
-    <TD>0.5236235</TD>
-    <TD>5.8285692E-15</TD>
-    <TD>1.6937097E-15</TD>
-  </TR>
-</TABLEDATA>
-</DATA>
-</TABLE>
-<INFO name="QUERY_STATUS" value="OVERFLOW"/>
-</RESOURCE>
+    <INFO name="QUERY_STATUS" value="OK" />
+    <INFO name="QUERY"
+      value="SELECT SC_HR1, SC_HR1_ERR,  SC_RA, SC_DEC, SC_POSERR, SC_EP_1_FLUX, SC_EP_1_FLUX_ERR
+FROM mergedentry" />
+    <TABLE name="result_S1655295529955">
+      <FIELD arraysize="*" datatype="char" name="SC_HR1" ucd="phot.flux;arith.ratio">
+        <DESCRIPTION>the hr1</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_HR1_ERR" ucd="stat.error;phot.flux;arith.ratio">
+        <DESCRIPTION>error on the the hr1</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="SC_RA" ucd="pos.eq.ra" unit="deg">
+        <DESCRIPTION>The mean Right Ascension in degrees</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="SC_DEC" ucd="pos.eq.dec" unit="deg">
+        <DESCRIPTION>The mean Declination Ascension in degrees</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_POSERR" ucd="stat.error" unit="arcsec">
+        <DESCRIPTION>error in sc</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX" ucd="phot.flux" unit="erg/cm**2/s">
+        <DESCRIPTION>the flux of the energy band number 1 of the ep camera in sc</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_EP_1_FLUX_ERR" ucd="stat.error;phot.flux" unit="erg/cm**2/s">
+        <DESCRIPTION>error on the the flux of energy band number 1 of the ep camera in sc</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.3543267</TD>
+            <TD>2.0276946271273</TD>
+            <TD>51.3808858436</TD>
+            <TD>2.121132</TD>
+            <TD>6.737939E-16</TD>
+            <TD>3.483969E-16</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.018051272</TD>
+            <TD>5.7232008546001</TD>
+            <TD>-70.758685439564</TD>
+            <TD>0.4458938</TD>
+            <TD>3.6947587E-14</TD>
+            <TD>2.391803E-15</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.09803064</TD>
+            <TD>6.4302137177107</TD>
+            <TD>64.281805882781</TD>
+            <TD>2.4885743</TD>
+            <TD>9.545983E-17</TD>
+            <TD>2.3484235E-16</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>6.6019097770306</TD>
+            <TD>64.176406746985</TD>
+            <TD>1.7303576</TD>
+            <TD>0.0</TD>
+            <TD>4.7366413E-17</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.107056</TD>
+            <TD>7.8901224864868</TD>
+            <TD>-58.802866590491</TD>
+            <TD>1.9447867</TD>
+            <TD>1.7295775E-15</TD>
+            <TD>6.758391E-16</TD>
+          </TR>
+          <TR>
+            <TD>-0.037884176</TD>
+            <TD>0.2802978</TD>
+            <TD>8.7971933915386</TD>
+            <TD>-43.549385719964</TD>
+            <TD>3.3429174</TD>
+            <TD>1.8384797E-15</TD>
+            <TD>6.9469905E-16</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.1206879</TD>
+            <TD>9.5558505586324</TD>
+            <TD>41.872976222471</TD>
+            <TD>1.6602228</TD>
+            <TD>1.6005678E-15</TD>
+            <TD>1.0094164E-15</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.096543744</TD>
+            <TD>9.963433121657998</TD>
+            <TD>-44.795411629694</TD>
+            <TD>1.800385</TD>
+            <TD>4.913698E-15</TD>
+            <TD>1.2539966E-15</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.09312002</TD>
+            <TD>10.386094563702999</TD>
+            <TD>40.73658116374</TD>
+            <TD>2.083059</TD>
+            <TD>2.078437E-15</TD>
+            <TD>4.680218E-16</TD>
+          </TR>
+          <TR>
+            <TD>-1.0</TD>
+            <TD>0.004802639</TD>
+            <TD>10.850610312282</TD>
+            <TD>41.226167628484</TD>
+            <TD>0.5236235</TD>
+            <TD>5.8285692E-15</TD>
+            <TD>1.6937097E-15</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+    <INFO name="QUERY_STATUS" value="OVERFLOW" />
+  </RESOURCE>
 </VOTABLE>

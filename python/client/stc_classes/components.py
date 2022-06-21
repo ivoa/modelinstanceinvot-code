@@ -3,6 +3,7 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from utils.xml_utils import XmlUtils
 
 class Quantity():
     
@@ -12,15 +13,16 @@ class Quantity():
         for att in model_view.xpath('.//ATTRIBUTE'):
             dmrole = att.get("dmrole")
             value = att.get("value")
-            if dmrole == "ivoa:Quantity.val":
+            print(dmrole)
+            if dmrole == "ivoa:RealQuantity.value" or dmrole == "ivoa:Quantity.value":
                 try:
                     self.value = float(value)
                 except :
                     self.value = float('NaN')
 
-            if dmrole == "ivoa:Quantity.unit":
+            if dmrole == "ivoa:RealQuantity.unit" or dmrole == "ivoa:Quantity.unit":
                 self.unit = value
                 
     def __str__(self):
-        return f"{self.value}{self.unit}"
+        return f"{self.value} {self.unit}"
 

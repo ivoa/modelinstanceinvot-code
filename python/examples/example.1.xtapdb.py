@@ -17,9 +17,8 @@ class TestLonLatPoint(unittest.TestCase):
     mviewer = None
     def test_global_getters(self):      
         self.maxDiff = None
-        print(self.mviewer.get_table_ids())
         self.assertListEqual(self.mviewer.get_table_ids(),
-                             ['result_S1654263430384'])
+                             ['result_S1655295529955'])
         self.mviewer.connect_table(None)
         row = self.mviewer.get_next_row()       
 
@@ -33,18 +32,23 @@ class TestLonLatPoint(unittest.TestCase):
             break
         #print(self.mviewer.get_stc_positions())
         #print(self.mviewer.get_stc_measures())
-        print(mango_object.identifier)
-        print(mango_object.get_parameter_by_ucd("src.var"))
-        measure = mango_object.get_parameter_by_ucd("src.var").measure
-        print(measure.type)
+        
+        for mango_parameter in mango_object._parameters:
+            print(mango_parameter)
+            measure = mango_parameter.measure
+            print(f"   measure: {measure}")
+
     @classmethod
     def setUpClass(cls):
         cls.data_path = os.path.dirname(os.path.realpath(__file__))
-        cls.votable = parse(os.path.join(cls.data_path, "data/xtapdb.xml"))
+        cls.votable = parse(os.path.join(cls.data_path, "data/xtapdb.pos_hr_flux.xml"))
         
         cls.mviewer = None
         for resource in cls.votable.resources:
-            cls.mviewer = ModelViewer(resource, votable_path=os.path.join(cls.data_path, "data/xtapdb.xml"))
+            cls.mviewer = ModelViewer(resource, 
+                                      votable_path=os.path.join(
+                                        cls.data_path, 
+                                        "data/xtapdb.pos_hr_flux.xml"))
             break;
 
 

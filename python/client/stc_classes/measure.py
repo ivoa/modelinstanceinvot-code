@@ -5,6 +5,7 @@ Created on 20 Jan 2022
 '''
 from .error import Error
 from .coord import Coord
+from utils.xml_utils import XmlUtils
 
 class Measure(object):
     '''
@@ -18,15 +19,20 @@ class Measure(object):
         self.error = None
         self.ucd = None
         
+        for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:Parameter.ucd']"):
+            self.ucd = ele.get("value")
+        
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.error"]'):
-            self.error = Error.get_error(ele)
-            break
+            for subele in ele.xpath('.//INSTANCE[@dmrole="meas:Error.statError"]'):
+                self.error = Error.get_error(subele)
+                break
             
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:Measure.ucd"]'):
             self.ucd = ele.get("value")
             break
 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.coord"]'):
+            print("================>>>>>")
             self.coord = Coord.get_coord(ele)
             break
 
@@ -35,19 +41,20 @@ class Measure(object):
         """
         Returns the Measure instance matching model_view
         """
-        for ele in model_view.xpath(".//INSTANCE"):
-            dmtype = ele.get("dmtype")
-            if dmtype == "meas:Position":
-                return Position(model_view)
-            elif dmtype == "meas:Time":
-                return Time(model_view)
-            elif dmtype == "meas:Velocity":
-                return Velocity(model_view)
-            elif dmtype == "meas:GenericMeasure":
-                return GenericMeasure(model_view)
-            elif dmtype.startswith("mango:stcextend"):
-                return None
-            print(dmtype)
+        
+        dmtype = model_view.get("dmtype")
+        if dmtype == "meas:Position":
+            return Position(model_view)
+        elif dmtype == "meas:Time":
+            return Time(model_view)
+        elif dmtype == "meas:Velocity":
+            return Velocity(model_view)
+        elif dmtype == "meas:GenericMeasure":
+            return GenericMeasure(model_view)
+        else:
+            # for now mango measures are taken as generic measures
+            return GenericMeasure(model_view)
+
             #else:
             #    raise Exception(f'Measure {dmtype} not supported yet')
             

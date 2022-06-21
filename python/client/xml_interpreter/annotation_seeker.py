@@ -6,6 +6,8 @@ Created on 11 Dec 2021
 from client.xml_interpreter.exceptions import MappingException
 from client.xml_interpreter.vocabulary import Att, Ele
 from client import logger
+from utils.dict_utils import DictUtils
+from utils.xml_utils import XmlUtils
 
 
 class AnnotationSeeker(object):
@@ -29,7 +31,7 @@ class AnnotationSeeker(object):
         self._globals_block = None
         # Templates dictionary {tableref: XML-TEMPLATES}
         self._templates_blocks = {}
-                   
+          
         # get the GLOBALS block
         for child in self._xml_block:
             if self._name_match(child.tag, Ele.GLOBALS) is True:
@@ -94,9 +96,10 @@ class AnnotationSeeker(object):
         Return the TEMPLATES mapping block of the table matcing @tableref
         :param tableref:
         '''
-        # one table: name forced to DEFAULT
+        # one table: name forced to DEFAULT or take the first
         if tableref is None:
-            return self._templates_blocks['DEFAULT']
+            for _, tmpl in self._templates_blocks.items():
+                return tmpl
         return self._templates_blocks[tableref]
     
     def get_globals_collections(self):

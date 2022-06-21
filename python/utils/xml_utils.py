@@ -51,12 +51,9 @@ class XmlUtils(object):
         add column ranks to attribute having a ref.
         Using ranks allow to identify columns even numpy raw have been serialised as []
         """
-        print(index_map)
         for ele in mapping_block.xpath("//ATTRIBUTE"):
             ref = ele.get("ref")
-            print(f'{ele.get("dmrole")} {ele.get("ref")}')
             if ref is not None and ref != 'NotSet':
-                print(f"good {index_map[ref]}")
                 ele.attrib["index"] = str(index_map[ref])
                 
     @staticmethod
