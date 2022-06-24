@@ -31,7 +31,8 @@ class Coord(object):
         elif dmtype == "coords:ISOTime":
             return ISOTime(model_view)
         else:
-            raise Exception(f"Point type {dmtype} not supported yet")
+            pass
+            #raise Exception(f"Point type {dmtype} not supported yet")
         
 
 class PhysicalCoordinate(Coord):

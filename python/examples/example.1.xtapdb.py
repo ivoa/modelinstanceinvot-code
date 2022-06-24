@@ -30,9 +30,7 @@ class TestLonLatPoint(unittest.TestCase):
             print("============================")
             mango_object = MangoObject(position)
             break
-        #print(self.mviewer.get_stc_positions())
-        #print(self.mviewer.get_stc_measures())
-        
+                
         for mango_parameter in mango_object._parameters:
             print(mango_parameter)
             measure = mango_parameter.measure

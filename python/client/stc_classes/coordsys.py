@@ -25,7 +25,8 @@ class CoordSys(object):
         elif dmtype == "coords:TimeFrame":
             return TimeFrame(model_view)
         else:
-            raise Exception(f"coordSys type {dmtype} not supported yet")
+            pass
+            #raise Exception(f"coordSys type {dmtype} not supported yet")
 
     
 class TimeFrame(CoordSys):
