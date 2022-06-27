@@ -3,8 +3,10 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from ..component_builder import ComponentBuilder
 from .components import Quantity
 from .coordsys import CoordSys
+
 
 class Point(object):
     '''
@@ -18,7 +20,7 @@ class Point(object):
         '''
         self.coordSys = None
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:Coordinate.coordSys"]'):
-            self.coordSys = CoordSys.get_coordsys(ele)
+            self.coordSys = ComponentBuilder.get_coordsys(ele)
         
     @staticmethod 
     def get_point(model_view):
@@ -51,7 +53,8 @@ class LonLatPoint(Point):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.dist"]'):
             self.dist = Quantity(ele)
             break
+        self.label = f"[{self.dmtype}: {self.lon} {self.lat} {self.coordSys}]"
 
     def __repr__(self):
-        return f"[{self.dmtype}: {self.lon} {self.lat} {self.coordSys}]"
+        return self.label
         

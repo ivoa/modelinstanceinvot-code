@@ -16,12 +16,11 @@ from .dynamic_reference import DynamicReference
 from .to_json_converter import ToJsonConverter
 from .json_block_extractor import JsonBlockExtractor
 from .join_operator import JoinOperator
-from mivot_code.client.class_wrappers.stc_classes.measure import Measure
 from mivot_code.client.class_wrappers.stc_classes.measure import Position, Time, GenericMeasure
 from mivot_code.client.class_wrappers.astropy_wrapper.sky_coord import SkyCoord
-
-from mivot_code.utils.dict_utils import DictUtils
+from mivot_code.client.class_wrappers.component_builder import ComponentBuilder
 from mivot_code.utils.xml_utils import XmlUtils
+
 class ModelViewer(object):
     '''
     ModelViewer is a PyVO table wrapper aiming at providing a model view on VOTable data read with usual tools
@@ -235,7 +234,8 @@ class ModelViewer(object):
         self._assert_table_is_connected()
         templates_copy = deepcopy(self._templates)
         if resolve_ref is True:
-            StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy)
+            while StaticReferenceResolver.resolve(self._annotation_seeker, self._connected_tableref, templates_copy) > 0 :
+                pass
             # Make sure the instances of the resolved references have both indexes and unit attribute
             XmlUtils.set_column_indices(templates_copy,
                                         self._resource_seeker.get_id_index_mapping(self._connected_tableref))
@@ -353,7 +353,7 @@ class ModelViewer(object):
         retour = []
         model_view = self.get_model_view(resolve_ref=True)
         for ele in model_view.xpath(f'.//INSTANCE[ATTRIBUTE[@dmrole="meas:Measure.ucd"]]'):
-            retour.append(Measure.get_measure(ele)) 
+            retour.append(ComponentBuilder.get_measure(ele)) 
         return retour
 
     def get_stc_measures_by_ucd(self, ucd):
@@ -363,7 +363,7 @@ class ModelViewer(object):
         retour = []
         model_view = self.get_model_view(resolve_ref=True)
         for ele in model_view.xpath(f'.//INSTANCE[ATTRIBUTE[@dmrole="meas:Measure.ucd" and @value="{ucd}"]]'):
-            retour.append(Measure.get_measure(ele)) 
+            retour.append(ComponentBuilder.get_measure(ele)) 
         return retour
 
     def get_astropy_sky_coord(self):

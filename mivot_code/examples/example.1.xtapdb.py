@@ -10,7 +10,7 @@ from astropy.io.votable import parse
 from mivot_code.utils.xml_utils import XmlUtils
 from mivot_code.utils.dict_utils import DictUtils
 from mivot_code.client.xml_interpreter.model_viewer import ModelViewer
-from mivot_code.client.mango.mango_parameter import MangoObject
+from mivot_code.client.class_wrappers.mango.mango_parameter import MangoObject
 
 class TestLonLatPoint(unittest.TestCase):
     votable = None
@@ -36,7 +36,6 @@ class TestLonLatPoint(unittest.TestCase):
         for mango_parameter in mango_object._parameters:
             print(mango_parameter)
             measure = mango_parameter.measure
-            print(f"   measure: {measure}")
 
     @classmethod
     def setUpClass(cls):

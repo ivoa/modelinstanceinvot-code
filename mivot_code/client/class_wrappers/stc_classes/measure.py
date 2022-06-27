@@ -3,9 +3,8 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from ..component_builder import ComponentBuilder
 from .error import Error
-from .coord import Coord
-from mivot_code.utils.xml_utils import XmlUtils
 
 class Measure(object):
     '''
@@ -19,49 +18,31 @@ class Measure(object):
         self.error = None
         self.ucd = None
         
+        self._set_ucd(model_view)
+        self._set_error(model_view)
+        self._set_coord(model_view)
+        
+        self.label = f"{self.ucd}={self.coord.label}"
+ 
+        
+    def _set_ucd(self, model_view):
         for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:Parameter.ucd']"):
             self.ucd = ele.get("value")
-        
+    
+    def _set_error(self, model_view):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.error"]'):
             for subele in ele.xpath('.//INSTANCE[@dmrole="meas:Error.statError"]'):
-                self.error = Error.get_error(subele)
+                self.error = ComponentBuilder.get_error(subele)
                 break
-            
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:Measure.ucd"]'):
-            self.ucd = ele.get("value")
-            break
 
+    def _set_coord(self, model_view):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.coord"]'):
-            print("================>>>>>")
-            self.coord = Coord.get_coord(ele)
+            self.coord = ComponentBuilder.get_coord(ele)
             break
-
-    @staticmethod 
-    def get_measure(model_view):
-        """
-        Returns the Measure instance matching model_view
-        """
-        
-        dmtype = model_view.get("dmtype")
-        if dmtype == "meas:Position":
-            return Position(model_view)
-        elif dmtype == "meas:Time":
-            return Time(model_view)
-        elif dmtype == "meas:Velocity":
-            return Velocity(model_view)
-        elif dmtype == "meas:GenericMeasure":
-            return GenericMeasure(model_view)
-        else:
-            # for now mango measures are taken as generic measures
-            return GenericMeasure(model_view)
-
-            #else:
-            #    raise Exception(f'Measure {dmtype} not supported yet')
-            
-        raise Exception('This element is not a Measure')
+      
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
+        return self.label
     
         
 class GenericMeasure(Measure):
@@ -75,7 +56,8 @@ class GenericMeasure(Measure):
         Measure.__init__(self, model_view)
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
+        return self.label
+
     
 class Time(Measure):
     '''
@@ -89,7 +71,7 @@ class Time(Measure):
         self.error = None
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
+        return self.label
     
         
 class Position(Measure):
@@ -103,7 +85,7 @@ class Position(Measure):
         Measure.__init__(self, model_view)
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
+        return self.label
 
 class Velocity(Measure):
     '''
@@ -116,7 +98,7 @@ class Velocity(Measure):
         Measure.__init__(self, model_view)
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
+        return self.label
     
 
 
@@ -136,5 +118,5 @@ class ProperMotion(Measure):
 
 
     def __repr__(self):
-        return f"ucd: {self.ucd} coslat:{self.cosLat_applied} coords: {self.coord} error: {self.error}"
+        return self.label
 

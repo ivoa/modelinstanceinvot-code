@@ -13,26 +13,6 @@ class Error(object):
         '''
         Constructor
         '''
-    
-    @staticmethod 
-    def get_error(model_view):
-        dmtype = model_view.get("dmtype")
-        if dmtype == "meas:Symmetrical":
-            return Symmetrical(model_view)
-        elif dmtype == "meas:Ellipse":
-            return Ellipse(model_view)
-        elif dmtype == "meas:Bound2D":
-            return Bound2D(model_view)
-        elif dmtype == "meas:Bound3D":
-            return Bound3D(model_view)
-        elif dmtype == "meas:Asymmetrical2D":
-            return Asymmetrical2D(model_view)
-        elif dmtype == "meas:Asymmetrical3D":
-            return Asymmetrical3D(model_view)
-        else:
-            raise Exception(f"Error type {dmtype} not supported yet")
-        return "error"
-
 class Symmetrical(Error):
     '''
     classdocs

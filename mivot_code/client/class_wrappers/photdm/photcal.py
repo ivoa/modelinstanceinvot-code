@@ -34,16 +34,10 @@ class PhotCal(object):
             self.identifier = ele.get("value")
             break
         
+        self.label = self.identifier
+        
     def __repr__(self):
-        retour = f"== PhotCal {self.identifier} =====\n"
-        if self.magnitudeSystem is not None:
-            retour += f"{self.magnitudeSystem}"
-        if self.photometryFilter is not None:
-            retour += f"{self.photometryFilter}"
-        if self.zeroPoint is not None:
-            retour += f"{self.zeroPoint}"
-
-        return retour
+        return self.label
        
 class MagnitudeSystem(object):
     '''

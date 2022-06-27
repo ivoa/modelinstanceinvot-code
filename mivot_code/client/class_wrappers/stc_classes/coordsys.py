@@ -15,18 +15,7 @@ class CoordSys(object):
         Constructor
         '''
         self.dmtype = None
-
-    @staticmethod 
-    def get_coordsys(model_view):
-        dmtype = model_view.get("dmtype")
-        
-        if dmtype == "coords:SpaceSys":
-            return SpaceFrame.get_spaceframe(model_view)
-        elif dmtype == "coords:TimeFrame":
-            return TimeFrame(model_view)
-        else:
-            pass
-            #raise Exception(f"coordSys type {dmtype} not supported yet")
+        self.label = f"{self.__class__}"
 
     
 class TimeFrame(CoordSys):
@@ -48,9 +37,10 @@ class TimeFrame(CoordSys):
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:StdRefLocation.position"]'):
             self.reflocation = ele.get("value")
             break
+        self.label = f"[{self.timescale} {self.reflocation}]"
     
     def __repr__(self):
-        return f"[{self.timescale} {self.reflocation}]"
+        return self.label
     
 class SpaceFrame(CoordSys):
     '''
@@ -82,9 +72,10 @@ class ICRS(SpaceFrame):
         Constructor
         '''
         self.dmtype = "ICRS"
+        self.label = "ICRS"
         
     def __repr__(self):
-        return f"{self.dmtype}"
+        return self.label
     
 class Galactic(SpaceFrame):
     '''
@@ -94,7 +85,7 @@ class Galactic(SpaceFrame):
         '''
         Constructor
         '''
-        self.dmtype = "Galactic"
+        self.label = "Galactic"
         
     def __repr__(self):
-        return f"{self.dmtype}"
+        return self.label
