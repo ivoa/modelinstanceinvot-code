@@ -99,12 +99,12 @@ class TestLonLatDistPoint(unittest.TestCase):
    
     @classmethod
     def setUpClass(cls):
-        cls.data_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "data/")
-        cls.votable = parse(os.path.join(cls.data_path, "gaia_luhman16.xml"))
+        cls.data_path = os.path.dirname(os.path.realpath(__file__))
+        cls.votable = parse(os.path.join(cls.data_path, "data/gaia_luhman16.xml"))
         
         cls.mviewer = None
         for resource in cls.votable.resources:
-            cls.mviewer = ModelViewer(resource, votable_path=os.path.join(cls.data_path, "gaia_luhman16.xml"))
+            cls.mviewer = ModelViewer(resource, votable_path=os.path.join(cls.data_path, "data/gaia_luhman16.xml"))
             break;
 
 

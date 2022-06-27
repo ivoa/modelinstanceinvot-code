@@ -1,218 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
-	<RESOURCE type="results">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
 
-		<RESOURCE type="meta">
-			<VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
-				<REPORT status="OK">hand-made mapping</REPORT>
+    <RESOURCE type="meta">
+      <VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
+        <REPORT status="OK">hand-made mapping</REPORT>
 
-				<MODEL name="meas" url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
-				<MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
-				<MODEL name="ivoa" url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
+        <MODEL name="meas" url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
+        <MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
+        <MODEL name="ivoa" url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
 
-				<GLOBALS>
-					<INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceFrame">
-						<INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
-							<ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
-						</INSTANCE>
-						<ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
-						<ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="2015.0" />
-					</INSTANCE>
-				</GLOBALS>
+        <GLOBALS>
+          <INSTANCE dmid="SpaceFrame_ICRS" dmtype="coords:SpaceSys">
+            <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+              <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+                <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" value="NoSet" />
+              </INSTANCE>
+              <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS" />
+              <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="2015.0" />
+            </INSTANCE>
+          </INSTANCE>
+        </GLOBALS>
 
-				<TEMPLATES tableref="Results">
-					<INSTANCE dmrole="" dmtype="meas:Position">
-						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
-						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
-							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-							</INSTANCE>
-							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-							</INSTANCE>
-							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
-							</INSTANCE>
-							<REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
-						</INSTANCE>
+        <TEMPLATES tableref="Results">
+          <INSTANCE dmrole="" dmtype="meas:Position">
+            <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos" />
+            <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+              <INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lon">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+              </INSTANCE>
+              <INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.lat">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+              </INSTANCE>
+              <INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="parsec" />
+              </INSTANCE>
+              <REFERENCE dmrole="coords:Coordinate.coordSys" dmref="SpaceFrame_ICRS" />
+            </INSTANCE>
 
-						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
-							<COLLECTION dmrole="meas:Asymmetrical3D.plus">
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</INSTANCE>
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</INSTANCE>
-							</COLLECTION>
-							<COLLECTION dmrole="meas:Asymmetrical2D.minus">
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</INSTANCE>
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
-								</INSTANCE>
-							</COLLECTION>
-						</INSTANCE>
-					</INSTANCE>
+            <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
+              <COLLECTION dmrole="meas:Asymmetrical3D.plus">
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                </INSTANCE>
+              </COLLECTION>
+              <COLLECTION dmrole="meas:Asymmetrical2D.minus">
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="ra_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="dec_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="deg" />
+                </INSTANCE>
+              </COLLECTION>
+            </INSTANCE>
+          </INSTANCE>
 
-					<INSTANCE dmrole="" dmtype="meas:Velocity">
-						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="spect.dopplerVeloc.opt" />
-						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
-							<INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="radial_velocity" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="km/s" />
-							</INSTANCE>
-						</INSTANCE>
+          <INSTANCE dmrole="" dmtype="meas:Velocity">
+            <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="spect.dopplerVeloc.opt" />
+            <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+              <INSTANCE dmtype="ivoa:RealQuantity" dmrole="coords:LonLatPoint.dist">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="radial_velocity" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="km/s" />
+              </INSTANCE>
+            </INSTANCE>
 
-						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
-							<COLLECTION dmrole="meas:Asymmetrical3D.plus">
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
-								</INSTANCE>
-                                <INSTANCE dmtype="ivoa:RealQuantity">
-                                    <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
-                                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
-                                </INSTANCE>
-                                <INSTANCE dmtype="ivoa:RealQuantity">
-                                    <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="radial_velocity_error" />
-                                    <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="km/s" />
-                                </INSTANCE>
-							</COLLECTION>
-						</INSTANCE>
-					</INSTANCE>
+            <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical3D">
+              <COLLECTION dmrole="meas:Asymmetrical3D.plus">
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" value="" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="radial_velocity_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="km/s" />
+                </INSTANCE>
+              </COLLECTION>
+            </INSTANCE>
+          </INSTANCE>
 
-					<INSTANCE dmrole="" dmtype="meas:GenericMeasure">
-						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.parallax" />
-						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
-							<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas" />
-							</INSTANCE>
-							<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Symmetrical">
-								<INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas" />
-								</INSTANCE>
-							</INSTANCE>
-						</INSTANCE>
-					</INSTANCE>
+          <INSTANCE dmrole="" dmtype="meas:GenericMeasure">
+            <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.parallax" />
+            <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
+              <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas" />
+              </INSTANCE>
+              <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Symmetrical">
+                <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="parallax_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas" />
+                </INSTANCE>
+              </INSTANCE>
+            </INSTANCE>
+          </INSTANCE>
 
-					<INSTANCE dmrole="" dmtype="meas:ProperMotion">
-						<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.pm" />
-						<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
-							<INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-							</INSTANCE>
-							<INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
-								<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec" />
-								<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-							</INSTANCE>
-							<ATTRIBUTE dmrole="meas:ProperMotion.cosLat_applied" dmtype="ivoa:bool" value="true" />
+          <INSTANCE dmrole="" dmtype="meas:ProperMotion">
+            <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="pos.pm" />
+            <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:LonLatPoint">
+              <INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:RealQuantity">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+              </INSTANCE>
+              <INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:RealQuantity">
+                <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec" />
+                <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+              </INSTANCE>
+              <ATTRIBUTE dmrole="meas:ProperMotion.cosLat_applied" dmtype="ivoa:bool" value="true" />
 
-						</INSTANCE>
-						<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical2D">
-							<COLLECTION dmrole="meas:Asymmetrical2D.plus">
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</INSTANCE>
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</INSTANCE>
-							</COLLECTION>
-							<COLLECTION dmrole="meas:Asymmetrical2D.minus">
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</INSTANCE>
-								<INSTANCE dmtype="ivoa:RealQuantity">
-									<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
-									<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
-								</INSTANCE>
-							</COLLECTION>
-						</INSTANCE>
-					</INSTANCE>
-				</TEMPLATES>
-			</VODML>
-		</RESOURCE>
-		<INFO name="QUERY_STATUS" value="OK" />
+            </INSTANCE>
+            <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Asymmetrical2D">
+              <COLLECTION dmrole="meas:Asymmetrical2D.plus">
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+                </INSTANCE>
+              </COLLECTION>
+              <COLLECTION dmrole="meas:Asymmetrical2D.minus">
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmra_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+                </INSTANCE>
+                <INSTANCE dmtype="ivoa:RealQuantity">
+                  <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="pmdec_error" />
+                  <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="mas/year" />
+                </INSTANCE>
+              </COLLECTION>
+            </INSTANCE>
+          </INSTANCE>
+        </TEMPLATES>
+      </VODML>
+    </RESOURCE>
+    <INFO name="QUERY_STATUS" value="OK" />
 
-		<INFO name="QUERY"
-			value="SELECT TOP 100 gaiadr2.gaia_source.designation , gaiadr2.gaia_source.ra , gaiadr2.gaia_source.ra_error , gaiadr2.gaia_source.&quot;dec&quot; , gaiadr2.gaia_source.dec_error , gaiadr2.gaia_source.parallax , gaiadr2.gaia_source.parallax_error , gaiadr2.gaia_source.pmra , gaiadr2.gaia_source.pmra_error , gaiadr2.gaia_source.pmdec , gaiadr2.gaia_source.pmdec_error , gaiadr2.gaia_source.radial_velocity , gaiadr2.gaia_source.radial_velocity_error
+    <INFO name="QUERY"
+      value="SELECT TOP 100 gaiadr2.gaia_source.designation , gaiadr2.gaia_source.ra , gaiadr2.gaia_source.ra_error , gaiadr2.gaia_source.&quot;dec&quot; , gaiadr2.gaia_source.dec_error , gaiadr2.gaia_source.parallax , gaiadr2.gaia_source.parallax_error , gaiadr2.gaia_source.pmra , gaiadr2.gaia_source.pmra_error , gaiadr2.gaia_source.pmdec , gaiadr2.gaia_source.pmdec_error , gaiadr2.gaia_source.radial_velocity , gaiadr2.gaia_source.radial_velocity_error
  FROM  gaiadr2.gaia_source
  WHERE ( CONTAINS(POINT(&#039;ICRS&#039;, ra, &quot;dec&quot;), CIRCLE(&#039;ICRS&#039;, 162.328814, -53.319466, 0.016666666666666666)) = 1 )"><![CDATA[SELECT TOP 100 gaiadr2.gaia_source.designation , gaiadr2.gaia_source.ra , gaiadr2.gaia_source.ra_error , gaiadr2.gaia_source."dec" , gaiadr2.gaia_source.dec_error , gaiadr2.gaia_source.parallax , gaiadr2.gaia_source.parallax_error , gaiadr2.gaia_source.pmra , gaiadr2.gaia_source.pmra_error , gaiadr2.gaia_source.pmdec , gaiadr2.gaia_source.pmdec_error , gaiadr2.gaia_source.radial_velocity , gaiadr2.gaia_source.radial_velocity_error
  FROM  gaiadr2.gaia_source
  WHERE ( CONTAINS(POINT('ICRS', ra, "dec"), CIRCLE('ICRS', 162.328814, -53.319466, 0.016666666666666666)) = 1 )]]></INFO>
-		<INFO name="CAPTION"
-			value="How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html"><![CDATA[How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html]]></INFO>
-		<INFO name="PAGE" value="" />
-		<INFO name="PAGE_SIZE" value="" />
-		<INFO name="SERVICE" value="">https://gea.esac.esa.int/tap-server/tap</INFO>
-		<INFO name="ORIGIN" value="1643099754507O"><![CDATA[1643099754507O]]></INFO>
-		<INFO name="JOBNAME" value="" />
-		<COOSYS ID="GAIADR2" epoch="J2015.5" system="ICRS" />
-
-		<RESOURCE>
-			<COOSYS ID="t3252230-coosys-1" epoch="J2015.5" system="ICRS" />
-		</RESOURCE>
-		<TABLE ID="Results">
-			<FIELD arraysize="*" datatype="char" name="designation" ucd="meta.id;meta.main">
-				<DESCRIPTION>Unique source designation (unique across all Data Releases)</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="ra" ref="t3723554-coosys-1" ucd="pos.eq.ra;meta.main" unit="deg"
-				utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1">
-				<DESCRIPTION>Right ascension</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="ra_error" ucd="stat.error;pos.eq.ra" unit="mas">
-				<DESCRIPTION>Standard error of right ascension</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="dec" ref="t3723554-coosys-1" ucd="pos.eq.dec;meta.main" unit="deg"
-				utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2">
-				<DESCRIPTION>Declination</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="dec_error" ucd="stat.error;pos.eq.dec" unit="mas">
-				<DESCRIPTION>Standard error of declination</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="parallax" ucd="pos.parallax" unit="mas">
-				<DESCRIPTION>Parallax</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="parallax_error" ucd="stat.error;pos.parallax" unit="mas">
-				<DESCRIPTION>Standard error of parallax</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="pmra" ucd="pos.pm;pos.eq.ra" unit="mas.yr**-1">
-				<DESCRIPTION>Proper motion in right ascension direction</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="pmra_error" ucd="stat.error;pos.pm;pos.eq.ra" unit="mas.yr**-1">
-				<DESCRIPTION>Standard error of proper motion in right ascension direction</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="pmdec" ucd="pos.pm;pos.eq.dec" unit="mas.yr**-1">
-				<DESCRIPTION>Proper motion in declination direction</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="pmdec_error" ucd="stat.error;pos.pm;pos.eq.dec" unit="mas.yr**-1">
-				<DESCRIPTION>Standard error of proper motion in declination direction</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="radial_velocity" ucd="spect.dopplerVeloc.opt" unit="km.s**-1">
-				<DESCRIPTION>Radial velocity</DESCRIPTION>
-			</FIELD>
-			<FIELD datatype="double" name="radial_velocity_error" ucd="stat.error;spect.dopplerVeloc.opt" unit="km.s**-1">
-				<DESCRIPTION>Radial velocity error</DESCRIPTION>
-			</FIELD>
-			<DATA>
-				<BINARY2>
-					<STREAM encoding='base64'>
+    <INFO name="CAPTION"
+      value="How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html"><![CDATA[How to cite and acknowledge Gaia: https://gea.esac.esa.int/archive/documentation/credits.html]]></INFO>
+    <INFO name="PAGE" value="" />
+    <INFO name="PAGE_SIZE" value="" />
+    <INFO name="SERVICE" value="">https://gea.esac.esa.int/tap-server/tap</INFO>
+    <INFO name="ORIGIN" value="1643099754507O"><![CDATA[1643099754507O]]></INFO>
+    <INFO name="JOBNAME" value="" />
+    <COOSYS ID="GAIADR2" epoch="J2015.5" system="ICRS" />
+    <COOSYS ID="t3252230-coosys-1" epoch="J2015.5" system="ICRS" />
+    <TABLE ID="Results">
+      <FIELD arraysize="*" datatype="char" name="designation" ucd="meta.id;meta.main">
+        <DESCRIPTION>Unique source designation (unique across all Data Releases)</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="ra" ref="t3723554-coosys-1" ucd="pos.eq.ra;meta.main" unit="deg"
+        utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C1">
+        <DESCRIPTION>Right ascension</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="ra_error" ucd="stat.error;pos.eq.ra" unit="mas">
+        <DESCRIPTION>Standard error of right ascension</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="dec" ref="t3723554-coosys-1" ucd="pos.eq.dec;meta.main" unit="deg"
+        utype="Char.SpatialAxis.Coverage.Location.Coord.Position2D.Value2.C2">
+        <DESCRIPTION>Declination</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="dec_error" ucd="stat.error;pos.eq.dec" unit="mas">
+        <DESCRIPTION>Standard error of declination</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="parallax" ucd="pos.parallax" unit="mas">
+        <DESCRIPTION>Parallax</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="parallax_error" ucd="stat.error;pos.parallax" unit="mas">
+        <DESCRIPTION>Standard error of parallax</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="pmra" ucd="pos.pm;pos.eq.ra" unit="mas.yr**-1">
+        <DESCRIPTION>Proper motion in right ascension direction</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="pmra_error" ucd="stat.error;pos.pm;pos.eq.ra" unit="mas.yr**-1">
+        <DESCRIPTION>Standard error of proper motion in right ascension direction</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="pmdec" ucd="pos.pm;pos.eq.dec" unit="mas.yr**-1">
+        <DESCRIPTION>Proper motion in declination direction</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="pmdec_error" ucd="stat.error;pos.pm;pos.eq.dec" unit="mas.yr**-1">
+        <DESCRIPTION>Standard error of proper motion in declination direction</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="radial_velocity" ucd="spect.dopplerVeloc.opt" unit="km.s**-1">
+        <DESCRIPTION>Radial velocity</DESCRIPTION>
+      </FIELD>
+      <FIELD datatype="double" name="radial_velocity_error" ucd="stat.error;spect.dopplerVeloc.opt" unit="km.s**-1">
+        <DESCRIPTION>Radial velocity error</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <BINARY2>
+          <STREAM encoding='base64'>
 ABgAAAAcR2FpYSBEUjIgNTM1MzYyNTA5NjA4ODA4OTYwMEBkSiE4nHnNP+Dj3evs
 L5nASqqU4haMqD/jJjosQ6GGv+lUWje6CUY/5xRG9Vqw88AXBF1zx0UUP/HkANuh
 Nc6/1cDO4S/qZz/0JnkfFiF8f/gAAAAAAAB/+AAAAAAAAAAYAAAAHEdhaWEgRFIy
@@ -485,8 +484,8 @@ AAAAAAAAABgAAAAcR2FpYSBEUjIgNTM1MzYyNTg1MjAwODIwNzc0NEBkSze6nrp3
 P9o8GwqaCLfASqkGSMsxgD/hKTwZlJJFP8YRtobJhzM/4zxb6Xf5OcASYj6VW9+P
 P+r9lBZu7B4/4j+t6kRejz/xB36V6g72f/gAAAAAAAB/+AAAAAAAAA==
 </STREAM>
-				</BINARY2>
-			</DATA>
-		</TABLE>
-	</RESOURCE>
+        </BINARY2>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
 </VOTABLE>

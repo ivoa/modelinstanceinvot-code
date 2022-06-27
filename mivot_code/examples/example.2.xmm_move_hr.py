@@ -60,7 +60,7 @@ class TestLonLatPoint(unittest.TestCase):
             decs.append(position.coord.lat.value)   
             
             hr = self.mviewer.get_stc_generic_measures()
-
+            print(hr[0])
             times.append(f"Obs time: {self.mviewer.get_stc_times()[0].coord.datetime}"\
                         f"\nra:{position.coord.lon.value}"\
                         f"\ndec: {position.coord.lat.value}"

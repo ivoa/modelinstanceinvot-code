@@ -3,8 +3,8 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from ..component_builder import ComponentBuilder
 from .components import Quantity
-from .coordsys import CoordSys
 from mivot_code.utils.xml_utils import XmlUtils
 
 class Coord(object):
@@ -17,23 +17,18 @@ class Coord(object):
         '''
         self.dmtype = None
         self.coordSys = None
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:Coordinate.coordSys"]'):
-            self.coordSys = CoordSys.get_coordsys(ele)
+        self._set_coord_sys(model_view)
         
-    @staticmethod 
-    def get_coord(model_view):
-        dmtype = model_view.get("dmtype")
-        
-        if dmtype == "coords:PhysicalCoordinate":
-            return PhysicalCoordinate(model_view)
-        elif dmtype == "coords:LonLatPoint":
-            return LonLatPoint(model_view)
-        elif dmtype == "coords:ISOTime":
-            return ISOTime(model_view)
+        if self.coordSys is not None:
+            self.label = f"{self.__class__} {self.coordSys.label}"
         else:
-            pass
-            #raise Exception(f"Point type {dmtype} not supported yet")
-        
+            self.label = f"{self.__class__} no coordSys"
+
+       
+    def _set_coord_sys(self, model_view): 
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:Coordinate.coordSys"]'):
+            self.coordSys = ComponentBuilder.get_coordsys(ele)
+            return
 
 class PhysicalCoordinate(Coord):
     '''
@@ -49,13 +44,18 @@ class PhysicalCoordinate(Coord):
 
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:PhysicalCoordinate.cval"]'):
-            print("zzzzzzz")
             self.cval = Quantity(ele)
             break
- 
+        
+        if self.coordSys is not None:
+            self.label = f"[{self.cval.value} {self.cval.unit} {self.coordSys.label}]"
+        else:            
+            self.label = f"[{self.cval.value} {self.cval.unit} no coordSys]"
+
+
     def __repr__(self):
-        return f"[{self.dmtype}: {self.cval} {self.coordSys}]"
-    
+        return self.label
+
 class TimeStamp(Coord):
     '''
     classdocs
@@ -68,7 +68,7 @@ class TimeStamp(Coord):
         pass
  
     def __repr__(self):
-        return f"[{self.dmtype}: {self.cval} {self.coordSys}]"
+        return self.label
     
 class ISOTime(Coord):
     '''
@@ -87,7 +87,7 @@ class ISOTime(Coord):
             break
         
     def __repr__(self):
-        return f"[{self.dmtype}: {self.datetime} {self.coordSys}]"
+        return self.label
         
 class Point(Coord):
     '''
@@ -130,12 +130,23 @@ class LonLatPoint(Point):
 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lat"]'):
             self.lat = Quantity(ele)
+            
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.dist"]'):
+            self.dist = Quantity(ele)
 
+        self.label = "["
+        if self.lon is not None:
+            self.label += f"{self.lon.label}"
+        if self.lat is not None:
+            self.label += f" {self.lat.label}"
+        if self.dist is not None:
+            self.label += f" {self.dist.label}"
+        if self.coordSys is not None:
+            self.label += f" {self.coordSys.label}"
+        self.label += "]"
 
+        
     def __repr__(self):
-        if self.dist == None:
-            return f"[{self.dmtype}: {self.lon} {self.lat} {self.coordSys}]"
-        else:
-            return f"[{self.dmtype}: {self.lon} {self.lat} {self.dist} {self.coordSys}]"
+        return self.label
 
         

@@ -13,26 +13,8 @@ class Error(object):
         '''
         Constructor
         '''
-    
-    @staticmethod 
-    def get_error(model_view):
-        dmtype = model_view.get("dmtype")
-        if dmtype == "meas:Symmetrical":
-            return Symmetrical(model_view)
-        elif dmtype == "meas:Ellipse":
-            return Ellipse(model_view)
-        elif dmtype == "meas:Bound2D":
-            return Bound2D(model_view)
-        elif dmtype == "meas:Bound3D":
-            return Bound3D(model_view)
-        elif dmtype == "meas:Asymmetrical2D":
-            return Asymmetrical2D(model_view)
-        elif dmtype == "meas:Asymmetrical3D":
-            return Asymmetrical3D(model_view)
-        else:
-            raise Exception(f"Error type {dmtype} not supported yet")
-        return "error"
-
+        self.label = f"{self.__class__}"
+        
 class Symmetrical(Error):
     '''
     classdocs
@@ -46,9 +28,10 @@ class Symmetrical(Error):
                 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Symmetrical.radius"]'):
             self.radius = Quantity(ele)
+        self.label = f"{self.radius.label}"  
 
     def __repr__(self):
-        return f"[{self.dmtype}: [{self.radius}]]"  
+        return self.label
     
       
 class Ellipse(Error):
@@ -68,9 +51,11 @@ class Ellipse(Error):
                 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Ellipse.posAngle"]'):
             self.angle = Quantity(ele)
+            
+        self.label = f"{self.semiaxis[0].label} {self.semiaxis[1].label} {self.angle.label}"
 
     def __repr__(self):
-        return f"[{self.dmtype}: [{self.semiaxis[0]} {self.semiaxis[1]}] {self.angle}]"
+        return self.label
 
 class Bound2D(Error):
     '''
@@ -89,12 +74,12 @@ class Bound2D(Error):
             
         for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Bounds2D.hiLimit"]/INSTANCE'):
             self.hiLimit.append(Quantity(ele))
-                
-
-    def __repr__(self):
-        return f"[{self.dmtype}: ["\
+        self.label = f"["\
             f"[{self.loLimit[0].value} {self.hiLimit[0].value}]{self.hiLimit[0].unit} "\
-            f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit} ]"   
+            f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit}‘]]"   
+            
+    def __repr__(self):
+        return self.label
     
 class Bound3D(Error):
     '''
@@ -113,14 +98,15 @@ class Bound3D(Error):
             
         for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Bounds3D.hiLimit"]/INSTANCE'):
             self.hiLimit.append(Quantity(ele))
-                
-
-    def __repr__(self):
-        return f"[{self.dmtype}: ["\
+        self.label =  f"["\
             f"[{self.loLimit[0].value} {self.hiLimit[0].value}]{self.hiLimit[0].unit} "\
             f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit} "\
             f"[{self.loLimit[2].value} {self.hiLimit[2].value}]{self.hiLimit[2].unit}]"
+               
 
+    def __repr__(self):
+        return self.label
+    
 class Asymmetrical2D(Error):
     '''
     classdocs
@@ -139,11 +125,12 @@ class Asymmetrical2D(Error):
         for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical2D.minus"]/INSTANCE'):
             self.minus.append(Quantity(ele))
                 
-
-    def __repr__(self):
-        return f"[{self.dmtype}: ["\
+        self.label = f"["\
             f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
-            f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit} "
+            f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit}]]"
+            
+    def __repr__(self):
+        return self.label
                 
 class Asymmetrical3D(Error):
     '''
@@ -163,9 +150,9 @@ class Asymmetrical3D(Error):
         for ele in model_view.xpath('.//COLLECTION[@dmrole="meas:Asymmetrical3D.minus"]/INSTANCE'):
             self.minus.append(Quantity(ele))
                 
-
-    def __repr__(self):
-        return f"[{self.dmtype}: ["\
+        self.label = f"["\
             f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
             f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit} "\
-            f"[+{self.plus[2].value} -{self.minus[2].value}]{self.minus[2].unit}]"
+            f"[+{self.plus[2].value} -{self.minus[2].value}]{self.minus[2].unit}]]"
+    def __repr__(self):
+        return self.label

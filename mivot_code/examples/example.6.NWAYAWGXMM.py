@@ -55,7 +55,7 @@ import mplcursors
 import matplotlib.pyplot as plt 
 from astropy.io.votable import parse
 from astropy import units as u
-from mivot_code.client.photdm.photcal import PhotCal
+from mivot_code.client.class_wrappers.photdm.photcal import PhotCal
 
 from mivot_code.client.xml_interpreter.model_viewer import ModelViewer
 

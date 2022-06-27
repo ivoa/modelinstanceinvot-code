@@ -6,7 +6,6 @@ Created on 22 Dec 2021
 from copy import deepcopy
 from mivot_code.client.xml_interpreter.exceptions import MappingException
 from mivot_code.utils.xml_utils import XmlUtils
-from astropy.table._column_mixins import sys
 
 class StaticReferenceResolver(object):
     '''
@@ -25,7 +24,9 @@ class StaticReferenceResolver(object):
         :param annotation_seeker: utility to extract desired elements from the mapping block
         :param templates_ref: Identifier of the table where instance comes from
         :param instance: etree Element
+        :return : the number of references resolved
         '''
+        retour = 0
         for ele in instance.xpath(".//*[starts-with(name(), 'REFERENCE_')]"):
             dmref = ele.get("dmref")
             # If we have no @dmref in REFERENCE, we consider this is a ref based on a keys 
@@ -60,10 +61,8 @@ class StaticReferenceResolver(object):
                 XmlUtils.pretty_print(ele)
                 XmlUtils.pretty_print(target_copy)
                 XmlUtils.pretty_print(parent)
-                print("finit")
-                import sys
-                #sys.exit(1)
-
+            retour += 1
+        return retour;  
             
     @staticmethod 
     def resolve_from_forein_key(ref_element, annotation_seeker):

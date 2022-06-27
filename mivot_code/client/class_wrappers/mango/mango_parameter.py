@@ -3,7 +3,10 @@ Created on 7 juin 2022
 
 @author: michel
 '''
+from ..component_builder import ComponentBuilder
+
 from ..stc_classes.measure import Measure
+from .measures import Color, Photometry
 
 class MangoObject(object):
         
@@ -52,57 +55,15 @@ class MangoParameter(object):
         for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:Parameter.description']"):
             self.description = ele.get("value")
         for ele in model_view.xpath("./INSTANCE[@dmrole='mango:Parameter.measure']"):
-            self.measure = Measure.get_measure(ele)
+            self.measure = ComponentBuilder.get_measure(ele)
+        
+        self.label = f"{self.semantic} ({self.description}) {self.measure.label}"
      
     def __repr__(self):
-        return f"{self.semantic} : {self.description}"
+        return self.label
  
     def get_associated_measures(self):
         pass
     
-    @staticmethod 
-    def get_measure(model_view):
-        """
-        Returns the Measure instance matching model_view
-        """
-        
-        dmtype = model_view.get("dmtype")
-        if dmtype == "mango:stcextend.HardnessRatio":
-            return HardnessRatio(model_view)
-        elif dmtype == "mango:stcextend.Photometry":
-            return Photometry(model_view)
-        else:
-            # for now mango measures are taken as generic measures
-            return Measure.get_measure(model_view)(model_view)
-
-            #else:
-            #    raise Exception(f'Measure {dmtype} not supported yet')
-            
-        raise Exception('This element is not a Measure')
-
-class HardnessRatio(Measure):
-    '''
-    classdocs
-    '''
-    def __init__(self, model_view):
-        '''
-        Constructor
-        '''
-        Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"
 
 
-class Photometry(Measure):
-    '''
-    classdocs
-    '''
-    def __init__(self, model_view):
-        '''
-        Constructor
-        '''
-        Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return f"ucd: {self.ucd} coords: {self.coord} error: {self.error}"

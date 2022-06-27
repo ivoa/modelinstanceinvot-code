@@ -13,8 +13,9 @@ class Quantity():
         for att in model_view.xpath('.//ATTRIBUTE'):
             dmrole = att.get("dmrole")
             value = att.get("value")
-            print(dmrole)
-            if dmrole == "ivoa:RealQuantity.value" or dmrole == "ivoa:Quantity.value":
+            if (
+                dmrole == "ivoa:RealQuantity.value" or dmrole == "ivoa:Quantity.value" or
+                dmrole == "ivoa:RealQuantity.val" or dmrole == "ivoa:Quantity.val" ):
                 try:
                     self.value = float(value)
                 except :
@@ -22,7 +23,8 @@ class Quantity():
 
             if dmrole == "ivoa:RealQuantity.unit" or dmrole == "ivoa:Quantity.unit":
                 self.unit = value
+        self.label = f"{self.value} {self.unit}"
                 
     def __str__(self):
-        return f"{self.value} {self.unit}"
+        return self.label
 

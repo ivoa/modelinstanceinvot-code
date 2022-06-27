@@ -48,7 +48,6 @@ class PhotometryFilter(object):
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.dateValidityTo"]'):
             self.dateValidityTo = ele.get("value")
             break
-        
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.spectralLocation"]'):
             self.spectralLocation = SpectralLocation(ele)
             break
@@ -58,6 +57,8 @@ class PhotometryFilter(object):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.transmissionCurve"]'):
             self.transmissionCurve = TransmissionCurve(ele)
             break
+
+        self.label = self.identifier
 
     def __repr__(self):
         retour = f"== PhotometryFilter =====\n"\

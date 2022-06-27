@@ -47,8 +47,8 @@ class SkyCoord(object):
                 if stc_measure.coord.lon.unit != "deg":
                     raise NotImplementedException(f"ra dec unit {stc_measure.coord.lon.unit} not supported")
                 self.position = [ra*u.deg, dec*u.deg]
-                if stc_measure.coord.coordSys.dmtype != "ICRS":
-                    raise NotImplementedException(f"space frame {stc_measure.coord.coordSys.dmtype} not supported")
+                if stc_measure.coord.coordSys.frame.label != "ICRS":
+                    raise NotImplementedException(f"space frame {stc_measure.coord.coordSys.frame.label} not supported")
                 self.frame = "icrs"
                 return
 
