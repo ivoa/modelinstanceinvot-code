@@ -40,8 +40,8 @@ class Measure(object):
     def _set_coord(self, model_view):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.coord"]'):
             self.coord = ComponentBuilder.get_coord(ele)
-            break
-      
+            break    
+
     def __repr__(self):
         return self.label
     

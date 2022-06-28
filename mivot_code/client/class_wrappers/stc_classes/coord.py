@@ -23,7 +23,6 @@ class Coord(object):
             self.label = f"{self.__class__} {self.coordSys.label}"
         else:
             self.label = f"{self.__class__}"
-
        
     def _set_coord_sys(self, model_view): 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:Coordinate.coordSys"]'):
@@ -144,7 +143,6 @@ class LonLatPoint(Point):
         if self.coordSys is not None:
             self.label += f" {self.coordSys.label}"
         self.label += "]"
-
         
     def __repr__(self):
         return self.label

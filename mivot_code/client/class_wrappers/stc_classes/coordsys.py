@@ -31,4 +31,3 @@ class SpaceSys(PhysicalCoordSys):
         PhysicalCoordSys.__init__(self, model_view)
 
 
-

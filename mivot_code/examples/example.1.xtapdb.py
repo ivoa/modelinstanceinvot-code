@@ -33,10 +33,14 @@ class TestLonLatPoint(unittest.TestCase):
             for mango_parameter in mango_object._parameters:
                 print(mango_parameter)
         
+        for mango_parameter in mango_object._parameters:
+            print(mango_parameter)
+            measure = mango_parameter.measure
+
     @classmethod
     def setUpClass(cls):
         cls.data_path = os.path.dirname(os.path.realpath(__file__))
-        cls.votable = parse(os.path.join(cls.data_path, "data/xtapdb.pos_hr_flux_valid.xml"))
+        cls.votable = parse(os.path.join(cls.data_path, "data/xtapdb.pos_hr_flux.xml"))
         
         cls.mviewer = None
         for resource in cls.votable.resources:

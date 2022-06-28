@@ -109,7 +109,6 @@
               </INSTANCE>
             </INSTANCE>
           </INSTANCE>
-          
           <INSTANCE dmid="HRFrame_XMM_HR1" dmrole="" dmtype="mango:stcextend.ColorFrame">
             <REFERENCE dmref="PhotFilter_XMM_EB1" dmrole="mango:stcextend.HRFrame.low" />
             <REFERENCE dmref="PhotFilter_XMM_EB2" dmrole="mango:stcextend.HRFrame.high" />
