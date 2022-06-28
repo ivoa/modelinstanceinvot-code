@@ -33,9 +33,6 @@ class TestLonLatPoint(unittest.TestCase):
             for mango_parameter in mango_object._parameters:
                 print(mango_parameter)
         
-        for mango_parameter in mango_object._parameters:
-            print(mango_parameter)
-            measure = mango_parameter.measure
 
     @classmethod
     def setUpClass(cls):

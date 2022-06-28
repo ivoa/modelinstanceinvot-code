@@ -5,7 +5,7 @@ Created on 7 juin 2022
 '''
 from ..component_builder import ComponentBuilder
 
-from ..stc_classes.measure import Measure
+from ..stc_classes.measure import Position, ProperMotion, Velocity
 from .measures import Color, Photometry
 
 class MangoObject(object):
@@ -62,7 +62,21 @@ class MangoParameter(object):
     def __repr__(self):
         return self.label
  
+    def isPosition(self):
+        return isinstance(self.measure, Position) 
     
+    def isProperMotion(self):
+        return isinstance(self.measure, ProperMotion) 
+    
+    def isVelocity(self):
+        return isinstance(self.measure, Velocity) 
+    
+    def isPhotometry(self):
+        return isinstance(self.measure, Photometry) 
+    
+    def isColor(self):
+        return (self.measure.ucd == "phot.flux;arith.ratio") 
+   
     def get_associated_measures(self):
         pass
     
