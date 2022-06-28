@@ -62,6 +62,7 @@ class MangoParameter(object):
     def __repr__(self):
         return self.label
  
+    
     def get_associated_measures(self):
         pass
     

@@ -20,7 +20,7 @@ class TestLonLatPoint(unittest.TestCase):
         self.assertListEqual(self.mviewer.get_table_ids(),
                              ['result_S1655295529955'])
         self.mviewer.connect_table(None)
-        row = self.mviewer.get_next_row()       
+        _ = self.mviewer.get_next_row()       
 
         #XmlUtils.pretty_print(self.mviewer.get_model_view(resolve_ref=True))
         #DictUtils.print_pretty_json(self.mviewer.get_json_model_view(resolve_ref=False))
@@ -33,7 +33,6 @@ class TestLonLatPoint(unittest.TestCase):
             for mango_parameter in mango_object._parameters:
                 print(mango_parameter)
         
-
     @classmethod
     def setUpClass(cls):
         cls.data_path = os.path.dirname(os.path.realpath(__file__))
@@ -44,7 +43,7 @@ class TestLonLatPoint(unittest.TestCase):
             cls.mviewer = ModelViewer(resource, 
                                       votable_path=os.path.join(
                                         cls.data_path, 
-                                        "data/xtapdb.pos_hr_flux_valid.xml"))
+                                        "data/xtapdb.pos_hr_flux.xml"))
             break;
 
 

@@ -6,7 +6,7 @@ Created on jan  2022
 import unittest
 import os
 
-from mivot_code.client.stc_classes.measure import Position
+from mivot_code.client.class_wrappers.stc_classes.measure import Position
 from mivot_code.utils.xml_utils import XmlUtils
 
 class TestSTCPosition(unittest.TestCase):
@@ -18,8 +18,8 @@ class TestSTCPosition(unittest.TestCase):
         xmltree = XmlUtils.xmltree_from_file(vpath)
         position = Position(xmltree)
 
-        self.assertEqual(position.error.__repr__(), "[Ellipse: [21.157arcsec 13.738arcsec] 61.84deg]")
-        self.assertEqual(position.coord.__repr__(), "[LonLatPoint: 253.923544deg -42.8271581deg nanpsec ICRS]")
+        self.assertEqual(position.error.__repr__(), "21.157 arcsec 13.738 arcsec 61.84 deg")
+        self.assertEqual(position.coord.__repr__(), "[253.923544 deg -42.8271581 deg nan psec]")
         
 
     def setUp(self):

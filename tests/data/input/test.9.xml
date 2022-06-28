@@ -1,17 +1,19 @@
 <INSTANCE dmrole="" dmtype="meas:GenericMeasure">
-	<ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio" />
-	<INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
-		<INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
-			<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="0.8" />
-			<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
-		</INSTANCE>
+  <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="phot.flux;arith.ratio" />
+  <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
+    <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+      <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="RAICRS" index="3" value="0.8" />
+      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
+    </INSTANCE>
 
-		<INSTANCE dmrole="meas:Measure.error" dmtype="meas:Symmetrical">
+    <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+      <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
 
-			<INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
-				<ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="PA" index="7" value="0.1" />
-				<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
-			</INSTANCE>
-		</INSTANCE>
-	</INSTANCE>
+        <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+          <ATTRIBUTE dmrole="ivoa:Quantity.val" dmtype="ivoa:real" ref="PA" index="7" value="0.1" />
+          <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" value="" />
+        </INSTANCE>
+      </INSTANCE>
+    </INSTANCE>
+  </INSTANCE>
 </INSTANCE>

@@ -22,7 +22,7 @@ class Coord(object):
         if self.coordSys is not None:
             self.label = f"{self.__class__} {self.coordSys.label}"
         else:
-            self.label = f"{self.__class__} no coordSys"
+            self.label = f"{self.__class__}"
 
        
     def _set_coord_sys(self, model_view): 
@@ -50,7 +50,7 @@ class PhysicalCoordinate(Coord):
         if self.coordSys is not None:
             self.label = f"[{self.cval.value} {self.cval.unit} {self.coordSys.label}]"
         else:            
-            self.label = f"[{self.cval.value} {self.cval.unit} no coordSys]"
+            self.label = f"[{self.cval.value} {self.cval.unit}]"
 
 
     def __repr__(self):

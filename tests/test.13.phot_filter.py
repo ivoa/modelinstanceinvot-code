@@ -6,7 +6,7 @@ Created on jan  2022
 import unittest
 import os
 
-from mivot_code.client.photdm.photcal import PhotCal
+from mivot_code.client.class_wrappers.photdm.photcal import PhotCal
 
 from mivot_code.utils.xml_utils import XmlUtils
 

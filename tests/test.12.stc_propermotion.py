@@ -6,7 +6,7 @@ Created on jan  2022
 import unittest
 import os
 
-from mivot_code.client.stc_classes.measure import ProperMotion
+from mivot_code.client.class_wrappers.stc_classes.measure import ProperMotion
 from mivot_code.utils.xml_utils import XmlUtils
 
 class TestSTCPosition(unittest.TestCase):
@@ -19,11 +19,11 @@ class TestSTCPosition(unittest.TestCase):
         proper_motion = ProperMotion(xmltree)
 
         self.assertEqual(proper_motion.error.__repr__(), 
-                         "[Bound2D: [[1.0 1.2]mas/year [2.1 2.3]mas/year ]")
+                         "[[1.0 1.2]mas/year [2.1 2.3]mas/year‘]]")
         self.assertEqual(proper_motion.coord.__repr__(), 
-                         "[LonLatPoint: 1.1mas/year 2.2mas/year None]")
+                         "[1.1 mas/year 2.2 mas/year]")
         self.assertEqual(proper_motion.__repr__(), 
-                         "ucd: pos.pm coslat:true coords: [LonLatPoint: 1.1mas/year 2.2mas/year None] error: [Bound2D: [[1.0 1.2]mas/year [2.1 2.3]mas/year ]")
+                         "pos.pm=[1.1 mas/year 2.2 mas/year] +/-[[1.0 1.2]mas/year [2.1 2.3]mas/year‘]]")
         
 
     def setUp(self):
