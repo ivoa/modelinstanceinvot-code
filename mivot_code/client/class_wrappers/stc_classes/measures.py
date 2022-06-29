@@ -5,6 +5,7 @@ Created on 20 Jan 2022
 '''
 from ..component_builder import ComponentBuilder
 from .error import Error
+from mivot_code.utils.xml_utils import XmlUtils
 
 class Measure(object):
     '''
@@ -21,7 +22,7 @@ class Measure(object):
         self._set_ucd(model_view)
         self._set_error(model_view)
         self._set_coord(model_view)
-        
+
         if self.error is not None:
             self.label = f"{self.ucd}={self.coord.label} +/-{self.error.label}"
         else:

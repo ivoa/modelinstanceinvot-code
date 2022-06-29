@@ -3,6 +3,7 @@ Created on 30 Jan 2022
 
 @author: laurentmichel
 '''
+from mivot_code.utils.xml_utils import XmlUtils
 
     
 class PhotometryFilter(object):
@@ -22,7 +23,7 @@ class PhotometryFilter(object):
         self.dateValidityTo = None
         
         self.spectralLocation = None
-        self.bandWidth = None
+        self.bandwidth = None
         self.transmissionCurve = None
         
         
@@ -51,8 +52,8 @@ class PhotometryFilter(object):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.spectralLocation"]'):
             self.spectralLocation = SpectralLocation(ele)
             break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.bandWidth"]'):
-            self.bandWidth = BandWidth(ele)
+        for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.bandwidth"]'):
+            self.bandwidth = Bandwidth(ele)
             break
         for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.transmissionCurve"]'):
             self.transmissionCurve = TransmissionCurve(ele)
@@ -66,13 +67,14 @@ class PhotometryFilter(object):
                  f"  identifier: {self.identifier}\n"\
                  f"  name: {self.name}\n"\
                  f"  bandname: {self.bandname}\n"\
+                 f"  bandwidth: {self.bandwidth}\n"\
                  f"  description: {self.description}\n"\
                  f"  dateValidityFrom: {self.dateValidityFrom}\n"\
                  f"  dateValidityTo: {self.dateValidityTo}\n"
         if self.spectralLocation is not None:
             retour += f"  {self.spectralLocation}"
-        if self.bandWidth is not None:
-            retour += f"  {self.bandWidth}"
+        if self.bandwidth is not None:
+            retour += f"  {self.bandwidth}"
         if self.transmissionCurve is not None:
             retour += f"  {self.transmissionCurve}"
         return retour
@@ -104,7 +106,7 @@ class SpectralLocation(object):
                f"  ucd:{self.ucd}\n"\
                f"  value:{self.value} {self.unitexpression}\n"
     
-class BandWidth(object):
+class Bandwidth(object):
     '''
     classdocs
     '''
@@ -117,25 +119,26 @@ class BandWidth(object):
         self.extent = None
         self.start = None
         self.stop = None
-
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:BandWidth.ucd"]'):
+        XmlUtils.pretty_print(model_view)
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.ucd"]'):
+            print("SSSSSSSSSSSs")
             self.ucd = ele.get("value")
             break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:BandWidth.unitexpression"]'):
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.unitexpression"]'):
             self.unitexpression = ele.get("value")
             break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:BandWidth.extent"]'):
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.extent"]'):
             self.extent = float(ele.get("value"))
             break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:BandWidth.start"]'):
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.start"]'):
             self.start = float(ele.get("value"))
             break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:BandWidth.stop"]'):
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.stop"]'):
             self.stop = float(ele.get("value"))
             break
 
     def __repr__(self):
-        return f"== BandWidth =====\n"\
+        return f"== Bandwidth =====\n"\
                f"  ucd:{self.ucd}\n"\
                f"  start-stop:[{self.start} to {self.stop}]\n"\
                f"  extent: {self.extent}\n"\

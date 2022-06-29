@@ -46,7 +46,7 @@
                     <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real" value="0.35" />
                   </INSTANCE>
                   <!-- Band width -->
-                  <INSTANCE dmrole="photdm:PhotometryFilter.spectralLocation" dmtype="photdm:Bandwidth">
+                  <INSTANCE dmrole="photdm:PhotometryFilter.bandwidth" dmtype="photdm:Bandwidth">
                     <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
                     <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="keV" />
                     <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="0.3" />

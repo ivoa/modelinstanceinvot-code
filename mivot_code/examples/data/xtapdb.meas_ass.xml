@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <RESOURCE type="meta">
+      <!-- Here starts the mapping block This bloc maps all data contained in the VOTable on the MANGO MODEL_INSTANCE. The MODEL_INSTANCEInstanceInVot 
+        syntax is detailed here https://github.com/ivoa-std/MODEL_INSTANCEinstanceinvot with a lot of snippet here https://github.com/ivoa/MODEL_INSTANCEinstanceinvot-code -->
+      <VODML xmlns="http://ivoa.net/xml/merged-synthax">
+        <REPORT status="OK">Automatically generated. NotSet instance have been removed</REPORT>
+        <MODEL name="ivoa" url="http://www.ivoa.net/xml/VODML/20180519/IVOA-v1.0.vo-dml.xml" />
+        <MODEL name="meas" url="https://github.com/ivoa-std/MeasurementDM/blob/master/vo-dml/Meas-v1.0.vo-dml.xml" />
+        <MODEL name="coords" url="https://github.com/ivoa-std/CoordinateDM/blob/master/vo-dml/Coords-v1.0.vo-dml.xml" />
+        <MODEL name="mango" url="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml" />
+        <!-- The GLOBALS block contains all objects with a scope covering all data. This is typically the case for the coordinate 
+          Systems -->
+        <GLOBALS />
+        <!-- This block maps the data of the table identified as "Results" -->
+        <TEMPLATES tableref="result_S1656510062534">
+          <!-- The table contain a set of Mango instances, this is why we have COLLECTION at the top level -->
+          <INSTANCE dmtype="mango:MangoObject">
+            <!-- Collection of the complex data attached to the source -->
+            <!-- Collection of the parameters attached to the source Each child INSTANCE maps one parameter -->
+            <COLLECTION>
+              <INSTANCE dmid="GenericMeasure_SeM_variability" dmtype="mango:Parameter">
+                <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#variability" />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Variability" />
+                <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated" />
+                <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                  <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="src.var;stat.error" />
+                  <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
+                    <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_FVAR" />
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="" />
+                    </INSTANCE>
+                  </INSTANCE>
+                  <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+                    <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+                      <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+                        <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_FVARERR" />
+                      </INSTANCE>
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+              </INSTANCE>
+              <INSTANCE dmid="GenericMeasure_SeM_flag.variability" dmtype="mango:Parameter">
+                <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#Flag.variability" />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Flag : variability" />
+                <ATTRIBUTE dmrole="mango:Parameter.reductionStatus" dmtype="ivoa:string" value="Calibrated" />
+                <INSTANCE dmrole="mango:Parameter.measure" dmtype="meas:GenericMeasure">
+                  <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="meta.code.error;src.var" />
+                  <INSTANCE dmrole="meas:Measure.coord" dmtype="coords:PhysicalCoordinate">
+                    <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity">
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="SC_VAR_FLAG" />
+                      <ATTRIBUTE dmrole="ivoa:RealQuantity.unit" dmtype="ivoa:Unit" value="" />
+                    </INSTANCE>
+                  </INSTANCE>
+                </INSTANCE>
+                <COLLECTION dmrole="mango:MangoObject.associatedMeasure">
+                  <REFERENCE dmref="GenericMeasure_SeM_variability" />
+                </COLLECTION>
+              </INSTANCE>
+            </COLLECTION>
+          </INSTANCE>
+        </TEMPLATES>
+      </VODML>
+    </RESOURCE>
+
+    <INFO name="QUERY_STATUS" value="OK" />
+    <INFO name="QUERY" value="SELECT SC_FVAR, SC_FVARERR, SC_VAR_FLAG
+FROM MERGEDENTRY;" />
+    <TABLE name="result_S1656510062534">
+      <FIELD arraysize="*" datatype="char" name="SC_FVAR" ucd="src.var">
+        <DESCRIPTION>variable</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_FVARERR" ucd="stat.error;src.var">
+        <DESCRIPTION>error on the the variability</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="SC_VAR_FLAG" ucd="meta.code.error;src.var">
+        <DESCRIPTION>the flag on the variable</DESCRIPTION>
+      </FIELD>
+      <DATA>
+        <TABLEDATA>
+          <TR>
+            <TD>12.4</TD>
+            <TD>0.6</TD>
+            <TD>1</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+          <TR>
+            <TD></TD>
+            <TD></TD>
+            <TD>0</TD>
+          </TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+    <INFO name="QUERY_STATUS" value="OVERFLOW" />
+  </RESOURCE>
+</VOTABLE>
+

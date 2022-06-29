@@ -5,8 +5,8 @@ Created on 7 juin 2022
 '''
 from ..component_builder import ComponentBuilder
 
-from ..stc_classes.measure import Position, ProperMotion, Velocity
-from .measures import Color, Photometry
+from ..stc_classes.measures import Position, ProperMotion, Velocity
+from .measures import  Photometry
 
 class MangoObject(object):
         
@@ -48,6 +48,7 @@ class MangoParameter(object):
         self.ucd = None
         self.description = None
         self.measure = None
+        self.associatedMeasure = []
         for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:Parameter.semantic']"):
             self.semantic = ele.get("value")
         for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:Parameter.ucd']"):
@@ -56,6 +57,11 @@ class MangoParameter(object):
             self.description = ele.get("value")
         for ele in model_view.xpath("./INSTANCE[@dmrole='mango:Parameter.measure']"):
             self.measure = ComponentBuilder.get_measure(ele)
+        
+        for ele in model_view.xpath("./COLLECTION[@dmrole='mango:MangoObject.associatedMeasure']"):
+            for child in ele:
+                self.associatedMeasure.append(MangoParameter(child))
+
         
         self.label = f"{self.semantic} ({self.description}) {self.measure.label}"
      
@@ -77,8 +83,11 @@ class MangoParameter(object):
     def isColor(self):
         return (self.measure.ucd == "phot.flux;arith.ratio") 
    
+    def isFlag(self):
+        return (self.measure.ucd.startswith("meta.code") is True) 
+   
     def get_associated_measures(self):
-        pass
+        return self.associatedMeasure
     
 
 

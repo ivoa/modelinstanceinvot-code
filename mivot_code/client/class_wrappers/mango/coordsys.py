@@ -3,11 +3,11 @@ Created on 27 Jun 2022
 
 @author: laurentmichel
 '''
-from ..stc_classes.coordsys import CoordSys
+from ..stc_classes.coordsys import PhysicalCoordSys
 from ..photdm.photcal import PhotCal
 from ..photdm.photfilter import PhotometryFilter
 
-class PhotCoordSys(CoordSys):
+class PhotCoordSys(PhysicalCoordSys):
     '''
     classdocs
     '''
@@ -26,7 +26,7 @@ class PhotCoordSys(CoordSys):
     def __repr__(self):
         return self.label
     
-class ColorFrame(CoordSys):
+class ColorFrame(PhysicalCoordSys):
     '''
     classdocs
     '''

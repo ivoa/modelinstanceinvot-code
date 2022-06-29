@@ -48,5 +48,34 @@ class ColorFrame(CoordFrame):
     def __repr__(self):
         return self.label
 
- 
+class FlagDictionnary(CoordFrame):
+    '''
+    classdocs
+    '''
+    def __init__(self, model_view):
+        '''
+        Constructor
+        '''
+        self.entries = {}
+        for coll in model_view.xpath('.//COLLECTION[@dmrole="mango:stcextend.Status.statusLabel"]'):
+            for item in coll:
+                value = None
+                label = None
+                for att in item.xpath('.//ATTRIBUTE[@dmrole="mango:stcextend.StatusLabel.value"]'):
+                    value = att.get("value")
+                for att in item.xpath('.//ATTRIBUTE[@dmrole="mango:stcextend.StatusLabel.label"]'):
+                    label = att.get("value")
+                self.entries[value] = label
+
+        self.label  = "FlagDictionnary"
+
+    def __repr__(self):
+        return self.label
+    
+    def get_label(self, value):
+        if value in self.entries:
+            return self.entries[value]
+        return None
+    
+
 

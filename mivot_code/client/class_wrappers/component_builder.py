@@ -15,8 +15,8 @@ class ComponentBuilder(object):
         """
         Returns the Measure instance matching model_view
         """
-        from .stc_classes.measure import Position, Time, Velocity, GenericMeasure, ProperMotion
-        from .mango.measures import Color, Photometry
+        from .stc_classes.measures import Position, Time, Velocity, GenericMeasure, ProperMotion
+        from .mango.measures import Color, Photometry, Flag
         
         dmtype = model_view.get("dmtype")
         if dmtype == "meas:Position":
@@ -33,13 +33,15 @@ class ComponentBuilder(object):
             return Color(model_view)
         elif dmtype == "mango:stcextend.Photometry":
             return Photometry(model_view)
+        elif dmtype == "mango:stcextend.Flag":
+            return Flag(model_view)
         else:
             raise Exception(f"Measure type {dmtype} not supported yet")
 
     @staticmethod 
     def get_coord(model_view):
-        from .stc_classes.coord import PhysicalCoordinate, LonLatPoint, ISOTime
-        from .mango.coordinates import UnitlessCoordinate
+        from .stc_classes.coordinates import PhysicalCoordinate, LonLatPoint, ISOTime
+        from .mango.coordinates import UnitlessCoordinate, FlagCoord
         dmtype = model_view.get("dmtype")
         
         if dmtype == "coords:PhysicalCoordinate":
@@ -50,6 +52,8 @@ class ComponentBuilder(object):
             return ISOTime(model_view)
         elif dmtype == "mango:stcextend.UnitlessCoordinate":
             return UnitlessCoordinate(model_view)
+        elif dmtype == "mango:stcextend.FlagCoord":
+            return FlagCoord(model_view)
         else:
             raise Exception(f"Coordinate type {dmtype} not supported yet")
 
@@ -70,7 +74,7 @@ class ComponentBuilder(object):
     def get_coordframe(model_view):
         
         from .stc_classes.coordframe import SpaceFrame, TimeFrame        
-        from .mango.coordframe import ColorFrame, PhotFrame
+        from .mango.coordframe import ColorFrame, PhotFrame, FlagDictionnary
 
         dmtype = model_view.get("dmtype")
         
@@ -82,6 +86,8 @@ class ComponentBuilder(object):
             return PhotFrame(model_view)
         elif dmtype == "mango:stcextend.ColorFrame":
             return ColorFrame(model_view)
+        elif dmtype == "mango:stcextend.FlagDictionnary":
+            return FlagDictionnary(model_view)
         else:
             raise Exception(f"coordSys type {dmtype} not supported yet")
         

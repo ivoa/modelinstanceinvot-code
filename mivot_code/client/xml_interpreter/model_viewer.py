@@ -16,7 +16,7 @@ from .dynamic_reference import DynamicReference
 from .to_json_converter import ToJsonConverter
 from .json_block_extractor import JsonBlockExtractor
 from .join_operator import JoinOperator
-from mivot_code.client.class_wrappers.stc_classes.measure import Position, Time, GenericMeasure
+from mivot_code.client.class_wrappers.stc_classes.measures import Position, Time, GenericMeasure
 from mivot_code.client.class_wrappers.astropy_wrapper.sky_coord import SkyCoord
 from mivot_code.client.class_wrappers.component_builder import ComponentBuilder
 from mivot_code.utils.xml_utils import XmlUtils

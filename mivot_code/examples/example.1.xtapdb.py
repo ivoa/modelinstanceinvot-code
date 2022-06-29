@@ -29,10 +29,21 @@ class TestLonLatPoint(unittest.TestCase):
         for mango_type in self.mviewer.get_model_component_by_type("mango:MangoObject"):
             print("============================")
             mango_object = MangoObject(mango_type)
+            break
         
-            for mango_parameter in mango_object._parameters:
-                print(mango_parameter)
+        for mango_parameter in mango_object._parameters:
+            print(mango_parameter)
         
+        print("\nData set space frame(s)")
+        for mango_parameter in mango_object._parameters:
+            if mango_parameter.isPosition():
+                print(mango_parameter.measure.coord.coordSys.label)
+
+        print("\nData set photometric filters(s)")
+        for mango_parameter in mango_object._parameters:
+            if mango_parameter.isPhotometry():
+                print(mango_parameter.measure.coord.coordSys.frame.photCal.photometryFilter)
+       
 
     @classmethod
     def setUpClass(cls):
