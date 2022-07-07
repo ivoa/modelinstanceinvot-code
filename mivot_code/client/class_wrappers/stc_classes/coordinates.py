@@ -4,10 +4,11 @@ Created on 20 Jan 2022
 @author: laurentmichel
 '''
 from ..component_builder import ComponentBuilder
+from ..root_class import RootClass
 from .components import Quantity
 from mivot_code.utils.xml_utils import XmlUtils
 
-class Coord(object):
+class Coord(RootClass):
     '''
     classdocs
     '''
@@ -15,6 +16,7 @@ class Coord(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
         self.dmtype = None
         self.coordSys = None
         self._set_coord_sys(model_view)
@@ -144,7 +146,4 @@ class LonLatPoint(Point):
             self.label += f" {self.coordSys.label}"
         self.label += "]"
         
-    def __repr__(self):
-        return self.label
-
         

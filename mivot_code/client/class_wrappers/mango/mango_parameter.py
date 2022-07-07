@@ -3,17 +3,20 @@ Created on 7 juin 2022
 
 @author: michel
 '''
+from ..root_class import RootClass
 from ..component_builder import ComponentBuilder
 
 from ..stc_classes.measures import Position, ProperMotion, Velocity
 from .measures import  Photometry
 
-class MangoObject(object):
+class MangoObject(RootClass):
         
     def __init__(self, model_view):
         """
          <INSTANCE dmrole="root" dmtype="mango:MangoObject">....
         """
+        super().__init__(model_view)
+        self.dmtype = "MangoObject"
         self._model_view = model_view
         self.identifier = None
         for ele in model_view.xpath("./ATTRIBUTE[@dmrole='mango:MangoObject.identifier']"):
@@ -37,12 +40,14 @@ class MangoObject(object):
         pass
     
 
-class MangoParameter(object):
+class MangoParameter(RootClass):
 
     def __init__(self, model_view):
         """
          <INSTANCE dmrole="root" dmtype="mango:MangoObject">....
         """
+        super().__init__(model_view)
+        self.dmtype = "MangoParameter"
         self._model_view = model_view
         self.semantic = None
         self.ucd = None

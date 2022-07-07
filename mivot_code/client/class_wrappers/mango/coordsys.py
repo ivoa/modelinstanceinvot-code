@@ -15,6 +15,8 @@ class PhotCoordSys(PhysicalCoordSys):
         '''
         Constructor
         '''
+        super().__init__(model_view)
+        self.dmtype = "PhotCoordSys"
         self.dmtype = None
         self.photCal = None
         
@@ -22,9 +24,6 @@ class PhotCoordSys(PhysicalCoordSys):
             self.photCal = PhotCal(ele)
             break
         self.label  = self.photCal.label
-
-    def __repr__(self):
-        return self.label
     
 class ColorFrame(PhysicalCoordSys):
     '''
@@ -34,6 +33,8 @@ class ColorFrame(PhysicalCoordSys):
         '''
         Constructor
         '''
+        super().__init__(model_view)
+        self.dmtype = "ColorFrame"
         self.dmtype = None
         self.low = None
         self.high = None
@@ -44,9 +45,6 @@ class ColorFrame(PhysicalCoordSys):
             self.high = PhotometryFilter(ele)
             
         self.label  = f"{self.low.label}<>{self.high.label}"
-
-    def __repr__(self):
-        return self.label
 
  
 

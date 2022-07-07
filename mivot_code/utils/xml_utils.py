@@ -73,6 +73,38 @@ class XmlUtils(object):
                 ele.attrib["unit_org"] = unit
 
 
+    @staticmethod
+    def get_attribute_by_role(model_view, dmrole):        
+        if model_view is None:
+            return None     
+        for ele in model_view.xpath(f'.//ATTRIBUTE[@dmrole="{dmrole}"]'):
+            return ele
+        return None
+    
+    @staticmethod
+    def get_attribute_value_by_role(model_view, dmrole):        
+        if model_view is None:
+            return None     
+        for ele in model_view.xpath(f'.//ATTRIBUTE[@dmrole="{dmrole}"]'):
+            return ele.get("value")
+        return None
 
+    @staticmethod
+    def get_instance_by_role(model_view, dmrole):   
+        if model_view is None:
+            return None     
+        for ele in model_view.xpath(f'.//INSTANCE[@dmrole="{dmrole}"]'):
+            return ele
+        return None
+     
+    @staticmethod
+    def get_instance_by_type(model_view, dmtype):        
+        if model_view is None:
+            return None     
+        for ele in model_view.xpath(f'.//INSTANCE[@dmrole="{dmtype}"]'):
+            return ele
+        return None
+
+    
 
         

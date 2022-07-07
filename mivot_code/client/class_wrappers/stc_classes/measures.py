@@ -4,10 +4,11 @@ Created on 20 Jan 2022
 @author: laurentmichel
 '''
 from ..component_builder import ComponentBuilder
-from .error import Error
+from ..root_class import RootClass
 from mivot_code.utils.xml_utils import XmlUtils
 
-class Measure(object):
+
+class Measure(RootClass):
     '''
     classdocs
     '''
@@ -15,6 +16,7 @@ class Measure(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
         self.coord = None
         self.error = None
         self.ucd = None
@@ -29,8 +31,7 @@ class Measure(object):
             self.label = f"{self.ucd}={self.coord.label} "
 
     def _set_ucd(self, model_view):
-        for ele in model_view.xpath("./ATTRIBUTE[@dmrole='meas:Measure.ucd']"):
-            self.ucd = ele.get("value")
+        self.ucd = XmlUtils.get_attribute_value_by_role(model_view, 'meas:Measure.ucd')
     
     def _set_error(self, model_view):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.error"]'):
@@ -43,8 +44,6 @@ class Measure(object):
             self.coord = ComponentBuilder.get_coord(ele)
             break    
 
-    def __repr__(self):
-        return self.label
     
 class GenericMeasure(Measure):
     '''
@@ -55,9 +54,7 @@ class GenericMeasure(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return self.label
+        self.dmtype = "GenericMeasure"
 
     
 class Time(Measure):
@@ -70,9 +67,7 @@ class Time(Measure):
         '''
         Measure.__init__(self, model_view)
         self.error = None
-
-    def __repr__(self):
-        return self.label
+        self.dmtype = "Time"
     
         
 class Position(Measure):
@@ -84,9 +79,7 @@ class Position(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return self.label
+        self.dmtype = "Position"
 
 class Velocity(Measure):
     '''
@@ -97,10 +90,7 @@ class Velocity(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return self.label
-    
+        self.dmtype = "Velocity"
 
 
 class ProperMotion(Measure):
@@ -112,12 +102,10 @@ class ProperMotion(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
+        self.dmtype = "ProperMotion"
         self.cosLat_applied = "True"
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:ProperMotion.cosLat_applied"]'):
-            self.cosLat_applied = ele.get("value")
-            break
+        self.cosLat_applied = XmlUtils.get_attribute_value_by_role(
+            model_view,
+            "meas:ProperMotion.cosLat_applied")
 
-
-    def __repr__(self):
-        return self.label
 

@@ -3,10 +3,11 @@ Created on 30 Jan 2022
 
 @author: laurentmichel
 '''
+from ..root_class import RootClass
 from mivot_code.utils.xml_utils import XmlUtils
 
     
-class PhotometryFilter(object):
+class PhotometryFilter(RootClass):
     '''
     classdocs
     '''
@@ -14,6 +15,8 @@ class PhotometryFilter(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "Flux"
         self.fpsidentifier = None
         self.identifier = None
         self.name = None
@@ -25,41 +28,42 @@ class PhotometryFilter(object):
         self.spectralLocation = None
         self.bandwidth = None
         self.transmissionCurve = None
-        
-        
+        self.label = None
 
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.fpsidentifier"]'):
-            self.fpsidentifier = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.identifier"]'):
-            self.identifier = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.name"]'):
-            self.name = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.description"]'):
-            self.description = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.bandname"]'):
-            self.bandname = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.dateValidityFrom"]'):
-            self.dateValidityFrom = ele.get("value")
-            break
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.dateValidityTo"]'):
-            self.dateValidityTo = ele.get("value")
-            break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.spectralLocation"]'):
-            self.spectralLocation = SpectralLocation(ele)
-            break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.bandwidth"]'):
-            self.bandwidth = Bandwidth(ele)
-            break
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.transmissionCurve"]'):
-            self.transmissionCurve = TransmissionCurve(ele)
-            break
+        if model_view is not None:
 
-        self.label = self.identifier
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.fpsidentifier"]'):
+                self.fpsidentifier = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.identifier"]'):
+                self.identifier = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.name"]'):
+                self.name = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.description"]'):
+                self.description = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.bandname"]'):
+                self.bandname = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.dateValidityFrom"]'):
+                self.dateValidityFrom = ele.get("value")
+                break
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:PhotometryFilter.dateValidityTo"]'):
+                self.dateValidityTo = ele.get("value")
+                break
+            for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.spectralLocation"]'):
+                self.spectralLocation = SpectralLocation(ele)
+                break
+            for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.bandwidth"]'):
+                self.bandwidth = Bandwidth(ele)
+                break
+            for ele in model_view.xpath('.//INSTANCE[@dmrole="photdm:PhotometryFilter.transmissionCurve"]'):
+                self.transmissionCurve = TransmissionCurve(ele)
+                break
+    
+            self.label = self.identifier
 
     def __repr__(self):
         retour = f"== PhotometryFilter =====\n"\
@@ -79,7 +83,7 @@ class PhotometryFilter(object):
             retour += f"  {self.transmissionCurve}"
         return retour
     
-class SpectralLocation(object):
+class SpectralLocation(RootClass):
     '''
     classdocs
     '''
@@ -87,6 +91,8 @@ class SpectralLocation(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "SpectralLocation"
         self.ucd = None
         self.unitexpression = None
         self.value = None
@@ -106,7 +112,7 @@ class SpectralLocation(object):
                f"  ucd:{self.ucd}\n"\
                f"  value:{self.value} {self.unitexpression}\n"
     
-class Bandwidth(object):
+class Bandwidth(RootClass):
     '''
     classdocs
     '''
@@ -114,6 +120,8 @@ class Bandwidth(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "Bandwidth"
         self.ucd = None
         self.unitexpression = None
         self.extent = None
@@ -121,7 +129,6 @@ class Bandwidth(object):
         self.stop = None
         XmlUtils.pretty_print(model_view)
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.ucd"]'):
-            print("SSSSSSSSSSSs")
             self.ucd = ele.get("value")
             break
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.unitexpression"]'):
@@ -144,7 +151,7 @@ class Bandwidth(object):
                f"  extent: {self.extent}\n"\
                f"  unitexpression: {self.unitexpression}\n"
       
-class TransmissionCurve(object):
+class TransmissionCurve(RootClass):
     '''
     classdocs
     '''
@@ -152,6 +159,8 @@ class TransmissionCurve(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "TransmissionCurve"
         self.transmissionPoint = []
         self.access = None
         
@@ -173,7 +182,7 @@ class TransmissionCurve(object):
         return retour
 
         
-class Access(object):
+class Access(RootClass):
     '''
     classdocs
     '''
@@ -181,6 +190,8 @@ class Access(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "Access"
         self.reference = None
         self.size = None
         self.format = None
@@ -201,7 +212,7 @@ class Access(object):
                f"  size:{self.size}\n"\
                f"  format:{self.format}\n"
         
-class TransmissionPoint(object):
+class TransmissionPoint(RootClass):
     '''
     classdocs
     '''
@@ -209,6 +220,8 @@ class TransmissionPoint(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "TransmissionPoint"
         self.ucd = None
         self.unit = None
         self.transmissionValue = None

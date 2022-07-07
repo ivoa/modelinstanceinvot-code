@@ -3,6 +3,7 @@ Created on 30 Jan 2022
 
 @author: laurentmichel
 '''
+from ..root_class import RootClass
 from .photfilter import PhotometryFilter
 
 class PhotCal(object):
@@ -13,6 +14,8 @@ class PhotCal(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "PhotCal"
         self.identifier = None
         self.zeroPoint = None
         self.photometryFilter = None
@@ -35,10 +38,7 @@ class PhotCal(object):
             break
         
         self.label = self.identifier
-        
-    def __repr__(self):
-        return self.label
-       
+               
 class MagnitudeSystem(object):
     '''
     classdocs
@@ -47,6 +47,8 @@ class MagnitudeSystem(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "MagnitudeSystem"
         self.type = None
         self.referenceSpectrum = None
         
@@ -72,6 +74,8 @@ class ZeroPoint(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "ZeroPoint"
         self.type = None
         self.referenceMagnitudeValue = None
         self.referenceMagnitudeError = None
@@ -157,9 +161,11 @@ class AsinhZeroPoint(ZeroPoint):
     def __repr__(self):
         return f"== AsinhZeroPoint =====\n{ZeroPoint.__repr__(self)}\n  softeningParameter:{self.softeningParameter}\n"
  
-class Flux(object):
+class Flux(RootClass):
     
     def __init__(self, model_view):
+        RootClass.__init__(self, model_view)
+        self.dmtype = "Flux"
         self.ucd= None
         self.unitexpression= None
         self.value = None

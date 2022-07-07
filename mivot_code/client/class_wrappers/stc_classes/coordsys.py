@@ -3,9 +3,10 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from ..root_class import RootClass
 from ..component_builder import ComponentBuilder
 
-class PhysicalCoordSys(object):
+class PhysicalCoordSys(RootClass):
     '''
     classdocs
     '''
@@ -13,6 +14,7 @@ class PhysicalCoordSys(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
         self.dmtype = None
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:PhysicalCoordSys.frame"]'):

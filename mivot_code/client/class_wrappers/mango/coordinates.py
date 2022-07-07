@@ -3,9 +3,11 @@ Created on 27 Jun 2022
 
 @author: laurentmichel
 '''
+from ..stc_classes.coordinates import Coord
 from ..component_builder import ComponentBuilder
+from mivot_code.utils.xml_utils import XmlUtils
         
-class UnitlessCoordinate(object):
+class UnitlessCoordinate(Coord):
     '''
     classdocs
     '''
@@ -13,23 +15,17 @@ class UnitlessCoordinate(object):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.cval = None
         self.dmtype = "UnitlessCoordinate"
-        
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="mango:stcextend.UnitlessCoord.frame"]'):
-            self.frame = ComponentBuilder.get_coordframe(ele)
-
-        
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="mango:stcextend.UnitlessCoord.cval"]'):
-            self.cval = ele.get("value")
-            break
+        self.frame = ComponentBuilder.get_coordframe(
+            XmlUtils.get_instance_by_role(model_view,
+                                          "mango:stcextend.UnitlessCoord.frame"))
+        self.cval = XmlUtils.get_attribute_value_by_role(model_view, "mango:stcextend.UnitlessCoord.cval")
         self.label = f"[{self.cval} {self.frame.label}]"
         
-    def __repr__(self):
-        return self.label
 
-
-class FlagCoord(object):
+class FlagCoord(Coord):
     '''
     classdocs
     '''
@@ -37,17 +33,13 @@ class FlagCoord(object):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.cval = None
         self.dmtype = "FlagCoord"
         
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="mango:stcextend.Flag.dictionary"]'):
-            self.frame = ComponentBuilder.get_coordframe(ele)
-
-        
-        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="mango:stcextend.FlagCoord.coord"]'):
-            self.cval = ele.get("value")
-            break
+        self.frame = ComponentBuilder.get_coordframe(
+            XmlUtils.get_instance_by_role(model_view,
+                                          "mango:stcextend.Flag.dictionary"))
+        self.cval = XmlUtils.get_attribute_value_by_role(model_view, "mango:stcextend.FlagCoord.coord")
         self.label = f"[{self.cval} {self.frame.get_label(self.cval)}]"
         
-    def __repr__(self):
-        return self.label

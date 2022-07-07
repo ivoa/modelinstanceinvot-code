@@ -3,6 +3,7 @@ Created on 20 Jan 2022
 
 @author: laurentmichel
 '''
+from ..root_class import RootClass
 from .components import Quantity 
 
 class Error(object):
@@ -13,6 +14,7 @@ class Error(object):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
         self.label = f"{self.__class__}"
         
 class Symmetrical(Error):
@@ -23,15 +25,13 @@ class Symmetrical(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.radius = None
         self.dmtype = "Symmetrical"
                 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Symmetrical.radius"]'):
             self.radius = Quantity(ele)
         self.label = f"{self.radius.label}"  
-
-    def __repr__(self):
-        return self.label
     
       
 class Ellipse(Error):
@@ -42,6 +42,7 @@ class Ellipse(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.semiaxis = []
         self.angle = None
         self.dmtype = "Ellipse"
@@ -54,8 +55,6 @@ class Ellipse(Error):
             
         self.label = f"{self.semiaxis[0].label} {self.semiaxis[1].label} {self.angle.label}"
 
-    def __repr__(self):
-        return self.label
 
 class Bound2D(Error):
     '''
@@ -65,6 +64,7 @@ class Bound2D(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.loLimit = []
         self.hiLimit = []
         self.dmtype = "Bound2D"
@@ -77,10 +77,7 @@ class Bound2D(Error):
         self.label = f"["\
             f"[{self.loLimit[0].value} {self.hiLimit[0].value}]{self.hiLimit[0].unit} "\
             f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit}‘]]"   
-            
-    def __repr__(self):
-        return self.label
-    
+                
 class Bound3D(Error):
     '''
     classdocs
@@ -89,6 +86,7 @@ class Bound3D(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.loLimit = []
         self.hiLimit = []
         self.dmtype = "Bound3D"
@@ -102,10 +100,7 @@ class Bound3D(Error):
             f"[{self.loLimit[0].value} {self.hiLimit[0].value}]{self.hiLimit[0].unit} "\
             f"[{self.loLimit[1].value} {self.hiLimit[1].value}]{self.hiLimit[1].unit} "\
             f"[{self.loLimit[2].value} {self.hiLimit[2].value}]{self.hiLimit[2].unit}]"
-               
 
-    def __repr__(self):
-        return self.label
     
 class Asymmetrical2D(Error):
     '''
@@ -115,6 +110,7 @@ class Asymmetrical2D(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.plus = []
         self.minus = []
         self.dmtype = "Asymmetrical2D"
@@ -128,10 +124,7 @@ class Asymmetrical2D(Error):
         self.label = f"["\
             f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
             f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit}]]"
-            
-    def __repr__(self):
-        return self.label
-                
+                            
 class Asymmetrical3D(Error):
     '''
     classdocs
@@ -140,6 +133,7 @@ class Asymmetrical3D(Error):
         '''
         Constructor
         '''
+        super().__init__(model_view)
         self.plus = []
         self.minus = []
         self.dmtype = "Asymmetrical3D"
@@ -154,5 +148,3 @@ class Asymmetrical3D(Error):
             f"[+{self.plus[0].value} -{self.minus[0].value}]{self.minus[0].unit} "\
             f"[+{self.plus[1].value} -{self.minus[1].value}]{self.minus[1].unit} "\
             f"[+{self.plus[2].value} -{self.minus[2].value}]{self.minus[2].unit}]]"
-    def __repr__(self):
-        return self.label

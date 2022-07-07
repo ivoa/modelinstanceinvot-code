@@ -3,11 +3,13 @@ Created on 27 Jun 2022
 
 @author: laurentmichel
 '''
+from ..root_class import RootClass
 from ..stc_classes.coordframe import CoordFrame
 from ..photdm.photcal import PhotCal
 from ..photdm.photfilter import PhotometryFilter
+from mivot_code.utils.xml_utils import XmlUtils
 
-class PhotFrame(CoordFrame):
+class PhotFrame(RootClass):
     '''
     classdocs
     '''
@@ -15,6 +17,8 @@ class PhotFrame(CoordFrame):
         '''
         Constructor
         '''
+        RootClass.__init__(self, model_view)
+        self.dmtype = "PhotFrame"
         self.dmtype = None
         self.photCal = None
         
@@ -23,8 +27,6 @@ class PhotFrame(CoordFrame):
             break
         self.label  = self.photCal.label
 
-    def __repr__(self):
-        return self.label
     
 class ColorFrame(CoordFrame):
     '''
@@ -34,14 +36,13 @@ class ColorFrame(CoordFrame):
         '''
         Constructor
         '''
-        self.dmtype = None
+        super().__init__(model_view)
+        self.dmtype = "ColorFrame"
         self.low = None
         self.high = None
 
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="mango:stcextend.HRFrame.low"]'):
-            self.low = PhotometryFilter(ele)
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="mango:stcextend.HRFrame.high"]'):
-            self.high = PhotometryFilter(ele)
+        self.low = PhotometryFilter(XmlUtils.get_instance_by_role(model_view, "mango:stcextend.HRFrame.low"))
+        self.high = PhotometryFilter(XmlUtils.get_instance_by_role(model_view, "mango:stcextend.HRFrame.high"))
             
         self.label  = f"{self.low.label}<>{self.high.label}"
 
@@ -56,6 +57,8 @@ class FlagDictionnary(CoordFrame):
         '''
         Constructor
         '''
+        super().__init__(model_view)
+        self.dmtype = "FlagDictionnary"
         self.entries = {}
         for coll in model_view.xpath('.//COLLECTION[@dmrole="mango:stcextend.Status.statusLabel"]'):
             for item in coll:
@@ -68,9 +71,6 @@ class FlagDictionnary(CoordFrame):
                 self.entries[value] = label
 
         self.label  = "FlagDictionnary"
-
-    def __repr__(self):
-        return self.label
     
     def get_label(self, value):
         if value in self.entries:

@@ -15,9 +15,8 @@ class Color(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
+        self.dmtype = "Color"
 
-    def __repr__(self):
-        return self.label
 
 class Flag(Measure):
     '''
@@ -28,9 +27,7 @@ class Flag(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return self.label
+        self.dmtype = "Flag"
 
 
 class Photometry(Measure):
@@ -42,6 +39,4 @@ class Photometry(Measure):
         Constructor
         '''
         Measure.__init__(self, model_view)
-
-    def __repr__(self):
-        return self.label
+        self.measure = "Photometry"
