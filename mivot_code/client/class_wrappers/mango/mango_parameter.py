@@ -69,6 +69,8 @@ class MangoParameter(RootClass):
 
         
         self.label = f"{self.semantic} ({self.description}) {self.measure.label}"
+        for ass_meas in self.associatedMeasure:
+            self.label += f'\n    ass measure: {ass_meas.label}'
      
     def __repr__(self):
         return self.label

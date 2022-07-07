@@ -50,6 +50,5 @@ def main():
             for mango_parameter in mango_object._parameters:
                 print(mango_parameter)
 
-    print(tmpfile)
 if __name__ == '__main__':
     main()

@@ -24,7 +24,6 @@ class Measure(RootClass):
         self._set_ucd(model_view)
         self._set_error(model_view)
         self._set_coord(model_view)
-
         if self.error is not None:
             self.label = f"{self.ucd}={self.coord.label} +/-{self.error.label}"
         else:
@@ -40,9 +39,9 @@ class Measure(RootClass):
                 break
 
     def _set_coord(self, model_view):
-        for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Measure.coord"]'):
-            self.coord = ComponentBuilder.get_coord(ele)
-            break    
+        coord_view = XmlUtils.get_instance_by_role(model_view, "meas:Measure.coord")
+        if coord_view is not None:
+            self.coord = ComponentBuilder.get_coord(coord_view)
 
     
 class GenericMeasure(Measure):
