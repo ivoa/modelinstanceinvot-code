@@ -32,6 +32,8 @@ git clone git@github.com:ivoa/modelinstanceinvot-code.git
 pip3 install -r requirements.txt
 
 cd modelinstanceinvot-code/mivot-code/examples
+
+# Let's get MANGO instances
 python example.1.xtapdb.meas_ass.py 
 ```
 #### From PIP
