@@ -35,6 +35,9 @@ cd modelinstanceinvot-code/mivot-code/examples
 python example.1.xtapdb.meas_ass.py 
 ```
 #### From PIP
+
+The package contains only standalone module; this a client for the XTapDB service (https://xcatdb.unistra.fr/xtapdb) which provides on the fly anotated VOTables. 
+
 ```shell
 pip install git+ssh://github.com:ivoa/modelinstanceinvot-code.git
 
