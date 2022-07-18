@@ -16,14 +16,27 @@ This project contains code sample for processing annotated VOTables.
 
 #### From Jupyter
 ```shell
-# if not done
+# if not already done
 pip3 install jupyter-lab
+pip3 install -r requirements.txt
+
 cd jupyter
 jupyter-lab
 # jump to your browser
 ```
+#### From a clone
+```shell
+git clone git@github.com:ivoa/modelinstanceinvot-code.git
 
-pip install git+ssh://git@github.com/<project_owner>/<project_name>.git
+# if not already done
+pip3 install -r requirements.txt
 
+cd modelinstanceinvot-code/mivot-code/examples
+python example.1.xtapdb.meas_ass.py 
+```
+#### From PIP
+```shell
+pip install git+ssh://github.com:ivoa/modelinstanceinvot-code.git
 
-To learn about the ongoing project, run the notebooks in the or go into `examples` directory
+xtapdb-client 'select * from catalogueentry'
+```
