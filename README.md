@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ivoa/modelinstanceinvot-code/merge-syntax)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ivoa/modelinstanceinvot-code/package)
 
 ### Python Workflow
 
