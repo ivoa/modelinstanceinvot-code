@@ -10,3 +10,5 @@ The PhotDM serialization can intergrated as such in mapping GLOBALS.
 
 As there is one file per filter, the PhotometricSystem objects contain only one filter. 
 The merge of several filters in one file is staightforward by the way.
+
+**Important note**: The serialization builder is not sync with PhotDM; some PhoDM instace tweaks might be needed. 
