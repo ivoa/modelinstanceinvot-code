@@ -20,14 +20,22 @@ class TestLonLatPoint(unittest.TestCase):
         self.mviewer.connect_table(None)
         
         while self.mviewer.get_next_row()   is not None:
+            print("Look for Mango instances in the first table row")
             for mango_type in self.mviewer.get_model_component_by_type("mango:MangoObject"):
+                print(" >>> found one")
                 mango_object = MangoObject(mango_type)
+                print("Check whether the source is flagged as variable")
+                found = False
                 for mango_parameter in mango_object._parameters:
                     if mango_parameter.isFlag() and mango_parameter.measure.coord.cval.value != 0 :
-                        print(">>>> Row with a variable source")
+                        found = True
+                        print(" >>> Found variable source")
                         print(f"  {mango_parameter}")
                         for associated_measure in mango_parameter.get_associated_measures():
                             print(f"  {associated_measure}")
+                if found is False:
+                    print(" >>> source not variable")
+
 
     @classmethod
     def setUpClass(cls):
