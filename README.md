@@ -3,7 +3,7 @@
 ### Python Workflow
 
 This project contains code sample for processing annotated VOTables.
-- We are using the annotation [syntax](https://github.com/ivoa-std/ModelInstanceInVot) that has been designed after the 2021 workshop.\n",
+- We are using the annotation [syntax](https://github.com/ivoa-std/ModelInstanceInVot) that has been designed after the 2021 workshop.
 
 ### Table of content
 - `jupyter`: Four notebook running the MIVOT parser in differdent contexts
