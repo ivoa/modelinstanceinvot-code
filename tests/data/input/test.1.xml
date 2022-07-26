@@ -26,8 +26,17 @@
           <MODEL name="meas"   url="https://www.ivoa.net/xml/Meas/20200908/Meas-v1.0.vo-dml.xml" />
           <MODEL name="coords" url="https://www.ivoa.net/xml/STC/20200908/Coords-v1.0.vo-dml.xml" />
           <MODEL name="ivoa"   url="https://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml" />
+          <!--
+             place holder for singular data model instances not associated with a singular VOTabme TABLE
+          -->
           <GLOBALS>
+            <!--
+              Container for the coordinate systems
+            -->
             <COLLECTION dmid="_CoordinateSystems" dmrole="" >
+              <!--
+                Time coordinate system
+              -->
               <INSTANCE dmid="_timesys" dmrole="" dmtype="coords:TimeSys">
                 <PRIMARY_KEY dmtype="ivoa:string" value="TCB"/>
                 <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:TimeFrame">
@@ -37,14 +46,21 @@
                   </INSTANCE>
                 </INSTANCE>
               </INSTANCE>
-              <INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
+               <!--
+                Space coordinate system
+              -->
+             <INSTANCE dmid="_spacesys1" dmrole="" dmtype="coords:SpaceSys">
                 <PRIMARY_KEY dmtype="ivoa:string" value="ICRS"/>
                 <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
                   <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" value="ICRS"/>
                   <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="coords:Epoch" value="J2015.5"/>
                 </INSTANCE>
               </INSTANCE>
-              <INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys">
+              <!--
+                Photometric coordinate system: At the time of writing, PhotDM was not available in VODML. 
+                We use a class of the first MANGO draft
+              -->
+             <INSTANCE dmid="_photsys_G" dmtype="mango:coordinates.PhotometryCoordSys">
                 <PRIMARY_KEY dmtype="ivoa:string" value="G"/>
                 <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="mango:coordinates.PhotFilter">
                   <ATTRIBUTE dmrole="mango:coordinates.PhotFilter.name" dmtype="ivoa:string" value="GAIA/GAIA2r.G"/>
@@ -78,24 +94,48 @@
                 </INSTANCE>
               </INSTANCE>
             </COLLECTION>
+            <!--
+              Container for the datasets (one per timeseries)
+            -->
             <COLLECTION dmid="_Datasets" dmrole="">
               <INSTANCE dmid="_ds1" dmrole="" dmtype="ds:experiment.ObsDataset">
-               <PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560"/>
+                <!--
+                  The primary keys of tha collection items are set by the mapping 
+                -->
+                <PRIMARY_KEY dmtype="ivoa:string" value="5813181197970338560"/>
                 <ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductType" dmtype="ds:dataset.DataProductType" value="TIMESERIES"/>
                 <ATTRIBUTE dmrole="ds:dataset.Dataset.dataProductSubtype" dmtype="ivoa:string" value="GAIA Time Series"/>
                 <ATTRIBUTE dmrole="ds:experiment.ObsDataset.calibLevel" dmtype="ivoa:integer" value="1"/>
                 <REFERENCE dmrole="ds:experiment.ObsDataset.target" dmref="_tg1"/>
               </INSTANCE>
             </COLLECTION>
+            <!--
+              Time series target
+              Value set as a literal by the mapping
+            -->
             <INSTANCE dmid="_tg1" dmrole="" dmtype="ds:experiment.Target">
               <ATTRIBUTE dmrole="ds:experiment.BaseTarget.name" dmtype="ivoa:string" value="5813181197970338560"/>
             </INSTANCE>
           </GLOBALS>
+          <!--
+            Mapping of the rows of the table _PKTable
+          -->
           <TEMPLATES tableref="_PKTable">
             <INSTANCE dmid="_TimeSeries" dmrole="" dmtype="cube:SparseCube">
+             <!--
+                The dataset object is the item of the COLLECTION@dmid=_Datasets
+                having a primary key matching the value of the column _pksrcid for that particular row
+              -->
               <REFERENCE dmrole="cube:DataProduct.dataset" sourceref="_Datasets">
                 <FOREIGN_KEY ref="_pksrcid"/>
               </REFERENCE>
+              <!--
+                Sparse cube data are given by the INSTANCE@dmid="_ts_data"
+                These instances are located in the Results table (must be found by the client)
+                The matching row are identified by a double join condition
+                    _PKTable[_pksrcid] = Results[_srcid]
+                    _PKTable[_pkband] = Results[_band]
+              -->
               <COLLECTION dmrole="cube:SparseCube.data">
                 <JOIN dmref="_ts_data">
                   <WHERE foreignkey="_srcid" primarykey="_pksrcid" />
@@ -104,6 +144,9 @@
               </COLLECTION>
             </INSTANCE>
           </TEMPLATES>
+          <!--
+            Mapping of the rows of the table Results
+          -->
           <TEMPLATES tableref="Results">
             <INSTANCE dmid="_ts_data" dmrole="" dmtype="cube:NDPoint">
               <COLLECTION dmrole="cube:NDPoint.observable">
@@ -112,6 +155,10 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:Time">
                     <INSTANCE dmrole="meas:Time.coord" dmtype="coords:MJD">
                       <ATTRIBUTE dmrole="coords:MJD.date" dmtype="ivoa:real" ref="_obstime"/>
+                      <!--
+                       The time coodinate is givel by the INSTANCE@dmid=_timesys
+                       This instance must be located by the client
+                      -->
                       <REFERENCE dmrole="coords:Coordinate.coordSys" dmref="_timesys"/>
                     </INSTANCE>
                   </INSTANCE>
@@ -121,6 +168,10 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_mag"/>
+             		  <!--
+                        The photometric system is given by the item of the COLLECTION@dmid=_CoordinateSystems
+                        having a primary key matching the value of the column _band for that particular row
+                      -->
                       <REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
                       </REFERENCE>
@@ -132,6 +183,10 @@
                   <INSTANCE dmrole="cube:MeasurementAxis.measure" dmtype="meas:GenericMeasure">
                     <INSTANCE dmrole="meas:GenericMeasure.coord" dmtype="coords:PhysicalCoordinate">
                       <ATTRIBUTE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:RealQuantity" ref="_flux"/>
+             		  <!--
+                        The photometric system is given by the item of the COLLECTION@dmid=_CoordinateSystems
+                        having a primary key matching the value of the column _band for that particular row
+                      -->
                       <REFERENCE dmrole="coords:Coordinate.coordSys" sourceref="_CoordinateSystems">
                         <FOREIGN_KEY ref="_band"/>
                       </REFERENCE>
@@ -147,7 +202,11 @@
             </INSTANCE>
           </TEMPLATES>
       </VODML>
+    <!--
+      mapping block end
+    -->
     </RESOURCE>
+    
     <TABLE ID="_PKTable">
         <FIELD ID="_pksrcid" datatype="char" arraysize="*" name="pksrcid">
           <DESCRIPTION>Source ID</DESCRIPTION>
