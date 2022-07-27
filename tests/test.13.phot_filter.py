@@ -20,6 +20,14 @@ class TestSTCPosition(unittest.TestCase):
         phot_cal = PhotCal(xmltree)
         
         print(phot_cal)
+                
+                
+                
+        print(phot_cal.identifier)
+        print(phot_cal.zeroPoint)
+        print(phot_cal.photometryFilter)
+        print(phot_cal.magnitudeSystem)
+
 
          
 

@@ -127,7 +127,6 @@ class Bandwidth(RootClass):
         self.extent = None
         self.start = None
         self.stop = None
-        XmlUtils.pretty_print(model_view)
         for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="photdm:Bandwidth.ucd"]'):
             self.ucd = ele.get("value")
             break

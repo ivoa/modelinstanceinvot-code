@@ -31,15 +31,16 @@ class TestLonLatPoint(unittest.TestCase):
             mango_object = MangoObject(mango_type)
             break
         
+        print(mango_object.identifier)
         for mango_parameter in mango_object._parameters:
-            print(mango_parameter)
+            print(f"   {mango_parameter}")
         
-        print("\nData set space frame(s)")
+        print("\n=== Dataset space frame(s)")
         for mango_parameter in mango_object._parameters:
             if mango_parameter.isPosition():
                 print(mango_parameter.measure.coord.coordSys.label)
 
-        print("\nData set photometric filters(s)")
+        print("\n=== Dataset photometric filters(s)")
         for mango_parameter in mango_object._parameters:
             if mango_parameter.isPhotometry():
                 print(mango_parameter.measure.coord.coordSys.frame.photCal.photometryFilter)
