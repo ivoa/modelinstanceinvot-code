@@ -309,6 +309,19 @@ class ModelViewer(object):
         for ele in model_view.xpath(f'.//INSTANCE[@dmtype="{searched_dmtype}"]'):
             retour.append(deepcopy(ele)) 
         return retour
+
+    def get_model_component_by_role(self, searched_dmrole):
+        """
+        return the list of the xml instances with @dmrole=searched_role from the model view of the current data row
+        Return a [] if no matching dmrole was found 
+        """
+        self._assert_table_is_connected()
+        retour = []
+        model_view = self.get_model_view(resolve_ref=True)
+
+        for ele in model_view.xpath(f'.//INSTANCE[@dmrole="{searched_dmrole}"]'):
+            retour.append(deepcopy(ele)) 
+        return retour
     
     def get_json_model_component_by_role(self, searched_dmrole):
         """

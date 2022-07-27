@@ -40,7 +40,7 @@ class ComponentBuilder(object):
 
     @staticmethod 
     def get_coord(model_view):
-        from .stc_classes.coordinates import PhysicalCoordinate, LonLatPoint, ISOTime
+        from .stc_classes.coordinates import PhysicalCoordinate, LonLatPoint, ISOTime, MJD
         from .mango.coordinates import UnitlessCoordinate, FlagCoord
         dmtype = model_view.get("dmtype")
         
@@ -50,6 +50,8 @@ class ComponentBuilder(object):
             return LonLatPoint(model_view)
         elif dmtype == "coords:ISOTime":
             return ISOTime(model_view)
+        elif dmtype == "coords:MJD":
+            return MJD(model_view)
         elif dmtype == "mango:stcextend.UnitlessCoordinate":
             return UnitlessCoordinate(model_view)
         elif dmtype == "mango:stcextend.FlagCoord":
@@ -60,15 +62,16 @@ class ComponentBuilder(object):
     @staticmethod 
     def get_coordsys(model_view):
         
-        from .stc_classes.coordsys import SpaceSys, PhysicalCoordSys
+        from .stc_classes.coordsys import SpaceSys, PhysicalCoordSys, TimeSys
         dmtype = model_view.get("dmtype")
         
         if dmtype == "coords:SpaceSys":
             return SpaceSys(model_view)
         elif dmtype == "coords:PhysicalCoordSys":
             return PhysicalCoordSys(model_view)
-        else:
-            raise Exception(f"coordSys type {dmtype} not supported yet")
+        elif dmtype == "coords:TimeSys":
+            return TimeSys(model_view)
+        #raise Exception(f"coordSys type {dmtype} not supported yet")
         
     @staticmethod 
     def get_coordframe(model_view):

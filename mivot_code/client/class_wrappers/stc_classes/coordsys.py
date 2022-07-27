@@ -32,4 +32,13 @@ class SpaceSys(PhysicalCoordSys):
         '''
         PhysicalCoordSys.__init__(self, model_view)
 
+class TimeSys(PhysicalCoordSys):
+    '''
+    classdocs
+    '''
+    def __init__(self, model_view):
+        '''
+        Constructor
+        '''
+        PhysicalCoordSys.__init__(self, model_view)
 
