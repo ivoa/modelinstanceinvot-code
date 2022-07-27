@@ -118,8 +118,8 @@
         <TEMPLATES tableref="result_S1655295529955">
           <!-- The table contain a set of Mango instances, this is why we have COLLECTION at the top level -->
           <INSTANCE dmtype="mango:MangoObject">
+            <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="_name" />
             <!-- Collection of the complex data attached to the source -->
-            <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" value="NotSet" />
             <!-- Collection of the parameters attached to the source Each child INSTANCE maps one parameter -->
             <COLLECTION dmrole="mango:MangoObject.parameters">
             
@@ -203,9 +203,12 @@
 
     <INFO name="QUERY_STATUS" value="OK" />
     <INFO name="QUERY"
-      value="SELECT SC_HR1, SC_HR1_ERR,  SC_RA, SC_DEC, SC_POSERR, SC_EP_1_FLUX, SC_EP_1_FLUX_ERR
+      value="SELECT _name SC_HR1, SC_HR1_ERR,  SC_RA, SC_DEC, SC_POSERR, SC_EP_1_FLUX, SC_EP_1_FLUX_ERR
 FROM mergedentry" />
     <TABLE name="result_S1655295529955">
+      <FIELD arraysize="*" datatype="char" name="_name" ucd="meta.id;meta.main" >
+        <DESCRIPTION>Source identifier</DESCRIPTION>
+      </FIELD>
       <FIELD arraysize="*" datatype="char" name="SC_HR1" ucd="phot.flux;arith.ratio">
         <DESCRIPTION>the hr1</DESCRIPTION>
       </FIELD>
@@ -230,6 +233,7 @@ FROM mergedentry" />
       <DATA>
         <TABLEDATA>
           <TR>
+            <TD>Source #1</TD>
             <TD>-1.0</TD>
             <TD>0.3543267</TD>
             <TD>2.0276946271273</TD>
@@ -238,7 +242,8 @@ FROM mergedentry" />
             <TD>6.737939E-16</TD>
             <TD>3.483969E-16</TD>
           </TR>
-          <TR>
+          <TR> 
+            <TD>Source #2</TD>
             <TD>-1.0</TD>
             <TD>0.018051272</TD>
             <TD>5.7232008546001</TD>
@@ -248,6 +253,7 @@ FROM mergedentry" />
             <TD>2.391803E-15</TD>
           </TR>
           <TR>
+            <TD>Source #3</TD>
             <TD>-1.0</TD>
             <TD>0.09803064</TD>
             <TD>6.4302137177107</TD>
@@ -257,6 +263,7 @@ FROM mergedentry" />
             <TD>2.3484235E-16</TD>
           </TR>
           <TR>
+            <TD>Source #4</TD>
             <TD></TD>
             <TD></TD>
             <TD>6.6019097770306</TD>
@@ -266,6 +273,7 @@ FROM mergedentry" />
             <TD>4.7366413E-17</TD>
           </TR>
           <TR>
+            <TD>Source #5</TD>
             <TD>-1.0</TD>
             <TD>0.107056</TD>
             <TD>7.8901224864868</TD>
@@ -275,6 +283,7 @@ FROM mergedentry" />
             <TD>6.758391E-16</TD>
           </TR>
           <TR>
+            <TD>Source #6</TD>
             <TD>-0.037884176</TD>
             <TD>0.2802978</TD>
             <TD>8.7971933915386</TD>
@@ -284,6 +293,7 @@ FROM mergedentry" />
             <TD>6.9469905E-16</TD>
           </TR>
           <TR>
+            <TD>Source #7</TD>
             <TD>-1.0</TD>
             <TD>0.1206879</TD>
             <TD>9.5558505586324</TD>
@@ -293,6 +303,7 @@ FROM mergedentry" />
             <TD>1.0094164E-15</TD>
           </TR>
           <TR>
+            <TD>Source #8</TD>
             <TD>-1.0</TD>
             <TD>0.096543744</TD>
             <TD>9.963433121657998</TD>
@@ -302,6 +313,7 @@ FROM mergedentry" />
             <TD>1.2539966E-15</TD>
           </TR>
           <TR>
+            <TD>Source #9</TD>
             <TD>-1.0</TD>
             <TD>0.09312002</TD>
             <TD>10.386094563702999</TD>
@@ -311,6 +323,7 @@ FROM mergedentry" />
             <TD>4.680218E-16</TD>
           </TR>
           <TR>
+            <TD>Source #10</TD>
             <TD>-1.0</TD>
             <TD>0.004802639</TD>
             <TD>10.850610312282</TD>
