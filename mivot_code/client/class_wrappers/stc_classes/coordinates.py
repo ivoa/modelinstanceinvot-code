@@ -90,6 +90,30 @@ class ISOTime(Coord):
     def __repr__(self):
         return self.label
         
+class MJD(Coord):
+    '''
+    classdocs
+    '''
+    def __init__(self, model_view):
+        '''
+        Constructor
+        '''
+        super().__init__(model_view)
+        self.date = None
+        self.dmtype = "MJD"
+        
+        for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:MJD.date"]'):
+            self.date = float(ele.get("value"))
+            break
+        
+        if self.coordSys is not None:
+            self.label = f"[{self.date}d {self.coordSys.label}]"
+        else:            
+            self.label = f"[{self.date}d]"
+        
+    def __repr__(self):
+        return self.label
+        
 class Point(Coord):
     '''
     classdocs

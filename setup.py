@@ -2,8 +2,7 @@ from setuptools import setup, find_packages
 
 entry_points = {
     "console_scripts": [
-        "mivot-stc-reader = mivot_code.launchers.stc_reader:main",
-        "mivot-mango-reader = mivot_code.launchers.mango_reader:main",
+        "xtapdb-client = mivot_code.launchers.xtapdb_client:main"
         ]
     }
 

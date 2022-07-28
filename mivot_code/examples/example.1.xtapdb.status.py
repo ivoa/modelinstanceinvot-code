@@ -19,11 +19,13 @@ class TestLonLatPoint(unittest.TestCase):
         self.maxDiff = None
         self.mviewer.connect_table(None)
         
+        print("Reading Mango objects:")
+
         while self.mviewer.get_next_row()   is not None:
             for mango_type in self.mviewer.get_model_component_by_type("mango:MangoObject"):
                 mango_object = MangoObject(mango_type)
                 for mango_parameter in mango_object._parameters:
-                    print(f"  {mango_parameter}")
+                    print(f"{mango_object.identifier}:  {mango_parameter}")
 
     @classmethod
     def setUpClass(cls):

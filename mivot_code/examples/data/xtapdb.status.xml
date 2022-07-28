@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  This mock VOtable contains 2 colums:
+    - source name
+    - an error related flag
+ 
+ It mapped on MANGO (version Spring 2022). 
+ There is one MANGO object per row
+ - The source nale is used Mango identifier
+ - The error flag values are detailed in a FlagDictionnary located in the GLOBALS
+   This allow the clienty to explain the neaning of the different flag values
+   
+   
+ Laurent Michel 26/07/2022
+-->
 <VOTABLE version="1.3" xmlns="http://www.ivoa.net/xml/VOTable/v1.3"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
@@ -10,8 +24,6 @@
       <VODML xmlns="http://ivoa.net/xml/merged-synthax">
         <REPORT status="OK">Automatically generated. NotSet instance have been removed</REPORT>
         <MODEL name="ivoa" url="http://www.ivoa.net/xml/VODML/20180519/IVOA-v1.0.vo-dml.xml" />
-        <MODEL name="meas" url="https://github.com/ivoa-std/MeasurementDM/blob/master/vo-dml/Meas-v1.0.vo-dml.xml" />
-        <MODEL name="coords" url="https://github.com/ivoa-std/CoordinateDM/blob/master/vo-dml/Coords-v1.0.vo-dml.xml" />
         <MODEL name="mango" url="https://github.com/ivoa-std/MANGO/blob/master/vo-dml/mango.vo-dml.xml" />
         <!-- The GLOBALS block contains all objects with a scope covering all data. This is typically the case for the coordinate 
           Systems -->
@@ -49,16 +61,17 @@
         <TEMPLATES tableref="result_S1656509657061">
           <!-- The table contain a set of Mango instances, this is why we have COLLECTION at the top level -->
           <INSTANCE dmtype="mango:MangoObject">
+            <ATTRIBUTE dmrole="mango:MangoObject.identifier" dmtype="ivoa:string" ref="_name" />
             <!-- Collection of the complex data attached to the source -->
             <!-- Collection of the parameters attached to the source Each child INSTANCE maps one parameter -->
             <COLLECTION dmrole="mango:MangoObject.parameters">
               <INSTANCE dmid="DetectionFlag_SeM_flag" dmtype="mango:Parameter">
                 <ATTRIBUTE dmrole="mango:Parameter.semantic" dmtype="ivoa:string" value="#flag" />
-                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Useless flag test " />
+                <ATTRIBUTE dmrole="mango:Parameter.description" dmtype="ivoa:string" value="Error flag " />
                 <INSTANCE dmrole="mango:Parameter.measure" dmtype="mango:stcextend.Flag">
                   <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" value="meta.code.error;src.var" />
                   <INSTANCE dmrole="meas:Measure.coord" dmtype="mango:stcextend.FlagCoord">
-                    <ATTRIBUTE dmrole="mango:stcextend.FlagCoord.coord" dmtype="ivoa:char" ref="PN_3_EXP" />
+                    <ATTRIBUTE dmrole="mango:stcextend.FlagCoord.coord" dmtype="ivoa:char" ref="_status" />
                     <REFERENCE dmref="StatusFrame_QRVFLAG" dmrole="mango:stcextend.Flag.dictionary" />
                   </INSTANCE>
                 </INSTANCE>
@@ -73,39 +86,52 @@
     <INFO name="QUERY" value="SELECT PN_3_EXP 
 FROM catalogueentry;" />
     <TABLE name="result_S1656509657061">
-      <FIELD arraysize="*" datatype="char" name="PN_3_EXP" ucd="stat.value;obs.field" unit="s">
+      <FIELD arraysize="*" datatype="char" name="_name" ucd="meta.id;meta.main" >
+        <DESCRIPTION>Source identifier</DESCRIPTION>
+      </FIELD>
+      <FIELD arraysize="*" datatype="char" name="_status" ucd="stat.value;obs.field">
         <DESCRIPTION>exposure map value of the energy band number 3 of the pn camera</DESCRIPTION>
       </FIELD>
       <DATA>
         <TABLEDATA>
           <TR>
+            <TD>Source #1</TD>
             <TD>A</TD>
           </TR>
           <TR>
+            <TD>Source #2</TD>
             <TD>A</TD>
           </TR>
           <TR>
+            <TD>Source #3</TD>
             <TD>E</TD>
           </TR>
           <TR>
+            <TD>Source #4</TD>
             <TD>D</TD>
           </TR>
           <TR>
+            <TD>Source #5</TD>
             <TD>B</TD>
           </TR>
           <TR>
+            <TD>Source #6</TD>
             <TD>C</TD>
           </TR>
           <TR>
+            <TD>Source #7</TD>
             <TD>D</TD>
           </TR>
           <TR>
+            <TD>Source #8</TD>
             <TD>E</TD>
           </TR>
           <TR>
+            <TD>Source #9</TD>
             <TD>B</TD>
           </TR>
           <TR>
+            <TD>Source #10</TD>
             <TD>A</TD>
           </TR>
         </TABLEDATA>
