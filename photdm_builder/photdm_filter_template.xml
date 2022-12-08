@@ -26,11 +26,25 @@
   </INSTANCE>
 
   <!-- Zero Point -->
+  <!-- can be of various types and derived classes Pogson or Asinh or LinearFlux-->
   <INSTANCE dmtype="photdm:PogsonZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
     <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="$zeroPointType" />
     <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real"
       value="$referenceMagnitudeValue" />
-
+  <!--  or Asinh -->   
+  <INSTANCE dmtype="photdm:AsinhZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
+    <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="$zeroPointType" />
+    <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real"
+      value="$referenceMagnitudeValue" />
+    <ATTRIBUTE dmrole="photdm:AsinhZeroPoint.softeningParameter" dmtype="ivoa:real"
+      value="$softeningParamValue" />
+  <!--  or LinearFlux -->   
+    <INSTANCE dmtype="photdm:LinearFluxZeroPoint" dmrole="photdm:PhotCal.zeroPoint">
+    <ATTRIBUTE dmrole="photdm:ZeroPoint.type" dmtype="ivoa:string" value="$zeroPointType" />
+    <ATTRIBUTE dmrole="photdm:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real"
+      value="$referenceMagnitudeValue" />
+   <!-- only one of those ZeroPoint should be present-->
+      
     <INSTANCE dmtype="photdm:Flux" dmrole="photdm:ZeroPoint.flux">
       <ATTRIBUTE dmrole="photdm:Flux.ucd" dmtype="ivoa:UCD" value="phot.flux;meta.modelled" />
       <ATTRIBUTE dmrole="photdm:Flux.unitexpression" dmtype="ivoa:Unit"
@@ -54,7 +68,7 @@
     value="$photometryFilterName" />
   <ATTRIBUTE dmrole="photdm:PhotometryFilter.description" dmtype="ivoa:string"
     value="$photometryFilterDescription" />
-  <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandname" dmtype="ivoa:string" value="$bandName" />
+  <ATTRIBUTE dmrole="photdm:PhotometryFilter.bandName" dmtype="ivoa:string" value="$bandName" />
 
   <!-- Spectral Location -->
   <INSTANCE dmtype="photdm:SpectralLocation" dmrole="photdm:PhotometryFilter.spectralLocation">
@@ -67,16 +81,16 @@
   </INSTANCE>
 
   <!-- Band width -->
-  <INSTANCE dmtype="photdm:Bandwith" dmrole="photdm:PhotometryFilter.spectralLocation">
-    <ATTRIBUTE dmrole="photdm:Bandwith.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
-    <ATTRIBUTE dmrole="photdm:Bandwith.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
-    <ATTRIBUTE dmrole="photdm:Bandwith.extent" dmtype="ivoa:real" value="$bandwidthExtent" />
-    <ATTRIBUTE dmrole="photdm:Bandwith.start" dmtype="ivoa:real" value="$bandwidthStart" />
-    <ATTRIBUTE dmrole="photdm:Bandwith.stop" dmtype="ivoa:real" value="$bandwidthStop" />
+  <INSTANCE dmtype="photdm:Bandwidth" dmrole="photdm:PhotometryFilter.spectralLocation">
+    <ATTRIBUTE dmrole="photdm:Bandwidth.ucd" dmtype="ivoa:UCD" value="instr.bandwidth;stat.fwhm" />
+    <ATTRIBUTE dmrole="photdm:Bandwidth.unitexpression" dmtype="ivoa:Unit" value="Angstrom" />
+    <ATTRIBUTE dmrole="photdm:Bandwidth.extent" dmtype="ivoa:real" value="$bandwidthExtent" />
+    <ATTRIBUTE dmrole="photdm:Bandwidth.start" dmtype="ivoa:real" value="$bandwidthStart" />
+    <ATTRIBUTE dmrole="photdm:Bandwidth.stop" dmtype="ivoa:real" value="$bandwidthStop" />
   </INSTANCE>
 
   <!-- Transmision Curve -->
-  <INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwith.transmissionCurve">
+  <INSTANCE dmtype="photdm:TransmissionCurve" dmrole="photdm:Bandwidth.transmissionCurve">
     <INSTANCE dmtype="photdm:Access" dmrole="photdm:TransmissionCurve.access">
       <ATTRIBUTE dmrole="photdm:Access.reference" dmtype="ivoa:anyURI" value="$fpsVOTable" />
       <ATTRIBUTE dmrole="photdm:Access.size" dmtype="ivoa:integer" value="-1" />
