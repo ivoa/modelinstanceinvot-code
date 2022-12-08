@@ -5,7 +5,8 @@
     value="$photSystem" />
   <ATTRIBUTE dmrole="photdm:PhotometricSystem.detectorType" dmtype="ivoa:integer"
     value="$detectorType" />
-  <COLLECTION dmrole="photdm:PhotCal.photometryFilter">
+  <COLLECTION dmrole="photdm:PhotometricSystem.photometryFilter">
+    <!-- Gathers all references to Filters for the related instrument and in this Photometric system --> 
     <!-- Others filter references can be added here -->
     <REFERENCE dmref="$filter_dmid"/>
   </COLLECTION>
