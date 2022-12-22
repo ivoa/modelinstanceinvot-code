@@ -23,14 +23,12 @@ def main():
         }
     query_string = urllib.parse.urlencode( params )    
     data = query_string.encode( "ascii" )    
-    
+    print(query_string)
     tmpfilename = tempfile.NamedTemporaryFile(suffix='.xml').name
-    print(data)
     with open(tmpfilename, "w") as tmpfile:
         with urllib.request.urlopen( url, data ) as response:     
             response_text = response.read().decode("utf-8")      
             tmpfile.write(response_text)
-            print(response_text)
             votable = parse(tmpfilename)
         
             mviewer = None
