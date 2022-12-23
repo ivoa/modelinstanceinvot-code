@@ -1,0 +1,773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vo-dml:model xmlns:vo-dml="http://www.ivoa.net/xml/VODML/v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ivoa.net/xml/VODML/v1 http://www.ivoa.net/xml/VODML/vo-dml-v1.xsd">
+  <name>Phot</name>
+  <description>Data model describing Photometric properties for data sets to be used for data calibration, comparison or reprocessing. 
+</description>
+  <uri/>
+  <title>PhotDM</title>
+  <author>Jesús Salgado, Carlos Rodrigo, Pedro Osuna, Mark Allen, Mireille Louys, Jonathan McDowell, Deborah Baines, Jesús Maíz Apellániz,
+Evanthia Hatziminaoglou, Sebastien Derriere, Gerard Lemson</author>
+  <version>1.1</version>
+  <previousVersion>1.0</previousVersion>
+  <lastModified>2022-05-20T18:03:25</lastModified>
+  <import>
+    <name>ivoa</name>
+    <url>http://www.ivoa.net/xml/VODML/IVOA-v1.vo-dml.xml</url>
+    <documentationURL>https://github.com/ivoa/vo-dml/blob/master/models/ivoa/vo-dml/IVOA-v1.0.html</documentationURL>
+  </import>
+  <primitiveType>
+    <vodml-id>UCD</vodml-id>
+    <name>UCD</name>
+    <description>Specialized string type derived from ivoa:string. UCD words belong to a controlled vocabulary. They are used as semantics tags for the content of table columns . See the UCD IVOA Recommendation.
+</description>
+    <extends>
+      <vodml-ref>ivoa:string</vodml-ref>
+    </extends>
+  </primitiveType>
+
+  <primitiveType>
+    <vodml-id>ISOTime</vodml-id>
+    <name>ISOTime</name>
+    <description>Time stamp, represented as a string. This representaion is compliant to the DALI time stamp definition : section 3.3.3 Timestamp in
+https://www.ivoa.net/documents/DALI/20170517/REC-DALI-1.1.pdf
+This class derives from the ivoa:datetime class.
+
+It could be inserted in the ivoa: template data model for types in a next version. </description>
+    <extends>
+      <vodml-ref>ivoa:datetime</vodml-ref>
+    </extends>
+  </primitiveType>
+
+  <enumeration>
+    <vodml-id>TypeOfMagSystem</vodml-id>
+    <name>TypeOfMagSystem</name>
+    <description>The type of System used to compute magnitude for this photometric calibration procedure .</description>
+    <literal>
+      <vodml-id>TypeOfMagSystem.VEGAmag</vodml-id>
+      <name>VEGAmag</name>
+      <description>Magnitude system related to VEGA.</description>
+    </literal>
+    <literal>
+      <vodml-id>TypeOfMagSystem.ABmag</vodml-id>
+      <name>ABmag</name>
+      <description>AB magnitude system.</description>
+    </literal>
+    <literal>
+      <vodml-id>TypeOfMagSystem.STmag</vodml-id>
+      <name>STmag</name>
+      <description>ST magnitude system.</description>
+    </literal>
+  </enumeration>
+
+  <objectType>
+    <vodml-id>PhotometricSystem</vodml-id>
+    <name>PhotometricSystem</name>
+    <description>The reference photometric system used to interpret photometric measurements.</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>PhotometricSystem.description</vodml-id>
+      <name>description</name>
+      <description>This string contains a human readable short-text representation of the photometric system. This will allow client applications to display textual information to final users.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometricSystem.detectorType</vodml-id>
+      <name>detectorType</name>
+      <description>Detector type associated to this photometric system. Possible values are: 0 for Energy counter (amplifiers), 1 for Photon counter (CCDs, Photomultipliers).</description>
+      <datatype>
+        <vodml-ref>ivoa:integer</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>PhotometricSystem.photometryFilter</vodml-id>
+      <name>photometryFilter</name>
+      <description>The Photometric information is related to a Photometric system, and gathers filter descriptions, for one or several . 
+</description>
+      <datatype>
+        <vodml-ref>Phot:PhotometryFilter</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>-1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>PhotometryFilter</vodml-id>
+    <name>PhotometryFilter</name>
+    <description>Filter class to store ids, name and properties.
+</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>PhotometryFilter.fpsIdentifier</vodml-id>
+      <name>fpsIdentifier</name>
+      <description>IVOA identifier of the filter profile service where this photometry filter is registered to be used in the discovery of all the relevant photometry filter properties.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.identifier</vodml-id>
+      <name>identifier</name>
+      <description>This field identifies a filter, in a unique way, within a certain Photometry Filter Profile service.
+Example to build this string : Facility/Subcategory/Band[/Suffix] like SDSS/SDSS.G/G</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.name</vodml-id>
+      <name>name</name>
+      <description>A human readable string to represent the filter name.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.description</vodml-id>
+      <name>description</name>
+      <description>This string contains a verbose human readable label for the filter. This will allow client applications to display textual information to final users.</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.bandName</vodml-id>
+      <name>bandName</name>
+      <description>A standard label representing the spectral band associated to this filter (if any).</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.dateValidityFrom</vodml-id>
+      <name>dateValidityFrom</name>
+      <description>Start time of the time coverage for which this filter configuration is applicable. String time format accepted is ISO8601.
+</description>
+      <datatype>
+        <vodml-ref>Phot:ISOTime</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>PhotometryFilter.dateValidityTo</vodml-id>
+      <name>dateValidityTo</name>
+      <description>End time of the time coverage for which this filter configuration is applicable. String time format accepted is ISO8601.
+</description>
+      <datatype>
+        <vodml-ref>Phot:ISOTime</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>PhotometryFilter.bandwidth</vodml-id>
+      <name>bandwidth</name>
+      <description>Association to the spectral band-pass of the Filter.
+
+
+</description>
+      <datatype>
+        <vodml-ref>Phot:Bandwidth</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <composition>
+      <vodml-id>PhotometryFilter.transmissionCurve</vodml-id>
+      <name>transmissionCurve</name>
+      <description>Link to the Transmission Curve of the Filter, when this is described.</description>
+      <datatype>
+        <vodml-ref>Phot:TransmissionCurve</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <composition>
+      <vodml-id>PhotometryFilter.spectralLocation</vodml-id>
+      <name>spectralLocation</name>
+      <description>Association to a spectral coordinate value for locating the Filter band-pass. Usually the mean value.
+
+</description>
+      <datatype>
+        <vodml-ref>Phot:SpectralLocation</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>PhotCal</vodml-id>
+    <name>PhotCal</name>
+    <description>A class to bind together all  photometic calibration reference information: a photometry filter, a certain magnitude system configuration and a certain zero point object.</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>PhotCal.identifier</vodml-id>
+      <name>identifier</name>
+      <description>A unique identifier of the Photometry calibration instance within the project  and a filterprofile service . Suggested syntax would be:
+Facility/Subcategory/Band/Photometric System Type[/Suffix]</description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>PhotCal.zeroPoint</vodml-id>
+      <name>zeroPoint</name>
+      <description>The ZeroPoint value for the flux to mag translation belongs to a Photcal element and is defined for one Filter element and one MagnitudeSystem .</description>
+      <datatype>
+        <vodml-ref>Phot:ZeroPoint</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <composition>
+      <vodml-id>PhotCal.magnitudeSystem</vodml-id>
+      <name>magnitudeSystem</name>
+      <description>ZeroPoint values are given with one computation method corresponding to a defined Magnitude system.
+</description>
+      <datatype>
+        <vodml-ref>Phot:MagnitudeSystem</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <reference>
+      <vodml-id>PhotCal.photometryFilter</vodml-id>
+      <name>photometryFilter</name>
+      <description>Each PhotCal element is related to one single Filter. Some Filter object may have no calibration registered yet.</description>
+      <datatype>
+        <vodml-ref>Phot:PhotometryFilter</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </reference>
+  </objectType>
+
+  <objectType>
+    <vodml-id>ZeroPoint</vodml-id>
+    <name>ZeroPoint</name>
+    <description>This class is used to characterize a zero point flux obtained during the calibration of a certain photometry filter on a certain photometric system configuration.</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>ZeroPoint.type</vodml-id>
+      <name>type</name>
+      <description>Type describing the way the zeropoint value is defined . Is an integer value : {0=Pogson, 1=Asinh, 2=Linear} corresponding to zero point definitions.</description>
+      <datatype>
+        <vodml-ref>ivoa:integer</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>ZeroPoint.referenceMagnitudeValue</vodml-id>
+      <name>referenceMagnitudeValue</name>
+      <description>Reference magnitude value  of the calibrating object.  can be a implemented as a  double number to get the maximum precision. 
+Default value is zero, but sometimes the reference mag measured is slightly above.
+
+</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>ZeroPoint.referenceMagnitudeError</vodml-id>
+      <name>referenceMagnitudeError</name>
+      <description>Total error estimated on the reference magnitude value whenever applicable. 
+</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <composition>
+      <vodml-id>ZeroPoint.flux</vodml-id>
+      <name>flux</name>
+      <description>Points to the flux value associated to this ZeroPoint magnitude.
+</description>
+      <datatype>
+        <vodml-ref>Phot:Flux</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>PogsonZeropoint</vodml-id>
+    <name>PogsonZeropoint</name>
+    <description>Extension of ZeroPoint to accommodate standard logarithm magnitudes. It has no supplementary attributes but specific conversion functions.
+</description>
+    <extends>
+      <vodml-ref>Phot:ZeroPoint</vodml-ref>
+    </extends>
+  </objectType>
+
+  <objectType>
+    <vodml-id>AsinhZeropoint</vodml-id>
+    <name>AsinhZeropoint</name>
+    <description>Extension of ZeroPoint to describe asinh magnitudes, a.k.a. luptitudes.</description>
+    <extends>
+      <vodml-ref>Phot:ZeroPoint</vodml-ref>
+    </extends>
+    <attribute>
+      <vodml-id>AsinhZeropoint.softeningParameter</vodml-id>
+      <name>softeningParameter</name>
+      <description>Parameter used to correct the calculation of magnitudes for faint sources. Usually called 'b'. See (Lupton and Gunn et al. [1999]) for a formal explanation.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>LinearFluxZeropoint</vodml-id>
+    <name>LinearFluxZeropoint</name>
+    <description>Extension of ZeroPoint to describe simple linear flux photometry, commonly used in Radio, Far Infrared and X-ray spectral ranges. Although not being magnitudes as such, relative linear flux measurements can be included as a special and trivial case of magnitude.
+</description>
+    <extends>
+      <vodml-ref>Phot:ZeroPoint</vodml-ref>
+    </extends>
+  </objectType>
+
+  <objectType>
+    <vodml-id>MagnitudeSystem</vodml-id>
+    <name>MagnitudeSystem</name>
+    <description>A class to describe the Magnitude System used , its type and the reference spectrum attached if present.</description>
+    <attribute>
+      <vodml-id>MagnitudeSystem.type</vodml-id>
+      <name>type</name>
+      <description>Type of magnitude system used to compute the associated zeropoint . Typical values are : VEGAmag, ABmag, STmag .
+</description>
+      <datatype>
+        <vodml-ref>Phot:TypeOfMagSystem</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>MagnitudeSystem.referenceSpectrum</vodml-id>
+      <name>referenceSpectrum</name>
+      <description>Link to the reference spectrum as a URI.</description>
+      <datatype>
+        <vodml-ref>ivoa:anyURI</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Bandwidth</vodml-id>
+    <name>Bandwidth</name>
+    <description>This class is used to characterize the spectral properties of a filter. 
+</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>Bandwidth.ucd</vodml-id>
+      <name>ucd</name>
+      <description>Unified Content Description (UCD) string that specifies the nature of the bandwidth object.</description>
+      <datatype>
+        <vodml-ref>Phot:UCD</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bandwidth.unitexpression</vodml-id>
+      <name>unitexpression</name>
+      <description>Unit string  that specifies the spectral unit for this filter.</description>
+      <datatype>
+        <vodml-ref>ivoa:Unit</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bandwidth.extent</vodml-id>
+      <name>extent</name>
+      <description>Bandwidth’s extent of the filter , as length of the covered spectral interval , or effective width following appropriate filter type.
+</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bandwidth.start</vodml-id>
+      <name>start</name>
+      <description>In practice, this could be taken as the minimum value of the filter transmission curve.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Bandwidth.stop</vodml-id>
+      <name>stop</name>
+      <description>In practice, this could be taken as the maximum value of the filter transmission curve.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>TransmissionPoint</vodml-id>
+    <name>TransmissionPoint</name>
+    <description>This class is used to represent a point in the transmission function of a Filter.
+
+</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>TransmissionPoint.transmissionValue</vodml-id>
+      <name>transmissionValue</name>
+      <description>Transmitted value for the filter at this point of the transmission curve. Usually between 0 and 1. 
+</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>TransmissionPoint.spectralValue</vodml-id>
+      <name>spectralValue</name>
+      <description>Spectral coordinate value for the transmission point.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>TransmissionPoint.spectralErrorValue</vodml-id>
+      <name>spectralErrorValue</name>
+      <description>Error on the spectral coordinate value for the transmission point.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>TransmissionPoint.ucd</vodml-id>
+      <name>ucd</name>
+      <description>Unified Content Description (UCD) string that specifies the nature of the spectral axis in the transmission curve.</description>
+      <datatype>
+        <vodml-ref>Phot:UCD</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>TransmissionPoint.unit</vodml-id>
+      <name>unit</name>
+      <description>Unit string  that specifies the spectral unit for this filter.</description>
+      <datatype>
+        <vodml-ref>ivoa:Unit</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Access</vodml-id>
+    <name>Access</name>
+    <description>Gathers all properties to access a resource : uri, format and size . 
+</description>
+    <attribute>
+      <vodml-id>Access.reference</vodml-id>
+      <name>reference</name>
+      <description>URI to access the resource.</description>
+      <datatype>
+        <vodml-ref>ivoa:anyURI</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Access.size</vodml-id>
+      <name>size</name>
+      <description>Approximate estimated size of the dataset, specified in kilobytes.</description>
+      <datatype>
+        <vodml-ref>ivoa:integer</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Access.format</vodml-id>
+      <name>format</name>
+      <description>Format of the accessed resource.  Typically a MIME type is used : application/fits, application/x-votable+xml, text/csv, text/xml, etc. </description>
+      <datatype>
+        <vodml-ref>ivoa:string</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>TransmissionCurve</vodml-id>
+    <name>TransmissionCurve</name>
+    <description>A collection of points along the spectral axis to indicate how flux are transmitted by a filter. 
+The transmission profile can be described by an external file and accessed through the Access instance, or can be stored as a collection of transmission points stored together in the PhotometryFilter serialized instance.</description>
+    <composition>
+      <vodml-id>TransmissionCurve.transmissionPoint</vodml-id>
+      <name>transmissionPoint</name>
+      <description>Set of points of the transmission curve.</description>
+      <datatype>
+        <vodml-ref>Phot:TransmissionPoint</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>-1</maxOccurs>
+      </multiplicity>
+    </composition>
+    <composition>
+      <vodml-id>TransmissionCurve.access</vodml-id>
+      <name>access</name>
+      <description>Access to an external file containing the set of Transmission Points.</description>
+      <datatype>
+        <vodml-ref>Phot:Access</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>0</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </composition>
+  </objectType>
+
+  <objectType>
+    <vodml-id>SpectralLocation</vodml-id>
+    <name>SpectralLocation</name>
+    <description>A spectral coordinate value for locating the Filter band-pass. Usually the mean  value (for instance in wavelength units).
+This class is used to characterize the spectral properties of a filter. 
+</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>SpectralLocation.ucd</vodml-id>
+      <name>ucd</name>
+      <description>Unified Content Description (UCD) string that specifies the nature of the spectral location for this filter.</description>
+      <datatype>
+        <vodml-ref>Phot:UCD</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>SpectralLocation.unitexpression</vodml-id>
+      <name>unitexpression</name>
+      <description>Unit string  that specifies the spectral units for this filter.</description>
+      <datatype>
+        <vodml-ref>ivoa:Unit</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>SpectralLocation.value</vodml-id>
+      <name>value</name>
+      <description>A spectral coordinate value that can be considered by the data provider as the most representative for this specific filter bandpass. 
+In the Optical regime this can represent the effective wavelength, for instance.
+</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+  <objectType>
+    <vodml-id>Flux</vodml-id>
+    <name>Flux</name>
+    <description>This class is used to characterize the photometric calibration  Flux&lt;—&gt; Magnitude associated to the ZeroPoint used by a PhotCal instance.
+</description>
+    <constraint>
+      <description>One association at the time
+</description>
+    </constraint>
+    <attribute>
+      <vodml-id>Flux.ucd</vodml-id>
+      <name>ucd</name>
+      <description>Unified Content Description (UCD) string that specifies the nature of the flux.
+</description>
+      <datatype>
+        <vodml-ref>Phot:UCD</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Flux.unitexpression</vodml-id>
+      <name>unitexpression</name>
+      <description>Unit string  that specifies the flux unit.
+</description>
+      <datatype>
+        <vodml-ref>ivoa:Unit</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Flux.value</vodml-id>
+      <name>value</name>
+      <description>A flux value.</description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+    <attribute>
+      <vodml-id>Flux.error</vodml-id>
+      <name>error</name>
+      <description>Flux value error corresponding to the reference magnitude value  of the calibrating object. </description>
+      <datatype>
+        <vodml-ref>ivoa:real</vodml-ref>
+      </datatype>
+      <multiplicity>
+        <minOccurs>1</minOccurs>
+        <maxOccurs>1</maxOccurs>
+      </multiplicity>
+    </attribute>
+  </objectType>
+
+</vo-dml:model>

@@ -1,0 +1,5 @@
+<INSTANCE dmrole="" dmtype="coords:Coordinate">
+   <!-- Abstract base class for the Coordinate data types which represent an absolute location within a coordinate space. Coordinates MUST refer to a coordinate system, providing additional metadata relevant to interpreting the coordinate value, and its representation.
+" -->
+   <!-- Abstract head of the coordinate system object tree." -->
+</INSTANCE>
