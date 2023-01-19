@@ -1,0 +1,8 @@
+<INSTANCE dmrole="" dmtype="coords:PhysicalCoordinate">
+   <!-- The most common type of coordinate value.  This type is appropriate for any data whose values can be described by an ivoa:Quantity (numeric, with unit)." -->
+   <!-- Put here a concrete INSTANCE of CoordSys or left blank -->
+   <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:Quantity">
+      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+   </INSTANCE>
+</INSTANCE>

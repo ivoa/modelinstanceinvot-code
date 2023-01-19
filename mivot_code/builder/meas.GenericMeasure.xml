@@ -1,0 +1,31 @@
+<INSTANCE dmrole="" dmtype="meas:GenericMeasure">
+   <!-- The most generic Measure class.  This class may be used to represent data not covered by the specialized cases." -->
+   <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" ref="@@@@@" value=""/>
+   <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+      <!-- The Error class uses the Uncertainty types to describe measurement errors from various sources." -->
+      <!-- Symmetrical taken as concrete type for Uncertainty -->
+      <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+         <!-- Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D." -->
+         <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+      <!-- Symmetrical taken as concrete type for Uncertainty -->
+      <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+         <!-- Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D." -->
+         <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+   </INSTANCE>
+   <INSTANCE dmrole="" dmtype="coords:PhysicalCoordinate">
+      <!-- The most common type of coordinate value.  This type is appropriate for any data whose values can be described by an ivoa:Quantity (numeric, with unit)." -->
+      <!-- Put here a concrete INSTANCE of CoordSys or left blank -->
+      <INSTANCE dmrole="coords:PhysicalCoordinate.cval" dmtype="ivoa:Quantity">
+         <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+      </INSTANCE>
+   </INSTANCE>
+</INSTANCE>

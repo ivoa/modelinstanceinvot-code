@@ -9,7 +9,8 @@ from lxml import etree
 from mivot_code.utils.xml_utils import XmlUtils
 
 DEFAULT_CONCRETE_CLASSES = {
-    "RefLocation": "StdRefLocation"
+    "RefLocation": "StdRefLocation",
+    "Uncertainty": "Symmetrical"
     }
 
 class Constraints:
@@ -192,8 +193,14 @@ class Builder:
             unit_att = ""
         else:
             unit_att = 'unit=""'
-
-        self.write_out(f'<ATTRIBUTE dmrole="{dmrole}" dmtype="{dmtype}" {unit_att} ref="@@@@@" value=""/>')
+        
+        if dmtype.endswith("Quantity"):
+            self.write_out(f'<INSTANCE dmrole="{dmrole}" dmtype="{dmtype}">')
+            self.write_out('<ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value="" />')
+            self.write_out('<ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value="" />')
+            self.write_out('</INSTANCE>')
+        else:
+            self.write_out(f'<ATTRIBUTE dmrole="{dmrole}" dmtype="{dmtype}" {unit_att} ref="@@@@@" value="" />')
     
     def get_object_by_ref(self, vodmlid, role, aggregate, extend=False):
         print(f"search object with vodmlid={vodmlid}")
@@ -253,8 +260,25 @@ class Builder:
                 self.write_out(f'<!-- Enumeration datatype: supported values are {val_str} -->')
                 self.write_out(f'<ATTRIBUTE dmrole="{role}" dmtype="{vodmlid}" value="OneOf {val_str}"/>')
                 return
-
-        raise Exception(f"Type {vodmlid} not found")
+        filename = vodmlid.replace(":", ".") + ".xml"
+        filename = filename.replace(".Point.", ".LonLatPoint.")
+        filename = filename.replace(".TimeStamp.", ".MJD.")
+        
+        if self.include_file(filename) is False:
+            raise Exception(f"Type {vodmlid} not found")
+        
+    def include_file(self, filename):
+        if os.path.exists(filename):
+            print(f"include file {filename}")
+            lines = []
+            with open(filename) as include_file:
+                lines = include_file.readlines()
+            for line in lines:
+                self.write_out(line)
+            return True
+    
+        print(f"Cannot find file {filename}")
+        return False
 
     def get_concrete_type_by_ref(self, abstract_vodmlid, role, aggregate, extend):
         if role.endswith("coordSpace"):
@@ -267,7 +291,7 @@ class Builder:
             self.get_object_by_ref(concrete_type, role, aggregate, extend)
             return
         else:
-            raise Exception(f"Cannot found a concrete type for {abstract_vodmlid}")
+            self.write_out(f"<!-- Put here a concrete INSTANCE of {abstract_vodmlid} or left blank -->")
         
     def write_out(self, string):
         if self.output is None:

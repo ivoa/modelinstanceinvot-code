@@ -1,0 +1,59 @@
+<INSTANCE dmrole="" dmtype="meas:Velocity">
+   <!-- Provides a comple description of a measured Velocity instant." -->
+   <ATTRIBUTE dmrole="meas:Measure.ucd" dmtype="ivoa:string" ref="@@@@@" value=""/>
+   <INSTANCE dmrole="meas:Measure.error" dmtype="meas:Error">
+      <!-- The Error class uses the Uncertainty types to describe measurement errors from various sources." -->
+      <!-- Symmetrical taken as concrete type for Uncertainty -->
+      <INSTANCE dmrole="meas:Error.statError" dmtype="meas:Symmetrical">
+         <!-- Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D." -->
+         <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+      <!-- Symmetrical taken as concrete type for Uncertainty -->
+      <INSTANCE dmrole="meas:Error.sysError" dmtype="meas:Symmetrical">
+         <!-- Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D." -->
+         <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+            <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+   </INSTANCE>
+   <INSTANCE dmrole="" dmtype="coords:LonLatPoint">
+      <!-- A spatial coordinate in a Spherical coordinate space defining a Celestial position in Latitude and Longitude.  Any associated CoordSpace MUST conform to this description.  If no CoordSpace is provided, a Standard Spherical CoordSpace is assumed.  Values for unused/undefined dimensions need not be provided.
+
+" -->
+      <!-- The Coordinate system can be pushed up to the GLOBALS and replaced here with <REFERENCE dmref="SOME_REF" dmrole="coords:Coordinate.coordSys" />">-->
+      <INSTANCE dmid="PUT_AN_ID_HERE" dmrole="coords:Coordinate.coordSys" dmtype="coords:SpaceSys">
+         <!-- Specialized coordinate system for the Spatial domain.  This object SHOULD include an appropriate SpaceFrame.  In Appendix B, we define two standard spatial coordinate space instances (Spherical and Cartesian), which may be referenced in serializations.  If a CoordSpace is not provided, it is assumed to be represented by a Standard Spherical Coordinate Space." -->
+         <!-- the axis representation (coords:PhysicalCoordSys.coordSpace) is not serialized here -->
+         <INSTANCE dmrole="coords:PhysicalCoordSys.frame" dmtype="coords:SpaceFrame">
+            <!-- A SpaceFrame is specified by its reference frame (orientation), and a reference position (origin). Currently only standard reference frames are allowed. An equinox MUST be provided for pre-ICRS reference frames. A planetary ephemeris MAY be provided if relevant. If needed, but not provided, it is assumed to be "DE405".
+
+" -->
+            <!-- StdRefLocation taken as concrete type for RefLocation -->
+            <INSTANCE dmrole="coords:SpaceFrame.refPosition" dmtype="coords:StdRefLocation">
+               <!-- An absolute a-priori known location in phase space (position and velocity).  Values are selected from the StdRefPosition vocabulary.  Considering that the GEOCENTER is really the only place for which we know the absolute location at all times, all other locations require the specification of a planetary ephemeris.  LSR[KD] are reserved for spectral and reshift frames.  TOPOCENTER (location of the observer) is special in that it assumes that the observing location is available through other means (e.g. a geographic location or an orbit ephemeris).  RELOCATABLE is available for simulations.  UNKNOWN should only be used if absolutely necessary." -->
+               <ATTRIBUTE dmrole="coords:StdRefLocation.position" dmtype="ivoa:string" ref="@@@@@" value=""/>
+            </INSTANCE>
+            <ATTRIBUTE dmrole="coords:SpaceFrame.spaceRefFrame" dmtype="ivoa:string" ref="@@@@@" value=""/>
+            <!-- We define epoch as a primitive data type with the expected form "<type><year>" where type = "J" or "B" for Julian or Besselian respectively, and year is expressed as a decimal year.  e.g.: "B1950", "J2000.0" -->
+            <ATTRIBUTE dmrole="coords:SpaceFrame.equinox" dmtype="Epoch" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="coords:SpaceFrame.planetaryEphem" dmtype="ivoa:string" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+      <INSTANCE dmrole="coords:LonLatPoint.lon" dmtype="ivoa:Quantity">
+         <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+      </INSTANCE>
+      <INSTANCE dmrole="coords:LonLatPoint.lat" dmtype="ivoa:Quantity">
+         <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+      </INSTANCE>
+      <INSTANCE dmrole="coords:LonLatPoint.dist" dmtype="ivoa:Quantity">
+         <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+      </INSTANCE>
+   </INSTANCE>
+</INSTANCE>

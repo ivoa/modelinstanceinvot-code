@@ -1,0 +1,7 @@
+<INSTANCE dmrole="" dmtype="meas:Symmetrical">
+   <!-- Symmetrical uncertainty, constant in all dimensions and directions from the associated Coordinate.  ie: PlusMinus in 1D, circular in 2D, spherical in 3D." -->
+   <INSTANCE dmrole="meas:Symmetrical.radius" dmtype="ivoa:RealQuantity">
+      <ATTRIBUTE dmrole="ivoa:RealQuantity.value" dmtype="ivoa:real" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="ivoa:Quantity.unit" dmtype="ivoa:Unit" ref="@@@@@" value=""/>
+   </INSTANCE>
+</INSTANCE>
