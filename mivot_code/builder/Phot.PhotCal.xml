@@ -1,0 +1,94 @@
+<INSTANCE dmrole="" dmtype="Phot:PhotCal">
+   <!-- A class to bind together all  photometic calibration reference information: a photometry filter, a certain magnitude system configuration and a certain zero point object." -->
+   <ATTRIBUTE dmrole="Phot:PhotCal.identifier" dmtype="ivoa:string" ref="@@@@@" value=""/>
+   <INSTANCE dmrole="Phot:PhotCal.zeroPoint" dmtype="Phot:ZeroPoint">
+      <!-- This class is used to characterize a zero point flux obtained during the calibration of a certain photometry filter on a certain photometric system configuration." -->
+      <ATTRIBUTE dmrole="Phot:ZeroPoint.type" dmtype="ivoa:integer" unit="" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:ZeroPoint.referenceMagnitudeValue" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:ZeroPoint.referenceMagnitudeError" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+      <INSTANCE dmrole="Phot:ZeroPoint.flux" dmtype="Phot:Flux">
+         <!-- This class is used to characterize the photometric calibration  Flux<&#8212;> Magnitude associated to the ZeroPoint used by a PhotCal instance.
+" -->
+         <!-- Specialized string type derived from ivoa:string. UCD words belong to a controlled vocabulary. They are used as semantics tags for the content of table columns . See the UCD IVOA Recommendation.
+ -->
+         <ATTRIBUTE dmrole="Phot:Flux.ucd" dmtype="UCD" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Flux.unitexpression" dmtype="ivoa:Unit" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Flux.value" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Flux.error" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+      </INSTANCE>
+   </INSTANCE>
+   <INSTANCE dmrole="Phot:PhotCal.magnitudeSystem" dmtype="Phot:MagnitudeSystem">
+      <!-- A class to describe the Magnitude System used , its type and the reference spectrum attached if present." -->
+      <!-- The type of System used to compute magnitude for this photometric calibration procedure . -->
+      <!-- Enumeration datatype: supported values are VEGAmag ABmag STmag  -->
+      <ATTRIBUTE dmrole="Phot:MagnitudeSystem.type" dmtype="TypeOfMagSystem" value="OneOf VEGAmag ABmag STmag "/>
+      <ATTRIBUTE dmrole="Phot:MagnitudeSystem.referenceSpectrum" dmtype="ivoa:anyURI" unit="" ref="@@@@@" value=""/>
+   </INSTANCE>
+   <INSTANCE dmrole="Phot:PhotCal.photometryFilter" dmtype="Phot:PhotometryFilter">
+      <!-- Filter class to store ids, name and properties.
+" -->
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.fpsIdentifier" dmtype="ivoa:string" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.identifier" dmtype="ivoa:string" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.name" dmtype="ivoa:string" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.description" dmtype="ivoa:string" ref="@@@@@" value=""/>
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.bandName" dmtype="ivoa:string" ref="@@@@@" value=""/>
+      <!-- Time stamp, represented as a string. This representaion is compliant to the DALI time stamp definition : section 3.3.3 Timestamp in
+https://www.ivoa.net/documents/DALI/20170517/REC-DALI-1.1.pdf
+This class derives from the ivoa:datetime class.
+
+It could be inserted in the ivoa: template data model for types in a next version.  -->
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.dateValidityFrom" dmtype="ISOTime" ref="@@@@@" value=""/>
+      <!-- Time stamp, represented as a string. This representaion is compliant to the DALI time stamp definition : section 3.3.3 Timestamp in
+https://www.ivoa.net/documents/DALI/20170517/REC-DALI-1.1.pdf
+This class derives from the ivoa:datetime class.
+
+It could be inserted in the ivoa: template data model for types in a next version.  -->
+      <ATTRIBUTE dmrole="Phot:PhotometryFilter.dateValidityTo" dmtype="ISOTime" ref="@@@@@" value=""/>
+      <INSTANCE dmrole="Phot:PhotometryFilter.bandwidth" dmtype="Phot:Bandwidth">
+         <!-- This class is used to characterize the spectral properties of a filter. 
+" -->
+         <!-- Specialized string type derived from ivoa:string. UCD words belong to a controlled vocabulary. They are used as semantics tags for the content of table columns . See the UCD IVOA Recommendation.
+ -->
+         <ATTRIBUTE dmrole="Phot:Bandwidth.ucd" dmtype="UCD" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Bandwidth.unitexpression" dmtype="ivoa:Unit" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Bandwidth.extent" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Bandwidth.start" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:Bandwidth.stop" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+      </INSTANCE>
+      <INSTANCE dmrole="Phot:PhotometryFilter.transmissionCurve" dmtype="Phot:TransmissionCurve">
+         <!-- A collection of points along the spectral axis to indicate how flux are transmitted by a filter. 
+The transmission profile can be described by an external file and accessed through the Access instance, or can be stored as a collection of transmission points stored together in the PhotometryFilter serialized instance." -->
+         <COLLECTION dmrole="Phot:TransmissionCurve.transmissionPoint">
+            <INSTANCE dmrole="" dmtype="Phot:TransmissionPoint">
+               <!-- This class is used to represent a point in the transmission function of a Filter.
+
+" -->
+               <ATTRIBUTE dmrole="Phot:TransmissionPoint.transmissionValue" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+               <ATTRIBUTE dmrole="Phot:TransmissionPoint.spectralValue" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+               <ATTRIBUTE dmrole="Phot:TransmissionPoint.spectralErrorValue" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+               <!-- Specialized string type derived from ivoa:string. UCD words belong to a controlled vocabulary. They are used as semantics tags for the content of table columns . See the UCD IVOA Recommendation.
+ -->
+               <ATTRIBUTE dmrole="Phot:TransmissionPoint.ucd" dmtype="UCD" ref="@@@@@" value=""/>
+               <ATTRIBUTE dmrole="Phot:TransmissionPoint.unit" dmtype="ivoa:Unit" unit="" ref="@@@@@" value=""/>
+            </INSTANCE>
+         </COLLECTION>
+         <INSTANCE dmrole="Phot:TransmissionCurve.access" dmtype="Phot:Access">
+            <!-- Gathers all properties to access a resource : uri, format and size . 
+" -->
+            <ATTRIBUTE dmrole="Phot:Access.reference" dmtype="ivoa:anyURI" unit="" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="Phot:Access.size" dmtype="ivoa:integer" unit="" ref="@@@@@" value=""/>
+            <ATTRIBUTE dmrole="Phot:Access.format" dmtype="ivoa:string" ref="@@@@@" value=""/>
+         </INSTANCE>
+      </INSTANCE>
+      <INSTANCE dmrole="Phot:PhotometryFilter.spectralLocation" dmtype="Phot:SpectralLocation">
+         <!-- A spectral coordinate value for locating the Filter band-pass. Usually the mean  value (for instance in wavelength units).
+This class is used to characterize the spectral properties of a filter. 
+" -->
+         <!-- Specialized string type derived from ivoa:string. UCD words belong to a controlled vocabulary. They are used as semantics tags for the content of table columns . See the UCD IVOA Recommendation.
+ -->
+         <ATTRIBUTE dmrole="Phot:SpectralLocation.ucd" dmtype="UCD" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:SpectralLocation.unitexpression" dmtype="ivoa:Unit" unit="" ref="@@@@@" value=""/>
+         <ATTRIBUTE dmrole="Phot:SpectralLocation.value" dmtype="ivoa:real" unit="" ref="@@@@@" value=""/>
+      </INSTANCE>
+   </INSTANCE>
+</INSTANCE>

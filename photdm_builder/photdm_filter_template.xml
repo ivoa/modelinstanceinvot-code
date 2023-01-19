@@ -75,7 +75,7 @@
     <ATTRIBUTE dmrole="photdm:SpectralLocation.ucd" dmtype="ivoa:UCD"
       value="$spectralLocationUCD" />
     <ATTRIBUTE dmrole="photdm:SpectralLocation.unitexpression" dmtype="ivoa:Unit"
-      value="Angstrom" />
+      value="$spectralLocationUnit" />
     <ATTRIBUTE dmrole="photdm:SpectralLocation.value" dmtype="ivoa:real"
       value="$spectralLocation" />
   </INSTANCE>

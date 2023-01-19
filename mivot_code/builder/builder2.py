@@ -8,6 +8,10 @@ import os
 from lxml import etree
 from mivot_code.utils.xml_utils import XmlUtils
 
+DEFAULT_CONCRETE_CLASSES = {
+    "RefLocation": "StdRefLocation"
+    }
+
 class Constraints:
     def __init__(self, model_name):
         self.datatype = None
@@ -16,7 +20,10 @@ class Constraints:
         self.constraints = {}
 
     def add_constraint(self, ele):
-        self.datatype = ele.xpath(".//datatype/vodml-ref")[0].text
+        refs = ele.xpath(".//datatype/vodml-ref")
+        if len(refs) == 0:
+            return
+        self.datatype = refs[0].text
         self.role = ele.xpath(".//role/vodml-ref")[0].text.replace(self.model_name + ":", "")
         self.constraints[self.role] = self.datatype
         print(f"add constraint on role {self.role}: type={self.datatype} ")
@@ -64,9 +71,9 @@ class Builder:
                 if tags.tag == "vodml-id" and  tags.text == self.class_name :
                     self.build_object(ele, "", True, True)
                     return
-
             
     def build_object(self, ele, role, root, aggregate):
+        print(f"build object with role={role}")
         for tags in list(ele): 
             if tags.tag == "constraint":
                 self.constraints.add_constraint(tags)
@@ -83,9 +90,11 @@ class Builder:
                     print(f"opening {self.model_name}.{tags.text}.xml")
                     self.output = open(self.outputname, "w")
                 if aggregate is True:
+                    dmid=""
                     if role == "coords:Coordinate.coordSys":
-                        self.write_out("<!-- The Coordinate system can be pushed up to the GLOBALS and replaced here with a REFERENCE-->")
-                    self.write_out(f'<INSTANCE dmrole="{role}" dmtype="{self.model_name}:{tags.text}">')
+                        self.write_out(f'<!-- The Coordinate system can be pushed up to the GLOBALS and replaced here with <REFERENCE dmref="SOME_REF" dmrole="{role}" />">-->')
+                        dmid = 'dmid="PUT_AN_ID_HERE"'
+                    self.write_out(f'<INSTANCE {dmid} dmrole="{role}" dmtype="{self.model_name}:{tags.text}">')
             elif tags.tag == "extends":
                 self.addExtend(tags)
             elif tags.tag == "reference":
@@ -98,7 +107,7 @@ class Builder:
                 if aggregate is True:
                     self.write_out(f'<!-- {tags.text}" -->')
                 
-        if aggregate is True:
+        if aggregate is True :
             self.write_out("</INSTANCE>")
         if root is True:
             self.output.close()
@@ -151,10 +160,7 @@ class Builder:
                                self.model_name + ":" + vodmlid, True)
             
     def addExtend(self, ele):
-        """if constraint is not None:
-            self.get_object_by_ref(constraint.datatype.replace(self.model_name + ":", ""))
-            return
-        """
+    
         print("== add extend")
         for tags in ele.getchildren  (): 
             if tags.tag == "vodml-ref":
@@ -164,34 +170,105 @@ class Builder:
         const_type = self.constraints.get_contraint(reftype) 
         if const_type is not None in self.constraints.constraints:
             reftype = const_type
-        self.get_object_by_ref(reftype.replace(self.model_name + ":", ""), reftype, False)
+        self.get_object_by_ref(reftype.replace(self.model_name + ":", ""), reftype, False, extend=True)
                 
     def addAttribute(self, ele):
         for tags in ele.getchildren  ():         # root is the ElementTree object
             if tags.tag == "vodml-id":
                 vodml_id = tags.text
+                dmrole = f"{self.model_name}:{vodml_id}"
             elif tags.tag == "datatype" :   
                 for ref in tags.getchildren():
-                    vodmlref = ref.text  
+                    vodmlref = ref.text 
+                    if ":" in  vodmlref:
+                        dmtype = f"{vodmlref}"
+                    else:
+                        dmtype = f"{self.model_name}:{vodmlref}"
+                    if vodmlref.startswith("ivoa:") is False:
+                        self.get_object_by_ref(vodmlref.replace(self.model_name + ":", ""), dmrole, True)
+                        return
                     break
-        self.write_out(f'<ATTRIBUTE dmrole="{self.model_name}:{vodml_id}" dmtype="{self.model_name}:{vodmlref}" unit="" ref="@@@@@" value=""/>')
+        if dmtype.lower().endswith("string"):
+            unit_att = ""
+        else:
+            unit_att = 'unit=""'
+
+        self.write_out(f'<ATTRIBUTE dmrole="{dmrole}" dmtype="{dmtype}" {unit_att} ref="@@@@@" value=""/>')
     
-    def get_object_by_ref(self, vodmlid, role, aggregate):
+    def get_object_by_ref(self, vodmlid, role, aggregate, extend=False):
         print(f"search object with vodmlid={vodmlid}")
         for ele in self.vodml.xpath(f'.//objectType'):
+            abstract_att = ele.get("abstract")
             for tags in list(ele):  
                 if tags.tag == "vodml-id" and tags.text == vodmlid:
                     print("  found in objecttype")
-                    self.build_object(ele, role, False, aggregate)
+                    if extend is False and abstract_att is not None and abstract_att.lower() == "true":
+                        self.get_concrete_type_by_ref(vodmlid, role, aggregate, extend)                    
+                    else:
+                        self.build_object(ele, role, False, aggregate)
                     return
+
         for ele in self.vodml.xpath(f'.//dataType'):
+            abstract_att = ele.get("abstract")
+                
             for tags in list(ele):         # root is the ElementTree object
                 if tags.tag == "vodml-id" and tags.text == vodmlid:
-                    print("  found in datatype")
-                    self.build_object(ele, role, False, aggregate)
+                    print("  found in datatype")  
+                    print(extend)                  
+                    if extend is False and abstract_att is not None and abstract_att.lower() == "true":
+                        self.get_concrete_type_by_ref(vodmlid, role, aggregate, extend)                    
+                    else:
+                        self.build_object(ele, role, False, aggregate)
                     return
-        print("not found")
+                        
+        for ele in self.vodml.xpath(f'.//primitiveType'):
+            found = False
+            description = ""
+            for tags in list(ele):         # root is the ElementTree object
+                if tags.tag == "vodml-id" and tags.text == vodmlid:
+                    found = True
+                if tags.tag == "description":
+                    description = f"<!-- {tags.text} -->"
+            if found is True:
+                if description:
+                    self.write_out(description)
+                self.write_out(f'<ATTRIBUTE dmrole="{role}" dmtype="{vodmlid}" ref="@@@@@" value=""/>')
+                return
+            
+        for ele in self.vodml.xpath(f'.//enumeration'):
+            found = False
+            description = ""
+            for tags in list(ele):         # root is the ElementTree object
+                if tags.tag == "vodml-id" and tags.text == vodmlid:
+                    found = True
+                if tags.tag == "description":
+                    description = f"<!-- {tags.text} -->"
+            if found is True:
+                values = ele.xpath(f'.//literal/name')
+                val_str = ""
+                for value in values:
+                    val_str += value.text + " "
+                if description:
+                    self.write_out(description)
+                self.write_out(f'<!-- Enumeration datatype: supported values are {val_str} -->')
+                self.write_out(f'<ATTRIBUTE dmrole="{role}" dmtype="{vodmlid}" value="OneOf {val_str}"/>')
+                return
 
+        raise Exception(f"Type {vodmlid} not found")
+
+    def get_concrete_type_by_ref(self, abstract_vodmlid, role, aggregate, extend):
+        if role.endswith("coordSpace"):
+            self.write_out("<!-- the axis representation (coords:PhysicalCoordSys.coordSpace) is not serialized here -->")
+        elif abstract_vodmlid in DEFAULT_CONCRETE_CLASSES:
+            concrete_type = DEFAULT_CONCRETE_CLASSES[abstract_vodmlid]
+            print(f"    Take {concrete_type} as concrete type for {abstract_vodmlid}")
+            self.write_out(f"<!-- {concrete_type} taken as concrete type for {abstract_vodmlid} -->")
+
+            self.get_object_by_ref(concrete_type, role, aggregate, extend)
+            return
+        else:
+            raise Exception(f"Cannot found a concrete type for {abstract_vodmlid}")
+        
     def write_out(self, string):
         if self.output is None:
             print(string)
@@ -206,7 +283,7 @@ class Builder:
 if __name__ == '__main__':
     builder = Builder(
         "coords",
-        "JD",
+        "SpaceSys",
         os.path.join(
             os.path.dirname(os.path.realpath(__file__)),
             "Coords-v1.0.vo-dml.xml"
