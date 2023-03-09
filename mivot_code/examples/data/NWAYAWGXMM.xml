@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://www.ivoa.net/xml/VOTable/v1.3">
 
 	<RESOURCE ID="T9001" type="results">
-		<RESOURCE type="meta">
+		<RESOURCE>
 			<VODML xmlns:dm-mapping="http://www.ivoa.net/xml/merged-syntax">
 				<REPORT status="OK">hand-made mapping</REPORT>
 
