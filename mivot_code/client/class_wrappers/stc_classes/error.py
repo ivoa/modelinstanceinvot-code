@@ -5,6 +5,7 @@ Created on 20 Jan 2022
 '''
 from ..root_class import RootClass
 from .components import Quantity 
+from pickle import NONE
 
 class Error(object):
     '''
@@ -31,6 +32,9 @@ class Symmetrical(Error):
                 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Symmetrical.radius"]'):
             self.radius = Quantity(ele)
+        if self.radius is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:Symmetrical.radius"]'):
+                self.radius = Quantity(ele)
         self.label = f"{self.radius.label}"  
     
       
@@ -52,6 +56,9 @@ class Ellipse(Error):
                 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="meas:Ellipse.posAngle"]'):
             self.angle = Quantity(ele)
+        if self.angle is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="meas:Ellipse.posAngle"]'):
+                self.angle = Quantity(ele)
             
         self.label = f"{self.semiaxis[0].label} {self.semiaxis[1].label} {self.angle.label}"
 

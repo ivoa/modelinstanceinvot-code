@@ -47,7 +47,11 @@ class PhysicalCoordinate(Coord):
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:PhysicalCoordinate.cval"]'):
             self.cval = Quantity(ele)
             break
-        
+        if self.cval is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:PhysicalCoordinate.cval"]'):
+                self.cval = Quantity(ele)
+                break
+       
         if self.coordSys is not None:
             self.label = f"[{self.cval.value} {self.cval.unit} {self.coordSys.label}]"
         else:            
@@ -152,12 +156,21 @@ class LonLatPoint(Point):
         
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lon"]'):
             self.lon = Quantity(ele)
+        if self.lon is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:LonLatPoint.lon"]'):
+                self.lon = Quantity(ele)
 
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.lat"]'):
             self.lat = Quantity(ele)
+        if self.lat is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:LonLatPoint.lat"]'):
+                self.lat = Quantity(ele)
             
         for ele in model_view.xpath('.//INSTANCE[@dmrole="coords:LonLatPoint.dist"]'):
             self.dist = Quantity(ele)
+        if self.dist is None:
+            for ele in model_view.xpath('.//ATTRIBUTE[@dmrole="coords:LonLatPoint.dist"]'):
+                self.dist = Quantity(ele)
 
         self.label = "["
         if self.lon is not None:
